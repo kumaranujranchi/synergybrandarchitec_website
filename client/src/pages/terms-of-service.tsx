@@ -8,7 +8,7 @@ export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       <main className="container mx-auto px-4 py-12 md:py-24">
         <Link href="/" className="inline-flex items-center text-[#FF6B00] hover:text-[#0066CC] mb-8 transition-colors">
           <ArrowLeft className="mr-2" size={18} />
@@ -17,74 +17,59 @@ export default function TermsOfService() {
 
         <div className="prose prose-lg max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-[#333333] mb-8">Terms of Service</h1>
-          
+
           <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-            <p className="text-gray-600 mb-6">Last Updated: March 28, 2025</p>
-            
+            <p className="text-gray-600 mb-6">Last Updated: March 28, 2024</p>
+
             <h2 className="text-2xl font-semibold text-[#333333] mb-4">1. Introduction</h2>
             <p className="mb-6">
-              Welcome to Synergy Brand Architect. These Terms of Service ("Terms") govern your use of our website, services, and any other related applications or digital properties operated by Synergy Brand Architect. By using our services, you agree to these Terms in full. If you disagree with these Terms or any part of them, you must not use our services.
+              Welcome to Synergy Brand Architect! These terms and conditions outline the rules and regulations for the use of our Website, located at https://synergybrandarchitect.in. By accessing this website, we assume you accept these terms and conditions.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">2. Services</h2>
+            <h2 className="text-2xl font-semibold text-[#333333] mb-4">2. Cookies</h2>
             <p className="mb-6">
-              Synergy Brand Architect provides digital marketing and brand architecture services, including but not limited to brand strategy development, logo and identity design, social media marketing, content creation, web design and development, SEO services, and paid advertising management. The specific services to be provided to you will be detailed in a separate service agreement or proposal.
+              The website uses cookies to help personalize your online experience. Cookies are text files placed on your hard disk by a web server. They cannot be used to run programs or deliver viruses. We use cookies to collect, store, and track information for statistical or marketing purposes. You can accept or decline optional Cookies, though some required Cookies are necessary for website operation.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">3. Client Obligations</h2>
+            <h2 className="text-2xl font-semibold text-[#333333] mb-4">3. License and Content Usage</h2>
             <p className="mb-4">
-              As a client, you agree to:
+              Unless otherwise stated, Synergy Brand Architect owns all intellectual property rights for website content. You must not:
             </p>
             <ul className="list-disc pl-6 mb-6">
-              <li>Provide accurate and complete information as required for the provision of services.</li>
-              <li>Respond to requests for information, approvals, or feedback in a timely manner.</li>
-              <li>Pay for services as agreed in your service agreement or proposal.</li>
-              <li>Comply with all applicable laws and regulations.</li>
-              <li>Hold necessary rights, licenses, or permissions for any content or materials you provide to us.</li>
+              <li>Copy or republish material</li>
+              <li>Sell, rent, or sub-license material</li>
+              <li>Reproduce or duplicate material</li>
+              <li>Redistribute content</li>
             </ul>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">4. Intellectual Property</h2>
+            <h2 className="text-2xl font-semibold text-[#333333] mb-4">4. User Comments</h2>
             <p className="mb-6">
-              Upon full payment for our services, you will receive rights to the final deliverables as specified in your service agreement. However, we retain ownership of all preliminary designs, concepts, and materials not selected for final production. We also retain the right to use completed projects in our portfolio unless explicitly agreed otherwise.
+              Parts of this website allow users to post comments. We do not filter comments before publication, and they reflect the views of the poster, not Synergy Brand Architect. We reserve the right to monitor and remove inappropriate comments.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">5. Limitation of Liability</h2>
+            <h2 className="text-2xl font-semibold text-[#333333] mb-4">5. Hyperlinking</h2>
             <p className="mb-6">
-              To the maximum extent permitted by law, Synergy Brand Architect shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from your use of our services.
+              Certain organizations may link to our website without prior approval, including government agencies, search engines, and news organizations. Other organizations must request approval by contacting us.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">6. Termination</h2>
+            <h2 className="text-2xl font-semibold text-[#333333] mb-4">6. Content Liability</h2>
             <p className="mb-6">
-              Either party may terminate services as specified in the service agreement. Upon termination, you are responsible for payment of all services rendered up to the termination date, and any non-refundable fees or expenses as outlined in our Refund Policy and your service agreement.
+              We shall not be held responsible for any content appearing on linked websites. No links should appear that may be interpreted as libelous, obscene, or criminal.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">7. Privacy</h2>
+            <h2 className="text-2xl font-semibold text-[#333333] mb-4">7. Disclaimer</h2>
             <p className="mb-6">
-              Your use of our services is also governed by our Privacy Policy, which is incorporated into these Terms by reference.
+              To the maximum extent permitted by law, we exclude all representations and warranties. We will not be liable for any loss or damage except where excluded by law.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">8. Amendments</h2>
+            <h2 className="text-2xl font-semibold text-[#333333] mb-4">8. Contact Information</h2>
             <p className="mb-6">
-              We reserve the right to modify these Terms at any time. Changes will be effective immediately upon posting to our website. Your continued use of our services after any such changes constitutes your acceptance of the new Terms.
-            </p>
-
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">9. Governing Law</h2>
-            <p className="mb-6">
-              These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law principles. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts located in Patna, Bihar, India.
-            </p>
-
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">10. Contact Us</h2>
-            <p className="mb-6">
-              If you have any questions about these Terms, please contact us at:
-              <br /><br />
-              <strong>Synergy Brand Architect</strong><br />
-              Email: legal@synergybrandarchitect.com<br />
-              Phone: +91 95252 30232
+              For any questions regarding these terms, please contact us at hello@synergybrandarchitect.in
             </p>
           </div>
         </div>
       </main>
-      
+
       <Footer />
       <WhatsappButton />
     </div>
