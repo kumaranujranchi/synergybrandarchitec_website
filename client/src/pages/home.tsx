@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 import Hero from "@/components/hero";
-import ClientLogos from "@/components/client-logos";
+import ClientLogoCarousel from "@/components/client-logo-carousel";
 import About from "@/components/about";
 import Stats from "@/components/stats";
 import Services from "@/components/services";
@@ -17,7 +17,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Header />
       <Hero />
-      <ClientLogos />
+      <ClientLogoCarousel />
       <About />
       <Stats />
       <Services />
