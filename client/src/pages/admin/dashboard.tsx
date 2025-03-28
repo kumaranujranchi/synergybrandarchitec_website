@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 
@@ -6,52 +5,36 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getQueryFn } from "@/lib/queryClient";
+import AdminLayout from "@/components/admin/layout";
 
 export default function Dashboard() {
   const [, setLocation] = useLocation();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-
-  // Check authentication
-  const authQuery = useQuery({
-    queryKey: ['/api/auth/check'],
-    queryFn: getQueryFn<{authenticated: boolean; user: any}>({on401: 'returnNull'}),
-  });
-
+  
   // Dashboard stats
   const statsQuery = useQuery({
     queryKey: ['/api/admin/dashboard'],
     queryFn: getQueryFn<{stats: any}>({on401: 'returnNull'}),
-    enabled: isAuthenticated === true,
   });
 
   // Submissions (leads)
   const submissionsQuery = useQuery({
     queryKey: ['/api/admin/submissions'],
     queryFn: getQueryFn<{submissions: any[]}>({on401: 'returnNull'}),
-    enabled: isAuthenticated === true,
   });
 
-  // Check auth status and redirect if not authenticated
-  useEffect(() => {
-    if (authQuery.isSuccess) {
-      setIsAuthenticated(!!authQuery.data?.authenticated);
-      if (!authQuery.data?.authenticated) {
-        setLocation('/admin/login');
-      }
-    } else if (authQuery.isError) {
-      setLocation('/admin/login');
-    }
-  }, [authQuery.isSuccess, authQuery.isError, authQuery.data, setLocation]);
-
   // Loading state
-  if (isAuthenticated === null || statsQuery.isLoading) {
+  if (statsQuery.isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold mb-2">Loading...</h2>
-          <p className="text-muted-foreground">Please wait while we load your dashboard</p>
+      <AdminLayout>
+        <div className="p-6">
+          <div className="flex items-center justify-center">
+            <div className="text-center">
+              <h2 className="text-xl font-semibold mb-2">Loading...</h2>
+              <p className="text-muted-foreground">Please wait while we load your dashboard</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 
@@ -65,35 +48,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
-      {/* Top navigation */}
-      <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-white shadow-sm px-6">
-        <div className="flex flex-1 items-center justify-between">
-          <div className="flex items-center">
-            <img src="https://i.imgur.com/8j3VafC.png" alt="Logo" className="h-10 w-auto mr-3" />
-            <div>
-              <span className="font-bold text-[#FF6B00]">Synergy</span>
-              <span className="font-medium text-gray-700">Brand Architect</span>
-              <span className="ml-2 text-xs bg-gray-100 px-2 py-0.5 rounded text-gray-500 font-medium">Admin</span>
-            </div>
-          </div>
-          <nav className="flex items-center gap-4">
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white"
-              onClick={() => {
-                fetch('/api/auth/logout', { method: 'POST' })
-                  .then(() => setLocation('/admin/login'));
-              }}
-            >
-              Logout
-            </Button>
-          </nav>
-        </div>
-      </header>
-
-      {/* Main content */}
+    <AdminLayout>
       <main className="flex-1 p-6">
         <div className="flex flex-col gap-6">
           <h1 className="text-3xl font-bold">Dashboard</h1>
@@ -300,6 +255,6 @@ export default function Dashboard() {
           </Tabs>
         </div>
       </main>
-    </div>
+    </AdminLayout>
   );
 }

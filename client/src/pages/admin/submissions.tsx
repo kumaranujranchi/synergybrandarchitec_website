@@ -43,6 +43,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiRequest, getQueryFn } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import AdminLayout from "@/components/admin/layout";
 
 export default function SubmissionsPage() {
   const [, setLocation] = useLocation();
@@ -91,9 +92,11 @@ export default function SubmissionsPage() {
   // Update submission status mutation
   const updateStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: number; status: string }) => {
-      return apiRequest(`/api/admin/submissions/${id}`, 'PATCH', {
-        status
-      });
+      return apiRequest(
+        'PATCH',
+        `/api/admin/submissions/${id}`, 
+        { status }
+      );
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/submissions'] });
@@ -263,12 +266,14 @@ export default function SubmissionsPage() {
   // Loading state
   if (isAuthenticated === null) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold mb-2">Loading...</h2>
-          <p className="text-muted-foreground">Please wait while we verify your credentials</p>
+      <AdminLayout>
+        <div className="flex items-center justify-center p-6">
+          <div className="text-center">
+            <h2 className="text-xl font-semibold mb-2">Loading...</h2>
+            <p className="text-muted-foreground">Please wait while we verify your credentials</p>
+          </div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 
@@ -308,49 +313,7 @@ export default function SubmissionsPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
-      {/* Top navigation */}
-      <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-white shadow-sm px-6">
-        <div className="flex flex-1 items-center justify-between">
-          <div className="flex items-center">
-            <img 
-              src="https://i.imgur.com/8j3VafC.png" 
-              alt="Logo" 
-              className="h-10 w-auto mr-3" 
-              onClick={() => setLocation('/admin/dashboard')}
-              style={{ cursor: 'pointer' }}
-            />
-            <div>
-              <span className="font-bold text-[#FF6B00]">Synergy</span>
-              <span className="font-medium text-gray-700">Brand Architect</span>
-              <span className="ml-2 text-xs bg-gray-100 px-2 py-0.5 rounded text-gray-500 font-medium">Admin</span>
-            </div>
-          </div>
-          <nav className="flex items-center gap-4">
-            <Button
-              onClick={() => setLocation('/admin/dashboard')}
-              variant="outline"
-              size="sm"
-              className="border-[#FF6B00] text-[#FF6B00] hover:bg-[#FF6B00] hover:text-white"
-            >
-              Dashboard
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white"
-              onClick={() => {
-                fetch('/api/auth/logout', { method: 'POST' })
-                  .then(() => setLocation('/admin/login'));
-              }}
-            >
-              Logout
-            </Button>
-          </nav>
-        </div>
-      </header>
-
-      {/* Main content */}
+    <AdminLayout>
       <main className="flex-1 p-6">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -650,6 +613,6 @@ export default function SubmissionsPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </AdminLayout>
   );
 }

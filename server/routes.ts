@@ -21,13 +21,22 @@ export function registerRoutes(app: Express): void {
       const validatedData = contactSchema.parse(req.body);
       const submission = await storage.createSubmission(validatedData);
       
+      console.log('New submission created:', submission);
+      
       res.status(201).json({
         message: 'Form submitted successfully',
         id: submission.id
       });
     } catch (error) {
+      console.error('Error creating submission:', error);
       res.status(400).json({ error: 'Invalid form data' });
     }
+  });
+  
+  // Debug endpoint - TEMPORARY
+  app.get('/api/debug/submissions', async (req, res) => {
+    const submissions = await storage.listSubmissions({});
+    res.status(200).json({ count: submissions.length, submissions });
   });
 
   // Authentication routes
