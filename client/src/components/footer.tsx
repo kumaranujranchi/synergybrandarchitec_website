@@ -58,7 +58,7 @@ export default function Footer() {
                 <Instagram size={20} />
               </a>
               <a 
-                href="https://www.linkedin.com/company/synergy-brand-architect"
+                href="https://www.linkedin.com/company/synergybrandarchitect"
                 className="text-gray-400 hover:text-[#FF6B00] transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"

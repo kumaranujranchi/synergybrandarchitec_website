@@ -238,7 +238,6 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium text-[#333333] mb-1">Call Us</h4>
                   <p className="text-gray-600">
-                    +91 9525 230232<br />
                     +91 9525 230232
                   </p>
                 </div>
@@ -280,28 +279,36 @@ export default function Contact() {
                 <h4 className="font-medium text-[#333333] mb-4">Connect With Us</h4>
                 <div className="flex space-x-4">
                   <a 
-                    href="#" 
+                    href="https://www.facebook.com/synergybrandarchitect" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center hover:bg-[#FF6B00] hover:text-white transition-colors"
                     aria-label="Facebook"
                   >
                     <Facebook size={18} />
                   </a>
                   <a 
-                    href="#" 
+                    href="https://www.instagram.com/synergybrandarchitect" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center hover:bg-[#FF6B00] hover:text-white transition-colors"
                     aria-label="Instagram"
                   >
                     <Instagram size={18} />
                   </a>
                   <a 
-                    href="#" 
+                    href="https://www.linkedin.com/company/synergybrandarchitect" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center hover:bg-[#FF6B00] hover:text-white transition-colors"
                     aria-label="LinkedIn"
                   >
                     <Linkedin size={18} />
                   </a>
                   <a 
-                    href="#" 
+                    href="https://twitter.com/synergybrandarch" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center hover:bg-[#FF6B00] hover:text-white transition-colors"
                     aria-label="Twitter"
                   >

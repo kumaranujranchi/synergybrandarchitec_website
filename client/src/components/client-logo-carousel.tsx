@@ -111,12 +111,12 @@ export default function ClientLogoCarousel() {
               >
                 <motion.div
                   whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)" }}
-                  className="bg-white p-5 rounded-xl shadow-md flex items-center justify-center h-32 w-[240px] transition-all border border-gray-100"
+                  className="bg-white p-6 rounded-xl shadow-md flex items-center justify-center h-40 w-[280px] transition-all border border-gray-100"
                 >
                   <img 
                     src={logo.image} 
                     alt={`${logo.name} Logo`}
-                    className="max-h-24 w-auto max-w-full object-contain transition-all duration-300"
+                    className="max-h-28 w-auto max-w-full object-contain transition-all duration-300 filter grayscale hover:grayscale-0"
                   />
                 </motion.div>
               </div>
