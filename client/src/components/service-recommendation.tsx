@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Bot, Send } from "lucide-react";
+import { X, Send, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { smoothScrollTo } from "@/lib/scrollHelper";
 
@@ -223,14 +223,14 @@ export default function ServiceRecommendation() {
   return (
     <>
       {/* AI Assistant Button */}
-      <div className="fixed bottom-24 right-5 z-50">
+      <div className="fixed bottom-6 right-24 z-50">
         <AnimatePresence>
           {showInitially && !isOpen && (
             <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.8 }}
-              className="bg-white p-4 rounded-lg shadow-lg mb-4 max-w-xs"
+              className="bg-white p-4 rounded-lg shadow-lg mb-4 max-w-xs fixed bottom-24 right-24"
             >
               <button
                 onClick={() => setShowInitially(false)}
@@ -245,12 +245,15 @@ export default function ServiceRecommendation() {
           )}
         </AnimatePresence>
 
-        <button
+        <motion.button
           onClick={togglePopup}
-          className="bg-[#0066CC] text-white rounded-full p-3 shadow-lg hover:bg-[#005bb7] transition-colors"
+          className="w-16 h-16 bg-[#0066CC] rounded-full flex items-center justify-center shadow-lg hover:bg-[#005bb7] transition-colors"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          aria-label="Chat with AI Assistant"
         >
-          <Bot size={24} />
-        </button>
+          <Briefcase className="text-white text-3xl" />
+        </motion.button>
       </div>
 
       {/* Chat Popup */}
@@ -260,12 +263,12 @@ export default function ServiceRecommendation() {
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
-            className="fixed bottom-24 right-5 w-80 md:w-96 bg-white rounded-xl shadow-2xl z-50 overflow-hidden"
+            className="fixed bottom-24 right-24 w-80 md:w-96 bg-white rounded-xl shadow-2xl z-50 overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white p-4 flex justify-between items-center">
               <div className="flex items-center">
-                <Bot className="mr-2" size={20} />
+                <Briefcase className="mr-2" size={20} />
                 <h3 className="font-medium">Synergy AI Assistant</h3>
               </div>
               <button
