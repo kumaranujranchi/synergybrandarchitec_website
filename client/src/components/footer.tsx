@@ -1,5 +1,6 @@
 import { Link } from "wouter";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
+import { smoothScrollTo } from "@/lib/scrollHelper";
 
 const quickLinks = [
   { href: "#home", label: "Home" },
@@ -11,12 +12,12 @@ const quickLinks = [
 ];
 
 const serviceLinks = [
-  { href: "#", label: "Brand Strategy" },
-  { href: "#", label: "Logo & Identity Design" },
-  { href: "#", label: "SEO Optimization" },
-  { href: "#", label: "Social Media Marketing" },
-  { href: "#", label: "Paid Advertising" },
-  { href: "#", label: "Content Marketing" }
+  { href: "#services", label: "Brand Strategy" },
+  { href: "#services", label: "Logo & Identity Design" },
+  { href: "#services", label: "SEO Optimization" },
+  { href: "#services", label: "Social Media Marketing" },
+  { href: "#services", label: "Paid Advertising" },
+  { href: "#services", label: "Content Marketing" }
 ];
 
 export default function Footer() {
@@ -59,33 +60,15 @@ export default function Footer() {
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
-              </a> 
-                href="#" 
-                className="text-gray-400 hover:text-[#FF6B00] transition-colors"
-                href="https://www.facebook.com/synergybrandarchitect"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-              >
-                <Facebook size={20} />
               </a>
-              <a
+              <a 
+                href="https://wa.me/919525230232"
                 className="text-gray-400 hover:text-[#FF6B00] transition-colors"
-                href="https://www.instagram.com/synergybrandarchitect"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram"
+                aria-label="WhatsApp"
               >
-                <Instagram size={20} />
-              </a>
-              <a
-                className="text-gray-400 hover:text-[#FF6B00] transition-colors"
-                href="https://www.linkedin.com/company/synergy-brand-architect/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} />
+                <MessageCircle size={20} />
               </a>
             </div>
           </div>
@@ -100,13 +83,7 @@ export default function Footer() {
                     className="text-gray-400 hover:text-[#FF6B00] transition-colors"
                     onClick={(e) => {
                       e.preventDefault();
-                      const targetElement = document.querySelector(link.href);
-                      if (targetElement) {
-                        window.scrollTo({
-                          top: targetElement.offsetTop - 80,
-                          behavior: 'smooth'
-                        });
-                      }
+                      smoothScrollTo(link.href);
                     }}
                   >
                     {link.label}
@@ -121,7 +98,14 @@ export default function Footer() {
             <ul className="space-y-3 font-inter">
               {serviceLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-gray-400 hover:text-[#FF6B00] transition-colors">
+                  <a 
+                    href={link.href} 
+                    className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      smoothScrollTo(link.href);
+                    }}
+                  >
                     {link.label}
                   </a>
                 </li>
@@ -163,9 +147,9 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Synergy Brand Architect. All rights reserved.
           </p>
           <div className="flex space-x-6 font-inter">
-            <a href="#" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Privacy Policy</a>
-            <a href="#" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Terms of Service</a>
-            <a href="#" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Sitemap</a>
+            <Link href="/privacy-policy" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Terms of Service</Link>
+            <Link href="/refund-policy" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Refund Policy</Link>
           </div>
         </div>
       </div>
