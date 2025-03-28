@@ -68,7 +68,7 @@ export default function SubmissionsPage() {
     queryKey: ['/api/admin/submissions', statusFilter],
     queryFn: async () => {
       let url = '/api/admin/submissions';
-      if (statusFilter) {
+      if (statusFilter && statusFilter !== 'all') {
         url += `?status=${statusFilter}`;
       }
       const response = await fetch(url);
@@ -349,7 +349,7 @@ export default function SubmissionsPage() {
                       </div>
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Statuses</SelectItem>
+                      <SelectItem value="all">All Statuses</SelectItem>
                       <SelectItem value="new">New</SelectItem>
                       <SelectItem value="in_progress">In Progress</SelectItem>
                       <SelectItem value="pending">Pending</SelectItem>
@@ -359,11 +359,11 @@ export default function SubmissionsPage() {
                   </Select>
                 </div>
               </div>
-              {statusFilter && (
+              {statusFilter && statusFilter !== 'all' && (
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  onClick={() => setStatusFilter('')} 
+                  onClick={() => setStatusFilter('all')} 
                   className="h-10"
                 >
                   <X className="h-4 w-4 mr-1" /> Clear filters
@@ -399,7 +399,7 @@ export default function SubmissionsPage() {
                   </div>
                   <h3 className="text-lg font-medium mb-2">No leads found</h3>
                   <p className="text-sm text-gray-500 mb-4 max-w-md mx-auto">
-                    {statusFilter 
+                    {statusFilter && statusFilter !== 'all'
                       ? `There are no leads with the "${statusFilter}" status.` 
                       : "There are no leads matching your search criteria."}
                   </p>
