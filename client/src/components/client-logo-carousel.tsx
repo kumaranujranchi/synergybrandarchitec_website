@@ -11,38 +11,38 @@ export default function ClientLogoCarousel() {
   const clientLogos: ClientLogo[] = [
     {
       id: 1,
-      name: "Client 1",
-      image: "/images/clients/client1.png"
+      name: "Reliance Digital",
+      image: "https://i.imgur.com/xjZD1nD.png"
     },
     {
       id: 2,
-      name: "Client 2",
-      image: "/images/clients/client2.png"
+      name: "Adani Group",
+      image: "https://i.imgur.com/UzNLFP1.png"
     },
     {
       id: 3,
-      name: "Client 3",
-      image: "/images/clients/client3.png"
+      name: "Tata Consultancy Services",
+      image: "https://i.imgur.com/NbSRANL.png"
     },
     {
       id: 4,
-      name: "Client 4",
-      image: "/images/clients/client4.png"
+      name: "Indian Oil Corporation",
+      image: "https://i.imgur.com/URq3bDJ.png"
     },
     {
       id: 5,
-      name: "Client 5",
-      image: "/images/clients/client5.png"
+      name: "Bharti Airtel",
+      image: "https://i.imgur.com/7ehvM3V.png"
     },
     {
       id: 6,
-      name: "Client 6",
-      image: "/images/clients/client6.png"
+      name: "Wipro Limited",
+      image: "https://i.imgur.com/guHEeLX.png"
     },
     {
       id: 7,
-      name: "Client 7",
-      image: "/images/clients/client7.png"
+      name: "State Bank of India",
+      image: "https://i.imgur.com/osIwhrG.png"
     }
   ];
 
