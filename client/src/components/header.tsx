@@ -40,9 +40,12 @@ export default function Header() {
       isScrolled ? "shadow-md" : "shadow-sm"
     )}>
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/" className="flex items-center">
-          <span className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy</span>
-          <span className="text-[#0066CC] font-poppins font-medium text-2xl">Brand</span>
+        <Link href="/" className="flex items-center gap-2">
+          <img src="/images/synergy-logo.png" alt="Synergy Brand Architect Logo" className="h-10 w-auto" />
+          <div className="flex items-center">
+            <span className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy</span>
+            <span className="text-[#333333] font-poppins font-medium text-2xl">Brand Architect</span>
+          </div>
         </Link>
         
         {/* Desktop Navigation */}

@@ -34,27 +34,32 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="#" 
+                href="https://www.facebook.com/synergybrandarchitect"
                 className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
               </a>
               <a 
-                href="#" 
+                href="https://www.instagram.com/synergybrandarchitect"
                 className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
               </a>
               <a 
-                href="#" 
+                href="https://www.linkedin.com/company/synergy-brand-architect"
                 className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
-              </a>
-              <a 
+              </a> 
                 href="#" 
                 className="text-gray-400 hover:text-[#FF6B00] transition-colors"
                 href="https://www.facebook.com/synergybrandarchitect"
