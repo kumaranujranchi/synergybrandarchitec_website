@@ -12,6 +12,7 @@ const navLinks = [
   { href: "#case-studies", label: "Case Studies" },
   { href: "#testimonials", label: "Testimonials" },
   { href: "#blog", label: "Blog" },
+  { href: "/pricing", label: "Pricing", isPage: true },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -52,17 +53,27 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 font-inter text-[#333333]">
           {navLinks.map((link) => (
-            <a 
-              key={link.href}
-              href={link.href}
-              className="hover:text-[#FF6B00] transition-colors font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                smoothScrollTo(link.href);
-              }}
-            >
-              {link.label}
-            </a>
+            link.isPage ? (
+              <Link 
+                key={link.href}
+                href={link.href}
+                className="hover:text-[#FF6B00] transition-colors font-medium"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a 
+                key={link.href}
+                href={link.href}
+                className="hover:text-[#FF6B00] transition-colors font-medium"
+                onClick={(e) => {
+                  e.preventDefault();
+                  smoothScrollTo(link.href);
+                }}
+              >
+                {link.label}
+              </a>
+            )
           ))}
         </nav>
         
@@ -110,18 +121,29 @@ export default function Header() {
       )}>
         <div className="container mx-auto px-4 flex flex-col space-y-4 font-inter text-[#333333]">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="hover:text-[#FF6B00] transition-colors py-2 border-b border-gray-100"
-              onClick={(e) => {
-                e.preventDefault();
-                closeMenu();
-                smoothScrollTo(link.href);
-              }}
-            >
-              {link.label}
-            </a>
+            link.isPage ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="hover:text-[#FF6B00] transition-colors py-2 border-b border-gray-100"
+                onClick={closeMenu}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="hover:text-[#FF6B00] transition-colors py-2 border-b border-gray-100"
+                onClick={(e) => {
+                  e.preventDefault();
+                  closeMenu();
+                  smoothScrollTo(link.href);
+                }}
+              >
+                {link.label}
+              </a>
+            )
           ))}
           <Link href="/admin/login" onClick={closeMenu}>
             <div className="text-[#0066CC] border border-[#0066CC] hover:bg-[#0066CC] hover:text-white py-3 px-5 rounded-full text-center transition-colors mb-2">

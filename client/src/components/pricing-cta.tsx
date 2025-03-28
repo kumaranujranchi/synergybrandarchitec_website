@@ -1,73 +1,38 @@
-import { motion } from "framer-motion";
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { smoothScrollTo } from "@/lib/scrollHelper";
 
 export default function PricingCTA() {
   return (
-    <section className="py-16 md:py-24 bg-[#333333] text-white">
+    <section className="py-16 bg-gradient-to-r from-[#0066CC] to-[#004999]">
       <div className="container mx-auto px-4 text-center">
-        <motion.h2 
-          className="font-poppins font-semibold text-3xl md:text-4xl mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          Ready to Supercharge Your Brand?
-        </motion.h2>
-        <motion.p 
-          className="text-gray-300 max-w-2xl mx-auto mb-12 font-inter"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-        >
-          Choose from our flexible pricing packages designed to fit businesses of all sizes. Whether you're just starting out or looking to scale, we have the right solution for you.
-        </motion.p>
-        <motion.div 
-          className="flex flex-wrap justify-center gap-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <a 
-            href="#contact"
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          Ready to Grow Your Brand?
+        </h2>
+        <p className="text-white/90 max-w-2xl mx-auto mb-8">
+          Take the first step towards transforming your online presence and growing your business.
+        </p>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <Button 
+            className="inline-flex items-center justify-center px-6 py-6 bg-[#FF6B00] hover:bg-[#FF8533] text-white font-semibold rounded-full transition-all hover:shadow-lg"
             onClick={(e) => {
               e.preventDefault();
-              const targetElement = document.querySelector('#contact');
-              if (targetElement) {
-                window.scrollTo({
-                  top: targetElement.offsetTop - 80,
-                  behavior: 'smooth'
-                });
-              }
+              smoothScrollTo('#contact');
             }}
           >
-            <Button className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 h-auto">
-              View Pricing Packages
-            </Button>
-          </a>
-          <a 
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              const targetElement = document.querySelector('#contact');
-              if (targetElement) {
-                window.scrollTo({
-                  top: targetElement.offsetTop - 80,
-                  behavior: 'smooth'
-                });
-              }
-            }}
-          >
+            Get Free Consultation
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+          <a href="tel:+919525230232">
             <Button 
               variant="outline"
-              className="bg-transparent border-2 border-white text-white font-medium py-3 px-8 rounded-full hover:bg-white hover:text-[#333333] transition-colors h-auto"
+              className="inline-flex items-center justify-center px-6 py-6 bg-transparent hover:bg-white/10 text-white border border-white font-semibold rounded-full transition-all"
             >
-              Schedule a Demo
+              Call Us Now
             </Button>
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
