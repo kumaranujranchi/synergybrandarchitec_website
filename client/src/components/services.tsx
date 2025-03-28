@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Lightbulb, PaintBucket, Megaphone, Search, FileBarChart, BarChart, Globe, Mail, Video, Users, RefreshCw } from "lucide-react";
+import { Lightbulb, PaintBucket, Megaphone, Search, FileBarChart, BarChart, Globe, Mail, Video, Users, RefreshCw, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { smoothScrollTo } from "@/lib/scrollHelper";
 
@@ -71,6 +71,18 @@ const digitalMarketingServices = [
     icon: <Users className="h-6 w-6 text-[#0066CC]" />,
     title: "Community & Influencer Marketing",
     description: "Leverage local influencers and community management to build authentic connections with your target audience in Patna.",
+    color: "secondary"
+  },
+  {
+    icon: <RefreshCw className="h-6 w-6 text-[#0066CC]" />,
+    title: "Marketing Automation",
+    description: "Streamline your lead nurturing and sales processes with intelligent automation tools. We set up workflows, CRM integrations, autoresponders, and lead scoring systems to ensure no opportunity slips through the cracks.",
+    color: "secondary"
+  },
+  {
+    icon: <ShieldCheck className="h-6 w-6 text-[#0066CC]" />,
+    title: "Online Reputation Management (ORM)",
+    description: "Build and protect your brand's credibility across digital platforms. We monitor reviews, manage customer feedback, and implement strategies to enhance your online reputation. Perfect for local businesses looking to gain trust in the market.",
     color: "secondary"
   }
 ];
