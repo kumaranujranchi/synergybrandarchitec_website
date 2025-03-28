@@ -11,43 +11,43 @@ export default function ClientLogoCarousel() {
   const clientLogos: ClientLogo[] = [
     {
       id: 1,
-      name: "Reliance Digital",
-      image: "https://i.imgur.com/xjZD1nD.png"
+      name: "Patna University",
+      image: "https://i.imgur.com/dz5O9aQ.png"
     },
     {
       id: 2,
-      name: "Adani Group",
-      image: "https://i.imgur.com/UzNLFP1.png"
+      name: "Synergy Brand Architect (Color)",
+      image: "https://i.imgur.com/jSEUeBJ.png"
     },
     {
       id: 3,
+      name: "Synergy Brand Architect (White)",
+      image: "https://i.imgur.com/Y22DKIx.png"
+    },
+    {
+      id: 4,
       name: "Tata Consultancy Services",
       image: "https://i.imgur.com/NbSRANL.png"
     },
     {
-      id: 4,
+      id: 5,
       name: "Indian Oil Corporation",
       image: "https://i.imgur.com/URq3bDJ.png"
     },
     {
-      id: 5,
+      id: 6,
       name: "Bharti Airtel",
       image: "https://i.imgur.com/7ehvM3V.png"
     },
     {
-      id: 6,
+      id: 7,
       name: "Wipro Limited",
       image: "https://i.imgur.com/guHEeLX.png"
     },
     {
-      id: 7,
+      id: 8,
       name: "State Bank of India",
       image: "https://i.imgur.com/osIwhrG.png"
-    },
-    {
-      id: 8,
-      name: "Patna University",
-      image: "https://i.imgur.com/dz5O9aQ.png"
     }
   ];
 
@@ -81,9 +81,9 @@ export default function ClientLogoCarousel() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-poppins font-semibold text-3xl md:text-4xl mb-4 text-[#333333]">Our Clients</h2>
+          <h2 className="font-poppins font-semibold text-3xl md:text-4xl mb-4 text-[#333333]">Our Clients & Partners</h2>
           <p className="text-gray-600 max-w-2xl mx-auto font-inter">
-            Trusted by leading businesses in Patna and across Bihar. Here are some of the brands that have experienced growth with our strategies.
+            Trusted by leading businesses in Patna and across Bihar. Here are some of the brands and partners that have experienced growth with our strategies.
           </p>
         </motion.div>
         
@@ -132,10 +132,10 @@ export default function ClientLogoCarousel() {
           viewport={{ once: true }}
         >
           <p className="text-[#FF6B00] font-medium">
-            Want to join our growing list of successful clients?
+            Want to join our growing network of successful clients and partners?
           </p>
           <p className="text-gray-600 max-w-xl mx-auto mt-2 font-inter">
-            Get in touch to discuss how we can help your business stand out in the digital landscape.
+            Get in touch to discuss how we can help your business stand out in the digital landscape with our brand architecture expertise.
           </p>
         </motion.div>
       </div>
