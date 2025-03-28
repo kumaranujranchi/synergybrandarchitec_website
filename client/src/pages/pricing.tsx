@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "@/components/header";
-import PlanComparison from "@/components/plan-comparison";
-import Footer from "@/components/footer";
+import Header from "../components/header";
+import PlanComparison from "../components/plan-comparison";
+import Footer from "../components/footer";
 import { ArrowRight, Check, Shield, Clock, BadgeCheck, Headphones } from "lucide-react";
 
 const PricingBenefits = () => {
@@ -112,12 +112,8 @@ const CTASection = () => {
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button 
             onClick={() => {
-              const contactSection = document.getElementById('contact');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                window.location.href = '/#contact';
-              }
+              // Always redirect to home page contact section
+              window.location.href = '/#contact';
             }} 
             className="inline-flex items-center justify-center px-6 py-3 bg-[#FF6B00] hover:bg-[#FF8533] text-white font-semibold rounded-full transition-all hover:shadow-lg"
           >

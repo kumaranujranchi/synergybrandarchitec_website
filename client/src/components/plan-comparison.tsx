@@ -199,12 +199,8 @@ const PlanCard = ({ plan }: { plan: typeof plans[0] }) => {
           className="w-full py-4 text-white font-semibold text-lg"
           style={{ backgroundColor: '#FF6B00' }}
           onClick={() => {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-              contactSection.scrollIntoView({ behavior: 'smooth' });
-            } else {
-              window.location.href = '/#contact';
-            }
+            // Always redirect to home page contact section since we might be on a different page
+            window.location.href = '/#contact';
           }}
         >
           Get Quote
@@ -242,12 +238,8 @@ export default function PlanComparison() {
             variant="outline"
             className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"
             onClick={() => {
-              const contactSection = document.getElementById('contact');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                window.location.href = '/#contact';
-              }
+              // Always redirect to home page contact section since we might be on a different page
+              window.location.href = '/#contact';
             }}
           >
             Request Custom Plan

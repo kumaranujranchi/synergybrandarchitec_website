@@ -14,9 +14,9 @@ const FeatureItem = ({ text }: { text: string }) => (
 
 export default function StartupPlan() {
   return (
-    <div className="pt-24 font-inter text-[#333333]">
-      {/* Include Header and Footer components */}
+    <div className="flex flex-col min-h-screen font-inter text-[#333333]">
       <Header />
+      <main className="flex-grow pt-24">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#FF6B00]/10 to-[#0066CC]/10 py-16">
         <div className="container mx-auto px-4">
@@ -300,6 +300,7 @@ export default function StartupPlan() {
         </div>
       </section>
       
+      </main>
       {/* Add the Footer component */}
       <Footer />
     </div>

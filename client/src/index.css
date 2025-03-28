@@ -10,4 +10,29 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #FF6B00;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FF8533;
+  }
+  
+  /* Custom Text Selection */
+  ::selection {
+    background-color: #FF6B00;
+    color: white;
+  }
 }

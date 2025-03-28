@@ -34,10 +34,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <div className="flex items-center">
-                <span className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy</span>
-                <span className="text-white font-poppins font-medium text-2xl">Brand Architect</span>
-              </div>
+              <h3 className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy <span className="text-white font-medium">Brand Architect</span></h3>
             </div>
             <p className="text-gray-400 mb-6 font-inter">
               Your one-stop digital marketing partner in Patna for strategic brand building and growth-focused marketing solutions.
