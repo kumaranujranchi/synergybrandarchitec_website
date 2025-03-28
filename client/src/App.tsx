@@ -39,6 +39,10 @@ function Router() {
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/admin/submissions" component={AdminSubmissions} />
+      <Route path="/admin/users" component={() => import('@/pages/admin/users').then(module => {
+        const { default: UsersPage } = module;
+        return <UsersPage />;
+      })} />
       
       {/* Fallback Route */}
       <Route component={NotFound} />
