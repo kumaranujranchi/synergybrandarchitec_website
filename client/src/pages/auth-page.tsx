@@ -39,11 +39,27 @@ import {
 type AuthTab = "login" | "register" | "forgot-password" | "verify-otp";
 
 export default function AuthPage() {
-  const [, navigate] = useLocation();
+  const [location] = useLocation();
   const { user, isLoading, loginMutation, registerMutation, sendOTPMutation, verifyOTPMutation, forgotPasswordMutation } = useAuth();
-  const [authTab, setAuthTab] = useState<AuthTab>("login");
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
+  
+  // Parse query parameters to determine initial tab
+  const getInitialTab = (): AuthTab => {
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get("tab");
+    if (tab === "register" || tab === "forgot-password" || tab === "verify-otp") {
+      return tab;
+    }
+    return "login";
+  };
+  
+  const [authTab, setAuthTab] = useState<AuthTab>(getInitialTab());
+  
+  // Listen for URL changes to update the tab
+  useEffect(() => {
+    setAuthTab(getInitialTab());
+  }, [location]);
   
   // Redirect if user is already logged in
   if (user && !isLoading) {
