@@ -15,6 +15,8 @@ import AdminDashboard from "@/pages/admin/dashboard";
 import WishluvBuildconCaseStudy from "@/pages/case-study/wishluv-buildcon";
 import BiryaniMahalCaseStudy from "@/pages/case-study/biryani-mahal";
 import TheHelpingHandCaseStudy from "@/pages/case-study/the-helping-hand";
+import { useEffect } from "react";
+import { scrollToTop } from "@/lib/scrollHelper";
 
 function Router() {
   return (
@@ -45,6 +47,12 @@ function Router() {
 function App() {
   const [location] = useLocation();
   const isAdminRoute = location.startsWith('/admin');
+  
+  // Scroll to top whenever location changes
+  useEffect(() => {
+    // Only use smooth scroll when not coming from an external site
+    scrollToTop(false);
+  }, [location]);
 
   return (
     <QueryClientProvider client={queryClient}>

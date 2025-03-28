@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { smoothScrollTo } from "@/lib/scrollHelper";
+import { smoothScrollTo, scrollToTop } from "@/lib/scrollHelper";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -62,6 +62,7 @@ export default function Header() {
                     ? "text-[#FF6B00] font-bold relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FF6B00] after:transform after:scale-x-100" 
                     : "hover:text-[#FF6B00]"
                 )}
+                onClick={() => scrollToTop(true)}
               >
                 {link.label}
               </Link>
@@ -92,7 +93,7 @@ export default function Header() {
         
         <div className="hidden md:flex items-center space-x-4">
           {/* Admin Login Button */}
-          <Link href="/admin/login">
+          <Link href="/admin/login" onClick={() => scrollToTop(true)}>
             <Button 
               variant="outline" 
               className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"
@@ -135,7 +136,10 @@ export default function Header() {
                     ? "text-[#FF6B00] font-bold" 
                     : "hover:text-[#FF6B00]"
                 )}
-                onClick={closeMenu}
+                onClick={() => {
+                  closeMenu();
+                  scrollToTop(true);
+                }}
               >
                 {link.label}
               </Link>
@@ -154,7 +158,10 @@ export default function Header() {
               </a>
             )
           ))}
-          <Link href="/admin/login" onClick={closeMenu}>
+          <Link href="/admin/login" onClick={() => {
+            closeMenu();
+            scrollToTop(true);
+          }}>
             <div className="text-[#0066CC] border border-[#0066CC] hover:bg-[#0066CC] hover:text-white py-3 px-5 rounded-full text-center transition-colors mb-2">
               Admin Login
             </div>

@@ -1,9 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import WhatsappButton from "@/components/whatsapp-button";
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
+import { scrollToTop } from "@/lib/scrollHelper";
 
 interface CaseStudyLayoutProps {
   children: ReactNode;
@@ -19,6 +20,11 @@ interface CaseStudyLayoutProps {
 }
 
 export default function CaseStudyLayout({ children, caseStudy }: CaseStudyLayoutProps) {
+  // Scroll to top when case study page is loaded
+  useEffect(() => {
+    scrollToTop(false);
+  }, []);
+  
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -28,7 +34,7 @@ export default function CaseStudyLayout({ children, caseStudy }: CaseStudyLayout
         <div className="container px-4 md:px-6 mx-auto max-w-5xl">
           {/* Back Button */}
           <div className="mb-8">
-            <Link to="/#case-studies">
+            <Link to="/#case-studies" onClick={() => scrollToTop(true)}>
               <button className="flex items-center text-[#0066CC] hover:text-[#004C99] transition-colors font-medium">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to All Case Studies

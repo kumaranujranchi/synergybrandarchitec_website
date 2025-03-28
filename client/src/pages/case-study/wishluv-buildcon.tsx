@@ -2,6 +2,7 @@ import { Building2 } from "lucide-react";
 import CaseStudyLayout from "@/components/case-study-layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { scrollToTop } from "@/lib/scrollHelper";
 
 export default function WishluvBuildconCaseStudy() {
   const caseStudy = {
@@ -86,13 +87,13 @@ export default function WishluvBuildconCaseStudy() {
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-12">
-          <Link to="/case-study/biryani-mahal">
+          <Link to="/case-study/biryani-mahal" onClick={() => scrollToTop(true)}>
             <Button variant="outline" className="text-[#0066CC]">
               Next Case Study: Biryani Mahal
             </Button>
           </Link>
           
-          <Link to="/#contact">
+          <Link to="/#contact" onClick={() => scrollToTop(true)}>
             <Button className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white">
               Get Similar Results for Your Business
             </Button>

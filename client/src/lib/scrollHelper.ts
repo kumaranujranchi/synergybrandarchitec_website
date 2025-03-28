@@ -1,4 +1,4 @@
-// Helper function for smooth scrolling
+// Helper function for smooth scrolling to an element
 export function smoothScrollTo(elementId: string, offset: number = 80): void {
   const targetElement = document.querySelector(elementId);
   if (targetElement) {
@@ -8,4 +8,12 @@ export function smoothScrollTo(elementId: string, offset: number = 80): void {
       behavior: 'smooth'
     });
   }
+}
+
+// Helper function to scroll to the top of the page
+export function scrollToTop(smooth: boolean = true): void {
+  window.scrollTo({
+    top: 0,
+    behavior: smooth ? 'smooth' : 'auto'
+  });
 }
