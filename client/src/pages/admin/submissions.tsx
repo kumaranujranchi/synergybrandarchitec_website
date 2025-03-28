@@ -127,7 +127,9 @@ export default function SubmissionsPage() {
     },
     onSuccess: () => {
       setNewNote("");
+      setShowNotesDialog(false); // Close the dialog after successful note addition
       queryClient.invalidateQueries({ queryKey: ['/api/admin/submissions', selectedSubmission?.id, 'notes'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/submissions'] }); // Refresh all submissions to update notes
       toast({
         title: "Note added",
         description: "Your note has been added successfully",
@@ -512,17 +514,21 @@ export default function SubmissionsPage() {
                                 </svg>
                                 <span className="text-sm font-medium text-gray-700">Notes</span>
                               </div>
+                              {/* View All Notes button that also acts as a loading trigger */}
                               <Button 
                                 variant="ghost" 
                                 size="sm"
                                 className="h-7 text-xs font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 px-2"
                                 onClick={() => {
                                   setSelectedSubmission(submission);
-                                  setShowNotesDialog(true);
+                                  // Trigger notes query
+                                  queryClient.invalidateQueries({ queryKey: ['/api/admin/submissions', submission.id, 'notes'] });
                                 }}
                               >
-                                <Plus className="h-3 w-3 mr-1" />
-                                Add Note
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                                </svg>
+                                View All
                               </Button>
                             </div>
                             
@@ -531,15 +537,21 @@ export default function SubmissionsPage() {
                                 <p className="text-center py-2 text-sm text-gray-500">Loading notes...</p>
                               ) : isActive && notesQuery.data?.submission?.notes?.length ? (
                                 <div className="space-y-2">
-                                  {notesQuery.data.submission.notes.map((note: any) => (
-                                    <div key={note.id} className="bg-white p-2 rounded border border-gray-200 text-sm">
-                                      <p className="text-gray-700">{note.content}</p>
-                                      <div className="flex justify-between items-center mt-1 text-xs text-gray-500">
-                                        <span>Admin</span>
-                                        <span>{format(new Date(note.createdAt), 'MMM dd, yyyy HH:mm')}</span>
+                                  {notesQuery.data.submission.notes
+                                    // Sort notes by date (most recent first)
+                                    .sort((a: any, b: any) => 
+                                      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+                                    )
+                                    .map((note: any) => (
+                                      <div key={note.id} className="bg-white p-2 rounded border border-gray-200 text-sm">
+                                        <p className="text-gray-700">{note.content}</p>
+                                        <div className="flex justify-between items-center mt-1 text-xs text-gray-500">
+                                          <span>Admin</span>
+                                          <span>{format(new Date(note.createdAt), 'MMM dd, yyyy HH:mm')}</span>
+                                        </div>
                                       </div>
-                                    </div>
-                                  ))}
+                                    ))
+                                  }
                                 </div>
                               ) : isActive && (!notesQuery.data?.submission?.notes?.length) ? (
                                 <p className="text-center py-2 text-sm text-gray-500">No notes added yet.</p>
@@ -562,7 +574,7 @@ export default function SubmissionsPage() {
                           </div>
                           
                           {/* Lead Info Grid */}
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 bg-gray-50 rounded-md p-3">
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4 bg-gray-50 rounded-md p-3">
                             <div className="flex items-center text-sm">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -575,6 +587,14 @@ export default function SubmissionsPage() {
                               </svg>
                               <span className="text-gray-700">{submission.phone}</span>
                             </div>
+                            {submission.city && (
+                              <div className="flex items-center text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                </svg>
+                                <span className="text-gray-700">{submission.city}</span>
+                              </div>
+                            )}
                             <div className="flex items-center text-sm">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
@@ -683,15 +703,20 @@ export default function SubmissionsPage() {
             ) : !notesQuery.data?.submission?.notes?.length ? (
               <p className="text-center py-4 text-gray-500">No notes yet. Add the first note below.</p>
             ) : (
-              notesQuery.data.submission.notes.map((note: any) => (
-                <div key={note.id} className="bg-gray-50 p-3 rounded-md">
-                  <p className="text-sm mb-1">{note.content}</p>
-                  <div className="text-xs text-gray-500 flex justify-between">
-                    <span>by Admin</span>
-                    <span>{format(new Date(note.createdAt), 'MMM dd, yyyy HH:mm')}</span>
+              notesQuery.data.submission.notes
+                // Sort notes by date (most recent first)
+                .sort((a: any, b: any) => 
+                  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+                )
+                .map((note: any) => (
+                  <div key={note.id} className="bg-gray-50 p-3 rounded-md">
+                    <p className="text-sm mb-1">{note.content}</p>
+                    <div className="text-xs text-gray-500 flex justify-between">
+                      <span>by Admin</span>
+                      <span>{format(new Date(note.createdAt), 'MMM dd, yyyy HH:mm')}</span>
+                    </div>
                   </div>
-                </div>
-              ))
+                ))
             )}
           </div>
           <div className="space-y-2">

@@ -29,6 +29,7 @@ const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
   phone: z.string().min(6, { message: "Please enter a valid phone number" }),
+  city: z.string().optional(),
   service: z.string().min(1, { message: "Please select a service" }),
   message: z.string().min(10, { message: "Message must be at least 10 characters" }),
 });
@@ -43,6 +44,7 @@ export default function Contact() {
       name: "",
       email: "",
       phone: "",
+      city: "",
       service: "",
       message: "",
     },
@@ -142,6 +144,24 @@ export default function Contact() {
                           <Input 
                             placeholder="+91 98765 43210" 
                             type="tel" 
+                            {...field} 
+                            className="px-4 py-3 h-auto border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B00]" 
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="city"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[#333333] font-medium">City</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Your City" 
                             {...field} 
                             className="px-4 py-3 h-auto border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B00]" 
                           />
