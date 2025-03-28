@@ -198,6 +198,14 @@ const PlanCard = ({ plan }: { plan: typeof plans[0] }) => {
         <Button
           className="w-full py-4 text-white font-semibold text-lg"
           style={{ backgroundColor: '#FF6B00' }}
+          onClick={() => {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+              contactSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.location.href = '/#contact';
+            }
+          }}
         >
           Get Quote
         </Button>
@@ -233,6 +241,14 @@ export default function PlanComparison() {
           <Button 
             variant="outline"
             className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.location.href = '/#contact';
+              }
+            }}
           >
             Request Custom Plan
           </Button>

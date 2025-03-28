@@ -6,8 +6,7 @@ const quickLinks = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About Us" },
   { href: "#services", label: "Services" },
-  { href: "#case-studies", label: "Case Studies" },
-  { href: "#blog", label: "Blog" },
+  { href: "/pricing", label: "Pricing", isPage: true },
   { href: "#contact", label: "Contact" }
 ];
 
@@ -20,15 +19,23 @@ const serviceLinks = [
   { href: "#services", label: "Content Marketing" }
 ];
 
+const resourceLinks = [
+  { href: "#case-studies", label: "Case Studies" },
+  { href: "#blog", label: "Blog" }
+];
+
 export default function Footer() {
   return (
     <footer className="bg-[#333333] text-white py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <div>
-            <div className="mb-6 flex items-center">
-              <span className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy</span>
-              <span className="text-white font-poppins font-medium text-2xl">Brand</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+          <div className="lg:col-span-2">
+            <div className="mb-6">
+              <img src="https://i.imgur.com/8j3VafC.png" alt="Synergy Brand Architect Logo" className="h-12 mb-2" />
+              <div className="flex items-center">
+                <span className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy</span>
+                <span className="text-white font-poppins font-medium text-2xl">Brand Architect</span>
+              </div>
             </div>
             <p className="text-gray-400 mb-6 font-inter">
               Your one-stop digital marketing partner in Patna for strategic brand building and growth-focused marketing solutions.
@@ -83,6 +90,35 @@ export default function Footer() {
             <ul className="space-y-3 font-inter">
               {quickLinks.map((link, index) => (
                 <li key={index}>
+                  {link.isPage ? (
+                    <Link 
+                      href={link.href}
+                      className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a 
+                      href={link.href} 
+                      className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        smoothScrollTo(link.href);
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-poppins font-semibold text-xl mb-6">Our Services</h4>
+            <ul className="space-y-3 font-inter">
+              {serviceLinks.map((link, index) => (
+                <li key={index}>
                   <a 
                     href={link.href} 
                     className="text-gray-400 hover:text-[#FF6B00] transition-colors"
@@ -99,9 +135,9 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="font-poppins font-semibold text-xl mb-6">Our Services</h4>
+            <h4 className="font-poppins font-semibold text-xl mb-6">Resources</h4>
             <ul className="space-y-3 font-inter">
-              {serviceLinks.map((link, index) => (
+              {resourceLinks.map((link, index) => (
                 <li key={index}>
                   <a 
                     href={link.href} 

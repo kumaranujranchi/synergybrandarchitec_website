@@ -110,10 +110,20 @@ const CTASection = () => {
           Take the first step towards transforming your online presence and growing your business.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 bg-[#FF6B00] hover:bg-[#FF8533] text-white font-semibold rounded-full transition-all hover:shadow-lg">
+          <button 
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.location.href = '/#contact';
+              }
+            }} 
+            className="inline-flex items-center justify-center px-6 py-3 bg-[#FF6B00] hover:bg-[#FF8533] text-white font-semibold rounded-full transition-all hover:shadow-lg"
+          >
             Get Free Consultation
             <ArrowRight className="ml-2 h-4 w-4" />
-          </a>
+          </button>
           <a href="tel:+919525230232" className="inline-flex items-center justify-center px-6 py-3 bg-transparent hover:bg-white/10 text-white border border-white font-semibold rounded-full transition-all">
             Call Us Now
           </a>
