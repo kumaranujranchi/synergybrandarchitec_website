@@ -33,6 +33,11 @@ export default function Footer() {
             <p className="text-gray-400 mb-6 font-inter">
               Your one-stop digital marketing partner in Patna for strategic brand building and growth-focused marketing solutions.
             </p>
+            <address className="text-gray-400 mb-6 font-inter not-italic">
+              East Gola Road, Vivek Vihar Colony<br />
+              Danapur Nizamat, Patna 801503<br />
+              Phone: +91 9525 230232
+            </address>
             <div className="flex space-x-4">
               <a 
                 href="https://www.facebook.com/synergybrandarchitect"

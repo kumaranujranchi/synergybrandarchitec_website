@@ -225,8 +225,8 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium text-[#333333] mb-1">Visit Our Office</h4>
                   <p className="text-gray-600">
-                    123 Business District, Boring Road<br />
-                    Patna, Bihar 800001
+                    East Gola Road, Vivek Vihar Colony<br />
+                    Danapur Nizamat, Patna 801503
                   </p>
                 </div>
               </div>
@@ -238,8 +238,8 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium text-[#333333] mb-1">Call Us</h4>
                   <p className="text-gray-600">
-                    +91 9876 543210<br />
-                    +91 9876 543211
+                    +91 9525 230232<br />
+                    +91 9525 230232
                   </p>
                 </div>
               </div>

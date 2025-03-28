@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { smoothScrollTo } from "@/lib/scrollHelper";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -41,7 +42,7 @@ export default function Header() {
     )}>
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/images/synergy-logo.png" alt="Synergy Brand Architect Logo" className="h-10 w-auto" />
+          <img src="https://i.imgur.com/jSEUeBJ.png" alt="Synergy Brand Architect Logo" className="h-10 w-auto" />
           <div className="flex items-center">
             <span className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy</span>
             <span className="text-[#333333] font-poppins font-medium text-2xl">Brand Architect</span>
@@ -57,14 +58,7 @@ export default function Header() {
               className="hover:text-[#FF6B00] transition-colors font-medium"
               onClick={(e) => {
                 e.preventDefault();
-                const targetId = link.href;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                  window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                  });
-                }
+                smoothScrollTo(link.href);
               }}
             >
               {link.label}
@@ -87,13 +81,7 @@ export default function Header() {
           className="hidden md:block"
           onClick={(e) => {
             e.preventDefault();
-            const targetElement = document.querySelector('#contact');
-            if (targetElement) {
-              window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-              });
-            }
+            smoothScrollTo('#contact');
           }}
         >
           <Button 
@@ -118,14 +106,7 @@ export default function Header() {
               onClick={(e) => {
                 e.preventDefault();
                 closeMenu();
-                const targetId = link.href;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                  window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                  });
-                }
+                smoothScrollTo(link.href);
               }}
             >
               {link.label}
@@ -137,13 +118,7 @@ export default function Header() {
             onClick={(e) => {
               e.preventDefault();
               closeMenu();
-              const targetElement = document.querySelector('#contact');
-              if (targetElement) {
-                window.scrollTo({
-                  top: targetElement.offsetTop - 80,
-                  behavior: 'smooth'
-                });
-              }
+              smoothScrollTo('#contact');
             }}
           >
             Get Free Consultation

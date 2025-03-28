@@ -43,6 +43,11 @@ export default function ClientLogoCarousel() {
       id: 7,
       name: "State Bank of India",
       image: "https://i.imgur.com/osIwhrG.png"
+    },
+    {
+      id: 8,
+      name: "Patna University",
+      image: "https://i.imgur.com/dz5O9aQ.png"
     }
   ];
 
