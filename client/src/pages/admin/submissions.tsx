@@ -535,9 +535,9 @@ export default function SubmissionsPage() {
                             <div className="bg-gray-50 rounded-md p-3 mb-3 max-h-32 overflow-y-auto">
                               {notesQuery.isLoading && selectedSubmission?.id === submission.id ? (
                                 <p className="text-center py-2 text-sm text-gray-500">Loading notes...</p>
-                              ) : isActive && notesQuery.data?.submission?.notes?.length ? (
+                              ) : isActive && notesQuery.data?.notes?.length ? (
                                 <div className="space-y-2">
-                                  {notesQuery.data.submission.notes
+                                  {notesQuery.data.notes
                                     // Sort notes by date (most recent first)
                                     .sort((a: any, b: any) => 
                                       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -553,7 +553,7 @@ export default function SubmissionsPage() {
                                     ))
                                   }
                                 </div>
-                              ) : isActive && (!notesQuery.data?.submission?.notes?.length) ? (
+                              ) : isActive && (!notesQuery.data?.notes?.length) ? (
                                 <p className="text-center py-2 text-sm text-gray-500">No notes added yet.</p>
                               ) : (
                                 <div 
@@ -700,10 +700,10 @@ export default function SubmissionsPage() {
               <p className="text-center py-4">Loading notes...</p>
             ) : notesQuery.isError ? (
               <p className="text-center py-4 text-red-500">Error loading notes</p>
-            ) : !notesQuery.data?.submission?.notes?.length ? (
+            ) : !notesQuery.data?.notes?.length ? (
               <p className="text-center py-4 text-gray-500">No notes yet. Add the first note below.</p>
             ) : (
-              notesQuery.data.submission.notes
+              notesQuery.data.notes
                 // Sort notes by date (most recent first)
                 .sort((a: any, b: any) => 
                   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
