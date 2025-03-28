@@ -1,6 +1,5 @@
 import { Express, Request, Response, NextFunction } from 'express';
 import { storage } from './storage';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { 
   contactSchema, 
   loginSchema, 
@@ -12,7 +11,7 @@ import {
 import { generateToken, authenticateJWT, authorize, requirePermission } from './auth';
 import cookieParser from 'cookie-parser';
 
-export async function registerRoutes(app: Express): Promise<void> {
+export function registerRoutes(app: Express): void {
   // Middleware
   app.use(cookieParser());
   

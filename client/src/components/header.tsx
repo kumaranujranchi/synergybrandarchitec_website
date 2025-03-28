@@ -75,21 +75,32 @@ export default function Header() {
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
         
-        {/* CTA Button (Desktop only) */}
-        <a 
-          href="#contact" 
-          className="hidden md:block"
-          onClick={(e) => {
-            e.preventDefault();
-            smoothScrollTo('#contact');
-          }}
-        >
-          <Button 
-            className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium py-2 px-5 rounded-full transition-all hover:shadow-md hover:-translate-y-1"
+        <div className="hidden md:flex items-center space-x-4">
+          {/* Admin Login Button */}
+          <Link href="/admin/login">
+            <Button 
+              variant="outline" 
+              className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"
+            >
+              Admin Login
+            </Button>
+          </Link>
+          
+          {/* CTA Button (Desktop only) */}
+          <a 
+            href="#contact" 
+            onClick={(e) => {
+              e.preventDefault();
+              smoothScrollTo('#contact');
+            }}
           >
-            Get Free Consultation
-          </Button>
-        </a>
+            <Button 
+              className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium py-2 px-5 rounded-full transition-all hover:shadow-md hover:-translate-y-1"
+            >
+              Get Free Consultation
+            </Button>
+          </a>
+        </div>
       </div>
       
       {/* Mobile Navigation Menu */}
@@ -112,6 +123,12 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          <Link href="/admin/login" onClick={closeMenu}>
+            <div className="text-[#0066CC] border border-[#0066CC] hover:bg-[#0066CC] hover:text-white py-3 px-5 rounded-full text-center transition-colors mb-2">
+              Admin Login
+            </div>
+          </Link>
+          
           <a 
             href="#contact" 
             className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-3 px-5 rounded-full text-center"

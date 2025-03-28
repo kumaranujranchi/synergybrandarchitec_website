@@ -95,73 +95,93 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-slate-50 p-4">
-      <Card className="w-full max-w-md shadow-lg">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">Admin Login</CardTitle>
-          <CardDescription>
-            Enter your credentials to access the admin dashboard
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="your@email.com" 
-                        {...field} 
-                        disabled={loading}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input 
-                        type="password" 
-                        placeholder="••••••" 
-                        {...field} 
-                        disabled={loading}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button 
-                type="submit" 
-                className="w-full" 
-                disabled={loading}
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Logging in...
-                  </>
-                ) : (
-                  "Login"
-                )}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-        <CardFooter className="flex justify-center text-sm text-muted-foreground">
-          <p>Contact administrator for access</p>
-        </CardFooter>
-      </Card>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-6">
+          <img 
+            src="https://i.imgur.com/8j3VafC.png" 
+            alt="Synergy Brand Architect Logo" 
+            className="h-16 mx-auto mb-2" 
+          />
+          <h1 className="text-xl font-bold">
+            <span className="text-[#FF6B00]">Synergy</span>
+            <span className="text-[#333333]">Brand Architect</span>
+          </h1>
+        </div>
+        
+        <Card className="w-full shadow-lg border-t-4 border-t-[#FF6B00]">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl font-bold text-[#333333]">Admin Login</CardTitle>
+            <CardDescription>
+              Enter your credentials to access the admin dashboard
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="your@email.com" 
+                          className="focus-visible:ring-[#FF6B00]"
+                          {...field} 
+                          disabled={loading}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="password" 
+                          placeholder="••••••" 
+                          className="focus-visible:ring-[#FF6B00]"
+                          {...field} 
+                          disabled={loading}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button 
+                  type="submit" 
+                  className="w-full bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium transition-all" 
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Logging in...
+                    </>
+                  ) : (
+                    "Login"
+                  )}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+          <CardFooter className="flex justify-center text-sm text-muted-foreground">
+            <p>Contact administrator for access</p>
+          </CardFooter>
+        </Card>
+        
+        <div className="mt-8 text-center">
+          <a href="/" className="text-[#0066CC] hover:underline">← Return to website</a>
+        </div>
+      </div>
     </div>
   );
 }
