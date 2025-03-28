@@ -1,8 +1,8 @@
 import { Link } from "wouter";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import WhatsappButton from "@/components/whatsapp-button";
-import { ArrowLeft } from "lucide-react";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import WhatsappButton from "../components/whatsapp-button";
+import { ArrowLeft, FileText } from "lucide-react";
 
 export default function TermsOfService() {
   return (
@@ -20,7 +20,9 @@ export default function TermsOfService() {
 
           <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
             <p className="text-gray-600 mb-6">Last Updated: March 28, 2024</p>
-
+            
+            <h2 className="text-2xl font-semibold text-[#FF6B00] mb-4 flex items-center"><FileText className="mr-2 text-[#FF6B00]" /> Terms and Conditions</h2>
+            
             <p className="mb-6">
               Welcome to Synergy Brand Architect!
             </p>
@@ -33,7 +35,7 @@ export default function TermsOfService() {
               By accessing this website, we assume you accept these terms and conditions. Do not continue to use Synergy Brand Architect if you do not agree to take all of the terms and conditions stated on this page.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">Cookies:</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><FileText className="mr-2 text-[#0066CC]" /> Cookies</h2>
             <p className="mb-6">
               The website uses cookies to help personalize your online experience. By accessing Synergy Brand Architect, you agreed to use the required cookies.
             </p>
@@ -46,7 +48,7 @@ export default function TermsOfService() {
               We may use cookies to collect, store, and track information for statistical or marketing purposes to operate our website. You have the ability to accept or decline optional Cookies. There are some required Cookies that are necessary for the operation of our website. These cookies do not require your consent as they always work.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">License:</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><FileText className="mr-2 text-[#0066CC]" /> License</h2>
             <p className="mb-6">
               Unless otherwise stated, Synergy Brand Architect and/or its licensors own the intellectual property rights for all material on Synergy Brand Architect. All intellectual property rights are reserved. You may access this from Synergy Brand Architect for your own personal use subjected to restrictions set in these terms and conditions.
             </p>
@@ -87,7 +89,7 @@ export default function TermsOfService() {
               You hereby grant Synergy Brand Architect a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats, or media.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">Hyperlinking to our Content:</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><FileText className="mr-2 text-[#0066CC]" /> Hyperlinking to our Content</h2>
             <p className="mb-4">
               The following organizations may link to our Website without prior written approval:
             </p>
@@ -116,17 +118,17 @@ export default function TermsOfService() {
               <li>Educational institutions and trade associations.</li>
             </ul>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">Content Liability:</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><FileText className="mr-2 text-[#0066CC]" /> Content Liability</h2>
             <p className="mb-6">
               We shall not be held responsible for any content that appears on your Website. You agree to protect and defend us against all claims that are raised on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene, or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">Reservation of Rights:</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><FileText className="mr-2 text-[#0066CC]" /> Reservation of Rights</h2>
             <p className="mb-6">
               We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amend these terms and conditions and its linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">Disclaimer:</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><FileText className="mr-2 text-[#0066CC]" /> Disclaimer</h2>
             <p className="mb-6">
               To the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions relating to our website and the use of this website. Nothing in this disclaimer will:
             </p>
@@ -141,7 +143,7 @@ export default function TermsOfService() {
               As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.
             </p>
             
-            <h2 className="text-2xl font-semibold text-[#333333] mb-4">Contact Information:</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><FileText className="mr-2 text-[#0066CC]" /> Contact Information</h2>
             <p className="mb-6">
               For any questions regarding these terms, please contact us at hello@synergybrandarchitect.in
             </p>

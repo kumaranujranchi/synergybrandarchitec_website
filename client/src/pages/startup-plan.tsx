@@ -33,9 +33,9 @@ export default function StartupPlan() {
               confusing, expensive, or overwhelming. That's where our initiative comes in.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="#contact" onClick={(e) => {
+              <a href="/#contact" onClick={(e) => {
                 e.preventDefault();
-                smoothScrollTo('#contact');
+                window.location.href = "/#contact";
               }}>
                 <Button className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
                   Book a Free Consultation
@@ -274,9 +274,9 @@ export default function StartupPlan() {
           <p className="text-lg mb-10">
             🎁 We'll even give you a free project roadmap if you choose to proceed later.
           </p>
-          <a href="#contact" onClick={(e) => {
+          <a href="/#contact" onClick={(e) => {
             e.preventDefault();
-            smoothScrollTo('#contact');
+            window.location.href = "/#contact";
           }}>
             <Button className="bg-white text-[#FF6B00] hover:bg-gray-100 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
               Book Your Free Session Now

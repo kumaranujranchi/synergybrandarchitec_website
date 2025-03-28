@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import WhatsappButton from "../components/whatsapp-button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, RefreshCw } from "lucide-react";
 
 export default function RefundPolicy() {
   return (
@@ -21,7 +21,7 @@ export default function RefundPolicy() {
           <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
             <p className="text-gray-600 mb-6">Last Updated: March 28, 2024</p>
             
-            <h2 className="text-2xl font-semibold text-[#FF6B00] mb-4">💰 Refund Policy</h2>
+            <h2 className="text-2xl font-semibold text-[#FF6B00] mb-4 flex items-center"><RefreshCw className="mr-2 text-[#FF6B00]" /> Refund Policy Overview</h2>
             <p className="mb-6">
               At Synergy Brand Architect, we are committed to delivering high-quality digital solutions tailored to your business needs. We value your trust and strive to maintain full transparency in our processes.
             </p>
@@ -30,7 +30,7 @@ export default function RefundPolicy() {
               Because this initiative involves custom work (such as original website development, logo design, and content writing), we have established the following refund policy:
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4">✅ Refund Eligibility</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><RefreshCw className="mr-2 text-[#0066CC]" /> Refund Eligibility</h2>
             <p className="mb-4">
               You may be eligible for a refund only under the following conditions:
             </p>
@@ -50,7 +50,7 @@ export default function RefundPolicy() {
               If we fail to deliver the agreed-upon website features mentioned in the ₹15,000 plan within 30 working days, and no reasonable explanation or revised timeline has been provided, you may request a partial or full refund based on the work completed.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4">❌ Non-Refundable Situations</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><RefreshCw className="mr-2 text-[#0066CC]" /> Non-Refundable Situations</h2>
             <p className="mb-4">
               Refunds will not be issued under the following circumstances:
             </p>
@@ -63,24 +63,24 @@ export default function RefundPolicy() {
               <li>Source code request fees are non-refundable once delivered.</li>
             </ul>
 
-            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4">🕒 Refund Request Timeline</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><RefreshCw className="mr-2 text-[#0066CC]" /> Refund Request Timeline</h2>
             <p className="mb-6">
               If eligible, you must request your refund within 7 days of the qualifying event by writing to us at:
               <br />
               📧 support@synergybrandarchitect.in with your payment receipt and reason for refund.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4">🔁 Resolution First Approach</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><RefreshCw className="mr-2 text-[#0066CC]" /> Resolution First Approach</h2>
             <p className="mb-6">
               Before processing any refund, we prefer to work with you to resolve issues or delays. Our team will offer solutions and revised timelines to complete your project as promised. Refunds are treated as a last resort.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4">⚖️ Processing Time</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><RefreshCw className="mr-2 text-[#0066CC]" /> Processing Time</h2>
             <p className="mb-6">
               Approved refunds will be processed within 7–10 working days to your original payment method.
             </p>
 
-            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4">💬 Questions?</h2>
+            <h2 className="text-2xl font-semibold text-[#0066CC] mb-4 flex items-center"><RefreshCw className="mr-2 text-[#0066CC]" /> Questions?</h2>
             <p className="mb-6">
               For any clarification regarding our refund policy, please feel free to contact us:
               <br />
