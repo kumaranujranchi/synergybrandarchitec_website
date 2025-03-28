@@ -82,7 +82,7 @@ export class MemStorage implements IStorage {
           name: 'Admin',
           email: 'admin@synergybrandarchitect.in',
           password: hashedPassword,
-          phone: null,
+          phone: '9876543210', // Adding a default phone number for admin
           role: 'admin',
           permissions: ['view', 'create', 'edit', 'delete', 'manage_users'],
           isVerified: true,
@@ -114,7 +114,7 @@ export class MemStorage implements IStorage {
       name: userData.name,
       email: userData.email,
       password: hashedPassword,
-      phone: userData.phone || null,
+      phone: userData.phone,
       role: userData.role || 'customer',
       permissions: userData.permissions ? [...userData.permissions] : ['view'],
       isVerified: userData.isVerified || false,

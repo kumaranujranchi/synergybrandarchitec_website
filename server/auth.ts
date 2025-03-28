@@ -134,6 +134,11 @@ export const registerUser = async (userData: RegisterData): Promise<User> => {
     throw new Error('User with this email already exists');
   }
   
+  // Validate required fields
+  if (!userData.phone) {
+    throw new Error('Phone number is required');
+  }
+  
   // Hash password
   const hashedPassword = await hashPassword(userData.password);
   
