@@ -11,10 +11,7 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   getUser(id: number): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
-  getUserByVerificationToken(token: string): Promise<User | undefined>;
-  getUserByResetToken(token: string): Promise<User | undefined>;
   updateUser(id: number, userData: UpdateUser): Promise<User | undefined>;
-  updateUserLastLogin(id: number): Promise<void>;
   listUsers(): Promise<User[]>;
   deleteUser(id: number): Promise<boolean>;
   validateUserCredentials(email: string, password: string): Promise<User | null>;
@@ -82,14 +79,8 @@ export class MemStorage implements IStorage {
           name: 'Admin',
           email: 'admin@synergybrandarchitect.in',
           password: hashedPassword,
-          phone: '9876543210', // Adding a default phone number for admin
           role: 'admin',
           permissions: ['view', 'create', 'edit', 'delete', 'manage_users'],
-          isVerified: true,
-          verificationToken: null,
-          resetPasswordToken: null,
-          resetPasswordExpires: null,
-          lastLogin: null,
           createdAt: now,
           updatedAt: now
         };
@@ -114,14 +105,8 @@ export class MemStorage implements IStorage {
       name: userData.name,
       email: userData.email,
       password: hashedPassword,
-      phone: userData.phone,
-      role: userData.role || 'customer',
+      role: userData.role || 'user',
       permissions: userData.permissions ? [...userData.permissions] : ['view'],
-      isVerified: userData.isVerified || false,
-      verificationToken: userData.verificationToken || null,
-      resetPasswordToken: userData.resetPasswordToken || null,
-      resetPasswordExpires: userData.resetPasswordExpires || null,
-      lastLogin: null,
       createdAt: now,
       updatedAt: now
     };
@@ -143,26 +128,6 @@ export class MemStorage implements IStorage {
     const usersArray = Array.from(this.users.values());
     for (const user of usersArray) {
       if (user.email.toLowerCase() === email.toLowerCase()) {
-        return { ...user };
-      }
-    }
-    return undefined;
-  }
-
-  async getUserByVerificationToken(token: string): Promise<User | undefined> {
-    const usersArray = Array.from(this.users.values());
-    for (const user of usersArray) {
-      if (user.verificationToken === token) {
-        return { ...user };
-      }
-    }
-    return undefined;
-  }
-
-  async getUserByResetToken(token: string): Promise<User | undefined> {
-    const usersArray = Array.from(this.users.values());
-    for (const user of usersArray) {
-      if (user.resetPasswordToken === token) {
         return { ...user };
       }
     }
@@ -207,18 +172,7 @@ export class MemStorage implements IStorage {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) return null;
     
-    // Update last login timestamp
-    await this.updateUserLastLogin(user.id);
-    
     return { ...user };
-  }
-  
-  async updateUserLastLogin(id: number): Promise<void> {
-    const user = this.users.get(id);
-    if (user) {
-      user.lastLogin = new Date();
-      this.users.set(id, user);
-    }
   }
 
   // Submission methods

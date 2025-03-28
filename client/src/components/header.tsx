@@ -76,23 +76,13 @@ export default function Header() {
         </button>
         
         <div className="hidden md:flex items-center space-x-4">
-          {/* Login Button */}
-          <Link href="/auth">
+          {/* Admin Login Button */}
+          <Link href="/admin/login">
             <Button 
               variant="outline" 
               className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"
             >
-              Login
-            </Button>
-          </Link>
-          
-          {/* Signup Button */}
-          <Link href="/auth?tab=register">
-            <Button 
-              variant="outline" 
-              className="border-[#FF6B00] text-[#FF6B00] hover:bg-[#FF6B00] hover:text-white transition-all"
-            >
-              Signup
+              Admin Login
             </Button>
           </Link>
           
@@ -133,15 +123,9 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <Link href="/auth" onClick={closeMenu}>
+          <Link href="/admin/login" onClick={closeMenu}>
             <div className="text-[#0066CC] border border-[#0066CC] hover:bg-[#0066CC] hover:text-white py-3 px-5 rounded-full text-center transition-colors mb-2">
-              Login
-            </div>
-          </Link>
-          
-          <Link href="/auth?tab=register" onClick={closeMenu}>
-            <div className="text-[#FF6B00] border border-[#FF6B00] hover:bg-[#FF6B00] hover:text-white py-3 px-5 rounded-full text-center transition-colors mb-2">
-              Signup
+              Admin Login
             </div>
           </Link>
           
