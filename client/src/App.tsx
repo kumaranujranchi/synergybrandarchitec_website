@@ -16,8 +16,11 @@ import AdminSubmissions from "@/pages/admin/submissions";
 import WishluvBuildconCaseStudy from "@/pages/case-study/wishluv-buildcon";
 import BiryaniMahalCaseStudy from "@/pages/case-study/biryani-mahal";
 import TheHelpingHandCaseStudy from "@/pages/case-study/the-helping-hand";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { scrollToTop } from "@/lib/scrollHelper";
+
+// Lazy load the AdminUsers component
+const AdminUsers = lazy(() => import('./pages/admin/users'));
 
 function Router() {
   return (
@@ -39,10 +42,11 @@ function Router() {
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/admin/submissions" component={AdminSubmissions} />
-      <Route path="/admin/users" component={() => import('@/pages/admin/users').then(module => {
-        const { default: UsersPage } = module;
-        return <UsersPage />;
-      })} />
+      <Route path="/admin/users">
+        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
+          <AdminUsers />
+        </Suspense>
+      </Route>
       
       {/* Fallback Route */}
       <Route component={NotFound} />
