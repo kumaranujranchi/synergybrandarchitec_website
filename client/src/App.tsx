@@ -12,6 +12,7 @@ import Pricing from "@/pages/pricing";
 import StartupPlan from "@/pages/startup-plan";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
+import AdminSubmissions from "@/pages/admin/submissions";
 import WishluvBuildconCaseStudy from "@/pages/case-study/wishluv-buildcon";
 import BiryaniMahalCaseStudy from "@/pages/case-study/biryani-mahal";
 import TheHelpingHandCaseStudy from "@/pages/case-study/the-helping-hand";
@@ -37,6 +38,7 @@ function Router() {
       {/* Admin Routes */}
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
+      <Route path="/admin/submissions" component={AdminSubmissions} />
       
       {/* Fallback Route */}
       <Route component={NotFound} />

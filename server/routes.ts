@@ -211,6 +211,40 @@ export function registerRoutes(app: Express): void {
     }
   });
   
+  // Delete submission
+  app.delete('/api/admin/submissions/:id', async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: 'Invalid submission ID' });
+      }
+      
+      const submission = await storage.getSubmission(id);
+      if (!submission) {
+        return res.status(404).json({ message: 'Submission not found' });
+      }
+      
+      const success = await storage.deleteSubmission(id);
+      
+      if (success) {
+        // Log audit
+        storage.logAudit({
+          userId: req.user!.id,
+          action: 'Delete submission',
+          ipAddress: req.ip ? req.ip : null,
+          userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+          details: { deletedSubmissionId: id }
+        });
+        
+        res.status(200).json({ message: 'Submission deleted successfully' });
+      } else {
+        res.status(500).json({ message: 'Failed to delete submission' });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to delete submission' });
+    }
+  });
+  
   // User management (admin only)
   app.get('/api/admin/users', authorize(['admin']), async (req, res) => {
     try {

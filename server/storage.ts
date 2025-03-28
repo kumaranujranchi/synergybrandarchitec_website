@@ -20,6 +20,7 @@ export interface IStorage {
   createSubmission(submission: InsertSubmission): Promise<Submission>;
   getSubmission(id: number): Promise<Submission | undefined>;
   updateSubmission(id: number, data: UpdateSubmission): Promise<Submission | undefined>;
+  deleteSubmission(id: number): Promise<boolean>;
   listSubmissions(filters?: {status?: string, startDate?: Date, endDate?: Date}): Promise<Submission[]>;
   
   // Notes methods
@@ -216,6 +217,10 @@ export class MemStorage implements IStorage {
     
     this.submissions.set(id, updatedSubmission);
     return { ...updatedSubmission };
+  }
+
+  async deleteSubmission(id: number): Promise<boolean> {
+    return this.submissions.delete(id);
   }
 
   async listSubmissions(filters?: { status?: string; startDate?: Date; endDate?: Date }): Promise<Submission[]> {
