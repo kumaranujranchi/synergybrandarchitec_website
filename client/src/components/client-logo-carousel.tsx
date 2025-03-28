@@ -67,7 +67,7 @@ export default function ClientLogoCarousel() {
   }, []);
 
   return (
-    <section id="clients" className="py-16 md:py-24 bg-white">
+    <section id="clients" className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -82,20 +82,20 @@ export default function ClientLogoCarousel() {
           </p>
         </motion.div>
         
-        <div className="relative overflow-hidden py-6">
+        <div className="relative overflow-hidden py-8 px-2">
           {/* Gradient overlays for smooth fade effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-white to-transparent"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-white to-transparent"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
           
           <motion.div
             ref={containerRef}
-            className="flex items-center gap-12 py-8"
+            className="flex items-center gap-16 py-8"
             initial={{ x: 0 }}
             animate={{ x: isMobile ? "-100%" : "-50%" }}
             transition={{ 
               repeat: Infinity, 
               repeatType: "loop", 
-              duration: isMobile ? 20 : 30, 
+              duration: isMobile ? 25 : 35, 
               ease: "linear"
             }}
           >
@@ -105,13 +105,13 @@ export default function ClientLogoCarousel() {
                 className="flex-shrink-0 mx-4 relative group"
               >
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-24 w-[180px] transition-all"
+                  whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)" }}
+                  className="bg-white p-5 rounded-xl shadow-md flex items-center justify-center h-32 w-[240px] transition-all border border-gray-100"
                 >
                   <img 
                     src={logo.image} 
                     alt={`${logo.name} Logo`}
-                    className="max-h-16 w-auto max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    className="max-h-24 w-auto max-w-full object-contain transition-all duration-300"
                   />
                 </motion.div>
               </div>
