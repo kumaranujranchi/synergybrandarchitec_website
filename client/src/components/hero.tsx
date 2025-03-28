@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { smoothScrollTo } from "@/lib/scrollHelper";
 
 export default function Hero() {
   return (
@@ -18,16 +19,13 @@ export default function Hero() {
           <p className="text-lg md:text-xl mb-8 text-gray-600 font-inter">
             Your One-Stop Digital Marketing Partner in Patna for strategic brand building and growth-focused marketing solutions.
           </p>
+          <p className="text-md mb-8 text-gray-600 font-inter">
+            Welcome to Synergy Brand Architect, the best digital marketing service in Patna for businesses aiming to make a mark online. We're your dedicated partner in branding and digital growth, helping you stand out in the Bihar market with a powerful online presence.
+          </p>
           <div className="flex flex-wrap gap-4">
             <a href="#contact" onClick={(e) => {
               e.preventDefault();
-              const targetElement = document.querySelector('#contact');
-              if (targetElement) {
-                window.scrollTo({
-                  top: targetElement.offsetTop - 80,
-                  behavior: 'smooth'
-                });
-              }
+              smoothScrollTo('#contact');
             }}>
               <Button 
                 className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 h-auto"
@@ -37,13 +35,7 @@ export default function Hero() {
             </a>
             <a href="#services" onClick={(e) => {
               e.preventDefault();
-              const targetElement = document.querySelector('#services');
-              if (targetElement) {
-                window.scrollTo({
-                  top: targetElement.offsetTop - 80,
-                  behavior: 'smooth'
-                });
-              }
+              smoothScrollTo('#services');
             }}>
               <Button
                 variant="outline"
@@ -81,7 +73,7 @@ export default function Hero() {
                   <Star key={i} className="fill-current" size={16} />
                 ))}
               </div>
-              <p className="text-sm text-gray-600">From over <span className="font-semibold">150+ satisfied clients</span></p>
+              <p className="text-sm text-gray-600">From over <span className="font-semibold">150+ satisfied clients</span> across 15+ industries</p>
             </div>
           </div>
         </motion.div>
@@ -97,7 +89,7 @@ export default function Hero() {
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-[#FF6B00] to-[#FF8533] rounded-full opacity-20"></div>
             <img 
               src="https://images.unsplash.com/photo-1552664730-d307ca884978" 
-              alt="Digital Marketing Team" 
+              alt="A diverse marketing team collaborating in an office, symbolizing Synergy's teamwork approach" 
               className="w-full h-auto rounded-xl shadow-lg relative z-10"
             />
           </div>
