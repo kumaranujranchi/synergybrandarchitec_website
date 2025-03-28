@@ -12,7 +12,7 @@ import Pricing from "@/pages/pricing";
 import StartupPlan from "@/pages/startup-plan";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
-import AdminSubmissions from "@/pages/admin/submissions";
+import AdminSubmissions from "@/pages/admin/submissions-wrapper";
 import WishluvBuildconCaseStudy from "@/pages/case-study/wishluv-buildcon";
 import BiryaniMahalCaseStudy from "@/pages/case-study/biryani-mahal";
 import TheHelpingHandCaseStudy from "@/pages/case-study/the-helping-hand";
