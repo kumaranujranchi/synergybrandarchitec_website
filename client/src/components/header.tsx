@@ -9,10 +9,9 @@ const navLinks = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
-  { href: "#case-studies", label: "Case Studies" },
   { href: "#testimonials", label: "Testimonials" },
-  { href: "#blog", label: "Blog" },
   { href: "/pricing", label: "Pricing", isPage: true },
+  { href: "/startup-plan", label: "StartUp Plan", isPage: true, highlight: true },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -57,7 +56,12 @@ export default function Header() {
               <Link 
                 key={link.href}
                 href={link.href}
-                className="hover:text-[#FF6B00] transition-colors font-medium"
+                className={cn(
+                  "transition-colors font-medium", 
+                  link.highlight 
+                    ? "text-[#FF6B00] font-bold relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FF6B00] after:transform after:scale-x-100" 
+                    : "hover:text-[#FF6B00]"
+                )}
               >
                 {link.label}
               </Link>
@@ -125,7 +129,12 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover:text-[#FF6B00] transition-colors py-2 border-b border-gray-100"
+                className={cn(
+                  "transition-colors py-2 border-b border-gray-100", 
+                  link.highlight 
+                    ? "text-[#FF6B00] font-bold" 
+                    : "hover:text-[#FF6B00]"
+                )}
                 onClick={closeMenu}
               >
                 {link.label}

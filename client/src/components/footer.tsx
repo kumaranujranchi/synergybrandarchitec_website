@@ -21,7 +21,10 @@ const serviceLinks = [
 
 const resourceLinks = [
   { href: "#case-studies", label: "Case Studies" },
-  { href: "#blog", label: "Blog" }
+  { href: "#blog", label: "Blog" },
+  { href: "/privacy-policy", label: "Privacy Policy", isPage: true },
+  { href: "/terms-of-service", label: "Terms of Service", isPage: true },
+  { href: "/refund-policy", label: "Refund Policy", isPage: true }
 ];
 
 export default function Footer() {
@@ -31,7 +34,6 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <img src="https://i.imgur.com/8j3VafC.png" alt="Synergy Brand Architect Logo" className="h-12 mb-2" />
               <div className="flex items-center">
                 <span className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy</span>
                 <span className="text-white font-poppins font-medium text-2xl">Brand Architect</span>
@@ -139,16 +141,25 @@ export default function Footer() {
             <ul className="space-y-3 font-inter">
               {resourceLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.href} 
-                    className="text-gray-400 hover:text-[#FF6B00] transition-colors"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      smoothScrollTo(link.href);
-                    }}
-                  >
-                    {link.label}
-                  </a>
+                  {link.isPage ? (
+                    <Link 
+                      href={link.href}
+                      className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a 
+                      href={link.href} 
+                      className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        smoothScrollTo(link.href);
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

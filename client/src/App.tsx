@@ -8,6 +8,7 @@ import PrivacyPolicy from "@/pages/privacy-policy";
 import RefundPolicy from "@/pages/refund-policy";
 import TermsOfService from "@/pages/terms-of-service";
 import Pricing from "@/pages/pricing";
+import StartupPlan from "@/pages/startup-plan";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 
@@ -17,6 +18,7 @@ function Router() {
       {/* Public Routes */}
       <Route path="/" component={Home} />
       <Route path="/pricing" component={Pricing} />
+      <Route path="/startup-plan" component={StartupPlan} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />
