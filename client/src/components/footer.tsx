@@ -24,10 +24,7 @@ const resourceLinks = [
   { href: "/case-study/wishluv-buildcon", label: "Wishluv Buildcon", isPage: true },
   { href: "/case-study/biryani-mahal", label: "Biryani Mahal", isPage: true },
   { href: "/case-study/the-helping-hand", label: "The Helping Hand", isPage: true },
-  { href: "#blog", label: "Blog" },
-  { href: "/privacy-policy", label: "Privacy Policy", isPage: true },
-  { href: "/terms-of-service", label: "Terms of Service", isPage: true },
-  { href: "/refund-policy", label: "Refund Policy", isPage: true }
+  { href: "#blog", label: "Blog" }
 ];
 
 export default function Footer() {
