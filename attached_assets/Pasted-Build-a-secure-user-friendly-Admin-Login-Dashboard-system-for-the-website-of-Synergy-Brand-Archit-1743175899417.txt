@@ -1,0 +1,55 @@
+Build a secure, user-friendly Admin Login & Dashboard system for the website of Synergy Brand Architect. The system should be developed using a scalable backend (Node.js, Django, Laravel, etc.) and a clean frontend (React.js preferred or any modern framework). Use a responsive layout and clean UI styling.
+🔐 1. Authentication & User Roles
+•	Create an Admin login page (username/email + password)
+•	Admin can:
+o	View dashboard
+o	Create new users
+o	Assign user roles and permissions
+•	User Roles:
+o	Admin: Full access to everything
+o	Manager/User: Limited access (e.g., view form submissions only)
+•	Use JWT or session-based login with secure password hashing (bcrypt)
+📊 2. Dashboard Main Panel
+•	After login, show:
+o	Welcome message
+o	Quick stats (e.g., total leads, pending, delivered, lost)
+o	Quick actions (Create User, View Submissions, Add Note)
+📝 3. Form Submission Table
+•	Display all form submissions from the website in a sortable, filterable table
+•	Columns: Name, Email, Phone, Service Interested, Submission Date, Lead Status
+•	Add filters: by date range, status, etc.
+•	Export option (CSV/XLS)
+🗂️ 4. Lead Notes & Status Tracker
+•	Each submission should have:
+o	Internal notes section (textarea or note feed with timestamps & user name)
+o	Lead status dropdown:
+	In Progress
+	Pending
+	Delivered
+	Lost
+•	Notes and status changes should be saved to database with timestamps
+👥 5. User Management (Admin Only)
+•	Admin can:
+o	Create new users (Name, Email, Password, Role)
+o	View existing users in table format
+o	Assign roles/permissions:
+	View only
+	View + Add Notes
+	View + Edit Status
+	Full Access
+•	Password reset / change options
+🔐 6. Permission System
+•	Use Role-Based Access Control (RBAC)
+o	Only Admin can:
+	Create users
+	Delete users
+	View user access logs
+o	Users can:
+	Only access what they’ve been granted (e.g., can’t see “Create User” if not allowed)
+________________________________________
+🔐 8. Security Features
+•	Input validation + sanitization (against XSS, SQLi)
+•	Session timeout / logout
+•	Captcha for login (optional)
+•	Email verification for users (optional now, useful later)
+
