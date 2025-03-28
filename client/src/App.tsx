@@ -12,6 +12,9 @@ import Pricing from "@/pages/pricing";
 import StartupPlan from "@/pages/startup-plan";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
+import WishluvBuildconCaseStudy from "@/pages/case-study/wishluv-buildcon";
+import BiryaniMahalCaseStudy from "@/pages/case-study/biryani-mahal";
+import TheHelpingHandCaseStudy from "@/pages/case-study/the-helping-hand";
 
 function Router() {
   return (
@@ -23,6 +26,11 @@ function Router() {
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />
+      
+      {/* Case Study Routes */}
+      <Route path="/case-study/wishluv-buildcon" component={WishluvBuildconCaseStudy} />
+      <Route path="/case-study/biryani-mahal" component={BiryaniMahalCaseStudy} />
+      <Route path="/case-study/the-helping-hand" component={TheHelpingHandCaseStudy} />
       
       {/* Admin Routes */}
       <Route path="/admin/login" component={AdminLogin} />
