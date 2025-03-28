@@ -57,9 +57,30 @@ export default function Footer() {
               <a 
                 href="#" 
                 className="text-gray-400 hover:text-[#FF6B00] transition-colors"
-                aria-label="Twitter"
+                href="https://www.facebook.com/synergybrandarchitect"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
               >
-                <Twitter size={20} />
+                <Facebook size={20} />
+              </a>
+              <a
+                className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                href="https://www.instagram.com/synergybrandarchitect"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+              <a
+                className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                href="https://www.linkedin.com/company/synergy-brand-architect/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={20} />
               </a>
             </div>
           </div>
