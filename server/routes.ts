@@ -3,12 +3,26 @@ import { storage } from './storage';
 import { 
   contactSchema, 
   loginSchema, 
+  registerSchema,
   insertUserSchema, 
   updateUserSchema, 
   insertNoteSchema, 
   updateSubmissionSchema 
 } from '@shared/schema';
-import { generateToken, authenticateJWT, authorize, requirePermission } from './auth';
+import { 
+  generateToken, 
+  authenticateJWT, 
+  authorize, 
+  requirePermission,
+  registerUser,
+  verifyEmail,
+  comparePassword,
+  hashPassword,
+  requestPasswordReset,
+  resetPassword,
+  sendOTP,
+  generateOTP
+} from './auth';
 import cookieParser from 'cookie-parser';
 
 export function registerRoutes(app: Express): void {
@@ -81,6 +95,251 @@ export function registerRoutes(app: Express): void {
       authenticated: true,
       user: req.user
     });
+  });
+  
+  // User registration
+  app.post('/api/auth/register', async (req, res) => {
+    try {
+      const userData = registerSchema.parse(req.body);
+      
+      // Check if password and confirmPassword match
+      if (userData.password !== userData.confirmPassword) {
+        return res.status(400).json({ message: 'Passwords do not match' });
+      }
+      
+      // Register the user
+      const { confirmPassword, ...registerData } = userData;
+      
+      try {
+        const user = await registerUser(registerData);
+        
+        // Return user info (without password)
+        const { password: _, ...userInfo } = user;
+        res.status(201).json({ 
+          message: 'Registration successful. Please check your email to verify your account.', 
+          user: userInfo 
+        });
+      } catch (error: any) {
+        res.status(400).json({ message: error.message });
+      }
+    } catch (error) {
+      res.status(400).json({ message: 'Invalid registration data' });
+    }
+  });
+  
+  // Email verification
+  app.get('/api/auth/verify-email/:token', async (req, res) => {
+    try {
+      const { token } = req.params;
+      const success = await verifyEmail(token);
+      
+      if (success) {
+        res.status(200).json({ message: 'Email verified successfully. You can now log in.' });
+      } else {
+        res.status(400).json({ message: 'Invalid or expired verification token' });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to verify email' });
+    }
+  });
+  
+  // Request password reset
+  app.post('/api/auth/forgot-password', async (req, res) => {
+    try {
+      const { email } = req.body;
+      
+      if (!email) {
+        return res.status(400).json({ message: 'Email is required' });
+      }
+      
+      const success = await requestPasswordReset(email);
+      
+      // Always return success to prevent email enumeration
+      res.status(200).json({ 
+        message: 'If an account with that email exists, a password reset link has been sent.' 
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to process password reset request' });
+    }
+  });
+  
+  // Reset password
+  app.post('/api/auth/reset-password/:token', async (req, res) => {
+    try {
+      const { token } = req.params;
+      const { password, confirmPassword } = req.body;
+      
+      if (!password || !confirmPassword) {
+        return res.status(400).json({ message: 'Password and confirmation are required' });
+      }
+      
+      if (password !== confirmPassword) {
+        return res.status(400).json({ message: 'Passwords do not match' });
+      }
+      
+      const success = await resetPassword(token, password);
+      
+      if (success) {
+        res.status(200).json({ message: 'Password reset successfully. You can now log in with your new password.' });
+      } else {
+        res.status(400).json({ message: 'Invalid or expired reset token' });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to reset password' });
+    }
+  });
+  
+  // OTP verification
+  app.post('/api/auth/send-otp', async (req, res) => {
+    try {
+      const { email } = req.body;
+      
+      if (!email) {
+        return res.status(400).json({ message: 'Email is required' });
+      }
+      
+      const user = await storage.getUserByEmail(email);
+      
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      
+      // Generate OTP
+      const otp = generateOTP();
+      
+      // Store OTP in user's verification token (in a real implementation, use a separate OTP table)
+      await storage.updateUser(user.id, {
+        verificationToken: otp,
+      });
+      
+      // Send OTP
+      await sendOTP(email, otp);
+      
+      res.status(200).json({ message: 'OTP sent successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to send OTP' });
+    }
+  });
+  
+  app.post('/api/auth/verify-otp', async (req, res) => {
+    try {
+      const { email, otp } = req.body;
+      
+      if (!email || !otp) {
+        return res.status(400).json({ message: 'Email and OTP are required' });
+      }
+      
+      const user = await storage.getUserByEmail(email);
+      
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      
+      if (user.verificationToken !== otp) {
+        return res.status(400).json({ message: 'Invalid OTP' });
+      }
+      
+      // Update user's verification status
+      await storage.updateUser(user.id, {
+        isVerified: true,
+        verificationToken: null,
+      });
+      
+      // Generate token for automatic login
+      const token = generateToken(user);
+      
+      // Set cookie
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+      });
+      
+      // Return user info (without password)
+      const { password: _, ...userInfo } = user;
+      res.status(200).json({ 
+        message: 'OTP verified successfully', 
+        user: userInfo,
+        token
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to verify OTP' });
+    }
+  });
+  
+  // User profile management (authenticated users)
+  app.get('/api/user/profile', authenticateJWT, async (req, res) => {
+    try {
+      const user = await storage.getUser(req.user!.id);
+      
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      
+      // Remove password from response
+      const { password, ...userInfo } = user;
+      res.status(200).json({ user: userInfo });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch user profile' });
+    }
+  });
+  
+  app.patch('/api/user/profile', authenticateJWT, async (req, res) => {
+    try {
+      const userData = updateUserSchema.parse(req.body);
+      
+      // Prevent changing role or permissions through this endpoint
+      delete userData.role;
+      delete userData.permissions;
+      
+      const updatedUser = await storage.updateUser(req.user!.id, userData);
+      
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      
+      // Remove password from response
+      const { password, ...userInfo } = updatedUser;
+      res.status(200).json({ user: userInfo });
+    } catch (error) {
+      res.status(400).json({ message: 'Invalid user data' });
+    }
+  });
+  
+  app.post('/api/user/change-password', authenticateJWT, async (req, res) => {
+    try {
+      const { currentPassword, newPassword, confirmPassword } = req.body;
+      
+      if (!currentPassword || !newPassword || !confirmPassword) {
+        return res.status(400).json({ message: 'All password fields are required' });
+      }
+      
+      if (newPassword !== confirmPassword) {
+        return res.status(400).json({ message: 'Passwords do not match' });
+      }
+      
+      const user = await storage.getUser(req.user!.id);
+      
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      
+      // Verify current password
+      const isPasswordValid = await comparePassword(currentPassword, user.password);
+      
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: 'Current password is incorrect' });
+      }
+      
+      // Update password
+      const hashedPassword = await hashPassword(newPassword);
+      await storage.updateUser(user.id, { password: hashedPassword });
+      
+      res.status(200).json({ message: 'Password changed successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to change password' });
+    }
   });
   
   // Protected API routes - requires authentication
