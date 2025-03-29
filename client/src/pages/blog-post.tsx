@@ -172,7 +172,7 @@ export default function BlogPostPage() {
                   <CardContent className="p-6 md:p-8">
                     {/* Blog post content - using dangerouslySetInnerHTML as content may contain HTML */}
                     <div 
-                      className="prose prose-lg max-w-none prose-headings:text-[#0066CC] prose-a:text-[#FF6B00]"
+                      className="blog-content prose prose-lg max-w-none prose-headings:text-[#0066CC] prose-a:text-[#FF6B00]"
                       dangerouslySetInnerHTML={{ __html: post.content }}
                     />
                     

@@ -24,7 +24,7 @@ import { scrollToTop } from "@/lib/scrollHelper";
 // Lazy load admin components
 const AdminUsers = lazy(() => import('./pages/admin/users'));
 const AdminBlogPosts = lazy(() => import('./pages/admin/blog-posts'));
-const AdminBlogPostForm = lazy(() => import('./pages/admin/blog-post-form'));
+const AdminBlogPostForm = lazy(() => import('./pages/admin/blog-post-form-new'));
 
 function Router() {
   return (

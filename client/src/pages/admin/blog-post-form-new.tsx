@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { apiRequest } from '@/lib/queryClient';
 import { BlogPost } from '@shared/schema';
@@ -13,7 +13,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Switch } from '@/components/ui/switch';
 import { toast } from '@/hooks/use-toast';
 import { ArrowLeft, Loader2, Save, Trash } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
@@ -46,6 +45,8 @@ export default function BlogPostForm() {
   const id = params.id ? parseInt(params.id) : null;
   const isEditMode = !!id;
   const queryClient = useQueryClient();
+  const [contentValue, setContentValue] = useState('');
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   
   // Fetch blog post if in edit mode
   const { data: postData, isLoading: isLoadingPost } = useQuery<{post: BlogPost}>({
@@ -153,6 +154,7 @@ export default function BlogPostForm() {
         metaTitle: post.metaTitle || '',
         metaDescription: post.metaDescription || '',
       });
+      setContentValue(post.content);
     }
   }, [postData, form]);
 
@@ -178,8 +180,15 @@ export default function BlogPostForm() {
     }
   };
 
+  // Handle rich text editor change
+  const handleEditorChange = (value: string) => {
+    setContentValue(value);
+    form.setValue('content', value);
+  };
+
   // Handle form submission
   const onSubmit = (values: FormValues) => {
+    values.content = contentValue; // Ensure we use the content from the rich text editor
     if (isEditMode) {
       updateMutation.mutate(values);
     } else {
@@ -205,9 +214,6 @@ export default function BlogPostForm() {
       </AdminLayout>
     );
   }
-
-  // Confirmation for delete
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   return (
     <AdminLayout>
@@ -369,31 +375,19 @@ export default function BlogPostForm() {
                       )}
                     />
                     
-                    <FormField
-                      control={form.control}
-                      name="content"
-                      render={({ field }) => (
-                        <FormItem className="space-y-2">
-                          <FormLabel>Content *</FormLabel>
-                          <FormControl>
-                            <div className="min-h-[300px]">
-                              <Controller
-                                name="content"
-                                control={form.control}
-                                render={({ field }) => (
-                                  <RichTextEditor
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                    placeholder="Write your blog post content here..."
-                                  />
-                                )}
-                              />
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
+                    <FormItem className="space-y-2">
+                      <FormLabel>Content *</FormLabel>
+                      <RichTextEditor
+                        value={contentValue}
+                        onChange={handleEditorChange}
+                        placeholder="Write your blog post content here..."
+                      />
+                      {form.formState.errors.content && (
+                        <p className="text-sm font-medium text-destructive">
+                          {form.formState.errors.content.message}
+                        </p>
                       )}
-                    />
+                    </FormItem>
                   </div>
                   
                   {/* Categorization */}

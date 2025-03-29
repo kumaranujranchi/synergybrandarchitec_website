@@ -1,3 +1,5 @@
+@import 'react-quill/dist/quill.snow.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,4 +37,75 @@
     background-color: #FF6B00;
     color: white;
   }
+}
+
+/* Rich Text Editor Customization */
+.quill {
+  @apply border rounded-md bg-white;
+}
+
+.ql-toolbar {
+  @apply border-b !border-gray-300 rounded-t-md;
+}
+
+.ql-container {
+  @apply !border-0 rounded-b-md min-h-[300px];
+  font-family: inherit;
+}
+
+.ql-editor {
+  @apply min-h-[300px] text-gray-800;
+}
+
+/* Blog content styling for frontend display */
+.blog-content h1 {
+  @apply text-3xl font-bold mb-4 mt-6; 
+}
+
+.blog-content h2 {
+  @apply text-2xl font-bold mb-3 mt-5;
+}
+
+.blog-content h3 {
+  @apply text-xl font-bold mb-2 mt-4;
+}
+
+.blog-content p {
+  @apply mb-4 leading-relaxed;
+}
+
+.blog-content ul, .blog-content ol {
+  @apply mb-4 ml-6;
+}
+
+.blog-content ul {
+  @apply list-disc;
+}
+
+.blog-content ol {
+  @apply list-decimal;
+}
+
+.blog-content li {
+  @apply mb-1;
+}
+
+.blog-content a {
+  @apply text-[#0066CC] hover:underline;
+}
+
+.blog-content blockquote {
+  @apply border-l-4 border-[#FF6B00] pl-4 italic my-4;
+}
+
+.blog-content img {
+  @apply max-w-full rounded-md my-4;
+}
+
+.blog-content pre {
+  @apply bg-gray-100 p-4 rounded my-4 overflow-x-auto;
+}
+
+.blog-content code {
+  @apply bg-gray-100 p-1 rounded text-sm;
 }
