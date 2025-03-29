@@ -6,9 +6,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getQueryFn } from "@/lib/queryClient";
 import AdminLayout from "@/components/admin/layout";
+import { User, Submission } from "../../../shared/schema";
 
 export default function Dashboard() {
   const [, setLocation] = useLocation();
+  
+  // Check authentication and get user info
+  const authQuery = useQuery({
+    queryKey: ['/api/auth/check'],
+    queryFn: getQueryFn<{authenticated: boolean; user: User}>({on401: 'returnNull'}),
+  });
   
   // Dashboard stats
   const statsQuery = useQuery({
@@ -19,7 +26,7 @@ export default function Dashboard() {
   // Submissions (leads)
   const submissionsQuery = useQuery({
     queryKey: ['/api/admin/submissions'],
-    queryFn: getQueryFn<{submissions: any[]}>({on401: 'returnNull'}),
+    queryFn: getQueryFn<{submissions: Submission[]}>({on401: 'returnNull'}),
   });
 
   // Loading state
@@ -104,7 +111,10 @@ export default function Dashboard() {
           <Tabs defaultValue="submissions" className="mt-6">
             <TabsList>
               <TabsTrigger value="submissions">Submissions</TabsTrigger>
-              <TabsTrigger value="users">Users</TabsTrigger>
+              {/* Only show Users tab for admin role */}
+              {authQuery.data?.user?.role === 'admin' && (
+                <TabsTrigger value="users">Users</TabsTrigger>
+              )}
             </TabsList>
             <TabsContent value="submissions" className="mt-4">
               <Card>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { format } from "date-fns";
+import { User, Submission, Note } from "../../../shared/schema";
 import { 
   ArrowUpDown, 
   Calendar, 
@@ -55,7 +56,7 @@ export default function SubmissionsPage() {
   const [statusFilter, setStatusFilter] = useState("");
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showNotesDialog, setShowNotesDialog] = useState(false);
-  const [selectedSubmission, setSelectedSubmission] = useState<any>(null);
+  const [selectedSubmission, setSelectedSubmission] = useState<Submission | null>(null);
   const [expandedSubmission, setExpandedSubmission] = useState<number | null>(null);
   const [newNote, setNewNote] = useState("");
   const queryClient = useQueryClient();
@@ -64,7 +65,7 @@ export default function SubmissionsPage() {
   // Authentication check
   const authQuery = useQuery({
     queryKey: ['/api/auth/check'],
-    queryFn: getQueryFn<{authenticated: boolean; user: any}>({on401: 'returnNull'}),
+    queryFn: getQueryFn<{authenticated: boolean; user: User}>({on401: 'returnNull'}),
   });
 
   // Get submissions with optional filtering
@@ -211,7 +212,7 @@ export default function SubmissionsPage() {
     
     const csvRows = [
       headers.join(','), // Header row
-      ...submissionsQuery.data.submissions.map((sub: any) => {
+      ...submissionsQuery.data.submissions.map((sub: Submission) => {
         // Format dates for CSV
         const submittedAt = sub.submittedAt ? new Date(sub.submittedAt).toISOString() : '';
         const updatedAt = sub.updatedAt ? new Date(sub.updatedAt).toISOString() : '';
@@ -257,7 +258,7 @@ export default function SubmissionsPage() {
   };
 
   // Filter submissions based on search query
-  const filteredSubmissions = submissionsQuery.data?.submissions?.filter((submission: any) => {
+  const filteredSubmissions = submissionsQuery.data?.submissions?.filter((submission: Submission) => {
     const searchLower = searchQuery.toLowerCase();
     const matchesSearch = 
       submission.name?.toLowerCase().includes(searchLower) ||
@@ -412,7 +413,7 @@ export default function SubmissionsPage() {
                 </div>
               ) : (
                 <div className="space-y-6">
-                  {filteredSubmissions.map((submission: any) => {
+                  {filteredSubmissions.map((submission: Submission) => {
                     const status = typeof submission.status === 'string' ? submission.status : 'new';
                     const statusDisplayConfig = statusConfig[status] || {
                       color: 'bg-gray-50 text-gray-700 border-gray-200',
@@ -563,10 +564,10 @@ export default function SubmissionsPage() {
                                 <div className="space-y-2">
                                   {notesQuery.data.notes
                                     // Sort notes by date (most recent first)
-                                    .sort((a: any, b: any) => 
+                                    .sort((a: Note, b: Note) => 
                                       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
                                     )
-                                    .map((note: any) => (
+                                    .map((note: Note) => (
                                       <div key={note.id} className="bg-white p-2 rounded border border-gray-200 text-sm">
                                         <p className="text-gray-700">{note.content}</p>
                                         <div className="flex justify-between items-center mt-1 text-xs text-gray-500">
@@ -729,10 +730,10 @@ export default function SubmissionsPage() {
             ) : (
               notesQuery.data.notes
                 // Sort notes by date (most recent first)
-                .sort((a: any, b: any) => 
+                .sort((a: Note, b: Note) => 
                   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
                 )
-                .map((note: any) => (
+                .map((note: Note) => (
                   <div key={note.id} className="bg-gray-50 p-3 rounded-md">
                     <p className="text-sm mb-1">{note.content}</p>
                     <div className="text-xs text-gray-500 flex justify-between">

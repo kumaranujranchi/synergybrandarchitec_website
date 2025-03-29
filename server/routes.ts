@@ -97,8 +97,8 @@ export function registerRoutes(app: Express): void {
   // Protected API routes - requires authentication
   app.use('/api/admin', authenticateJWT);
   
-  // Dashboard stats
-  app.get('/api/admin/dashboard', async (req, res) => {
+  // Dashboard stats - restricted to admin and manager
+  app.get('/api/admin/dashboard', authorize(['admin', 'manager']), async (req, res) => {
     try {
       const submissions = await storage.listSubmissions();
       
@@ -222,8 +222,8 @@ export function registerRoutes(app: Express): void {
     }
   });
   
-  // Delete submission
-  app.delete('/api/admin/submissions/:id', async (req, res) => {
+  // Delete submission - admin and manager only
+  app.delete('/api/admin/submissions/:id', authorize(['admin', 'manager']), async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) {
@@ -360,8 +360,8 @@ export function registerRoutes(app: Express): void {
     }
   });
   
-  // Blog management - only admin and manager can create/update
-  app.get('/api/admin/blog-posts', async (req, res) => {
+  // Blog management - only admin and manager can access
+  app.get('/api/admin/blog-posts', authorize(['admin', 'manager']), async (req, res) => {
     try {
       // Parse filters
       const filters: { status?: string; category?: string } = {};
@@ -381,7 +381,7 @@ export function registerRoutes(app: Express): void {
     }
   });
   
-  app.get('/api/admin/blog-posts/:id', async (req, res) => {
+  app.get('/api/admin/blog-posts/:id', authorize(['admin', 'manager']), async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const post = await storage.getBlogPost(id);

@@ -13,13 +13,7 @@ import {
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-}
+import { User } from '../../../shared/schema';
 
 export default function AdminSidebar() {
   const [location, setLocation] = useLocation();
@@ -56,9 +50,9 @@ export default function AdminSidebar() {
     isCollapsed ? "justify-center" : ""
   );
 
-  // Check if user has permission
-  const hasPermission = (role: string) => {
-    return user?.role === 'admin' || user?.role === role;
+  // Check if user has permission for specific sections
+  const hasPermission = (requiredRoles: string[]) => {
+    return user?.role && requiredRoles.includes(user?.role);
   };
   
   return (
@@ -145,7 +139,7 @@ export default function AdminSidebar() {
             {!isCollapsed && <span>Leads</span>}
           </Button>
           
-          {hasPermission('manager') && (
+          {hasPermission(['admin', 'manager']) && (
             <Button
               variant="ghost"
               className={menuItemClass('/admin/blog-posts')}
@@ -156,7 +150,7 @@ export default function AdminSidebar() {
             </Button>
           )}
           
-          {hasPermission('admin') && (
+          {hasPermission(['admin']) && (
             <Button
               variant="ghost"
               className={menuItemClass('/admin/users')}

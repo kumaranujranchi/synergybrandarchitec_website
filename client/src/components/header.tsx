@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -7,7 +7,7 @@ import { smoothScrollTo, scrollToTop } from "@/lib/scrollHelper";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
+  { href: "#home", label: "Home", isHome: true },
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
   { href: "#testimonials", label: "Testimonials" },
@@ -21,6 +21,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
+  const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +35,25 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavigation = (e: React.MouseEvent, link: any) => {
+    e.preventDefault();
+    
+    // If we're not on the home page and the link is to a home page section
+    if (location !== '/' && !link.isPage) {
+      // Navigate to home page first, then scroll
+      window.location.href = '/' + link.href;
+      return;
+    }
+    
+    // Otherwise use smooth scroll for hash links
+    if (!link.isPage) {
+      smoothScrollTo(link.href);
+    }
+    
+    // If it's a page link, the Link component will handle it
+    closeMenu();
+  };
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -74,10 +94,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className="hover:text-[#FF6B00] transition-colors font-medium text-xs xl:text-sm whitespace-nowrap"
-                onClick={(e) => {
-                  e.preventDefault();
-                  smoothScrollTo(link.href);
-                }}
+                onClick={(e) => handleNavigation(e, link)}
               >
                 {link.label}
               </a>
@@ -109,10 +126,7 @@ export default function Header() {
           {/* CTA Button (Desktop only) */}
           <a 
             href="#contact" 
-            onClick={(e) => {
-              e.preventDefault();
-              smoothScrollTo('#contact');
-            }}
+            onClick={(e) => handleNavigation(e, { href: '#contact' })}
           >
             <Button 
               className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium text-xs xl:text-sm py-1 px-3 xl:py-2 xl:px-5 rounded-full transition-all hover:shadow-md hover:-translate-y-1 h-auto"
@@ -135,10 +149,7 @@ export default function Header() {
           </Link>
           <a 
             href="#contact" 
-            onClick={(e) => {
-              e.preventDefault();
-              smoothScrollTo('#contact');
-            }}
+            onClick={(e) => handleNavigation(e, { href: '#contact' })}
           >
             <Button 
               className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium text-xs py-1 px-2 rounded-full transition-all hover:shadow-md h-auto"
@@ -180,9 +191,8 @@ export default function Header() {
                 href={link.href}
                 className="hover:text-[#FF6B00] transition-colors py-2 border-b border-gray-100"
                 onClick={(e) => {
-                  e.preventDefault();
                   closeMenu();
-                  smoothScrollTo(link.href);
+                  handleNavigation(e, link);
                 }}
               >
                 {link.label}
@@ -204,9 +214,8 @@ export default function Header() {
               href="#contact" 
               className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-2 sm:py-3 px-4 sm:px-5 rounded-full text-center sm:flex-1"
               onClick={(e) => {
-                e.preventDefault();
                 closeMenu();
-                smoothScrollTo('#contact');
+                handleNavigation(e, { href: '#contact' });
               }}
             >
               Get Free Consultation
