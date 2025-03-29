@@ -117,51 +117,259 @@ export default function StartupPlan() {
         </div>
       </section>
 
-      {/* What's Included */}
+      {/* Service Package Details */}
       <section className="py-16 bg-white" id="pricing">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-4 text-center font-poppins">What's Included in ₹15,000</h2>
-          <p className="text-center mb-12 text-lg">Here's what you get as part of this special package:</p>
+          <h2 className="text-3xl font-bold mb-4 text-center font-poppins">The Startup Package</h2>
+          <p className="text-center mb-8 text-lg max-w-3xl mx-auto">
+            Perfect for small businesses and first-time entrepreneurs looking to establish a professional online presence quickly and affordably.
+          </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-[#F9F9F9] p-6 rounded-lg border border-gray-200">
-              <h3 className="font-semibold text-xl mb-4 text-[#0066CC]">Custom Website Development</h3>
-              <p>Your website will be built from scratch, specifically for your business — no templates, no generic designs.</p>
+          <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
+            {/* Package Details */}
+            <div className="lg:w-2/3 order-2 lg:order-1">
+              <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200">
+                <div className="bg-gradient-to-r from-[#0066CC] to-[#004999] text-white p-6">
+                  <h3 className="text-2xl font-bold">What's Included</h3>
+                </div>
+                
+                <div className="p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Initial Marketing Audit</h4>
+                          <p className="text-sm text-gray-600">Comprehensive review of your current online presence</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Strategy Development</h4>
+                          <p className="text-sm text-gray-600">Customized marketing plan for your business goals</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Target Audience Identification</h4>
+                          <p className="text-sm text-gray-600">Define your ideal customer profiles</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Social Media Posts</h4>
+                          <p className="text-sm text-gray-600">10 custom posts per month</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Blog Articles</h4>
+                          <p className="text-sm text-gray-600">1 SEO-optimized article per month</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Graphic Design</h4>
+                          <p className="text-sm text-gray-600">5 custom designs per month</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Social Media Management</h4>
+                          <p className="text-sm text-gray-600">2 platforms of your choice</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Basic SEO Optimization</h4>
+                          <p className="text-sm text-gray-600">On-page optimization & local search setup</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Analytics & Reporting</h4>
+                          <p className="text-sm text-gray-600">Monthly performance reports</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Consultation Calls</h4>
+                          <p className="text-sm text-gray-600">1 strategy call per month</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Professional Logo Design</h4>
+                          <p className="text-sm text-gray-600">Custom logo creation (1-time)</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#FF6B00]/10 p-1 rounded-full">
+                          <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Customer Support</h4>
+                          <p className="text-sm text-gray-600">Email & WhatsApp support</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-8 bg-[#F9F9F9] p-6 rounded-lg border border-gray-200">
+                <h3 className="font-semibold text-xl mb-4 text-[#0066CC]">Upgrade Options</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2">
+                    <div className="bg-[#FF6B00]/10 p-1 rounded-full mt-0.5">
+                      <CheckCircle2 className="text-[#FF6B00] w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="font-medium">Fast-Track Delivery</p>
+                      <p className="text-sm text-gray-600">Get your package implemented in just 72 hours <span className="text-[#FF6B00]">+₹6,999</span></p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <div className="bg-[#FF6B00]/10 p-1 rounded-full mt-0.5">
+                      <CheckCircle2 className="text-[#FF6B00] w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="font-medium">Additional Social Media Platform</p>
+                      <p className="text-sm text-gray-600">Expand your reach with one more platform <span className="text-[#FF6B00]">+₹4,999/month</span></p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <div className="bg-[#FF6B00]/10 p-1 rounded-full mt-0.5">
+                      <CheckCircle2 className="text-[#FF6B00] w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="font-medium">Extra Blog Articles</p>
+                      <p className="text-sm text-gray-600">Additional SEO-focused article <span className="text-[#FF6B00]">+₹2,999/article</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-[#F9F9F9] p-6 rounded-lg border border-gray-200">
-              <h3 className="font-semibold text-xl mb-4 text-[#0066CC]">Content Writing for Website</h3>
-              <p>We'll write clear, compelling content tailored for your products/services to attract and convert visitors.</p>
-            </div>
-            
-            <div className="bg-[#F9F9F9] p-6 rounded-lg border border-gray-200">
-              <h3 className="font-semibold text-xl mb-4 text-[#0066CC]">Professional Logo Design</h3>
-              <p>Don't have a logo yet? No problem! We'll design a unique and memorable logo that reflects your brand identity.</p>
-            </div>
-            
-            <div className="bg-[#F9F9F9] p-6 rounded-lg border border-gray-200">
-              <h3 className="font-semibold text-xl mb-4 text-[#0066CC]">Stock Images & Videos</h3>
-              <p>We'll use relevant, high-quality images and videos to make your site visually appealing and modern.</p>
-            </div>
-            
-            <div className="bg-[#F9F9F9] p-6 rounded-lg border border-gray-200">
-              <h3 className="font-semibold text-xl mb-4 text-[#0066CC]">Responsive Design</h3>
-              <p>Your site will work perfectly across mobile, tablet, and desktop — ensuring a smooth user experience.</p>
-            </div>
-            
-            <div className="bg-[#F9F9F9] p-6 rounded-lg border border-gray-200">
-              <h3 className="font-semibold text-xl mb-4 text-[#0066CC]">Built on Popular Tech Stack</h3>
-              <p>React JS + Node JS + Express = Fast, reliable, scalable — just like top websites worldwide.</p>
-            </div>
-            
-            <div className="bg-[#F9F9F9] p-6 rounded-lg border border-gray-200">
-              <h3 className="font-semibold text-xl mb-4 text-[#0066CC]">Basic SEO Setup</h3>
-              <p>We ensure the code and structure are SEO-ready so that you can start ranking on Google from Day 1.</p>
-            </div>
-            
-            <div className="bg-[#F9F9F9] p-6 rounded-lg border border-gray-200">
-              <h3 className="font-semibold text-xl mb-4 text-[#0066CC]">Free Consultation</h3>
-              <p>Get expert advice on how big you can grow, and what digital solutions make sense for your business.</p>
+            {/* Price Card */}
+            <div className="lg:w-1/3 order-1 lg:order-2">
+              <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-[#FF6B00] sticky top-24">
+                <div className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white p-6">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold">Startup Package</h3>
+                    <p className="text-sm opacity-85 mb-2">Perfect for small businesses & entrepreneurs</p>
+                    <div className="flex items-center justify-center gap-1">
+                      <span className="text-4xl font-bold">₹14,999</span>
+                      <span className="opacity-80 text-sm">per month</span>
+                    </div>
+                    <p className="text-xs opacity-75 mt-1">Or ₹11,999/month with quarterly billing</p>
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <p className="text-center mb-6 text-gray-600">Great for new businesses looking to establish an online presence.</p>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="text-[#FF6B00] min-w-5 h-5 mt-0.5" />
+                      <span>10 social media posts per month</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="text-[#FF6B00] min-w-5 h-5 mt-0.5" />
+                      <span>1 blog article per month</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="text-[#FF6B00] min-w-5 h-5 mt-0.5" />
+                      <span>2 social media platforms</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="text-[#FF6B00] min-w-5 h-5 mt-0.5" />
+                      <span>Basic SEO optimization</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="text-[#FF6B00] min-w-5 h-5 mt-0.5" />
+                      <span>Monthly analytics reports</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="text-[#FF6B00] min-w-5 h-5 mt-0.5" />
+                      <span>Professional logo design (1-time)</span>
+                    </div>
+                  </div>
+                  
+                  <div className="border-t border-gray-200 pt-6 mb-6">
+                    <div className="text-center mb-4">
+                      <span className="inline-block px-3 py-1 bg-[#FF6B00]/10 text-[#FF6B00] rounded-full text-sm font-medium">
+                        Popular For
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      <span className="px-3 py-1 bg-gray-100 rounded-full text-sm">Small Businesses</span>
+                      <span className="px-3 py-1 bg-gray-100 rounded-full text-sm">Startups</span>
+                      <span className="px-3 py-1 bg-gray-100 rounded-full text-sm">Local Shops</span>
+                    </div>
+                  </div>
+                  
+                  <a href="/#contact" onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = "/#contact";
+                  }}>
+                    <button className="w-full bg-[#FF6B00] hover:bg-[#FF8533] text-white py-3 px-4 rounded-lg font-medium transition-all">
+                      Get Started
+                    </button>
+                  </a>
+                  
+                  <p className="text-xs text-center mt-3 text-gray-500">
+                    No credit card required
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
