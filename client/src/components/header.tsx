@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { smoothScrollTo, scrollToTop } from "@/lib/scrollHelper";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -18,6 +19,7 @@ const navLinks = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,24 +42,24 @@ export default function Header() {
       "fixed w-full bg-white z-50 transition-shadow duration-300",
       isScrolled ? "shadow-md" : "shadow-sm"
     )}>
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2">
-          <img src="//i.imgur.com/8j3VafC.png" alt="Synergy Brand Architect Logo" className="h-16 w-auto" />
+      <div className="container mx-auto px-4 py-2 sm:py-3 flex justify-between items-center">
+        <Link href="/" className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+          <img src="//i.imgur.com/8j3VafC.png" alt="Synergy Brand Architect Logo" className="h-12 sm:h-14 md:h-16 w-auto" />
           <div className="flex items-center">
-            <span className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy</span>
-            <span className="text-[#333333] font-poppins font-medium text-2xl">Brand Architect</span>
+            <span className="text-[#FF6B00] font-poppins font-bold text-lg sm:text-xl md:text-2xl">Synergy</span>
+            <span className="text-[#333333] font-poppins font-medium text-lg sm:text-xl md:text-2xl">Brand Architect</span>
           </div>
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 font-inter text-[#333333]">
+        <nav className="hidden lg:flex space-x-4 xl:space-x-8 font-inter text-[#333333]">
           {navLinks.map((link) => (
             link.isPage ? (
               <Link 
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "transition-colors font-medium", 
+                  "transition-colors font-medium text-sm xl:text-base", 
                   link.highlight 
                     ? "text-[#FF6B00] font-bold relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FF6B00] after:transform after:scale-x-100" 
                     : "hover:text-[#FF6B00]"
@@ -70,7 +72,7 @@ export default function Header() {
               <a 
                 key={link.href}
                 href={link.href}
-                className="hover:text-[#FF6B00] transition-colors font-medium"
+                className="hover:text-[#FF6B00] transition-colors font-medium text-sm xl:text-base"
                 onClick={(e) => {
                   e.preventDefault();
                   smoothScrollTo(link.href);
@@ -82,21 +84,22 @@ export default function Header() {
           ))}
         </nav>
         
-        {/* Mobile Menu Button */}
+        {/* Mobile/Tablet Menu Button */}
         <button 
-          className="md:hidden text-[#333333] focus:outline-none" 
+          className="lg:hidden text-[#333333] focus:outline-none ml-2" 
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
         
-        <div className="hidden md:flex items-center space-x-4">
+        {/* Buttons for Desktop */}
+        <div className="hidden lg:flex items-center space-x-2 xl:space-x-4">
           {/* Admin Login Button */}
           <Link href="/admin/login" onClick={() => scrollToTop(true)}>
             <Button 
               variant="outline" 
-              className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"
+              className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all text-xs xl:text-sm py-1 px-3 xl:py-2 xl:px-4 h-auto"
             >
               Admin Login
             </Button>
@@ -111,20 +114,33 @@ export default function Header() {
             }}
           >
             <Button 
-              className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium py-2 px-5 rounded-full transition-all hover:shadow-md hover:-translate-y-1"
+              className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium text-xs xl:text-sm py-1 px-3 xl:py-2 xl:px-5 rounded-full transition-all hover:shadow-md hover:-translate-y-1 h-auto"
             >
               Get Free Consultation
             </Button>
           </a>
         </div>
+        
+        {/* Tablet-only buttons - show in medium screens but hide in large screens and small screens */}
+        <div className="hidden md:flex lg:hidden items-center space-x-2">
+          <Link href="/admin/login" onClick={() => scrollToTop(true)}>
+            <Button 
+              variant="outline" 
+              className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all text-xs py-1 px-2 h-auto"
+              size="sm"
+            >
+              Admin
+            </Button>
+          </Link>
+        </div>
       </div>
       
-      {/* Mobile Navigation Menu */}
+      {/* Mobile/Tablet Navigation Menu */}
       <div className={cn(
-        "md:hidden bg-white w-full py-4 shadow-md transition-all duration-300",
+        "lg:hidden bg-white w-full py-4 shadow-md transition-all duration-300",
         isOpen ? "block" : "hidden"
       )}>
-        <div className="container mx-auto px-4 flex flex-col space-y-4 font-inter text-[#333333]">
+        <div className="container mx-auto px-4 flex flex-col space-y-3 font-inter text-[#333333]">
           {navLinks.map((link) => (
             link.isPage ? (
               <Link
@@ -158,26 +174,29 @@ export default function Header() {
               </a>
             )
           ))}
-          <Link href="/admin/login" onClick={() => {
-            closeMenu();
-            scrollToTop(true);
-          }}>
-            <div className="text-[#0066CC] border border-[#0066CC] hover:bg-[#0066CC] hover:text-white py-3 px-5 rounded-full text-center transition-colors mb-2">
-              Admin Login
-            </div>
-          </Link>
           
-          <a 
-            href="#contact" 
-            className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-3 px-5 rounded-full text-center"
-            onClick={(e) => {
-              e.preventDefault();
+          <div className="flex flex-col sm:flex-row sm:space-x-3 pt-2">
+            <Link href="/admin/login" onClick={() => {
               closeMenu();
-              smoothScrollTo('#contact');
-            }}
-          >
-            Get Free Consultation
-          </a>
+              scrollToTop(true);
+            }} className="mb-3 sm:mb-0 sm:flex-1">
+              <div className="text-[#0066CC] border border-[#0066CC] hover:bg-[#0066CC] hover:text-white py-2 sm:py-3 px-4 sm:px-5 rounded-full text-center transition-colors">
+                Admin Login
+              </div>
+            </Link>
+            
+            <a 
+              href="#contact" 
+              className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-2 sm:py-3 px-4 sm:px-5 rounded-full text-center sm:flex-1"
+              onClick={(e) => {
+                e.preventDefault();
+                closeMenu();
+                smoothScrollTo('#contact');
+              }}
+            >
+              Get Free Consultation
+            </a>
+          </div>
         </div>
       </div>
     </header>
