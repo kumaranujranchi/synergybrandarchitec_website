@@ -49,19 +49,19 @@ export default function Hero() {
           <div className="mt-10 flex items-center">
             <div className="flex -space-x-2">
               <motion.img 
-                src="https://randomuser.me/api/portraits/men/32.jpg" 
+                src="//randomuser.me/api/portraits/men/32.jpg" 
                 alt="Happy Client" 
                 className="w-10 h-10 rounded-full border-2 border-white"
                 whileHover={{ scale: 1.1 }}
               />
               <motion.img 
-                src="https://randomuser.me/api/portraits/women/44.jpg" 
+                src="//randomuser.me/api/portraits/women/44.jpg" 
                 alt="Happy Client" 
                 className="w-10 h-10 rounded-full border-2 border-white"
                 whileHover={{ scale: 1.1 }}
               />
               <motion.img 
-                src="https://randomuser.me/api/portraits/men/62.jpg" 
+                src="//randomuser.me/api/portraits/men/62.jpg" 
                 alt="Happy Client" 
                 className="w-10 h-10 rounded-full border-2 border-white"
                 whileHover={{ scale: 1.1 }}
@@ -88,7 +88,7 @@ export default function Hero() {
             <div className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-r from-[#0066CC] to-[#4D94FF] rounded-full opacity-30"></div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-[#FF6B00] to-[#FF8533] rounded-full opacity-20"></div>
             <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978" 
+              src="//images.unsplash.com/photo-1552664730-d307ca884978" 
               alt="A diverse marketing team collaborating in an office, symbolizing Synergy's teamwork approach" 
               className="w-full h-auto rounded-xl shadow-lg relative z-10"
             />

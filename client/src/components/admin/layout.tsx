@@ -77,7 +77,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           
           <div className="flex items-center flex-1">
             <img 
-              src="https://i.imgur.com/8j3VafC.png" 
+              src="//i.imgur.com/8j3VafC.png" 
               alt="Logo" 
               className="h-8 w-auto mr-2" 
             />

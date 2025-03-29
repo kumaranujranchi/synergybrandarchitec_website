@@ -99,7 +99,7 @@ export default function AdminLogin() {
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
           <img 
-            src="https://i.imgur.com/8j3VafC.png" 
+            src="//i.imgur.com/8j3VafC.png" 
             alt="Synergy Brand Architect Logo" 
             className="h-16 mx-auto mb-2" 
           />

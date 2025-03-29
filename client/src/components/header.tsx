@@ -42,7 +42,7 @@ export default function Header() {
     )}>
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
-          <img src="https://i.imgur.com/8j3VafC.png" alt="Synergy Brand Architect Logo" className="h-16 w-auto" />
+          <img src="//i.imgur.com/8j3VafC.png" alt="Synergy Brand Architect Logo" className="h-16 w-auto" />
           <div className="flex items-center">
             <span className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy</span>
             <span className="text-[#333333] font-poppins font-medium text-2xl">Brand Architect</span>

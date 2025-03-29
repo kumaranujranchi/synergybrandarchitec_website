@@ -58,7 +58,7 @@ export default function About() {
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-[#0066CC] to-[#4D94FF] rounded-full opacity-20"></div>
               <div className="absolute -bottom-4 -right-4 w-40 h-40 bg-gradient-to-r from-[#FF6B00] to-[#FF8533] rounded-full opacity-10"></div>
               <img 
-                src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1" 
+                src="//images.unsplash.com/photo-1536599018102-9f803c140fc1" 
                 alt="Aerial view of Patna city and Ganges river, highlighting Synergy's local roots in Bihar" 
                 className="w-full h-auto rounded-xl shadow-lg relative z-10"
               />
@@ -139,7 +139,7 @@ export default function About() {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/4 mb-6 md:mb-0 flex justify-center">
               <img 
-                src="https://randomuser.me/api/portraits/men/32.jpg" 
+                src="//randomuser.me/api/portraits/men/32.jpg" 
                 alt="Client Testimonial" 
                 className="w-24 h-24 rounded-full border-4 border-white shadow-lg"
               />

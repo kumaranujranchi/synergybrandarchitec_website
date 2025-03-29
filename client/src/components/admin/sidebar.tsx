@@ -71,7 +71,7 @@ export default function AdminSidebar() {
       <div className="flex h-16 items-center border-b px-4">
         <div className="flex items-center gap-2 w-full">
           <img 
-            src="https://i.imgur.com/8j3VafC.png" 
+            src="//i.imgur.com/8j3VafC.png" 
             alt="Logo" 
             className="h-8 w-auto"
           />
