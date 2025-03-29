@@ -13,6 +13,7 @@ const navLinks = [
   { href: "#testimonials", label: "Testimonials" },
   { href: "/pricing", label: "Pricing", isPage: true },
   { href: "/startup-plan", label: "StartUp Plan", isPage: true, highlight: true },
+  { href: "/blog", label: "Blog", isPage: true },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -51,15 +52,15 @@ export default function Header() {
           </div>
         </Link>
         
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex space-x-4 xl:space-x-8 font-inter text-[#333333]">
+        {/* Desktop Navigation - only show on xl screens */}
+        <nav className="hidden xl:flex space-x-2 xl:space-x-6 font-inter text-[#333333]">
           {navLinks.map((link) => (
             link.isPage ? (
               <Link 
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "transition-colors font-medium text-sm xl:text-base", 
+                  "transition-colors font-medium text-xs xl:text-sm whitespace-nowrap", 
                   link.highlight 
                     ? "text-[#FF6B00] font-bold relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FF6B00] after:transform after:scale-x-100" 
                     : "hover:text-[#FF6B00]"
@@ -72,7 +73,7 @@ export default function Header() {
               <a 
                 key={link.href}
                 href={link.href}
-                className="hover:text-[#FF6B00] transition-colors font-medium text-sm xl:text-base"
+                className="hover:text-[#FF6B00] transition-colors font-medium text-xs xl:text-sm whitespace-nowrap"
                 onClick={(e) => {
                   e.preventDefault();
                   smoothScrollTo(link.href);
@@ -86,7 +87,7 @@ export default function Header() {
         
         {/* Mobile/Tablet Menu Button */}
         <button 
-          className="lg:hidden text-[#333333] focus:outline-none ml-2" 
+          className="xl:hidden text-[#333333] focus:outline-none ml-2" 
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -94,7 +95,7 @@ export default function Header() {
         </button>
         
         {/* Buttons for Desktop */}
-        <div className="hidden lg:flex items-center space-x-2 xl:space-x-4">
+        <div className="hidden xl:flex items-center space-x-2 xl:space-x-4">
           {/* Admin Login Button */}
           <Link href="/admin/login" onClick={() => scrollToTop(true)}>
             <Button 
@@ -121,8 +122,8 @@ export default function Header() {
           </a>
         </div>
         
-        {/* Tablet-only buttons - show in medium screens but hide in large screens and small screens */}
-        <div className="hidden md:flex lg:hidden items-center space-x-2">
+        {/* Tablet-only buttons - show in medium to large screens but hide in extra-large */}
+        <div className="hidden md:flex xl:hidden items-center space-x-2">
           <Link href="/admin/login" onClick={() => scrollToTop(true)}>
             <Button 
               variant="outline" 
@@ -132,12 +133,26 @@ export default function Header() {
               Admin
             </Button>
           </Link>
+          <a 
+            href="#contact" 
+            onClick={(e) => {
+              e.preventDefault();
+              smoothScrollTo('#contact');
+            }}
+          >
+            <Button 
+              className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium text-xs py-1 px-2 rounded-full transition-all hover:shadow-md h-auto"
+              size="sm"
+            >
+              Consult
+            </Button>
+          </a>
         </div>
       </div>
       
       {/* Mobile/Tablet Navigation Menu */}
       <div className={cn(
-        "lg:hidden bg-white w-full py-4 shadow-md transition-all duration-300",
+        "xl:hidden bg-white w-full py-4 shadow-md transition-all duration-300",
         isOpen ? "block" : "hidden"
       )}>
         <div className="container mx-auto px-4 flex flex-col space-y-3 font-inter text-[#333333]">

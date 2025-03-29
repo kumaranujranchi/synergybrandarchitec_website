@@ -1,7 +1,8 @@
 import { 
   User, InsertUser, UpdateUser,
   Submission, InsertSubmission, UpdateSubmission,
-  Note, InsertNote, AuditLog
+  Note, InsertNote, AuditLog,
+  BlogPost, InsertBlogPost, UpdateBlogPost
 } from "@shared/schema";
 import bcrypt from "bcrypt";
 
@@ -27,6 +28,14 @@ export interface IStorage {
   addNote(note: InsertNote & {userId: number}): Promise<Note>;
   getSubmissionNotes(submissionId: number): Promise<Note[]>;
   
+  // Blog post methods
+  createBlogPost(post: InsertBlogPost & {authorId: number}): Promise<BlogPost>;
+  getBlogPost(id: number): Promise<BlogPost | undefined>;
+  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
+  updateBlogPost(id: number, data: UpdateBlogPost): Promise<BlogPost | undefined>;
+  deleteBlogPost(id: number): Promise<boolean>;
+  listBlogPosts(filters?: {status?: string, category?: string}): Promise<BlogPost[]>;
+  
   // Audit logs
   logAudit(log: Omit<AuditLog, 'id' | 'createdAt'>): Promise<void>;
 }
@@ -37,20 +46,24 @@ export class MemStorage implements IStorage {
   private submissions: Map<number, Submission>;
   private notes: Map<number, Note>;
   private auditLogs: Map<number, AuditLog>;
+  private blogPosts: Map<number, BlogPost>;
   private lastUserId: number;
   private lastSubmissionId: number;
   private lastNoteId: number;
   private lastAuditLogId: number;
+  private lastBlogPostId: number;
 
   constructor() {
     this.users = new Map();
     this.submissions = new Map();
     this.notes = new Map();
     this.auditLogs = new Map();
+    this.blogPosts = new Map();
     this.lastUserId = 0;
     this.lastSubmissionId = 0;
     this.lastNoteId = 0;
     this.lastAuditLogId = 0;
+    this.lastBlogPostId = 0;
     
     // Create initial admin user
     this.createInitialAdmin();
@@ -186,6 +199,7 @@ export class MemStorage implements IStorage {
       name: submission.name,
       email: submission.email,
       phone: submission.phone,
+      city: submission.city || null,
       service: submission.service,
       message: submission.message,
       status: 'new',
@@ -264,6 +278,125 @@ export class MemStorage implements IStorage {
     return Array.from(this.notes.values())
       .filter(note => note.submissionId === submissionId)
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  // Blog post methods
+  async createBlogPost(post: InsertBlogPost & {authorId: number}): Promise<BlogPost> {
+    const id = ++this.lastBlogPostId;
+    const now = new Date();
+    
+    // Generate slug from title if not provided
+    let slug = post.slug;
+    if (!slug) {
+      slug = post.title
+        .toLowerCase()
+        .replace(/[^\w\s]/gi, '')
+        .replace(/\s+/g, '-');
+      
+      // Make sure slug is unique
+      let slugExists = true;
+      let counter = 0;
+      let uniqueSlug = slug;
+      
+      while (slugExists) {
+        const posts = Array.from(this.blogPosts.values());
+        slugExists = posts.some(existingPost => existingPost.slug === uniqueSlug);
+        
+        if (slugExists) {
+          counter++;
+          uniqueSlug = `${slug}-${counter}`;
+        } else {
+          slug = uniqueSlug;
+        }
+      }
+    }
+    
+    const newPost: BlogPost = {
+      id,
+      title: post.title,
+      slug,
+      excerpt: post.excerpt,
+      content: post.content,
+      featuredImage: post.featuredImage || null,
+      authorId: post.authorId,
+      status: post.status || 'draft',
+      tags: Array.isArray(post.tags) ? post.tags.map(t => String(t)) : [],
+      category: post.category || null,
+      publishedAt: post.status === 'published' ? now : null,
+      createdAt: now,
+      updatedAt: now
+    };
+    
+    this.blogPosts.set(id, newPost);
+    return { ...newPost };
+  }
+  
+  async getBlogPost(id: number): Promise<BlogPost | undefined> {
+    const post = this.blogPosts.get(id);
+    if (post) {
+      return { ...post };
+    }
+    return undefined;
+  }
+  
+  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+    const posts = Array.from(this.blogPosts.values());
+    for (const post of posts) {
+      if (post.slug === slug) {
+        return { ...post };
+      }
+    }
+    return undefined;
+  }
+  
+  async updateBlogPost(id: number, data: UpdateBlogPost): Promise<BlogPost | undefined> {
+    const post = this.blogPosts.get(id);
+    if (!post) return undefined;
+    
+    // Handle tags array properly
+    let tags = post.tags;
+    if (data.tags) {
+      tags = Array.isArray(data.tags) ? data.tags.map(t => String(t)) : post.tags;
+    }
+    
+    // Special handling for status changes
+    const now = new Date();
+    let publishedAt = post.publishedAt;
+    if (data.status === 'published' && post.status !== 'published') {
+      publishedAt = now;
+    }
+    
+    const updatedPost: BlogPost = {
+      ...post,
+      ...data,
+      tags,
+      publishedAt,
+      updatedAt: now
+    };
+    
+    this.blogPosts.set(id, updatedPost);
+    return { ...updatedPost };
+  }
+  
+  async deleteBlogPost(id: number): Promise<boolean> {
+    return this.blogPosts.delete(id);
+  }
+  
+  async listBlogPosts(filters?: { status?: string; category?: string }): Promise<BlogPost[]> {
+    let posts = Array.from(this.blogPosts.values());
+    
+    if (filters) {
+      if (filters.status) {
+        posts = posts.filter(p => p.status === filters.status);
+      }
+      
+      if (filters.category) {
+        posts = posts.filter(p => p.category === filters.category);
+      }
+    }
+    
+    // Sort by newest first
+    return posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 
   // Audit logs

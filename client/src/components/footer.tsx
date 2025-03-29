@@ -7,6 +7,7 @@ const quickLinks = [
   { href: "#about", label: "About Us" },
   { href: "#services", label: "Services" },
   { href: "/pricing", label: "Pricing", isPage: true },
+  { href: "/blog", label: "Blog", isPage: true },
   { href: "#contact", label: "Contact" }
 ];
 
@@ -24,7 +25,7 @@ const resourceLinks = [
   { href: "/case-study/wishluv-buildcon", label: "Wishluv Buildcon", isPage: true },
   { href: "/case-study/biryani-mahal", label: "Biryani Mahal", isPage: true },
   { href: "/case-study/the-helping-hand", label: "The Helping Hand", isPage: true },
-  { href: "#blog", label: "Blog" }
+  { href: "/blog", label: "Blog", isPage: true }
 ];
 
 export default function Footer() {

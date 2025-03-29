@@ -6,7 +6,9 @@ import {
   insertUserSchema, 
   updateUserSchema, 
   insertNoteSchema, 
-  updateSubmissionSchema 
+  updateSubmissionSchema,
+  insertBlogPostSchema,
+  updateBlogPostSchema
 } from '@shared/schema';
 import { generateToken, authenticateJWT, authorize, requirePermission } from './auth';
 import cookieParser from 'cookie-parser';
@@ -355,6 +357,164 @@ export function registerRoutes(app: Express): void {
       res.status(200).json({ message: 'User deleted successfully' });
     } catch (error) {
       res.status(500).json({ message: 'Failed to delete user' });
+    }
+  });
+  
+  // Blog management - only admin and manager can create/update
+  app.get('/api/admin/blog-posts', async (req, res) => {
+    try {
+      // Parse filters
+      const filters: { status?: string; category?: string } = {};
+      
+      if (req.query.status) {
+        filters.status = req.query.status as string;
+      }
+      
+      if (req.query.category) {
+        filters.category = req.query.category as string;
+      }
+      
+      const posts = await storage.listBlogPosts(filters);
+      res.status(200).json({ posts });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog posts' });
+    }
+  });
+  
+  app.get('/api/admin/blog-posts/:id', async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const post = await storage.getBlogPost(id);
+      
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      res.status(200).json({ post });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog post details' });
+    }
+  });
+  
+  app.post('/api/admin/blog-posts', authorize(['admin', 'manager']), async (req, res) => {
+    try {
+      const postData = insertBlogPostSchema.parse(req.body);
+      
+      const post = await storage.createBlogPost({
+        ...postData,
+        authorId: req.user!.id
+      });
+      
+      // Log the blog post creation
+      storage.logAudit({
+        userId: req.user!.id,
+        action: 'Create blog post',
+        ipAddress: req.ip ? req.ip : null,
+        userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+        details: { postId: post.id, title: post.title, status: post.status }
+      });
+      
+      res.status(201).json({ post });
+    } catch (error) {
+      res.status(400).json({ message: 'Invalid blog post data' });
+    }
+  });
+  
+  app.patch('/api/admin/blog-posts/:id', authorize(['admin', 'manager']), async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const postData = updateBlogPostSchema.parse(req.body);
+      
+      const post = await storage.getBlogPost(id);
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      // Only author, admin, or manager can update
+      if (post.authorId !== req.user!.id && req.user!.role !== 'admin') {
+        return res.status(403).json({ message: 'Not authorized to update this post' });
+      }
+      
+      const updatedPost = await storage.updateBlogPost(id, postData);
+      
+      // Log the blog post update
+      storage.logAudit({
+        userId: req.user!.id,
+        action: 'Update blog post',
+        ipAddress: req.ip ? req.ip : null,
+        userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+        details: { postId: id, changes: Object.keys(postData) }
+      });
+      
+      res.status(200).json({ post: updatedPost });
+    } catch (error) {
+      res.status(400).json({ message: 'Invalid blog post data' });
+    }
+  });
+  
+  app.delete('/api/admin/blog-posts/:id', authorize(['admin', 'manager']), async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      const post = await storage.getBlogPost(id);
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      // Only author, admin, or manager can delete
+      if (post.authorId !== req.user!.id && req.user!.role !== 'admin') {
+        return res.status(403).json({ message: 'Not authorized to delete this post' });
+      }
+      
+      const success = await storage.deleteBlogPost(id);
+      
+      if (success) {
+        // Log the blog post deletion
+        storage.logAudit({
+          userId: req.user!.id,
+          action: 'Delete blog post',
+          ipAddress: req.ip ? req.ip : null,
+          userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+          details: { deletedPostId: id, title: post.title }
+        });
+        
+        res.status(200).json({ message: 'Blog post deleted successfully' });
+      } else {
+        res.status(500).json({ message: 'Failed to delete blog post' });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to delete blog post' });
+    }
+  });
+  
+  // Public blog post routes
+  app.get('/api/blog-posts', async (req, res) => {
+    try {
+      // Only return published posts for public API
+      const posts = await storage.listBlogPosts({ status: 'published' });
+      res.status(200).json({ posts });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog posts' });
+    }
+  });
+  
+  app.get('/api/blog-posts/:slug', async (req, res) => {
+    try {
+      const slug = req.params.slug;
+      const post = await storage.getBlogPostBySlug(slug);
+      
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      // Only allow access to published posts for public API
+      if (post.status !== 'published') {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      res.status(200).json({ post });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog post' });
     }
   });
   

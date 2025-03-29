@@ -16,11 +16,15 @@ import AdminSubmissions from "@/pages/admin/submissions-wrapper";
 import WishluvBuildconCaseStudy from "@/pages/case-study/wishluv-buildcon";
 import BiryaniMahalCaseStudy from "@/pages/case-study/biryani-mahal";
 import TheHelpingHandCaseStudy from "@/pages/case-study/the-helping-hand";
+import Blog from "@/pages/blog";
+import BlogPostPage from "@/pages/blog-post";
 import { useEffect, lazy, Suspense } from "react";
 import { scrollToTop } from "@/lib/scrollHelper";
 
-// Lazy load the AdminUsers component
+// Lazy load admin components
 const AdminUsers = lazy(() => import('./pages/admin/users'));
+const AdminBlogPosts = lazy(() => import('./pages/admin/blog-posts'));
+const AdminBlogPostForm = lazy(() => import('./pages/admin/blog-post-form'));
 
 function Router() {
   return (
@@ -38,6 +42,10 @@ function Router() {
       <Route path="/case-study/biryani-mahal" component={BiryaniMahalCaseStudy} />
       <Route path="/case-study/the-helping-hand" component={TheHelpingHandCaseStudy} />
       
+      {/* Blog Routes */}
+      <Route path="/blog" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPostPage} />
+      
       {/* Admin Routes */}
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
@@ -45,6 +53,25 @@ function Router() {
       <Route path="/admin/users">
         <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
           <AdminUsers />
+        </Suspense>
+      </Route>
+      
+      {/* Blog Admin Routes */}
+      <Route path="/admin/blog-posts">
+        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
+          <AdminBlogPosts />
+        </Suspense>
+      </Route>
+      
+      <Route path="/admin/blog-posts/new">
+        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
+          <AdminBlogPostForm />
+        </Suspense>
+      </Route>
+      
+      <Route path="/admin/blog-posts/edit/:id">
+        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
+          <AdminBlogPostForm />
         </Suspense>
       </Route>
       

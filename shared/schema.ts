@@ -8,6 +8,9 @@ export const userRoleEnum = pgEnum('user_role', ['admin', 'manager', 'user']);
 // Lead status enum
 export const leadStatusEnum = pgEnum('lead_status', ['new', 'in_progress', 'pending', 'delivered', 'lost']);
 
+// Blog post status enum
+export const postStatusEnum = pgEnum('post_status', ['draft', 'published', 'archived']);
+
 // Users table
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -54,6 +57,25 @@ export const auditLogs = pgTable("audit_logs", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
+// Blog posts
+export const blogPosts = pgTable("blog_posts", {
+  id: serial("id").primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  excerpt: text("excerpt").notNull(),
+  content: text("content").notNull(),
+  featuredImage: varchar("featured_image", { length: 255 }),
+  authorId: integer("author_id").references(() => users.id).notNull(),
+  status: postStatusEnum("status").notNull().default('draft'),
+  tags: json("tags").$type<string[]>().default([]),
+  category: varchar("category", { length: 100 }),
+  metaTitle: varchar("meta_title", { length: 255 }),
+  metaDescription: text("meta_description"),
+  publishedAt: timestamp("published_at"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 // Schemas
 export const insertUserSchema = createInsertSchema(users)
   .omit({ id: true, createdAt: true, updatedAt: true });
@@ -73,6 +95,16 @@ export const updateSubmissionSchema = createInsertSchema(submissions)
 
 export const insertNoteSchema = createInsertSchema(notes)
   .omit({ id: true, createdAt: true, userId: true });
+
+export const insertBlogPostSchema = createInsertSchema(blogPosts)
+  .omit({ id: true, slug: true, authorId: true, createdAt: true, updatedAt: true, publishedAt: true })
+  .extend({
+    slug: z.string().optional(),
+  });
+
+export const updateBlogPostSchema = createInsertSchema(blogPosts)
+  .partial()
+  .omit({ id: true, authorId: true, createdAt: true, updatedAt: true });
 
 // Auth schemas
 export const loginSchema = z.object({
@@ -100,6 +132,10 @@ export type Submission = typeof submissions.$inferSelect;
 
 export type InsertNote = z.infer<typeof insertNoteSchema>;
 export type Note = typeof notes.$inferSelect;
+
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
+export type UpdateBlogPost = z.infer<typeof updateBlogPostSchema>;
+export type BlogPost = typeof blogPosts.$inferSelect;
 
 export type AuditLog = typeof auditLogs.$inferSelect;
 export type ContactFormData = z.infer<typeof contactSchema>;

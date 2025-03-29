@@ -7,7 +7,8 @@ import {
   Users, 
   LogOut, 
   ChevronRight,
-  LayoutDashboard
+  LayoutDashboard,
+  BookOpen
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -143,6 +144,17 @@ export default function AdminSidebar() {
             <FileText className="h-5 w-5" />
             {!isCollapsed && <span>Leads</span>}
           </Button>
+          
+          {hasPermission('manager') && (
+            <Button
+              variant="ghost"
+              className={menuItemClass('/admin/blog-posts')}
+              onClick={() => setLocation('/admin/blog-posts')}
+            >
+              <BookOpen className="h-5 w-5" />
+              {!isCollapsed && <span>Blog Management</span>}
+            </Button>
+          )}
           
           {hasPermission('admin') && (
             <Button
