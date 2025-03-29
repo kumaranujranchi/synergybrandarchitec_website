@@ -88,8 +88,8 @@ export default function BlogPosts() {
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.content.toLowerCase().includes(searchTerm.toLowerCase());
     
-    const matchesStatus = statusFilter === null || post.status === statusFilter;
-    const matchesCategory = categoryFilter === null || post.category === categoryFilter;
+    const matchesStatus = statusFilter === null || statusFilter === 'all-statuses' || post.status === statusFilter;
+    const matchesCategory = categoryFilter === null || categoryFilter === 'all-categories' || post.category === categoryFilter;
     
     return matchesSearch && matchesStatus && matchesCategory;
   }) || [];
@@ -148,7 +148,7 @@ export default function BlogPosts() {
                     </div>
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Statuses</SelectItem>
+                    <SelectItem value="all-statuses">All Statuses</SelectItem>
                     <SelectItem value="published">Published</SelectItem>
                     <SelectItem value="draft">Draft</SelectItem>
                     <SelectItem value="archived">Archived</SelectItem>
@@ -168,7 +168,7 @@ export default function BlogPosts() {
                     </div>
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Categories</SelectItem>
+                    <SelectItem value="all-categories">All Categories</SelectItem>
                     {categories.map((category) => (
                       <SelectItem key={category as string} value={category as string}>
                         {category as string}
