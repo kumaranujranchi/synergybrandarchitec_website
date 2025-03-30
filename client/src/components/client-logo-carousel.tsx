@@ -52,22 +52,22 @@ export default function ClientLogoCarousel() {
     {
       id: 9,
       name: "Wipro Limited",
-      image: "https://imgur.com/guHEeLX.png"
+      image: "/assets/wipro.png"
     },
     {
       id: 10,
       name: "Another Client",
-      image: "https://imgur.com/kavspl6.png"
+      image: "/assets/client1.png"
     },
     {
       id: 11,
       name: "SBI Bank",
-      image: "https://imgur.com/osIwhrG.png"
+      image: "/assets/sbi.png"
     },
     {
       id: 12,
       name: "Wipro Technologies",
-      image: "https://imgur.com/guHEeLX.png"
+      image: "/assets/wipro.png"
     }
   ];
 
