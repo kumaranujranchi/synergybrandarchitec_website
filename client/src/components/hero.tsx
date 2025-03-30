@@ -48,24 +48,24 @@ export default function Hero() {
           
           <div className="mt-10 flex items-center">
             <div className="flex -space-x-2">
-              <motion.div 
-                className="w-10 h-10 rounded-full border-2 border-white bg-[#FF6B00] text-white flex items-center justify-center font-bold text-sm"
+              <motion.img 
+                src="//randomuser.me/api/portraits/men/32.jpg" 
+                alt="Happy Client" 
+                className="w-10 h-10 rounded-full border-2 border-white"
                 whileHover={{ scale: 1.1 }}
-              >
-                L
-              </motion.div>
-              <motion.div 
-                className="w-10 h-10 rounded-full border-2 border-white bg-[#FF6B00] text-white flex items-center justify-center font-bold text-sm"
+              />
+              <motion.img 
+                src="//randomuser.me/api/portraits/women/44.jpg" 
+                alt="Happy Client" 
+                className="w-10 h-10 rounded-full border-2 border-white"
                 whileHover={{ scale: 1.1 }}
-              >
-                P
-              </motion.div>
-              <motion.div 
-                className="w-10 h-10 rounded-full border-2 border-white bg-[#FF6B00] text-white flex items-center justify-center font-bold text-sm"
+              />
+              <motion.img 
+                src="//randomuser.me/api/portraits/men/62.jpg" 
+                alt="Happy Client" 
+                className="w-10 h-10 rounded-full border-2 border-white"
                 whileHover={{ scale: 1.1 }}
-              >
-                A
-              </motion.div>
+              />
             </div>
             <div className="ml-4">
               <div className="flex text-yellow-400 mb-1">
@@ -87,38 +87,11 @@ export default function Hero() {
           <div className="relative">
             <div className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-r from-[#0066CC] to-[#4D94FF] rounded-full opacity-30"></div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-[#FF6B00] to-[#FF8533] rounded-full opacity-20"></div>
-            <div className="relative overflow-hidden rounded-xl shadow-lg z-10">
-              <div className="w-full carousel">
-                <div id="slide1" className="carousel-item relative w-full">
-                  <img src="/assets/carousel-image-1.jpg" className="w-full" alt="Business growth and digital marketing"/>
-                  <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide4" className="btn btn-circle bg-white/30 hover:bg-white/70 border-none text-gray-800">❮</a> 
-                    <a href="#slide2" className="btn btn-circle bg-white/30 hover:bg-white/70 border-none text-gray-800">❯</a>
-                  </div>
-                </div> 
-                <div id="slide2" className="carousel-item relative w-full">
-                  <img src="/assets/carousel-image-2.jpg" className="w-full" alt="Strategic marketing planning"/>
-                  <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide1" className="btn btn-circle bg-white/30 hover:bg-white/70 border-none text-gray-800">❮</a> 
-                    <a href="#slide3" className="btn btn-circle bg-white/30 hover:bg-white/70 border-none text-gray-800">❯</a>
-                  </div>
-                </div> 
-                <div id="slide3" className="carousel-item relative w-full">
-                  <img src="/assets/carousel-image-3.jpg" className="w-full" alt="Content creation and social media marketing"/>
-                  <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide2" className="btn btn-circle bg-white/30 hover:bg-white/70 border-none text-gray-800">❮</a> 
-                    <a href="#slide4" className="btn btn-circle bg-white/30 hover:bg-white/70 border-none text-gray-800">❯</a>
-                  </div>
-                </div> 
-                <div id="slide4" className="carousel-item relative w-full">
-                  <img src="/assets/carousel-image-4.jpg" className="w-full" alt="Data analytics and campaign tracking"/>
-                  <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide3" className="btn btn-circle bg-white/30 hover:bg-white/70 border-none text-gray-800">❮</a> 
-                    <a href="#slide1" className="btn btn-circle bg-white/30 hover:bg-white/70 border-none text-gray-800">❯</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img 
+              src="//images.unsplash.com/photo-1552664730-d307ca884978" 
+              alt="A diverse marketing team collaborating in an office, symbolizing Synergy's teamwork approach" 
+              className="w-full h-auto rounded-xl shadow-lg relative z-10"
+            />
           </div>
         </motion.div>
       </div>
