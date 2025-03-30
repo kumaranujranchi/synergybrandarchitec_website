@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -47,6 +47,7 @@ export default function BlogPostForm() {
   const queryClient = useQueryClient();
   const [contentValue, setContentValue] = useState('');
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const editorRef = useRef<any>(null);
   
   // Fetch blog post if in edit mode
   const { data: postData, isLoading: isLoadingPost } = useQuery<{post: BlogPost}>({
@@ -142,6 +143,10 @@ export default function BlogPostForm() {
   useEffect(() => {
     if (postData?.post) {
       const post = postData.post;
+      // First set content value to ensure the rich text editor updates
+      setContentValue(post.content);
+      
+      // Then reset the form with all values from the post
       form.reset({
         title: post.title,
         slug: post.slug,
@@ -154,7 +159,6 @@ export default function BlogPostForm() {
         metaTitle: post.metaTitle || '',
         metaDescription: post.metaDescription || '',
       });
-      setContentValue(post.content);
     }
   }, [postData, form]);
 
@@ -378,6 +382,7 @@ export default function BlogPostForm() {
                     <FormItem className="space-y-2">
                       <FormLabel>Content *</FormLabel>
                       <RichTextEditor
+                        ref={editorRef}
                         value={contentValue}
                         onChange={handleEditorChange}
                         placeholder="Write your blog post content here..."
