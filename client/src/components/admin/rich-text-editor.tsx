@@ -1,5 +1,5 @@
 import ReactQuill from 'react-quill';
-import { forwardRef, useImperativeHandle, useRef, useEffect } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'react';
 
 interface RichTextEditorProps {
   value: string;
@@ -53,7 +53,7 @@ const RichTextEditor = forwardRef<any, RichTextEditorProps>(
         [{ 'align': [] }]
       ]
     };
-
+    
     return (
       <ReactQuill
         ref={quillRef}

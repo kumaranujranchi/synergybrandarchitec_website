@@ -50,9 +50,14 @@ export default function BlogPostForm() {
   const editorRef = useRef<any>(null);
   
   // Fetch blog post if in edit mode
-  const { data: postData, isLoading: isLoadingPost } = useQuery<{post: BlogPost}>({
+  const { 
+    data: postData, 
+    isLoading: isLoadingPost, 
+    isError: hasPostError 
+  } = useQuery<{post: BlogPost}>({
     queryKey: ['/api/admin/blog-posts', id],
     enabled: isEditMode,
+    retry: 3
   });
 
   // Initialize form
@@ -143,15 +148,17 @@ export default function BlogPostForm() {
   useEffect(() => {
     if (postData?.post) {
       const post = postData.post;
-      // First set content value to ensure the rich text editor updates
-      setContentValue(post.content);
+      console.log("Loading post data into form:", post.title);
       
-      // Then reset the form with all values from the post
+      // Set content value for the rich text editor
+      setContentValue(post.content || '');
+      
+      // Reset the form with the post values
       form.reset({
         title: post.title,
         slug: post.slug,
         excerpt: post.excerpt,
-        content: post.content,
+        content: post.content || '',
         category: post.category || '',
         tags: post.tags || [],
         featuredImage: post.featuredImage || '',
@@ -214,6 +221,48 @@ export default function BlogPostForm() {
         <div className="flex items-center justify-center h-full">
           <Loader2 className="h-8 w-8 animate-spin text-[#FF6B00]" />
           <span className="ml-2">Loading post data...</span>
+        </div>
+      </AdminLayout>
+    );
+  }
+  
+  // Error state
+  if (isEditMode && hasPostError) {
+    return (
+      <AdminLayout>
+        <div className="container mx-auto py-6">
+          <div className="flex items-center mb-4">
+            <Button 
+              variant="ghost" 
+              className="mr-2"
+              onClick={() => setLocation('/admin/blog-posts')}
+            >
+              <ArrowLeft className="h-4 w-4 mr-1" />
+              Back
+            </Button>
+            <h1 className="text-2xl font-bold">Error Loading Post</h1>
+          </div>
+          
+          <Card>
+            <CardContent className="pt-6">
+              <div className="text-center py-6">
+                <p className="text-red-500 mb-4">Failed to load blog post. This might be due to a network error or authorization issue.</p>
+                <div className="flex justify-center space-x-3">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => queryClient.invalidateQueries({ queryKey: ['/api/admin/blog-posts', id] })}
+                  >
+                    Try Again
+                  </Button>
+                  <Button 
+                    onClick={() => setLocation('/admin/blog-posts')}
+                  >
+                    Return to Blog Posts
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </AdminLayout>
     );
