@@ -145,7 +145,7 @@ export class MemStorage implements IStorage {
 <h2>Conclusion</h2>
 <p>Digital marketing in 2023 is all about connection, personalization, and trust. Marketers must adopt a more human-centric approach powered by intelligent technology and genuine engagement. By embracing these five trends—hyper-personalization, voice search optimization, short-form videos, influencer partnerships, and first-party data—you can future-proof your marketing strategy and stay ahead in the digital race.</p>
 <p>Stay tuned for more insights to elevate your digital presence and connect with your audience more effectively.</p>`,
-        featuredImage: "https://i.imgur.com/JJhMPnD.jpg",
+        featuredImage: "/images/blog/blog-1-digital-marketing-trends.png",
         authorId: adminId,
         status: "published",
         tags: ["digital marketing", "trends", "AI", "voice search", "influencer marketing"],
@@ -222,7 +222,7 @@ export class MemStorage implements IStorage {
 <p>Implementing a comprehensive local SEO strategy is no longer optional for businesses in Patna that want to remain competitive. By optimizing your Google Business Profile, creating location-specific content, building local links, and ensuring mobile-friendliness, you'll increase your visibility to potential customers right when they're looking for what you offer. Start applying these strategies today, and watch your local digital presence transform.</p>
 
 <p>Need professional help with your local SEO strategy? Synergy Brand Architect specializes in helping Patna businesses dominate local search results. Contact us today for a free local SEO audit.</p>`,
-        featuredImage: "https://i.imgur.com/wJimZGN.jpg",
+        featuredImage: "/images/blog/blog-2-local-seo-guide.png",
         authorId: adminId,
         status: "published",
         tags: ["local SEO", "Patna", "small business", "Google Business Profile", "local marketing"],
