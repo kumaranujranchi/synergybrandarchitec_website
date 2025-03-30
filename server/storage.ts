@@ -145,7 +145,7 @@ export class MemStorage implements IStorage {
 <h2>Conclusion</h2>
 <p>Digital marketing in 2023 is all about connection, personalization, and trust. Marketers must adopt a more human-centric approach powered by intelligent technology and genuine engagement. By embracing these five trends—hyper-personalization, voice search optimization, short-form videos, influencer partnerships, and first-party data—you can future-proof your marketing strategy and stay ahead in the digital race.</p>
 <p>Stay tuned for more insights to elevate your digital presence and connect with your audience more effectively.</p>`,
-        featuredImage: "/images/blog/blog-1-digital-marketing-trends.png",
+        featuredImage: "https://imgur.com/2fALBbD.jpg",
         authorId: adminId,
         status: "published",
         tags: ["digital marketing", "trends", "AI", "voice search", "influencer marketing"],
@@ -222,7 +222,7 @@ export class MemStorage implements IStorage {
 <p>Implementing a comprehensive local SEO strategy is no longer optional for businesses in Patna that want to remain competitive. By optimizing your Google Business Profile, creating location-specific content, building local links, and ensuring mobile-friendliness, you'll increase your visibility to potential customers right when they're looking for what you offer. Start applying these strategies today, and watch your local digital presence transform.</p>
 
 <p>Need professional help with your local SEO strategy? Synergy Brand Architect specializes in helping Patna businesses dominate local search results. Contact us today for a free local SEO audit.</p>`,
-        featuredImage: "/images/blog/blog-2-local-seo-guide.png",
+        featuredImage: "https://imgur.com/2fALBbD.jpg",
         authorId: adminId,
         status: "published",
         tags: ["local SEO", "Patna", "small business", "Google Business Profile", "local marketing"],
@@ -240,7 +240,7 @@ export class MemStorage implements IStorage {
         title: "How to Build a Brand That Resonates With Your Audience",
         slug: "build-brand-that-resonates-with-audience",
         excerpt: "Discover the key elements of creating a memorable brand that connects emotionally with your target audience and drives business growth.",
-        featuredImage: "/images/blog/blog-3-brand-resonates.png",
+        featuredImage: "https://imgur.com/2fALBbD.jpg",
         content: `<h2>Introduction</h2>
 <p>In today's crowded marketplace, a strong brand is your most valuable asset. It's not just about having a catchy logo or a clever tagline—it's about creating a coherent identity that resonates with your audience on an emotional level. When customers connect with your brand, they're more likely to become loyal advocates and help your business grow. This guide explores the essential elements of building a brand that truly speaks to your audience.</p>
 
