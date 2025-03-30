@@ -240,7 +240,7 @@ export class MemStorage implements IStorage {
         title: "How to Build a Brand That Resonates With Your Audience",
         slug: "build-brand-that-resonates-with-audience",
         excerpt: "Discover the key elements of creating a memorable brand that connects emotionally with your target audience and drives business growth.",
-        featuredImage: "/images/blog/brand-resonates-audience.png",
+        featuredImage: "https://replit-objstore-0bbfc51b-7b78-4e24-b7bd-9e3ae719ad13.replit.com/Blog-1.png",
         content: `<h2>Introduction</h2>
 <p>In today's crowded marketplace, a strong brand is your most valuable asset. It's not just about having a catchy logo or a clever tagline—it's about creating a coherent identity that resonates with your audience on an emotional level. When customers connect with your brand, they're more likely to become loyal advocates and help your business grow. This guide explores the essential elements of building a brand that truly speaks to your audience.</p>
 
