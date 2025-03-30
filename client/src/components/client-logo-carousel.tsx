@@ -11,63 +11,38 @@ export default function ClientLogoCarousel() {
   const clientLogos: ClientLogo[] = [
     {
       id: 1,
-      name: "Wishluv Buildcon",
-      image: "https://i.imgur.com/ZnvA9Ng.png"
-    },
-    {
-      id: 2,
-      name: "Biryani Mahal",
-      image: "https://i.imgur.com/FGD70gM.png"
-    },
-    {
-      id: 3,
-      name: "The Helping Hand",
-      image: "https://i.imgur.com/CqdFUWM.png"
-    },
-    {
-      id: 4,
-      name: "Tata Consultancy Services",
-      image: "https://i.imgur.com/n6kZsLI.png"
-    },
-    {
-      id: 5,
-      name: "Patna University",
-      image: "https://i.imgur.com/ZD0Uneh.png"
-    },
-    {
-      id: 6,
-      name: "Synergy Brand Architect",
-      image: "https://i.imgur.com/qxaKPdH.png"
-    },
-    {
-      id: 7,
       name: "State Bank of India",
       image: "https://i.imgur.com/osIwhrG.png"
     },
     {
-      id: 8, 
-      name: "Bharti Airtel",
-      image: "https://i.imgur.com/Vfe3q1U.png"
-    },
-    {
-      id: 9,
+      id: 2,
       name: "Wipro Limited",
       image: "https://i.imgur.com/guHEeLX.png"
     },
     {
-      id: 10,
-      name: "Another Client",
-      image: "https://i.imgur.com/kavspl6.png"
+      id: 3,
+      name: "Client 3",
+      image: "https://i.imgur.com/7ehvM3V.png"
     },
     {
-      id: 11,
-      name: "SBI Bank",
-      image: "https://i.imgur.com/osIwhrG.png"
+      id: 4,
+      name: "Client 4",
+      image: "https://i.imgur.com/URq3bDJ.png"
     },
     {
-      id: 12,
-      name: "Wipro Technologies",
-      image: "https://i.imgur.com/guHEeLX.png"
+      id: 5,
+      name: "Client 5",
+      image: "https://i.imgur.com/NbSRANL.png"
+    },
+    {
+      id: 6,
+      name: "Client 6",
+      image: "https://i.imgur.com/Y22DKIx.png"
+    },
+    {
+      id: 7,
+      name: "Client 7",
+      image: "https://i.imgur.com/jSEUeBJ.png"
     }
   ];
 
