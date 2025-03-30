@@ -86,11 +86,11 @@ export default function Testimonials() {
                   "{testimonial.content}"
                 </p>
                 <div className="flex items-center mt-auto">
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.author} 
-                    className="w-12 h-12 rounded-full mr-4 border-2 border-[#FF6B00] border-opacity-20"
-                  />
+                  <div 
+                    className="w-12 h-12 rounded-full mr-4 bg-[#FF6B00] text-white flex items-center justify-center font-bold text-xl"
+                  >
+                    {testimonial.author.charAt(0)}
+                  </div>
                   <div>
                     <h4 className="font-poppins font-medium text-[#333333]">{testimonial.author}</h4>
                     <p className="text-sm text-gray-500">{testimonial.title}</p>
