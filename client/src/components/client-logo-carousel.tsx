@@ -136,6 +136,10 @@ export default function ClientLogoCarousel() {
                   <img 
                     src={logo.image} 
                     alt={`${logo.name} Logo`}
+                    onError={(e) => {
+                      console.error(`Failed to load image: ${logo.image}`);
+                      e.currentTarget.style.display = 'none';
+                    }}
                     className="max-h-24 w-auto max-w-[200px] object-contain transition-all duration-300 filter grayscale hover:grayscale-0 p-2"
                   />
                 </motion.div>
