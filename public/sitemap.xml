@@ -1,88 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Pages -->
   <url>
     <loc>https://synergybrandarchitect.in/</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://synergybrandarchitect.in/pricing</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://synergybrandarchitect.in/startup-plan</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://synergybrandarchitect.in/blog</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
-  
-  <!-- Legal Pages -->
   <url>
     <loc>https://synergybrandarchitect.in/privacy-policy</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://synergybrandarchitect.in/refund-policy</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://synergybrandarchitect.in/terms-of-service</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
-  
-  <!-- Case Studies -->
   <url>
     <loc>https://synergybrandarchitect.in/case-study/wishluv-buildcon</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://synergybrandarchitect.in/case-study/biryani-mahal</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://synergybrandarchitect.in/case-study/the-helping-hand</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
-  
-  <!-- Blog Posts -->
   <url>
     <loc>https://synergybrandarchitect.in/blog/digital-marketing-trends-2023</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://synergybrandarchitect.in/blog/local-seo-guide-patna-businesses</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://synergybrandarchitect.in/blog/build-brand-that-resonates-with-audience</loc>
-    <lastmod>2025-03-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url>
 </urlset>
