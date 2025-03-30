@@ -11,43 +11,43 @@ export default function ClientLogoCarousel() {
   const clientLogos: ClientLogo[] = [
     {
       id: 1,
-      name: "Patna University",
-      image: "https://i.imgur.com/dz5O9aQ.png"
+      name: "Wishluv Buildcon",
+      image: "/assets/image_1743264139360.png"
     },
     {
       id: 2,
-      name: "Synergy Brand Architect (Color)",
-      image: "https://i.imgur.com/jSEUeBJ.png"
+      name: "Biryani Mahal",
+      image: "/assets/image_1743264385159.png"
     },
     {
       id: 3,
-      name: "Synergy Brand Architect (White)",
-      image: "https://i.imgur.com/Y22DKIx.png"
+      name: "The Helping Hand",
+      image: "/assets/image_1743264513629.png"
     },
     {
       id: 4,
       name: "Tata Consultancy Services",
-      image: "https://i.imgur.com/NbSRANL.png"
+      image: "/assets/image_1743265845454.png"
     },
     {
       id: 5,
-      name: "Indian Oil Corporation",
-      image: "https://i.imgur.com/URq3bDJ.png"
+      name: "Patna University",
+      image: "/assets/image_1743265862567.png"
     },
     {
       id: 6,
-      name: "Bharti Airtel",
-      image: "https://i.imgur.com/7ehvM3V.png"
+      name: "Synergy Brand Architect",
+      image: "/assets/image_1743228235170.png"
     },
     {
       id: 7,
-      name: "Wipro Limited",
-      image: "https://i.imgur.com/guHEeLX.png"
+      name: "State Bank of India",
+      image: "/assets/image_1743190046426.png"
     },
     {
-      id: 8,
-      name: "State Bank of India",
-      image: "https://i.imgur.com/osIwhrG.png"
+      id: 8, 
+      name: "Bharti Airtel",
+      image: "/assets/image_1743190625911.png"
     }
   ];
 

@@ -62,21 +62,21 @@ const Testimonials = () => {
       name: "Rahul Singh",
       position: "CEO, Wishluv Buildcon",
       quote: "Synergy Brand Architect transformed our real estate business with their strategic marketing. Our leads increased by 270% within three months of working with them.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80",
+      initials: "RS",
       rating: 5
     },
     {
       name: "Priya Mehta",
       position: "Marketing Director, Biryani Mahal",
       quote: "Their social media strategy helped us grow our restaurant business even during the pandemic. The ROI we've seen is incredible, and their team is responsive and professional.",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80",
+      initials: "PM",
       rating: 5
     },
     {
       name: "Vikas Kumar",
       position: "Founder, The Helping Hand",
       quote: "As an e-commerce business, we needed a partner who understood digital marketing. The team at Synergy Brand Architect provided invaluable insights and executed a strategy that doubled our online sales.",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80",
+      initials: "VK",
       rating: 4
     }
   ];
@@ -97,11 +97,9 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
               <div className="flex items-center mb-4">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name} 
-                  className="w-12 h-12 rounded-full object-cover mr-4"
-                />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white flex items-center justify-center font-semibold text-lg mr-4">
+                  {testimonial.initials}
+                </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">{testimonial.name}</h3>
                   <p className="text-gray-500 text-sm">{testimonial.position}</p>
