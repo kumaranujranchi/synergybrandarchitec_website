@@ -22,7 +22,7 @@ export default function StartupPlan() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="text-[#FF6B00] font-poppins">🇮🇳 Ab Indian Banega Fully Digital</span>
+              <span className="text-[#FF6B00] font-poppins">🇮🇳 Ab India Banega Fully Digital</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-4xl">
               A Special Initiative to Empower Small Businesses with Affordable, Professional Websites
@@ -57,7 +57,7 @@ export default function StartupPlan() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center font-poppins">What Is This Initiative All About?</h2>
             <p className="text-lg mb-8">
-              At Synergy Brand Architect, we believe that every Indian business — no matter how big or small — 
+              At Synergy Brand Architect, we believe that every India business — no matter how big or small — 
               deserves to shine online. Whether you run a local shop, are launching a startup, or just want to 
               take your traditional business digital, this initiative is made for you.
             </p>
@@ -503,7 +503,7 @@ export default function StartupPlan() {
             Take the leap, go online, and let the world discover the value you offer.
           </p>
           <p className="text-2xl font-bold text-[#FF6B00]">
-            📢 Ab Indian Banega Fully Digital – Join the Movement Today!
+            📢 Ab India Banega Fully Digital – Join the Movement Today!
           </p>
         </div>
       </section>
