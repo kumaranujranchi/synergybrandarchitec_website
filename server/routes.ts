@@ -17,6 +17,17 @@ export function registerRoutes(app: Express): void {
   // Middleware
   app.use(cookieParser());
   
+  // Static files with specific content types
+  app.get('/sitemap.xml', (req, res) => {
+    res.header('Content-Type', 'application/xml');
+    res.sendFile('sitemap.xml', { root: './public' });
+  });
+  
+  app.get('/robots.txt', (req, res) => {
+    res.header('Content-Type', 'text/plain');
+    res.sendFile('robots.txt', { root: './public' });
+  });
+  
   // Public API routes
   app.post('/api/contact', async (req, res) => {
     try {
