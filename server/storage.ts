@@ -240,6 +240,7 @@ export class MemStorage implements IStorage {
         title: "How to Build a Brand That Resonates With Your Audience",
         slug: "build-brand-that-resonates-with-audience",
         excerpt: "Discover the key elements of creating a memorable brand that connects emotionally with your target audience and drives business growth.",
+        featuredImage: "/images/blog/brand-resonates-audience.png",
         content: `<h2>Introduction</h2>
 <p>In today's crowded marketplace, a strong brand is your most valuable asset. It's not just about having a catchy logo or a clever tagline—it's about creating a coherent identity that resonates with your audience on an emotional level. When customers connect with your brand, they're more likely to become loyal advocates and help your business grow. This guide explores the essential elements of building a brand that truly speaks to your audience.</p>
 
@@ -301,7 +302,7 @@ export class MemStorage implements IStorage {
 <p>Building a brand that resonates with your audience is both an art and a science. It requires deep understanding, creative storytelling, consistent execution, and continual refinement. When done right, a resonant brand creates passionate advocates who not only purchase your products but also champion your company to others.</p>
 
 <p>Remember that brand building is not a one-time effort but an ongoing journey. As your business evolves and your audience changes, your brand must adapt while staying true to its core values and purpose. By focusing on authentic connections and consistently delivering on your brand promise, you'll build a brand that not only resonates with your audience but stands the test of time.</p>`,
-        featuredImage: "https://i.imgur.com/sILRPyA.jpg",
+
         authorId: adminId,
         status: "published",
         tags: ["branding", "brand strategy", "customer loyalty", "brand storytelling", "brand identity"],
