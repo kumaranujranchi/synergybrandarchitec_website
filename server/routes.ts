@@ -17,6 +17,26 @@ export function registerRoutes(app: Express): void {
   // Middleware
   app.use(cookieParser());
   
+  // URL Redirects for SEO
+  app.use((req, res, next) => {
+    const host = req.hostname;
+    const path = req.path;
+    const protocol = req.protocol;
+    
+    // Redirect www to non-www
+    if (host.startsWith('www.')) {
+      const newHost = host.replace(/^www\./, '');
+      return res.redirect(301, `${protocol}://${newHost}${req.originalUrl}`);
+    }
+    
+    // Redirect old URLs to new paths
+    if (path === '/contact-brand-building-services') {
+      return res.redirect(301, '/#contact');
+    }
+    
+    next();
+  });
+  
   // Static files with specific content types
   app.get('/sitemap.xml', (req, res) => {
     res.header('Content-Type', 'application/xml');

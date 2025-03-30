@@ -85,11 +85,25 @@ function App() {
   const [location] = useLocation();
   const isAdminRoute = location.startsWith('/admin');
   
-  // Scroll to top whenever location changes
+  // Update canonical URL and scroll to top whenever location changes
   useEffect(() => {
+    // Update canonical URL for SEO
+    const canonicalLink = document.getElementById('canonical-link') as HTMLLinkElement;
+    if (canonicalLink) {
+      // Don't include hash in canonical URL
+      const path = location.split('#')[0];
+      
+      // Don't add canonical for admin routes
+      if (!isAdminRoute && path !== '/') {
+        canonicalLink.href = `https://synergybrandarchitect.in${path}`;
+      } else {
+        canonicalLink.href = 'https://synergybrandarchitect.in';
+      }
+    }
+    
     // Only use smooth scroll when not coming from an external site
     scrollToTop(false);
-  }, [location]);
+  }, [location, isAdminRoute]);
 
   return (
     <QueryClientProvider client={queryClient}>
