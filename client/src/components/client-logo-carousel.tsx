@@ -12,62 +12,62 @@ export default function ClientLogoCarousel() {
     {
       id: 1,
       name: "Wishluv Buildcon",
-      image: "/images/clients/image_1743264139360.png"
+      image: "https://i.imgur.com/ZnvA9Ng.png"
     },
     {
       id: 2,
       name: "Biryani Mahal",
-      image: "/images/clients/image_1743264385159.png"
+      image: "https://i.imgur.com/FGD70gM.png"
     },
     {
       id: 3,
       name: "The Helping Hand",
-      image: "/images/clients/image_1743264513629.png"
+      image: "https://i.imgur.com/CqdFUWM.png"
     },
     {
       id: 4,
       name: "Tata Consultancy Services",
-      image: "/images/clients/image_1743265845454.png"
+      image: "https://i.imgur.com/n6kZsLI.png"
     },
     {
       id: 5,
       name: "Patna University",
-      image: "/images/clients/image_1743265862567.png"
+      image: "https://i.imgur.com/ZD0Uneh.png"
     },
     {
       id: 6,
       name: "Synergy Brand Architect",
-      image: "/images/clients/image_1743228235170.png"
+      image: "https://i.imgur.com/qxaKPdH.png"
     },
     {
       id: 7,
       name: "State Bank of India",
-      image: "/images/clients/image_1743190046426.png"
+      image: "https://i.imgur.com/osIwhrG.png"
     },
     {
       id: 8, 
       name: "Bharti Airtel",
-      image: "/images/clients/image_1743190625911.png"
+      image: "https://i.imgur.com/Vfe3q1U.png"
     },
     {
       id: 9,
       name: "Wipro Limited",
-      image: "/images/clients/wipro.png"
+      image: "https://i.imgur.com/guHEeLX.png"
     },
     {
       id: 10,
       name: "Another Client",
-      image: "/images/clients/client1.png"
+      image: "https://i.imgur.com/kavspl6.png"
     },
     {
       id: 11,
       name: "SBI Bank",
-      image: "/images/clients/sbi.png"
+      image: "https://i.imgur.com/osIwhrG.png"
     },
     {
       id: 12,
       name: "Wipro Technologies",
-      image: "/images/clients/wipro.png"
+      image: "https://i.imgur.com/guHEeLX.png"
     }
   ];
 
@@ -138,7 +138,12 @@ export default function ClientLogoCarousel() {
                     alt={`${logo.name} Logo`}
                     onError={(e) => {
                       console.error(`Failed to load image: ${logo.image}`);
-                      e.currentTarget.style.display = 'none';
+                      // Try fallback to the non-HTTPS version if HTTPS fails
+                      if (logo.image.startsWith('https:')) {
+                        e.currentTarget.src = logo.image.replace('https:', '');
+                      } else {
+                        e.currentTarget.style.display = 'none';
+                      }
                     }}
                     className="max-h-24 w-auto max-w-[200px] object-contain transition-all duration-300 filter grayscale hover:grayscale-0 p-2"
                   />
