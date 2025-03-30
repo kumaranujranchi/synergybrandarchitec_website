@@ -1,4 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
-  <rect width="100" height="100" rx="15" fill="#FF6B00" />
-  <text x="50" y="70" font-size="60" font-weight="bold" font-family="Arial, sans-serif" fill="white" text-anchor="middle">S</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#0066CC" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="white" />
+  <g transform="translate(12, 12)">
+    <path d="M6 8C6 6.9 6.9 6 8 6H32C33.1 6 34 6.9 34 8V32C34 33.1 33.1 34 32 34H8C6.9 34 6 33.1 6 32V8Z" fill="#FF6B00" />
+    <path d="M14 16L19 21L24 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M19 21V28" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M26 21C27.6569 21 29 19.6569 29 18C29 16.3431 27.6569 15 26 15C24.3431 15 23 16.3431 23 18C23 19.6569 24.3431 21 26 21Z" stroke="white" stroke-width="2" />
+    <path d="M31 28C31 25.2386 28.7614 23 26 23C23.2386 23 21 25.2386 21 28" stroke="white" stroke-width="2" stroke-linecap="round" />
+  </g>
 </svg>

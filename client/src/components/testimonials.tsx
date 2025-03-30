@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, UserCircle, User, UserRound, CircleUser } from "lucide-react";
 
 const testimonials = [
   {
@@ -8,28 +8,28 @@ const testimonials = [
     author: "Lawkush Sharma",
     title: "Director at Wishluv Buildcon Pvt. Ltd.",
     industry: "Real Estate",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+    icon: UserCircle
   },
   {
     content: "The folks at Synergy Brand Architect are amazing listeners and strategists. Thanks to them, our hospital's website now ranks #1 for health services in Patna, and our patient appointments via the site doubled. They are the best digital marketing service in Patna we've worked with.",
     author: "Pranav Kumar",
     title: "Marketing Head at Arbindu Hospitals",
     industry: "Healthcare",
-    avatar: "https://randomuser.me/api/portraits/men/44.jpg"
+    icon: User
   },
   {
     content: "Working with Synergy has been a game-changer for our brand. They completely revamped our visual identity and digital presence, resulting in a 200% increase in online engagement and significant growth in customer inquiries.",
     author: "Priya Sharma",
     title: "Founder, Artisan Spaces",
     industry: "Interior Design",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+    icon: CircleUser
   },
   {
     content: "The team at Synergy Brand Architect understands the local Patna market deeply. Their SEO and social media strategies helped us become the leading player in our industry within just one year of collaboration.",
     author: "Amit Verma",
     title: "Director, The Helping Hand",
     industry: "Non-Profit",
-    avatar: "https://randomuser.me/api/portraits/men/62.jpg"
+    icon: UserRound
   }
 ];
 
@@ -86,11 +86,9 @@ export default function Testimonials() {
                   "{testimonial.content}"
                 </p>
                 <div className="flex items-center mt-auto">
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.author} 
-                    className="w-12 h-12 rounded-full mr-4 border-2 border-[#FF6B00] border-opacity-20"
-                  />
+                  <div className="w-12 h-12 rounded-full mr-4 border-2 border-[#FF6B00] border-opacity-20 bg-[#FF6B00] bg-opacity-10 flex items-center justify-center">
+                    {testimonial.icon && <testimonial.icon size={28} className="text-[#FF6B00]" />}
+                  </div>
                   <div>
                     <h4 className="font-poppins font-medium text-[#333333]">{testimonial.author}</h4>
                     <p className="text-sm text-gray-500">{testimonial.title}</p>

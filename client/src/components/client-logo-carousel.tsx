@@ -48,6 +48,26 @@ export default function ClientLogoCarousel() {
       id: 8, 
       name: "Bharti Airtel",
       image: "/assets/image_1743190625911.png"
+    },
+    {
+      id: 9,
+      name: "Wipro Limited",
+      image: "https://imgur.com/guHEeLX.png"
+    },
+    {
+      id: 10,
+      name: "Another Client",
+      image: "https://imgur.com/kavspl6.png"
+    },
+    {
+      id: 11,
+      name: "SBI Bank",
+      image: "https://imgur.com/osIwhrG.png"
+    },
+    {
+      id: 12,
+      name: "Wipro Technologies",
+      image: "https://imgur.com/guHEeLX.png"
     }
   ];
 
@@ -116,7 +136,7 @@ export default function ClientLogoCarousel() {
                   <img 
                     src={logo.image} 
                     alt={`${logo.name} Logo`}
-                    className="max-h-28 w-auto max-w-full object-contain transition-all duration-300 filter grayscale hover:grayscale-0"
+                    className="max-h-24 w-auto max-w-[200px] object-contain transition-all duration-300 filter grayscale hover:grayscale-0 p-2"
                   />
                 </motion.div>
               </div>
