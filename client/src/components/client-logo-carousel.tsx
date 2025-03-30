@@ -12,62 +12,62 @@ export default function ClientLogoCarousel() {
     {
       id: 1,
       name: "Wishluv Buildcon",
-      image: "/assets/image_1743264139360.png"
+      image: "/images/clients/image_1743264139360.png"
     },
     {
       id: 2,
       name: "Biryani Mahal",
-      image: "/assets/image_1743264385159.png"
+      image: "/images/clients/image_1743264385159.png"
     },
     {
       id: 3,
       name: "The Helping Hand",
-      image: "/assets/image_1743264513629.png"
+      image: "/images/clients/image_1743264513629.png"
     },
     {
       id: 4,
       name: "Tata Consultancy Services",
-      image: "/assets/image_1743265845454.png"
+      image: "/images/clients/image_1743265845454.png"
     },
     {
       id: 5,
       name: "Patna University",
-      image: "/assets/image_1743265862567.png"
+      image: "/images/clients/image_1743265862567.png"
     },
     {
       id: 6,
       name: "Synergy Brand Architect",
-      image: "/assets/image_1743228235170.png"
+      image: "/images/clients/image_1743228235170.png"
     },
     {
       id: 7,
       name: "State Bank of India",
-      image: "/assets/image_1743190046426.png"
+      image: "/images/clients/image_1743190046426.png"
     },
     {
       id: 8, 
       name: "Bharti Airtel",
-      image: "/assets/image_1743190625911.png"
+      image: "/images/clients/image_1743190625911.png"
     },
     {
       id: 9,
       name: "Wipro Limited",
-      image: "/assets/wipro.png"
+      image: "/images/clients/wipro.png"
     },
     {
       id: 10,
       name: "Another Client",
-      image: "/assets/client1.png"
+      image: "/images/clients/client1.png"
     },
     {
       id: 11,
       name: "SBI Bank",
-      image: "/assets/sbi.png"
+      image: "/images/clients/sbi.png"
     },
     {
       id: 12,
       name: "Wipro Technologies",
-      image: "/assets/wipro.png"
+      image: "/images/clients/wipro.png"
     }
   ];
 
