@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { apiRequest } from '@/lib/queryClient';
 import { BlogPost } from '@shared/schema';
@@ -13,12 +13,16 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Switch } from '@/components/ui/switch';
 import { toast } from '@/hooks/use-toast';
-import { ArrowLeft, Loader2, Save, Trash } from 'lucide-react';
+import { ArrowLeft, Loader2, Trash } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import RichTextEditor from '@/components/admin/rich-text-editor';
+
+// Define the response type for better type checking
+interface PostResponse {
+  post: BlogPost;
+}
 
 // Form schema
 const formSchema = z.object({
@@ -31,7 +35,7 @@ const formSchema = z.object({
   excerpt: z.string().min(10, { message: 'Excerpt must be at least 10 characters' }),
   content: z.string().min(50, { message: 'Content must be at least 50 characters' }),
   category: z.string().optional(),
-  tags: z.array(z.string().optional()).optional(),
+  tags: z.array(z.string()).optional(),
   featuredImage: z.string().optional(),
   status: z.enum(['draft', 'published', 'archived']),
   metaTitle: z.string().optional(),
@@ -47,32 +51,50 @@ export default function BlogPostForm() {
   const isEditMode = !!id;
   const queryClient = useQueryClient();
   
-  // Fetch blog post if in edit mode
-  const { data: postData, isLoading: isLoadingPost } = useQuery<{post: BlogPost}>({
-    queryKey: ['/api/admin/blog-posts', id],
-    enabled: isEditMode,
-  });
-
+  // State for editor content and delete confirmation
+  const [contentValue, setContentValue] = useState('');
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const editorRef = useRef<any>(null);
+  
+  // Define default form values
+  const defaultFormValues: FormValues = {
+    title: '',
+    slug: '',
+    excerpt: '',
+    content: '',
+    category: '',
+    tags: [],
+    featuredImage: '',
+    status: 'draft',
+    metaTitle: '',
+    metaDescription: '',
+  };
+  
   // Initialize form
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: '',
-      slug: '',
-      excerpt: '',
-      content: '',
-      category: '',
-      tags: [],
-      featuredImage: '',
-      status: 'draft',
-      metaTitle: '',
-      metaDescription: '',
-    },
+    defaultValues: defaultFormValues,
   });
+  
+  // Fetch blog post data if in edit mode
+  const { 
+    data: postData, 
+    isLoading: isLoadingPost, 
+    isError: hasPostError,
+    refetch: refetchPost
+  } = useQuery<PostResponse>({
+    queryKey: ['/api/admin/blog-posts', id],
+    enabled: isEditMode
+  });
+  
+  // Log when form is reset or editor value is set
+  const logDebugInfo = (action: string, data?: any) => {
+    console.log(`[BlogPostForm] ${action}:`, data || '');
+  };
 
   // Create mutation
   const createMutation = useMutation({
-    mutationFn: async (data: FormValues) => {
+    mutationFn: (data: FormValues) => {
       return apiRequest('POST', '/api/admin/blog-posts', data);
     },
     onSuccess: () => {
@@ -94,7 +116,7 @@ export default function BlogPostForm() {
 
   // Update mutation
   const updateMutation = useMutation({
-    mutationFn: async (data: FormValues) => {
+    mutationFn: (data: FormValues) => {
       return apiRequest('PATCH', `/api/admin/blog-posts/${id}`, data);
     },
     onSuccess: () => {
@@ -117,7 +139,7 @@ export default function BlogPostForm() {
 
   // Delete mutation
   const deleteMutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: () => {
       return apiRequest('DELETE', `/api/admin/blog-posts/${id}`);
     },
     onSuccess: () => {
@@ -141,18 +163,28 @@ export default function BlogPostForm() {
   useEffect(() => {
     if (postData?.post) {
       const post = postData.post;
-      form.reset({
+      logDebugInfo('Loading post data', { title: post.title, content: post.content?.substring(0, 20) + '...' });
+      
+      // Set content for the rich text editor first
+      setContentValue(post.content || '');
+      
+      // Prepare form values with proper types
+      const formValues: FormValues = {
         title: post.title,
         slug: post.slug,
         excerpt: post.excerpt,
-        content: post.content,
+        content: post.content || '',
         category: post.category || '',
         tags: post.tags || [],
         featuredImage: post.featuredImage || '',
-        status: post.status,
+        status: post.status as 'draft' | 'published' | 'archived',
         metaTitle: post.metaTitle || '',
         metaDescription: post.metaDescription || '',
-      });
+      };
+      
+      // Reset the form with post values
+      form.reset(formValues);
+      logDebugInfo('Form reset with values', formValues);
     }
   }, [postData, form]);
 
@@ -178,8 +210,19 @@ export default function BlogPostForm() {
     }
   };
 
+  // Handle rich text editor change
+  const handleEditorChange = (value: string) => {
+    setContentValue(value);
+    form.setValue('content', value);
+    logDebugInfo('Editor content updated', { length: value.length });
+  };
+
   // Handle form submission
   const onSubmit = (values: FormValues) => {
+    // Ensure we use the content from the rich text editor
+    values.content = contentValue;
+    logDebugInfo('Submitting form', values);
+    
     if (isEditMode) {
       updateMutation.mutate(values);
     } else {
@@ -205,9 +248,48 @@ export default function BlogPostForm() {
       </AdminLayout>
     );
   }
-
-  // Confirmation for delete
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  
+  // Error state
+  if (isEditMode && hasPostError) {
+    return (
+      <AdminLayout>
+        <div className="container mx-auto py-6">
+          <div className="flex items-center mb-4">
+            <Button 
+              variant="ghost" 
+              className="mr-2"
+              onClick={() => setLocation('/admin/blog-posts')}
+            >
+              <ArrowLeft className="h-4 w-4 mr-1" />
+              Back
+            </Button>
+            <h1 className="text-2xl font-bold">Error Loading Post</h1>
+          </div>
+          
+          <Card>
+            <CardContent className="pt-6">
+              <div className="text-center py-6">
+                <p className="text-red-500 mb-4">Failed to load blog post. This might be due to a network error or authorization issue.</p>
+                <div className="flex justify-center space-x-3">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => refetchPost()}
+                  >
+                    Try Again
+                  </Button>
+                  <Button 
+                    onClick={() => setLocation('/admin/blog-posts')}
+                  >
+                    Return to Blog Posts
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </AdminLayout>
+    );
+  }
 
   return (
     <AdminLayout>
@@ -369,31 +451,20 @@ export default function BlogPostForm() {
                       )}
                     />
                     
-                    <FormField
-                      control={form.control}
-                      name="content"
-                      render={({ field }) => (
-                        <FormItem className="space-y-2">
-                          <FormLabel>Content *</FormLabel>
-                          <FormControl>
-                            <div className="min-h-[300px]">
-                              <Controller
-                                name="content"
-                                control={form.control}
-                                render={({ field }) => (
-                                  <RichTextEditor
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                    placeholder="Write your blog post content here..."
-                                  />
-                                )}
-                              />
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
+                    <FormItem className="space-y-2">
+                      <FormLabel>Content *</FormLabel>
+                      <RichTextEditor
+                        ref={editorRef}
+                        value={contentValue}
+                        onChange={handleEditorChange}
+                        placeholder="Write your blog post content here..."
+                      />
+                      {form.formState.errors.content && (
+                        <p className="text-sm font-medium text-destructive">
+                          {form.formState.errors.content.message}
+                        </p>
                       )}
-                    />
+                    </FormItem>
                   </div>
                   
                   {/* Categorization */}
@@ -456,7 +527,7 @@ export default function BlogPostForm() {
                                 alt="Preview"
                                 className="w-full h-32 object-cover"
                                 onError={(e) => {
-                                  (e.target as HTMLImageElement).src = "https://via.placeholder.com/300x150?text=Invalid+Image+URL";
+                                  (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Image+Not+Found';
                                 }}
                               />
                             </div>
@@ -468,7 +539,7 @@ export default function BlogPostForm() {
                   
                   {/* SEO */}
                   <div className="space-y-4 md:col-span-2">
-                    <h3 className="text-lg font-medium">SEO</h3>
+                    <h3 className="text-lg font-medium">SEO Settings</h3>
                     <Separator />
                     
                     <FormField
@@ -480,7 +551,7 @@ export default function BlogPostForm() {
                           <FormControl>
                             <Input 
                               {...field} 
-                              placeholder="SEO-optimized title (defaults to post title if empty)" 
+                              placeholder="SEO title (if different from post title)" 
                             />
                           </FormControl>
                           <FormMessage />
@@ -497,7 +568,7 @@ export default function BlogPostForm() {
                           <FormControl>
                             <Textarea 
                               {...field} 
-                              placeholder="SEO-optimized description (defaults to excerpt if empty)" 
+                              placeholder="SEO description for search engines" 
                               className="min-h-[80px]"
                             />
                           </FormControl>
@@ -516,20 +587,14 @@ export default function BlogPostForm() {
                   >
                     Cancel
                   </Button>
-                  <Button 
+                  <Button
                     type="submit"
-                    className="bg-[#FF6B00] hover:bg-[#FF6B00]/90"
-                    disabled={
-                      createMutation.isPending || 
-                      updateMutation.isPending || 
-                      deleteMutation.isPending
-                    }
+                    disabled={createMutation.isPending || updateMutation.isPending}
                   >
                     {(createMutation.isPending || updateMutation.isPending) && (
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                     )}
-                    <Save className="h-4 w-4 mr-2" />
-                    {isEditMode ? 'Update Post' : 'Create Post'}
+                    {isEditMode ? 'Update' : 'Create'} Post
                   </Button>
                 </div>
               </form>

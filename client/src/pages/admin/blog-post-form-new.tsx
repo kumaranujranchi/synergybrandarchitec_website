@@ -60,21 +60,24 @@ export default function BlogPostForm() {
     retry: 3
   });
 
+  // Initialize form with defaults
+  const defaultValues: Partial<FormValues> = {
+    title: '',
+    slug: '',
+    excerpt: '',
+    content: '',
+    category: '',
+    tags: [],
+    featuredImage: '',
+    status: 'draft' as 'draft' | 'published' | 'archived',
+    metaTitle: '',
+    metaDescription: '',
+  };
+  
   // Initialize form
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: '',
-      slug: '',
-      excerpt: '',
-      content: '',
-      category: '',
-      tags: [],
-      featuredImage: '',
-      status: 'draft',
-      metaTitle: '',
-      metaDescription: '',
-    },
+    defaultValues: defaultValues,
   });
 
   // Create mutation
