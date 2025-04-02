@@ -313,7 +313,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="flex items-center gap-2">
+        <Button variant="outline" className="flex items-center gap-2 text-black hover:text-white">
           <LogIn className="w-4 h-4" />
           Login / Register
         </Button>
@@ -1004,7 +1004,7 @@ const AddonsPage: React.FC = () => {
       
       <main className="flex-grow">
         {/* Hero section */}
-        <section className="bg-gradient-to-r from-[#0066CC] to-[#004999] text-white py-16">
+        <section className="bg-gradient-to-r from-[#0066CC] to-[#004999] text-white py-16 pt-24">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl font-bold mb-4">Website Add-on Services</h1>
@@ -1026,7 +1026,7 @@ const AddonsPage: React.FC = () => {
                 )}
                 <Button
                   variant={cartItemCount > 0 ? "default" : "outline"}
-                  className="flex items-center gap-2 relative"
+                  className="flex items-center gap-2 relative text-black hover:text-white"
                   onClick={() => setShowCartSidebar(true)}
                 >
                   <ShoppingCart className="w-4 h-4" />
@@ -1043,7 +1043,7 @@ const AddonsPage: React.FC = () => {
         </section>
 
         {/* Services section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 pt-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">Available Services</h2>
             
@@ -1070,7 +1070,7 @@ const AddonsPage: React.FC = () => {
                           <TooltipTrigger>
                             <Button
                               variant="outline"
-                              className="flex items-center gap-2"
+                              className="flex items-center gap-2 text-black hover:text-white"
                               onClick={() => handleAddToCart(product.id)}
                               disabled={addToCartMutation.isPending}
                             >
@@ -1094,7 +1094,7 @@ const AddonsPage: React.FC = () => {
         </section>
 
         {/* How it works section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 pt-20 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">How It Works</h2>
             
@@ -1129,7 +1129,7 @@ const AddonsPage: React.FC = () => {
         </section>
 
         {/* FAQ section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 pt-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
             
