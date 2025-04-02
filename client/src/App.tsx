@@ -10,6 +10,7 @@ import RefundPolicy from "@/pages/refund-policy";
 import TermsOfService from "@/pages/terms-of-service";
 import Pricing from "@/pages/pricing";
 import StartupPlan from "@/pages/startup-plan";
+import Addons from "@/pages/addons";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import AdminSubmissions from "@/pages/admin/submissions-wrapper";
@@ -25,6 +26,8 @@ import { scrollToTop } from "@/lib/scrollHelper";
 const AdminUsers = lazy(() => import('./pages/admin/users'));
 const AdminBlogPosts = lazy(() => import('./pages/admin/blog-posts'));
 const AdminBlogPostForm = lazy(() => import('./pages/admin/blog-post-form'));
+const AdminAddonProducts = lazy(() => import('./pages/admin/addon-products'));
+const AdminAddonOrders = lazy(() => import('./pages/admin/addon-orders'));
 
 function Router() {
   return (
@@ -33,6 +36,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/startup-plan" component={StartupPlan} />
+      <Route path="/addons" component={Addons} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />
@@ -72,6 +76,19 @@ function Router() {
       <Route path="/admin/blog-posts/edit/:id">
         <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
           <AdminBlogPostForm />
+        </Suspense>
+      </Route>
+      
+      {/* Addon Admin Routes */}
+      <Route path="/admin/addons">
+        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
+          <AdminAddonProducts />
+        </Suspense>
+      </Route>
+      
+      <Route path="/admin/addon-orders">
+        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
+          <AdminAddonOrders />
         </Suspense>
       </Route>
       

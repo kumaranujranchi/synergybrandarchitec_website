@@ -2,7 +2,12 @@ import {
   User, InsertUser, UpdateUser,
   Submission, InsertSubmission, UpdateSubmission,
   Note, InsertNote, AuditLog,
-  BlogPost, InsertBlogPost, UpdateBlogPost
+  BlogPost, InsertBlogPost, UpdateBlogPost,
+  AddonProduct, InsertAddonProduct, UpdateAddonProduct,
+  CartItem, InsertCartItem, UpdateCartItem,
+  Order, InsertOrder, UpdateOrder,
+  OrderItem, InsertOrderItem,
+  OrderRevision, InsertOrderRevision, UpdateOrderRevision
 } from "@shared/schema";
 import bcrypt from "bcrypt";
 
@@ -36,6 +41,34 @@ export interface IStorage {
   deleteBlogPost(id: number): Promise<boolean>;
   listBlogPosts(filters?: {status?: string, category?: string}): Promise<BlogPost[]>;
   
+  // Addon Product methods
+  createAddonProduct(product: InsertAddonProduct): Promise<AddonProduct>;
+  getAddonProduct(id: number): Promise<AddonProduct | undefined>;
+  updateAddonProduct(id: number, data: UpdateAddonProduct): Promise<AddonProduct | undefined>;
+  deleteAddonProduct(id: number): Promise<boolean>;
+  listAddonProducts(activeOnly?: boolean): Promise<AddonProduct[]>;
+  
+  // Cart methods
+  addToCart(cartItem: InsertCartItem): Promise<CartItem>;
+  getCartItem(id: number): Promise<CartItem | undefined>;
+  updateCartItem(id: number, data: UpdateCartItem): Promise<CartItem | undefined>;
+  removeFromCart(id: number): Promise<boolean>;
+  getUserCart(userId: number): Promise<CartItem[]>;
+  clearUserCart(userId: number): Promise<boolean>;
+  
+  // Order methods
+  createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order>;
+  getOrder(id: number): Promise<Order | undefined>;
+  updateOrder(id: number, data: UpdateOrder): Promise<Order | undefined>;
+  getUserOrders(userId: number): Promise<Order[]>;
+  listOrders(filters?: {status?: string, startDate?: Date, endDate?: Date}): Promise<Order[]>;
+  getOrderItems(orderId: number): Promise<OrderItem[]>;
+  
+  // Order Revision methods
+  createOrderRevision(revision: InsertOrderRevision): Promise<OrderRevision>;
+  getOrderRevisions(orderId: number): Promise<OrderRevision[]>;
+  updateOrderRevision(id: number, data: UpdateOrderRevision): Promise<OrderRevision | undefined>;
+  
   // Audit logs
   logAudit(log: Omit<AuditLog, 'id' | 'createdAt'>): Promise<void>;
 }
@@ -47,11 +80,22 @@ export class MemStorage implements IStorage {
   private notes: Map<number, Note>;
   private auditLogs: Map<number, AuditLog>;
   private blogPosts: Map<number, BlogPost>;
+  private addonProducts: Map<number, AddonProduct>;
+  private cartItems: Map<number, CartItem>;
+  private orders: Map<number, Order>;
+  private orderItems: Map<number, OrderItem>;
+  private orderRevisions: Map<number, OrderRevision>;
+  
   private lastUserId: number;
   private lastSubmissionId: number;
   private lastNoteId: number;
   private lastAuditLogId: number;
   private lastBlogPostId: number;
+  private lastAddonProductId: number;
+  private lastCartItemId: number;
+  private lastOrderId: number;
+  private lastOrderItemId: number;
+  private lastOrderRevisionId: number;
 
   constructor() {
     this.users = new Map();
@@ -59,17 +103,109 @@ export class MemStorage implements IStorage {
     this.notes = new Map();
     this.auditLogs = new Map();
     this.blogPosts = new Map();
+    this.addonProducts = new Map();
+    this.cartItems = new Map();
+    this.orders = new Map();
+    this.orderItems = new Map();
+    this.orderRevisions = new Map();
+    
     this.lastUserId = 0;
     this.lastSubmissionId = 0;
     this.lastNoteId = 0;
     this.lastAuditLogId = 0;
     this.lastBlogPostId = 0;
+    this.lastAddonProductId = 0;
+    this.lastCartItemId = 0;
+    this.lastOrderId = 0;
+    this.lastOrderItemId = 0;
+    this.lastOrderRevisionId = 0;
     
     // Create initial admin user
     this.createInitialAdmin();
     
     // Initialize the blog posts
     this.initializeInitialBlogPosts();
+    
+    // Initialize addon products
+    this.initializeInitialAddonProducts();
+  }
+  
+  private initializeInitialAddonProducts() {
+    // Check if we already have addon products
+    if (this.addonProducts.size > 0) {
+      return;
+    }
+    
+    try {
+      // Initial addon products
+      const now = new Date();
+      
+      // Addon Product 1
+      const product1: AddonProduct = {
+        id: ++this.lastAddonProductId,
+        name: "Addition of Page",
+        price: "1000",
+        description: "For clients who have had their website built by us. Add an extra page to your existing website.",
+        isActive: true,
+        createdAt: now,
+        updatedAt: now
+      };
+      
+      // Addon Product 2
+      const product2: AddonProduct = {
+        id: ++this.lastAddonProductId,
+        name: "SEO Optimization",
+        price: "2500",
+        description: "Optimize your existing pages for search engines to improve visibility and ranking.",
+        isActive: true,
+        createdAt: now,
+        updatedAt: now
+      };
+      
+      // Addon Product 3
+      const product3: AddonProduct = {
+        id: ++this.lastAddonProductId,
+        name: "Content Update",
+        price: "1500",
+        description: "Update content on an existing page with fresh information or services.",
+        isActive: true,
+        createdAt: now,
+        updatedAt: now
+      };
+      
+      // Addon Product 4
+      const product4: AddonProduct = {
+        id: ++this.lastAddonProductId,
+        name: "Design Refresh",
+        price: "3000",
+        description: "Refresh the design of your website without changing the structure or content.",
+        isActive: true,
+        createdAt: now,
+        updatedAt: now
+      };
+      
+      // Addon Product 5
+      const product5: AddonProduct = {
+        id: ++this.lastAddonProductId,
+        name: "Form Integration",
+        price: "1800",
+        description: "Add a custom form to your website to collect leads or user information.",
+        isActive: true,
+        createdAt: now,
+        updatedAt: now
+      };
+      
+      // Add products to the map
+      this.addonProducts.set(product1.id, product1);
+      this.addonProducts.set(product2.id, product2);
+      this.addonProducts.set(product3.id, product3);
+      this.addonProducts.set(product4.id, product4);
+      this.addonProducts.set(product5.id, product5);
+      
+      console.log("Initial addon products created");
+    } catch (error) {
+      console.error("Error creating initial addon products:", error);
+    }
   }
   
   private initializeInitialBlogPosts() {
@@ -666,6 +802,238 @@ export class MemStorage implements IStorage {
     };
     
     this.auditLogs.set(auditLog.id, auditLog);
+  }
+  
+  // Addon Product methods
+  async createAddonProduct(product: InsertAddonProduct): Promise<AddonProduct> {
+    const newProduct: AddonProduct = {
+      id: ++this.lastAddonProductId,
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      isActive: product.isActive ?? true,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    
+    this.addonProducts.set(newProduct.id, newProduct);
+    return newProduct;
+  }
+  
+  async getAddonProduct(id: number): Promise<AddonProduct | undefined> {
+    return this.addonProducts.get(id);
+  }
+  
+  async updateAddonProduct(id: number, data: UpdateAddonProduct): Promise<AddonProduct | undefined> {
+    const product = this.addonProducts.get(id);
+    if (!product) return undefined;
+    
+    const updatedProduct: AddonProduct = {
+      ...product,
+      ...data,
+      updatedAt: new Date()
+    };
+    
+    this.addonProducts.set(id, updatedProduct);
+    return updatedProduct;
+  }
+  
+  async deleteAddonProduct(id: number): Promise<boolean> {
+    return this.addonProducts.delete(id);
+  }
+  
+  async listAddonProducts(activeOnly = true): Promise<AddonProduct[]> {
+    const products = Array.from(this.addonProducts.values());
+    return activeOnly ? products.filter(p => p.isActive) : products;
+  }
+  
+  // Cart methods
+  async addToCart(cartItem: InsertCartItem): Promise<CartItem> {
+    // Check if the user already has this product in cart
+    const existingCartItems = Array.from(this.cartItems.values())
+      .filter(item => item.userId === cartItem.userId && item.productId === cartItem.productId);
+    
+    if (existingCartItems.length > 0) {
+      // Update quantity if item already exists
+      const existing = existingCartItems[0];
+      const updatedItem: CartItem = {
+        ...existing,
+        quantity: existing.quantity + (cartItem.quantity || 1),
+        updatedAt: new Date()
+      };
+      this.cartItems.set(existing.id, updatedItem);
+      return updatedItem;
+    }
+    
+    // Create new cart item
+    const newCartItem: CartItem = {
+      id: ++this.lastCartItemId,
+      userId: cartItem.userId,
+      productId: cartItem.productId,
+      quantity: cartItem.quantity || 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    
+    this.cartItems.set(newCartItem.id, newCartItem);
+    return newCartItem;
+  }
+  
+  async getCartItem(id: number): Promise<CartItem | undefined> {
+    return this.cartItems.get(id);
+  }
+  
+  async updateCartItem(id: number, data: UpdateCartItem): Promise<CartItem | undefined> {
+    const cartItem = this.cartItems.get(id);
+    if (!cartItem) return undefined;
+    
+    const updatedCartItem: CartItem = {
+      ...cartItem,
+      ...data,
+      updatedAt: new Date()
+    };
+    
+    this.cartItems.set(id, updatedCartItem);
+    return updatedCartItem;
+  }
+  
+  async removeFromCart(id: number): Promise<boolean> {
+    return this.cartItems.delete(id);
+  }
+  
+  async getUserCart(userId: number): Promise<CartItem[]> {
+    return Array.from(this.cartItems.values())
+      .filter(item => item.userId === userId);
+  }
+  
+  async clearUserCart(userId: number): Promise<boolean> {
+    const userCartItems = Array.from(this.cartItems.values())
+      .filter(item => item.userId === userId);
+    
+    userCartItems.forEach(item => this.cartItems.delete(item.id));
+    return true;
+  }
+  
+  // Order methods
+  async createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order> {
+    const newOrder: Order = {
+      id: ++this.lastOrderId,
+      userId: order.userId,
+      status: order.status || 'pending',
+      totalAmount: order.totalAmount,
+      name: order.name,
+      email: order.email,
+      phone: order.phone,
+      message: order.message || '',
+      paymentId: null,
+      paymentStatus: 'pending',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    
+    this.orders.set(newOrder.id, newOrder);
+    
+    // Create order items
+    items.forEach(item => {
+      const orderItem: OrderItem = {
+        id: ++this.lastOrderItemId,
+        orderId: newOrder.id,
+        productId: item.productId,
+        productName: item.productName,
+        price: item.price,
+        quantity: item.quantity || 1,
+        createdAt: new Date()
+      };
+      
+      this.orderItems.set(orderItem.id, orderItem);
+    });
+    
+    return newOrder;
+  }
+  
+  async getOrder(id: number): Promise<Order | undefined> {
+    return this.orders.get(id);
+  }
+  
+  async updateOrder(id: number, data: UpdateOrder): Promise<Order | undefined> {
+    const order = this.orders.get(id);
+    if (!order) return undefined;
+    
+    const updatedOrder: Order = {
+      ...order,
+      ...data,
+      updatedAt: new Date()
+    };
+    
+    this.orders.set(id, updatedOrder);
+    return updatedOrder;
+  }
+  
+  async getUserOrders(userId: number): Promise<Order[]> {
+    return Array.from(this.orders.values())
+      .filter(order => order.userId === userId)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()); // Newest first
+  }
+  
+  async listOrders(filters?: { status?: string; startDate?: Date; endDate?: Date }): Promise<Order[]> {
+    let orders = Array.from(this.orders.values());
+    
+    if (filters) {
+      if (filters.status) {
+        orders = orders.filter(order => order.status === filters.status);
+      }
+      
+      if (filters.startDate) {
+        orders = orders.filter(order => order.createdAt >= filters.startDate!);
+      }
+      
+      if (filters.endDate) {
+        orders = orders.filter(order => order.createdAt <= filters.endDate!);
+      }
+    }
+    
+    return orders.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()); // Newest first
+  }
+  
+  async getOrderItems(orderId: number): Promise<OrderItem[]> {
+    return Array.from(this.orderItems.values())
+      .filter(item => item.orderId === orderId);
+  }
+  
+  // Order Revision methods
+  async createOrderRevision(revision: InsertOrderRevision): Promise<OrderRevision> {
+    const newRevision: OrderRevision = {
+      id: ++this.lastOrderRevisionId,
+      orderId: revision.orderId,
+      userId: revision.userId,
+      description: revision.description,
+      status: 'pending',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    
+    this.orderRevisions.set(newRevision.id, newRevision);
+    return newRevision;
+  }
+  
+  async getOrderRevisions(orderId: number): Promise<OrderRevision[]> {
+    return Array.from(this.orderRevisions.values())
+      .filter(revision => revision.orderId === orderId)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()); // Newest first
+  }
+  
+  async updateOrderRevision(id: number, data: UpdateOrderRevision): Promise<OrderRevision | undefined> {
+    const revision = this.orderRevisions.get(id);
+    if (!revision) return undefined;
+    
+    const updatedRevision: OrderRevision = {
+      ...revision,
+      ...data,
+      updatedAt: new Date()
+    };
+    
+    this.orderRevisions.set(id, updatedRevision);
+    return updatedRevision;
   }
 }
 

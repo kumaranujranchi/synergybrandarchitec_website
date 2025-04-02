@@ -13,6 +13,7 @@ const navLinks = [
   { href: "#testimonials", label: "Testimonials" },
   { href: "/pricing", label: "Pricing", isPage: true },
   { href: "/startup-plan", label: "StartUp Plan", isPage: true, highlight: true },
+  { href: "/addons", label: "Add-ons", isPage: true },
   { href: "/blog", label: "Blog", isPage: true },
   { href: "#contact", label: "Contact" },
 ];

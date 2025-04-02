@@ -1,0 +1,103 @@
+Task for AI Agent:
+
+Create a New Page with the name "Addons" on the website.
+
+The page should be added to the navigation menu for easy access.
+
+Title: "Add-ons"
+
+Content: A short introduction about the add-on services for clients who have already had their websites developed by the agency.
+
+Example text: "Explore our additional services that can be added to your existing website. Choose the service you want, and our team will contact you to complete the task."
+
+List of Services to Add on the Page:
+
+Create a well-structured table or grid format to display the services with the following details:
+
+Service Name:
+
+Example: "Addition of Page"
+
+Price:
+
+Example: "1000 Rs"
+
+Description:
+
+Example: "For clients who have had their website built by us. Add an extra page to your existing website."
+
+Add to Cart Button: Each service will have a button or clickable element that will allow the user to add the service to their cart. The cart functionality should be simple and easy to use.
+
+User Registration & Login:
+
+Implement mandatory user registration to allow clients to track their orders.
+
+After registration, users should be able to log in and view:
+
+Their order history.
+
+The status of each order (e.g., Pending, In Progress, Completed).
+
+Ability to request revisions or changes for completed tasks.
+
+Implement a "Forgot Password" functionality for users.
+
+Cart Option:
+
+Add a cart option on the same page that users can use to review and select the services they want.
+
+The cart should display the name of the service, the price, and a total amount at the bottom.
+
+Users should be able to add or remove services from their cart.
+
+Once services are selected, users should be able to click a "Proceed to Checkout" button.
+
+Checkout Process:
+
+After clicking "Proceed to Checkout," users should be prompted to provide the following details:
+
+Full Name
+
+Email Address
+
+Phone Number
+
+Message (Optional)
+
+Payment Page: Integrate a payment gateway API (such as Razorpay, Stripe, or PayPal) to allow users to make direct payments for the services.
+
+After successful payment, users should receive a payment confirmation email.
+
+Admin Panel Functionality:
+
+View Orders: Admin should have a section to view all current orders, including order details, user information, and the services selected.
+
+Order Status: Admin can mark an order as "In Progress" or "Completed" once the task is done. Completed orders will be visible to the customer, who can request revisions or changes.
+
+Add/Remove Services: Admin should have the ability to add new services, remove existing services, and edit the pricing of any service.
+
+Service Management: The admin should be able to manage all the services in a structured way (similar to an e-commerce platform’s product catalog).
+
+Backend Process:
+
+Order Management: When a user submits the checkout form, the system should store the order details, payment status, and customer details in the admin panel for review and processing.
+
+Admin will then schedule a meeting with the client to understand the requirements in detail.
+
+After the meeting, the admin will mark the task as "In Progress" or "Completed".
+
+When the order is marked as completed, the customer can request revisions or changes through their login account.
+
+Notifications:
+
+Send a confirmation email to the customer after placing an order and making payment.
+
+Send an email to the admin when a new order is placed, containing the order details and payment information.
+
+Test the Process:
+
+Verify that the entire process, including order submission, payment processing, order tracking, and admin panel management, is functioning smoothly without any issues.
+
+Test the user registration/login, cart system, and admin panel controls.
+
+Ensure that the page is responsive and works well on both desktop and mobile devices.
