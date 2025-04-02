@@ -11,6 +11,7 @@ import TermsOfService from "@/pages/terms-of-service";
 import Pricing from "@/pages/pricing";
 import StartupPlan from "@/pages/startup-plan";
 import Addons from "@/pages/addons";
+import Account from "@/pages/account";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import AdminSubmissions from "@/pages/admin/submissions-wrapper";
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/pricing" component={Pricing} />
       <Route path="/startup-plan" component={StartupPlan} />
       <Route path="/addons" component={Addons} />
+      <Route path="/account" component={Account} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />

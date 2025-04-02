@@ -1,5 +1,6 @@
 import { Express, Request, Response, NextFunction } from 'express';
 import { storage } from './storage';
+import bcrypt from 'bcrypt';
 import { 
   contactSchema, 
   loginSchema, 
@@ -130,6 +131,106 @@ export function registerRoutes(app: Express): void {
       authenticated: true,
       user: req.user
     });
+  });
+  
+  // User account management routes (requires authentication)
+  app.get('/api/users/me', authenticateJWT, async (req, res) => {
+    try {
+      const userId = req.user!.id;
+      const user = await storage.getUser(userId);
+      
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      
+      // Remove sensitive data
+      const { password, ...userInfo } = user;
+      
+      res.status(200).json({ user: userInfo });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch user data' });
+    }
+  });
+  
+  app.patch('/api/users/me', authenticateJWT, async (req, res) => {
+    try {
+      const userId = req.user!.id;
+      const userData = req.body;
+      
+      // Prevent updating sensitive fields like role or permissions
+      const allowedFields = ['name', 'phone', 'website'];
+      const updateData: Record<string, any> = {};
+      
+      allowedFields.forEach(field => {
+        if (field in userData) {
+          updateData[field] = userData[field];
+        }
+      });
+      
+      const user = await storage.updateUser(userId, updateData);
+      
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      
+      // Log the profile update
+      storage.logAudit({
+        userId,
+        action: 'Update profile',
+        ipAddress: req.ip ? req.ip : null,
+        userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+        details: { fields: Object.keys(updateData) }
+      });
+      
+      // Remove sensitive data
+      const { password, ...userInfo } = user;
+      
+      res.status(200).json({ 
+        message: 'Profile updated successfully',
+        user: userInfo 
+      });
+    } catch (error) {
+      res.status(400).json({ message: 'Failed to update profile' });
+    }
+  });
+  
+  app.patch('/api/users/password', authenticateJWT, async (req, res) => {
+    try {
+      const userId = req.user!.id;
+      const { currentPassword, password } = req.body;
+      
+      if (!currentPassword || !password) {
+        return res.status(400).json({ message: 'Current password and new password are required' });
+      }
+      
+      // Get user
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      
+      // Verify current password
+      const isValid = await bcrypt.compare(currentPassword, user.password);
+      if (!isValid) {
+        return res.status(400).json({ message: 'Current password is incorrect' });
+      }
+      
+      // Update password
+      await storage.updateUser(userId, { password });
+      
+      // Log the password change
+      storage.logAudit({
+        userId,
+        action: 'Change password',
+        ipAddress: req.ip ? req.ip : null,
+        userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+        details: {}
+      });
+      
+      res.status(200).json({ message: 'Password updated successfully' });
+    } catch (error) {
+      res.status(400).json({ message: 'Failed to update password' });
+    }
   });
   
   // Protected API routes - requires authentication
@@ -571,6 +672,8 @@ export function registerRoutes(app: Express): void {
       const user = await storage.createUser({
         name: userData.name,
         email: userData.email,
+        phone: userData.phone,
+        website: userData.website || "",
         password: userData.password,
         role: 'client' // Set default role to client
       });
@@ -969,6 +1072,56 @@ export function registerRoutes(app: Express): void {
       });
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch order details' });
+    }
+  });
+  
+  // Order revision request
+  app.post('/api/orders/revision', authenticateJWT, async (req, res) => {
+    try {
+      const userId = req.user!.id;
+      const { orderId, description } = req.body;
+      
+      if (!orderId || !description) {
+        return res.status(400).json({ message: 'Order ID and description are required' });
+      }
+      
+      // Verify the order exists and belongs to the user
+      const order = await storage.getOrder(orderId);
+      if (!order) {
+        return res.status(404).json({ message: 'Order not found' });
+      }
+      
+      if (order.userId !== userId) {
+        return res.status(403).json({ message: 'Not authorized to request revisions for this order' });
+      }
+      
+      // Only allow revisions for completed orders
+      if (order.status !== 'completed') {
+        return res.status(400).json({ message: 'Revisions can only be requested for completed orders' });
+      }
+      
+      // Create the revision request
+      const revision = await storage.createOrderRevision({
+        orderId,
+        userId,
+        description
+      });
+      
+      // Log the revision request
+      storage.logAudit({
+        userId,
+        action: 'Create order revision',
+        ipAddress: req.ip ? req.ip : null,
+        userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+        details: { orderId, revisionId: revision.id }
+      });
+      
+      res.status(201).json({ 
+        message: 'Revision request submitted successfully',
+        revision
+      });
+    } catch (error) {
+      res.status(400).json({ message: 'Failed to submit revision request' });
     }
   });
   
