@@ -8,9 +8,11 @@ import AdminSidebar from "./sidebar";
 
 interface AdminLayoutProps {
   children: ReactNode;
+  title?: string;
+  description?: string;
 }
 
-export default function AdminLayout({ children }: AdminLayoutProps) {
+export default function AdminLayout({ children, title, description }: AdminLayoutProps) {
   const [, setLocation] = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -90,7 +92,15 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         
         {/* Page content */}
         <div className="flex-1 overflow-auto">
-          {children}
+          {(title || description) && (
+            <div className="border-b p-6 bg-white">
+              {title && <h1 className="text-xl font-semibold mb-1">{title}</h1>}
+              {description && <p className="text-gray-500">{description}</p>}
+            </div>
+          )}
+          <div className="p-6">
+            {children}
+          </div>
         </div>
       </div>
     </div>

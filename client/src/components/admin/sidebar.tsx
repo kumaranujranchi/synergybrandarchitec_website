@@ -8,12 +8,21 @@ import {
   LogOut, 
   ChevronRight,
   LayoutDashboard,
-  BookOpen
+  BookOpen,
+  ShoppingBag,
+  Package
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { User } from '../../../shared/schema';
+// Define User type inline since we're not importing from schema
+type User = {
+  id: number;
+  email: string;
+  name?: string;
+  role: string;
+  permissions?: string[];
+};
 
 export default function AdminSidebar() {
   const [location, setLocation] = useLocation();
@@ -150,6 +159,28 @@ export default function AdminSidebar() {
             </Button>
           )}
           
+          {hasPermission(['admin', 'manager']) && (
+            <>
+              <Button
+                variant="ghost"
+                className={menuItemClass('/admin/addons')}
+                onClick={() => setLocation('/admin/addons')}
+              >
+                <Package className="h-5 w-5" />
+                {!isCollapsed && <span>Addon Products</span>}
+              </Button>
+
+              <Button
+                variant="ghost"
+                className={menuItemClass('/admin/addon-orders')}
+                onClick={() => setLocation('/admin/addon-orders')}
+              >
+                <ShoppingBag className="h-5 w-5" />
+                {!isCollapsed && <span>Addon Orders</span>}
+              </Button>
+            </>
+          )}
+
           {hasPermission(['admin']) && (
             <Button
               variant="ghost"

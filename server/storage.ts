@@ -140,67 +140,230 @@ export class MemStorage implements IStorage {
       // Initial addon products
       const now = new Date();
       
-      // Addon Product 1
-      const product1: AddonProduct = {
-        id: ++this.lastAddonProductId,
-        name: "Addition of Page",
-        price: "1000",
-        description: "For clients who have had their website built by us. Add an extra page to your existing website.",
-        isActive: true,
-        createdAt: now,
-        updatedAt: now
-      };
+      // Create array of all addon products with specified prices
+      const products: AddonProduct[] = [
+        {
+          id: ++this.lastAddonProductId,
+          name: "Addition of Page",
+          price: "1000",
+          description: "For clients who have had their website built by us. Includes design and content integration.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Pop-Up",
+          price: "500",
+          description: "Create engaging pop-ups for offers or lead collection to boost conversions.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Content Editing on Existing Page",
+          price: "300",
+          description: "Update or modify content on your existing pages. Price is per page.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Image Change",
+          price: "300",
+          description: "Replace existing images on your website with new ones. Price is per image.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Video Addition (With Section)",
+          price: "1000",
+          description: "Add a video section to your website. Price may vary based on complexity.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Annual Maintenance Contract (AMC)",
+          price: "20% of project cost per month",
+          description: "Ongoing maintenance and support for your website to ensure it stays up-to-date and secure.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "SEO Optimization for Existing Pages",
+          price: "2000",
+          description: "Improve your website's search engine ranking. Price is per page.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Speed Optimization",
+          price: "1500",
+          description: "Make your website faster and improve user experience with our speed optimization service.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Security Setup",
+          price: "1000",
+          description: "Implement SSL, backups, and other security measures to protect your website.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Blog Section Creation",
+          price: "1500",
+          description: "Add a blog section to your website to share updates and improve SEO.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Custom Contact Form",
+          price: "500",
+          description: "Create a customized contact form for your specific needs. Price is per form.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "E-Commerce Integration",
+          price: "5000",
+          description: "Add shopping cart, checkout system, and payment gateway to your website.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Google Analytics Setup",
+          price: "1000",
+          description: "Set up Google Analytics to track visitors and gain insights about your audience.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Social Media Integration",
+          price: "800",
+          description: "Link your social media accounts to your website for better engagement.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Newsletter Integration",
+          price: "1000",
+          description: "Add newsletter subscription functionality to grow your email list.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Third-Party Plugin/Tool Integration",
+          price: "1500",
+          description: "Integrate third-party plugins or tools with your website. Price is per plugin.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Website Backup and Restore",
+          price: "1000",
+          description: "Create a complete backup of your website and restore if needed. Price is per instance.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Responsive Design Updates",
+          price: "2000",
+          description: "Update your website to ensure it looks great on all devices. Price is per page.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Custom 404 Error Page",
+          price: "1000",
+          description: "Create a custom 404 error page to improve user experience when pages are not found.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Client Portal Creation",
+          price: "5000",
+          description: "Create a private login section for your clients to access exclusive content.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Website Redesign/Revamp",
+          price: "Custom",
+          description: "Give your website a fresh new look. Price depends on the scope of work.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Add Blog Posts (SEO Optimized)",
+          price: "500",
+          description: "Create SEO-optimized blog posts for your website. Price is per post.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Logo Design",
+          price: "2000",
+          description: "Create a new logo or redesign your existing one for a fresh brand identity.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: ++this.lastAddonProductId,
+          name: "Live Chat Integration",
+          price: "1000",
+          description: "Add live chat functionality to your website for better customer support.",
+          isActive: true,
+          createdAt: now,
+          updatedAt: now
+        }
+      ];
       
-      // Addon Product 2
-      const product2: AddonProduct = {
-        id: ++this.lastAddonProductId,
-        name: "SEO Optimization",
-        price: "2500",
-        description: "Optimize your existing pages for search engines to improve visibility and ranking.",
-        isActive: true,
-        createdAt: now,
-        updatedAt: now
-      };
-      
-      // Addon Product 3
-      const product3: AddonProduct = {
-        id: ++this.lastAddonProductId,
-        name: "Content Update",
-        price: "1500",
-        description: "Update content on an existing page with fresh information or services.",
-        isActive: true,
-        createdAt: now,
-        updatedAt: now
-      };
-      
-      // Addon Product 4
-      const product4: AddonProduct = {
-        id: ++this.lastAddonProductId,
-        name: "Design Refresh",
-        price: "3000",
-        description: "Refresh the design of your website without changing the structure or content.",
-        isActive: true,
-        createdAt: now,
-        updatedAt: now
-      };
-      
-      // Addon Product 5
-      const product5: AddonProduct = {
-        id: ++this.lastAddonProductId,
-        name: "Form Integration",
-        price: "1800",
-        description: "Add a custom form to your website to collect leads or user information.",
-        isActive: true,
-        createdAt: now,
-        updatedAt: now
-      };
-      
-      // Add products to the map
-      this.addonProducts.set(product1.id, product1);
-      this.addonProducts.set(product2.id, product2);
-      this.addonProducts.set(product3.id, product3);
-      this.addonProducts.set(product4.id, product4);
-      this.addonProducts.set(product5.id, product5);
+      // Add all products to the map
+      for (const product of products) {
+        this.addonProducts.set(product.id, product);
+      }
       
       console.log("Initial addon products created");
     } catch (error) {
