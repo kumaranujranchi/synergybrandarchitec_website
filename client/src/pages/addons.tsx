@@ -37,7 +37,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ShoppingCart, Plus, Minus, Trash2, Check, ShoppingBag, LogIn } from "lucide-react";
-import { ApiResponse, apiRequest } from "@/lib/queryClient";
+import { apiRequest } from "@/lib/queryClient";
 import {
   Table,
   TableBody,
