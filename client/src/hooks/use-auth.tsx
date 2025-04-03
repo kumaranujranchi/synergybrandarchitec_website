@@ -4,8 +4,8 @@ import {
   useMutation,
   UseMutationResult,
 } from "@tanstack/react-query";
-import { User, RegisterData, LoginData } from "@shared/schema";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+import { User } from "@shared/schema";
+import { getQueryFn, apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
 type AuthContextType = {
@@ -15,55 +15,50 @@ type AuthContextType = {
   loginMutation: UseMutationResult<User, Error, LoginData>;
   logoutMutation: UseMutationResult<void, Error, void>;
   registerMutation: UseMutationResult<User, Error, RegisterData>;
-  forgotPasswordMutation: UseMutationResult<{ message: string }, Error, { email: string }>;
-  resetPasswordMutation: UseMutationResult<{ message: string }, Error, { token: string, password: string, confirmPassword: string }>;
-  resetPasswordWithOTPMutation: UseMutationResult<{ message: string }, Error, { email: string, otp: string, password: string, confirmPassword: string }>;
+  forgotPasswordMutation: UseMutationResult<void, Error, { email: string }>;
+  resetPasswordMutation: UseMutationResult<void, Error, { token: string; password: string }>;
+  resetPasswordWithOTPMutation: UseMutationResult<void, Error, { email: string; otp: string; password: string }>;
+};
+
+export type LoginData = {
+  email: string;
+  password: string;
+};
+
+export type RegisterData = {
+  name: string;
+  email: string;
+  password: string;
+  phone?: string;
+  website?: string;
 };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
-  
   const {
     data: user,
     error,
     isLoading,
-  } = useQuery<User | null, Error>({
-    queryKey: ["/api/auth/check"],
-    queryFn: async () => {
-      try {
-        const res = await apiRequest("GET", "/api/auth/check");
-        if (!res.ok) {
-          if (res.status === 401) {
-            return null;
-          }
-          throw new Error("Failed to get user data");
-        }
-        return await res.json();
-      } catch (error) {
-        if ((error as any).message === "Failed to fetch") {
-          return null;
-        }
-        throw error;
-      }
-    },
+  } = useQuery<User | undefined, Error>({
+    queryKey: ['/api/auth/check'],
+    queryFn: getQueryFn({ on401: "returnNull" }),
   });
 
   const loginMutation = useMutation({
     mutationFn: async (credentials: LoginData) => {
       const res = await apiRequest("POST", "/api/auth/login", credentials);
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Login failed");
-      }
       return await res.json();
     },
     onSuccess: (user: User) => {
-      queryClient.setQueryData(["/api/auth/check"], user);
+      queryClient.setQueryData(['/api/auth/check'], user);
+      // Also invalidate cart when user logs in
+      queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
+      
       toast({
         title: "Login successful",
-        description: "You have been logged in successfully",
+        description: `Welcome back, ${user.name || user.email}!`,
       });
     },
     onError: (error: Error) => {
@@ -78,17 +73,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const registerMutation = useMutation({
     mutationFn: async (credentials: RegisterData) => {
       const res = await apiRequest("POST", "/api/auth/register", credentials);
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Registration failed");
-      }
       return await res.json();
     },
     onSuccess: (user: User) => {
-      queryClient.setQueryData(["/api/auth/check"], user);
+      queryClient.setQueryData(['/api/auth/check'], user);
+      
       toast({
         title: "Registration successful",
-        description: "Your account has been created successfully",
+        description: `Welcome, ${user.name || user.email}!`,
       });
     },
     onError: (error: Error) => {
@@ -102,17 +94,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      const res = await apiRequest("POST", "/api/auth/logout");
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Logout failed");
-      }
+      await apiRequest("POST", "/api/auth/logout");
     },
     onSuccess: () => {
-      queryClient.setQueryData(["/api/auth/check"], null);
+      queryClient.setQueryData(['/api/auth/check'], null);
+      // Also invalidate cart when user logs out
+      queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
+      
       toast({
-        title: "Logout successful",
-        description: "You have been logged out successfully",
+        title: "Logged out",
+        description: "You have been successfully logged out.",
       });
     },
     onError: (error: Error) => {
@@ -126,22 +117,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const forgotPasswordMutation = useMutation({
     mutationFn: async ({ email }: { email: string }) => {
-      const res = await apiRequest("POST", "/api/auth/forgot-password", { email });
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Failed to send reset link");
-      }
-      return await res.json();
+      await apiRequest("POST", "/api/auth/forgot-password", { email });
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast({
-        title: "Password Reset Email Sent",
-        description: data.message || "Instructions to reset your password have been sent to your email",
+        title: "Request sent",
+        description: "If the email exists in our system, you will receive a password reset link.",
       });
     },
     onError: (error: Error) => {
       toast({
-        title: "Password Reset Failed",
+        title: "Failed to send request",
         description: error.message,
         variant: "destructive",
       });
@@ -149,23 +135,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
 
   const resetPasswordMutation = useMutation({
-    mutationFn: async ({ token, password, confirmPassword }: { token: string, password: string, confirmPassword: string }) => {
-      const res = await apiRequest("POST", "/api/auth/reset-password", { token, password, confirmPassword });
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Failed to reset password");
-      }
-      return await res.json();
+    mutationFn: async ({ token, password }: { token: string; password: string }) => {
+      await apiRequest("POST", "/api/auth/reset-password", { token, password });
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast({
-        title: "Password Reset Successful",
-        description: data.message || "Your password has been successfully reset. You can now log in with your new password.",
+        title: "Password reset successful",
+        description: "Your password has been successfully reset. You can now log in with your new password.",
       });
     },
     onError: (error: Error) => {
       toast({
-        title: "Password Reset Failed",
+        title: "Password reset failed",
         description: error.message,
         variant: "destructive",
       });
@@ -173,23 +154,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
 
   const resetPasswordWithOTPMutation = useMutation({
-    mutationFn: async ({ email, otp, password, confirmPassword }: { email: string, otp: string, password: string, confirmPassword: string }) => {
-      const res = await apiRequest("POST", "/api/auth/reset-password-otp", { email, otp, password, confirmPassword });
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Failed to reset password");
-      }
-      return await res.json();
+    mutationFn: async ({ email, otp, password }: { email: string; otp: string; password: string }) => {
+      await apiRequest("POST", "/api/auth/reset-password-otp", { email, otp, password });
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast({
-        title: "Password Reset Successful",
-        description: data.message || "Your password has been successfully reset. You can now log in with your new password.",
+        title: "Password reset successful",
+        description: "Your password has been successfully reset. You can now log in with your new password.",
       });
     },
     onError: (error: Error) => {
       toast({
-        title: "Password Reset Failed",
+        title: "Password reset failed",
         description: error.message,
         variant: "destructive",
       });

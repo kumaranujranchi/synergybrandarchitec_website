@@ -1007,32 +1007,38 @@ export function registerRoutes(app: Express): void {
     }
   });
   
-  // Cart Management (requires authentication)
-  app.use('/api/cart', authenticateJWT);
+  // Cart Management
+  // Individual endpoint authentication for flexibility
   
   app.get('/api/cart', async (req, res) => {
     try {
-      const userId = req.user!.id;
-      const cartItems = await storage.getUserCart(userId);
-      
-      // Fetch product details for each cart item
-      const cartWithDetails = await Promise.all(
-        cartItems.map(async (item) => {
-          const product = await storage.getAddonProduct(item.productId);
-          return {
-            ...item,
-            product
-          };
-        })
-      );
-      
-      res.status(200).json({ cart: cartWithDetails });
+      // Check if user is authenticated
+      if (req.user) {
+        const userId = req.user.id;
+        const cartItems = await storage.getUserCart(userId);
+        
+        // Fetch product details for each cart item
+        const cartWithDetails = await Promise.all(
+          cartItems.map(async (item) => {
+            const product = await storage.getAddonProduct(item.productId);
+            return {
+              ...item,
+              product
+            };
+          })
+        );
+        
+        res.status(200).json({ cart: cartWithDetails });
+      } else {
+        // Non-authenticated users get an empty cart
+        res.status(200).json({ cart: [] });
+      }
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch cart' });
     }
   });
   
-  app.post('/api/cart', async (req, res) => {
+  app.post('/api/cart', authenticateJWT, async (req, res) => {
     try {
       const userId = req.user!.id;
       const { productId, quantity } = insertCartItemSchema.parse(req.body);
@@ -1062,7 +1068,7 @@ export function registerRoutes(app: Express): void {
     }
   });
   
-  app.patch('/api/cart/:id', async (req, res) => {
+  app.patch('/api/cart/:id', authenticateJWT, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const userId = req.user!.id;
@@ -1095,7 +1101,7 @@ export function registerRoutes(app: Express): void {
     }
   });
   
-  app.delete('/api/cart/:id', async (req, res) => {
+  app.delete('/api/cart/:id', authenticateJWT, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const userId = req.user!.id;
@@ -1123,7 +1129,7 @@ export function registerRoutes(app: Express): void {
     }
   });
   
-  app.delete('/api/cart', async (req, res) => {
+  app.delete('/api/cart', authenticateJWT, async (req, res) => {
     try {
       const userId = req.user!.id;
       

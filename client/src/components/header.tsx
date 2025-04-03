@@ -9,13 +9,10 @@ import { useAuth } from "@/hooks/use-auth";
 
 const navLinks = [
   { href: "#home", label: "Home", isHome: true },
-  { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
-  { href: "#testimonials", label: "Testimonials" },
   { href: "/pricing", label: "Pricing", isPage: true },
   { href: "/startup-plan", label: "StartUp Plan", isPage: true, highlight: true },
   { href: "/addons", label: "Add-ons", isPage: true },
-  { href: "/blog", label: "Blog", isPage: true },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -167,16 +164,6 @@ export default function Header() {
             </div>
           )}
           
-          {/* Admin Login Button */}
-          <Link href="/admin/login" onClick={() => scrollToTop(true)}>
-            <Button 
-              variant="outline" 
-              className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all text-xs xl:text-sm py-1 px-3 xl:py-2 xl:px-4 h-auto"
-            >
-              Admin Login
-            </Button>
-          </Link>
-          
           {/* CTA Button (Desktop only) */}
           <a 
             href="#contact" 
@@ -225,16 +212,6 @@ export default function Header() {
               </Button>
             </Link>
           )}
-          
-          <Link href="/admin/login" onClick={() => scrollToTop(true)}>
-            <Button 
-              variant="outline" 
-              className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all text-xs py-1 px-2 h-auto"
-              size="sm"
-            >
-              Admin
-            </Button>
-          </Link>
           <a 
             href="#contact" 
             onClick={(e) => handleNavigation(e, { href: '#contact' })}
@@ -348,19 +325,10 @@ export default function Header() {
             </>
           )}
           
-          <div className="flex flex-col sm:flex-row sm:space-x-3 pt-2">
-            <Link href="/admin/login" onClick={() => {
-              closeMenu();
-              scrollToTop(true);
-            }} className="mb-3 sm:mb-0 sm:flex-1">
-              <div className="text-[#0066CC] border border-[#0066CC] hover:bg-[#0066CC] hover:text-white py-2 sm:py-3 px-4 sm:px-5 rounded-full text-center transition-colors">
-                Admin Login
-              </div>
-            </Link>
-            
+          <div className="flex pt-2">
             <a 
               href="#contact" 
-              className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-2 sm:py-3 px-4 sm:px-5 rounded-full text-center sm:flex-1"
+              className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-2 sm:py-3 px-4 sm:px-5 rounded-full text-center w-full"
               onClick={(e) => {
                 closeMenu();
                 handleNavigation(e, { href: '#contact' });

@@ -69,7 +69,6 @@ export default function ResetPasswordPage() {
         email,
         otp,
         password: data.password,
-        confirmPassword: data.confirmPassword,
       }, {
         onSuccess: () => {
           navigate("/auth/login");
@@ -79,7 +78,6 @@ export default function ResetPasswordPage() {
       resetPasswordMutation.mutate({
         token,
         password: data.password,
-        confirmPassword: data.confirmPassword,
       }, {
         onSuccess: () => {
           navigate("/auth/login");
