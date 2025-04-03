@@ -210,6 +210,8 @@ const loginSchema = z.object({
 const registerSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
+  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  website: z.string().url("Please enter a valid website URL").optional().or(z.literal("")),
   password: z.string().min(6, "Password must be at least 6 characters"),
   confirmPassword: z.string().min(6, "Confirm password must be at least 6 characters"),
 }).refine((data) => data.password === data.confirmPassword, {
@@ -245,6 +247,8 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
+      website: "",
       password: "",
       confirmPassword: "",
     },
@@ -352,6 +356,32 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input placeholder="Enter your email" type="email" {...field} autoComplete="email" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={registerForm.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your phone number" {...field} autoComplete="tel" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={registerForm.control}
+                name="website"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Website URL (Optional)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your website URL (if any)" {...field} autoComplete="url" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
