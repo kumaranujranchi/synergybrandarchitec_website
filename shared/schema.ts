@@ -140,6 +140,27 @@ export const orderRevisions = pgTable("order_revisions", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+// Password reset tokens table
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  token: varchar("token", { length: 255 }).notNull().unique(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  used: boolean("used").notNull().default(false),
+});
+
+// OTP codes table for password reset
+export const otpCodes = pgTable("otp_codes", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  code: varchar("code", { length: 6 }).notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  used: boolean("used").notNull().default(false),
+});
+
 // Schemas
 export const insertUserSchema = createInsertSchema(users)
   .omit({ id: true, createdAt: true, updatedAt: true });
@@ -242,6 +263,35 @@ export const checkoutSchema = z.object({
   message: z.string().optional().default(""),
 });
 
+// Password reset schemas
+export const forgotPasswordSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+});
+
+export const resetPasswordSchema = z.object({
+  token: z.string(),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+  confirmPassword: z.string().min(6, "Confirm password must be at least 6 characters"),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"]
+});
+
+export const verifyOTPSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  otp: z.string().length(6, "OTP must be exactly 6 characters"),
+});
+
+export const resetPasswordWithOTPSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  otp: z.string().length(6, "OTP must be exactly 6 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+  confirmPassword: z.string().min(6, "Confirm password must be at least 6 characters"),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"]
+});
+
 // Types
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type UpdateUser = z.infer<typeof updateUserSchema>;
@@ -283,3 +333,11 @@ export type InsertOrderItem = z.infer<typeof insertOrderItemSchema>;
 export type OrderRevision = typeof orderRevisions.$inferSelect;
 export type InsertOrderRevision = z.infer<typeof insertOrderRevisionSchema>;
 export type UpdateOrderRevision = z.infer<typeof updateOrderRevisionSchema>;
+
+// Password reset types
+export type PasswordResetToken = typeof passwordResetTokens.$inferSelect;
+export type OTPCode = typeof otpCodes.$inferSelect;
+export type ForgotPasswordData = z.infer<typeof forgotPasswordSchema>;
+export type ResetPasswordData = z.infer<typeof resetPasswordSchema>;
+export type VerifyOTPData = z.infer<typeof verifyOTPSchema>;
+export type ResetPasswordWithOTPData = z.infer<typeof resetPasswordWithOTPSchema>;

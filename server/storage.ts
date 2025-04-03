@@ -22,6 +22,14 @@ export interface IStorage {
   deleteUser(id: number): Promise<boolean>;
   validateUserCredentials(email: string, password: string): Promise<User | null>;
   
+  // Password reset methods
+  createPasswordResetToken(userId: number): Promise<string>;
+  validateResetToken(token: string): Promise<User | null>;
+  markResetTokenAsUsed(token: string): Promise<boolean>;
+  createOTP(userId: number, email: string): Promise<string>;
+  validateOTP(email: string, otp: string): Promise<User | null>;
+  markOTPAsUsed(email: string, otp: string): Promise<boolean>;
+  
   // Submission methods
   createSubmission(submission: InsertSubmission): Promise<Submission>;
   getSubmission(id: number): Promise<Submission | undefined>;
@@ -969,6 +977,181 @@ export class MemStorage implements IStorage {
     };
     
     this.auditLogs.set(auditLog.id, auditLog);
+  }
+
+  // Password reset token methods
+  private passwordResetTokens: Map<string, {
+    userId: number, 
+    token: string, 
+    expiresAt: Date, 
+    createdAt: Date, 
+    used: boolean
+  }> = new Map();
+  
+  async createPasswordResetToken(userId: number): Promise<string> {
+    // Check if user exists
+    const user = await this.getUser(userId);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    
+    // Generate random token
+    const token = crypto.randomBytes(32).toString('hex');
+    
+    // Set expiry time (24 hours from now)
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 24);
+    
+    // Store token
+    this.passwordResetTokens.set(token, {
+      userId,
+      token,
+      expiresAt,
+      createdAt: new Date(),
+      used: false
+    });
+    
+    // Log the audit
+    await this.logAudit({
+      userId,
+      action: 'password_reset_token_created',
+      details: 'Password reset token generated',
+      ipAddress: '0.0.0.0' // In a real implementation, this would be the actual IP
+    });
+    
+    return token;
+  }
+  
+  async validateResetToken(token: string): Promise<User | null> {
+    // Get token from storage
+    const tokenData = this.passwordResetTokens.get(token);
+    
+    // Check if token exists, is not used, and not expired
+    if (!tokenData || tokenData.used || new Date() > tokenData.expiresAt) {
+      return null;
+    }
+    
+    // Get user
+    const user = await this.getUser(tokenData.userId);
+    if (!user) {
+      return null;
+    }
+    
+    return user;
+  }
+  
+  async markResetTokenAsUsed(token: string): Promise<boolean> {
+    // Get token from storage
+    const tokenData = this.passwordResetTokens.get(token);
+    
+    // Check if token exists
+    if (!tokenData) {
+      return false;
+    }
+    
+    // Mark as used
+    tokenData.used = true;
+    this.passwordResetTokens.set(token, tokenData);
+    
+    // Log the audit
+    await this.logAudit({
+      userId: tokenData.userId,
+      action: 'password_reset_token_used',
+      details: 'Password reset token used',
+      ipAddress: '0.0.0.0' // In a real implementation, this would be the actual IP
+    });
+    
+    return true;
+  }
+  
+  // OTP methods
+  private otpCodes: Map<string, {
+    userId: number,
+    email: string,
+    code: string,
+    expiresAt: Date,
+    createdAt: Date,
+    used: boolean
+  }> = new Map();
+  
+  async createOTP(userId: number, email: string): Promise<string> {
+    // Check if user exists
+    const user = await this.getUser(userId);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    
+    // Generate random 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    
+    // Set expiry time (15 minutes from now)
+    const expiresAt = new Date();
+    expiresAt.setMinutes(expiresAt.getMinutes() + 15);
+    
+    // Store OTP with email as key for easy lookup
+    const key = `${email}:${otp}`;
+    this.otpCodes.set(key, {
+      userId,
+      email,
+      code: otp,
+      expiresAt,
+      createdAt: new Date(),
+      used: false
+    });
+    
+    // Log the audit
+    await this.logAudit({
+      userId,
+      action: 'otp_created',
+      details: 'OTP generated for password reset',
+      ipAddress: '0.0.0.0' // In a real implementation, this would be the actual IP
+    });
+    
+    return otp;
+  }
+  
+  async validateOTP(email: string, otp: string): Promise<User | null> {
+    // Get OTP from storage
+    const key = `${email}:${otp}`;
+    const otpData = this.otpCodes.get(key);
+    
+    // Check if OTP exists, is not used, and not expired
+    if (!otpData || otpData.used || new Date() > otpData.expiresAt) {
+      return null;
+    }
+    
+    // Get user
+    const user = await this.getUser(otpData.userId);
+    if (!user) {
+      return null;
+    }
+    
+    return user;
+  }
+  
+  async markOTPAsUsed(email: string, otp: string): Promise<boolean> {
+    // Get OTP from storage
+    const key = `${email}:${otp}`;
+    const otpData = this.otpCodes.get(key);
+    
+    // Check if OTP exists
+    if (!otpData) {
+      return false;
+    }
+    
+    // Mark as used
+    otpData.used = true;
+    this.otpCodes.set(key, otpData);
+    
+    // Log the audit
+    await this.logAudit({
+      userId: otpData.userId,
+      action: 'otp_used',
+      details: 'OTP used for password reset',
+      ipAddress: '0.0.0.0' // In a real implementation, this would be the actual IP
+    });
+    
+    return true;
   }
   
   // Addon Product methods
