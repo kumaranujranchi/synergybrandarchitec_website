@@ -255,12 +255,9 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   });
 
   const loginMutation = useMutation({
-    mutationFn: (data: z.infer<typeof loginSchema>) => {
-      return apiRequest<{ user: User; token: string }>({
-        url: "/api/auth/login",
-        method: "POST",
-        data,
-      });
+    mutationFn: async (data: z.infer<typeof loginSchema>) => {
+      const response = await apiRequest("POST", "/api/auth/login", data);
+      return response.json();
     },
     onSuccess: (data) => {
       if (data.user && data.token) {
@@ -279,12 +276,9 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   });
 
   const registerMutation = useMutation({
-    mutationFn: (data: z.infer<typeof registerSchema>) => {
-      return apiRequest<{ user: User; token: string }>({
-        url: "/api/auth/register",
-        method: "POST",
-        data,
-      });
+    mutationFn: async (data: z.infer<typeof registerSchema>) => {
+      const response = await apiRequest("POST", "/api/auth/register", data);
+      return response.json();
     },
     onSuccess: (data) => {
       if (data.user && data.token) {
@@ -573,12 +567,9 @@ const CheckoutDialog: React.FC<{
   });
 
   const checkoutMutation = useMutation({
-    mutationFn: (data: z.infer<typeof checkoutSchema>) => {
-      return apiRequest<{ order: Order }>({
-        url: "/api/checkout",
-        method: "POST",
-        data,
-      });
+    mutationFn: async (data: z.infer<typeof checkoutSchema>) => {
+      const response = await apiRequest("POST", "/api/checkout", data);
+      return response.json();
     },
     onSuccess: (data) => {
       toast({
@@ -901,12 +892,9 @@ const AddonsPage: React.FC = () => {
 
   // Add to cart mutation
   const addToCartMutation = useMutation({
-    mutationFn: (productId: number) => {
-      return apiRequest({
-        url: "/api/cart",
-        method: "POST",
-        data: { productId, quantity: 1 },
-      });
+    mutationFn: async (productId: number) => {
+      const response = await apiRequest("POST", "/api/cart", { productId, quantity: 1 });
+      return response.json();
     },
     onSuccess: () => {
       refetchCart();
@@ -935,12 +923,9 @@ const AddonsPage: React.FC = () => {
 
   // Update cart item mutation
   const updateCartItemMutation = useMutation({
-    mutationFn: ({ id, quantity }: { id: number; quantity: number }) => {
-      return apiRequest({
-        url: `/api/cart/${id}`,
-        method: "PATCH",
-        data: { quantity },
-      });
+    mutationFn: async ({ id, quantity }: { id: number; quantity: number }) => {
+      const response = await apiRequest("PATCH", `/api/cart/${id}`, { quantity });
+      return response.json();
     },
     onSuccess: () => {
       refetchCart();
@@ -956,11 +941,9 @@ const AddonsPage: React.FC = () => {
 
   // Remove from cart mutation
   const removeFromCartMutation = useMutation({
-    mutationFn: (id: number) => {
-      return apiRequest({
-        url: `/api/cart/${id}`,
-        method: "DELETE",
-      });
+    mutationFn: async (id: number) => {
+      const response = await apiRequest("DELETE", `/api/cart/${id}`);
+      return response.json();
     },
     onSuccess: () => {
       refetchCart();
