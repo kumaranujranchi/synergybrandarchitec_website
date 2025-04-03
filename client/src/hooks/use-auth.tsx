@@ -49,7 +49,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const loginMutation = useMutation({
     mutationFn: async (credentials: LoginData) => {
       const res = await apiRequest("POST", "/api/auth/login", credentials);
-      return await res.json();
+      const data = await res.json();
+      
+      // Store token in localStorage if it exists in response
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
+      
+      return data.user;
     },
     onSuccess: (user: User) => {
       queryClient.setQueryData(['/api/auth/check'], user);
@@ -73,7 +80,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const registerMutation = useMutation({
     mutationFn: async (credentials: RegisterData) => {
       const res = await apiRequest("POST", "/api/auth/register", credentials);
-      return await res.json();
+      const data = await res.json();
+      
+      // Store token in localStorage if it exists in response
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
+      
+      return data.user;
     },
     onSuccess: (user: User) => {
       queryClient.setQueryData(['/api/auth/check'], user);
@@ -97,6 +111,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await apiRequest("POST", "/api/auth/logout");
     },
     onSuccess: () => {
+      // Remove token from localStorage
+      localStorage.removeItem("token");
+      
       queryClient.setQueryData(['/api/auth/check'], null);
       // Also invalidate cart when user logs out
       queryClient.invalidateQueries({ queryKey: ['/api/cart'] });

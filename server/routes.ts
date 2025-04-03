@@ -865,7 +865,7 @@ export function registerRoutes(app: Express): void {
         name: userData.name,
         email: userData.email,
         phone: userData.phone,
-        website: userData.website,
+        website: userData.website || null, // Ensure website is null if empty
         password: userData.password,
         role: 'client' // Set default role to client
       });
