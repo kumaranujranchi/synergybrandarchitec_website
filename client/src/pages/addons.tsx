@@ -338,7 +338,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your full name" {...field} />
+                      <Input placeholder="Enter your full name" {...field} autoComplete="name" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -351,7 +351,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your email" type="email" {...field} />
+                      <Input placeholder="Enter your email" type="email" {...field} autoComplete="email" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -364,7 +364,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="Create a password" type="password" {...field} />
+                      <Input placeholder="Create a password" type="password" {...field} autoComplete="new-password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -377,7 +377,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="Confirm your password" type="password" {...field} />
+                      <Input placeholder="Confirm your password" type="password" {...field} autoComplete="new-password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -407,7 +407,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your email" type="email" {...field} />
+                      <Input placeholder="Enter your email" type="email" {...field} autoComplete="email" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -420,7 +420,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your password" type="password" {...field} />
+                      <Input placeholder="Enter your password" type="password" {...field} autoComplete="current-password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -612,7 +612,7 @@ const CheckoutDialog: React.FC<{
                 <FormItem>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your full name" {...field} />
+                    <Input placeholder="Enter your full name" {...field} autoComplete="name" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -625,7 +625,7 @@ const CheckoutDialog: React.FC<{
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email" type="email" {...field} />
+                    <Input placeholder="Enter your email" type="email" {...field} autoComplete="email" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -638,7 +638,7 @@ const CheckoutDialog: React.FC<{
                 <FormItem>
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your phone number" {...field} />
+                    <Input placeholder="Enter your phone number" {...field} autoComplete="tel" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
