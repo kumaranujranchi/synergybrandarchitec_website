@@ -244,10 +244,8 @@ export const registerSchema = z.object({
     z.string().length(0)
   ]), // Accept valid URL or empty string
   password: z.string().min(6, "Password must be at least 6 characters"),
-  confirmPassword: z.string().min(6, "Confirm password must be at least 6 characters"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"]
+  // confirmPassword is only used on the client side for validation
+  confirmPassword: z.string().optional(),
 });
 
 export const contactSchema = z.object({

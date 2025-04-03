@@ -838,15 +838,20 @@ export function registerRoutes(app: Express): void {
   // User registration for client users
   app.post('/api/auth/register', async (req, res) => {
     try {
-      // Handle empty website field
-      if (req.body.website === undefined || req.body.website === null || req.body.website === '') {
-        req.body.website = "";
-      }
+      // Prepare the request body with safe default values
+      const safeBody = {
+        name: req.body.name || '',
+        email: req.body.email || '',
+        phone: req.body.phone || '',
+        website: req.body.website || '',
+        password: req.body.password || '',
+        confirmPassword: req.body.confirmPassword || ''
+      };
       
-      console.log('Register request body:', req.body);
+      console.log('Register request body (sanitized):', safeBody);
       
       // Validate the request data
-      const userData = registerSchema.parse(req.body);
+      const userData = registerSchema.parse(safeBody);
       console.log('Validated user data:', userData);
       
       // Check if email already exists
