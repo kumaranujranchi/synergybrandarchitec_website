@@ -342,7 +342,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your full name" {...field} autoComplete="name" />
+                      <Input placeholder="Enter your full name" {...field} autoComplete="off" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -355,7 +355,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your email" type="email" {...field} autoComplete="email" />
+                      <Input placeholder="Enter your email" type="email" {...field} autoComplete="off" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -368,7 +368,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Phone Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your phone number" {...field} autoComplete="tel" />
+                      <Input placeholder="Enter your phone number" {...field} autoComplete="off" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -381,7 +381,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Website URL (Optional)</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your website URL (if any)" {...field} autoComplete="url" />
+                      <Input placeholder="Enter your website URL (if any)" {...field} autoComplete="off" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -394,7 +394,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="Create a password" type="password" {...field} autoComplete="new-password" />
+                      <Input placeholder="Create a password" type="password" {...field} autoComplete="off" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -407,7 +407,7 @@ const LoginDialog: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   <FormItem>
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="Confirm your password" type="password" {...field} autoComplete="new-password" />
+                      <Input placeholder="Confirm your password" type="password" {...field} autoComplete="off" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
