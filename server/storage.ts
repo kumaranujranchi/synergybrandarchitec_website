@@ -7,9 +7,11 @@ import {
   CartItem, InsertCartItem, UpdateCartItem,
   Order, InsertOrder, UpdateOrder,
   OrderItem, InsertOrderItem,
-  OrderRevision, InsertOrderRevision, UpdateOrderRevision
+  OrderRevision, InsertOrderRevision, UpdateOrderRevision,
+  PasswordResetToken, OTPCode
 } from "@shared/schema";
 import bcrypt from "bcrypt";
+import crypto from "crypto";
 
 // Interface for our storage
 export interface IStorage {
@@ -996,7 +998,7 @@ export class MemStorage implements IStorage {
     }
     
     // Generate random token
-    const token = crypto.randomBytes(32).toString('hex');
+    const token = crypto.randomUUID().replace(/-/g, '');
     
     // Set expiry time (24 hours from now)
     const expiresAt = new Date();
@@ -1016,7 +1018,8 @@ export class MemStorage implements IStorage {
       userId,
       action: 'password_reset_token_created',
       details: 'Password reset token generated',
-      ipAddress: '0.0.0.0' // In a real implementation, this would be the actual IP
+      ipAddress: '0.0.0.0', // In a real implementation, this would be the actual IP
+      userAgent: 'system'
     });
     
     return token;
@@ -1058,7 +1061,8 @@ export class MemStorage implements IStorage {
       userId: tokenData.userId,
       action: 'password_reset_token_used',
       details: 'Password reset token used',
-      ipAddress: '0.0.0.0' // In a real implementation, this would be the actual IP
+      ipAddress: '0.0.0.0', // In a real implementation, this would be the actual IP
+      userAgent: 'system'
     });
     
     return true;
@@ -1104,7 +1108,8 @@ export class MemStorage implements IStorage {
       userId,
       action: 'otp_created',
       details: 'OTP generated for password reset',
-      ipAddress: '0.0.0.0' // In a real implementation, this would be the actual IP
+      ipAddress: '0.0.0.0', // In a real implementation, this would be the actual IP
+      userAgent: 'system'
     });
     
     return otp;
@@ -1148,7 +1153,8 @@ export class MemStorage implements IStorage {
       userId: otpData.userId,
       action: 'otp_used',
       details: 'OTP used for password reset',
-      ipAddress: '0.0.0.0' // In a real implementation, this would be the actual IP
+      ipAddress: '0.0.0.0', // In a real implementation, this would be the actual IP
+      userAgent: 'system'
     });
     
     return true;

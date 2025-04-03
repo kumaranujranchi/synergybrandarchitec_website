@@ -20,6 +20,8 @@ import {
 } from '@shared/schema';
 import { generateToken, authenticateJWT, authorize, requirePermission } from './auth';
 import cookieParser from 'cookie-parser';
+import { sendPasswordResetEmail, sendOTPEmail } from './utils/mailer';
+import { z } from 'zod';
 
 export function registerRoutes(app: Express): void {
   // Middleware
@@ -131,6 +133,182 @@ export function registerRoutes(app: Express): void {
       authenticated: true,
       user: req.user
     });
+  });
+  
+  // Password reset - forgot password
+  app.post('/api/auth/forgot-password', async (req, res) => {
+    try {
+      const { email } = z.object({ email: z.string().email() }).parse(req.body);
+      
+      // Find user by email
+      const user = await storage.getUserByEmail(email);
+      if (!user) {
+        // For security, don't reveal whether the email exists or not
+        return res.status(200).json({ 
+          message: 'If your email is registered, you will receive password reset instructions shortly.' 
+        });
+      }
+      
+      // Generate reset token
+      const resetToken = await storage.createPasswordResetToken(user.id);
+      
+      // Create reset link
+      const resetLink = `${req.protocol}://${req.get('host')}/auth?reset=${resetToken}`;
+      
+      // Send email with reset link
+      const emailSent = await sendPasswordResetEmail(user.email, resetToken, resetLink);
+      
+      if (!emailSent) {
+        console.error('Failed to send password reset email');
+        return res.status(500).json({ message: 'Failed to send reset email. Please try again later.' });
+      }
+      
+      // Log the password reset request
+      storage.logAudit({
+        userId: user.id,
+        action: 'Request password reset',
+        ipAddress: req.ip ? req.ip : null,
+        userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+        details: { email: user.email }
+      });
+      
+      res.status(200).json({ 
+        message: 'If your email is registered, you will receive password reset instructions shortly.' 
+      });
+    } catch (error) {
+      console.error('Forgot password error:', error);
+      res.status(400).json({ message: 'Invalid email address' });
+    }
+  });
+  
+  // Reset password with token
+  app.post('/api/auth/reset-password', async (req, res) => {
+    try {
+      const { token, password, confirmPassword } = z.object({
+        token: z.string(),
+        password: z.string().min(6),
+        confirmPassword: z.string()
+      }).refine(data => data.password === data.confirmPassword, {
+        message: "Passwords don't match",
+        path: ['confirmPassword']
+      }).parse(req.body);
+      
+      // Validate token and get user
+      const user = await storage.validateResetToken(token);
+      if (!user) {
+        return res.status(400).json({ message: 'Invalid or expired reset token' });
+      }
+      
+      // Update user's password
+      await storage.updateUser(user.id, { password });
+      
+      // Mark the token as used
+      await storage.markResetTokenAsUsed(token);
+      
+      // Log the password reset
+      storage.logAudit({
+        userId: user.id,
+        action: 'Reset password',
+        ipAddress: req.ip ? req.ip : null,
+        userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+        details: { method: 'token' }
+      });
+      
+      res.status(200).json({ message: 'Password has been reset successfully' });
+    } catch (error) {
+      console.error('Reset password error:', error);
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
+      res.status(400).json({ message: 'Failed to reset password' });
+    }
+  });
+  
+  // Request OTP for password reset
+  app.post('/api/auth/request-otp', async (req, res) => {
+    try {
+      const { email } = z.object({ email: z.string().email() }).parse(req.body);
+      
+      // Find user by email
+      const user = await storage.getUserByEmail(email);
+      if (!user) {
+        // For security, don't reveal whether the email exists or not
+        return res.status(200).json({ 
+          message: 'If your email is registered, you will receive an OTP shortly.' 
+        });
+      }
+      
+      // Generate OTP
+      const otp = await storage.createOTP(user.id, email);
+      
+      // Send email with OTP
+      const emailSent = await sendOTPEmail(user.email, otp);
+      
+      if (!emailSent) {
+        console.error('Failed to send OTP email');
+        return res.status(500).json({ message: 'Failed to send OTP. Please try again later.' });
+      }
+      
+      // Log the OTP request
+      storage.logAudit({
+        userId: user.id,
+        action: 'Request password reset OTP',
+        ipAddress: req.ip ? req.ip : null,
+        userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+        details: { email: user.email }
+      });
+      
+      res.status(200).json({ 
+        message: 'If your email is registered, you will receive an OTP shortly.' 
+      });
+    } catch (error) {
+      console.error('Request OTP error:', error);
+      res.status(400).json({ message: 'Invalid email address' });
+    }
+  });
+  
+  // Reset password with OTP
+  app.post('/api/auth/reset-password-otp', async (req, res) => {
+    try {
+      const { email, otp, password, confirmPassword } = z.object({
+        email: z.string().email(),
+        otp: z.string(),
+        password: z.string().min(6),
+        confirmPassword: z.string()
+      }).refine(data => data.password === data.confirmPassword, {
+        message: "Passwords don't match",
+        path: ['confirmPassword']
+      }).parse(req.body);
+      
+      // Validate OTP
+      const user = await storage.validateOTP(email, otp);
+      if (!user) {
+        return res.status(400).json({ message: 'Invalid or expired OTP' });
+      }
+      
+      // Update user's password
+      await storage.updateUser(user.id, { password });
+      
+      // Mark OTP as used
+      await storage.markOTPAsUsed(email, otp);
+      
+      // Log the password reset
+      storage.logAudit({
+        userId: user.id,
+        action: 'Reset password',
+        ipAddress: req.ip ? req.ip : null,
+        userAgent: req.headers['user-agent'] ? req.headers['user-agent'] : null,
+        details: { method: 'otp' }
+      });
+      
+      res.status(200).json({ message: 'Password has been reset successfully' });
+    } catch (error) {
+      console.error('Reset password with OTP error:', error);
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
+      res.status(400).json({ message: 'Failed to reset password' });
+    }
   });
   
   // User account management routes (requires authentication)

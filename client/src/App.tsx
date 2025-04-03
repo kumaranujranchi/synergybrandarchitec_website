@@ -20,8 +20,11 @@ import BiryaniMahalCaseStudy from "@/pages/case-study/biryani-mahal";
 import TheHelpingHandCaseStudy from "@/pages/case-study/the-helping-hand";
 import Blog from "@/pages/blog";
 import BlogPostPage from "@/pages/blog-post";
+import AuthPage from "@/pages/auth-page";
+import ResetPasswordPage from "@/pages/reset-password";
 import { useEffect, lazy, Suspense } from "react";
 import { scrollToTop } from "@/lib/scrollHelper";
+import { AuthProvider } from "@/hooks/use-auth";
 
 // Lazy load admin components
 const AdminUsers = lazy(() => import('./pages/admin/users'));
@@ -39,6 +42,10 @@ function Router() {
       <Route path="/startup-plan" component={StartupPlan} />
       <Route path="/addons" component={Addons} />
       <Route path="/account" component={Account} />
+      <Route path="/auth" component={AuthPage} />
+      <Route path="/auth/login" component={AuthPage} />
+      <Route path="/auth/register" component={AuthPage} />
+      <Route path="/reset-password" component={ResetPasswordPage} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />
@@ -126,9 +133,11 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router />
-      {!isAdminRoute && <ServiceRecommendation />}
-      <Toaster />
+      <AuthProvider>
+        <Router />
+        {!isAdminRoute && <ServiceRecommendation />}
+        <Toaster />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
