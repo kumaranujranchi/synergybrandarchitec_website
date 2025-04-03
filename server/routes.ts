@@ -838,7 +838,9 @@ export function registerRoutes(app: Express): void {
   // User registration for client users
   app.post('/api/auth/register', async (req, res) => {
     try {
+      console.log('Register request body:', req.body);
       const userData = registerSchema.parse(req.body);
+      console.log('Validated user data:', userData);
       
       // Check if email already exists
       const existingUser = await storage.getUserByEmail(userData.email);
@@ -884,7 +886,8 @@ export function registerRoutes(app: Express): void {
         token
       });
     } catch (error) {
-      res.status(400).json({ message: 'Invalid registration data' });
+      console.error('Registration error:', error);
+      res.status(400).json({ message: 'Invalid registration data', error: String(error) });
     }
   });
   
