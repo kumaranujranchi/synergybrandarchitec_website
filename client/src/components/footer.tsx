@@ -200,6 +200,7 @@ export default function Footer() {
             <Link href="/privacy-policy" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Terms of Service</Link>
             <Link href="/refund-policy" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Refund Policy</Link>
+            <Link href="/admin" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Admin Login</Link>
           </div>
         </div>
       </div>

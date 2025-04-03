@@ -838,6 +838,11 @@ export function registerRoutes(app: Express): void {
   // User registration for client users
   app.post('/api/auth/register', async (req, res) => {
     try {
+      // Ensure website is empty string if undefined or null
+      if (req.body.website === undefined || req.body.website === null) {
+        req.body.website = "";
+      }
+      
       console.log('Register request body:', req.body);
       const userData = registerSchema.parse(req.body);
       console.log('Validated user data:', userData);
@@ -853,7 +858,7 @@ export function registerRoutes(app: Express): void {
         name: userData.name,
         email: userData.email,
         phone: userData.phone,
-        website: userData.website || "",
+        website: userData.website,
         password: userData.password,
         role: 'client' // Set default role to client
       });
