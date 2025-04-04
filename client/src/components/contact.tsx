@@ -189,6 +189,8 @@ export default function Contact() {
                             <SelectItem value="seo">SEO Optimization</SelectItem>
                             <SelectItem value="social_media">Social Media Marketing</SelectItem>
                             <SelectItem value="paid_ads">Paid Advertising</SelectItem>
+                            <SelectItem value="website_development">Website Development</SelectItem>
+                            <SelectItem value="website_startup_plan">Website Development under Startup Plan</SelectItem>
                             <SelectItem value="other">Other Services</SelectItem>
                           </SelectContent>
                         </Select>
