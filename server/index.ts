@@ -8,6 +8,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// WWW to non-WWW redirect middleware
+app.use((req, res, next) => {
+  const host = req.header('host');
+  if (host && host.startsWith('www.')) {
+    const newHost = host.replace(/^www\./, '');
+    return res.redirect(301, `${req.protocol}://${newHost}${req.url}`);
+  }
+  next();
+});
+
 // Set up logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
