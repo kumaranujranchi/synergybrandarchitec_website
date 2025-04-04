@@ -56,6 +56,17 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  // Check if the current page matches the link
+  const isActive = (link: any) => {
+    if (!link.isPage) return false;
+    
+    // Special case for home page
+    if (link.isHome && location === '/') return true;
+    
+    // For other pages
+    return location === link.href;
+  };
+  
   return (
     <header className={cn(
       "fixed w-full bg-white z-50 transition-shadow duration-300",
@@ -78,10 +89,13 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "transition-colors font-medium text-xs xl:text-sm whitespace-nowrap", 
+                  "transition-colors font-medium text-xs xl:text-sm whitespace-nowrap relative px-3 py-2 rounded", 
+                  // If it's the StartUp Plan, give it a special highlight style but don't make it look like it's active
                   link.highlight 
-                    ? "text-[#FF6B00] font-bold relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FF6B00] after:transform after:scale-x-100" 
-                    : "hover:text-[#FF6B00]"
+                    ? "text-[#FF6B00] hover:text-[#FF8533]" 
+                    : "hover:text-[#FF6B00] hover:bg-orange-50",
+                  // Active state for current page - consistent visual indicator for all menu items
+                  isActive(link) && "bg-orange-50 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-[60%] after:-translate-x-1/2 after:h-[2px] after:bg-[#FF6B00]"
                 )}
                 onClick={() => scrollToTop(true)}
               >
@@ -91,7 +105,7 @@ export default function Header() {
               <a 
                 key={link.href}
                 href={link.href}
-                className="hover:text-[#FF6B00] transition-colors font-medium text-xs xl:text-sm whitespace-nowrap"
+                className="hover:text-[#FF6B00] hover:bg-orange-50 transition-colors font-medium text-xs xl:text-sm whitespace-nowrap px-3 py-2 rounded"
                 onClick={(e) => handleNavigation(e, link)}
               >
                 {link.label}
@@ -152,10 +166,11 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "transition-colors py-2 border-b border-gray-100", 
+                  "transition-colors py-2 px-3 border-b border-gray-100 rounded flex items-center justify-between", 
                   link.highlight 
-                    ? "text-[#FF6B00] font-bold" 
-                    : "hover:text-[#FF6B00]"
+                    ? "text-[#FF6B00]" 
+                    : "hover:text-[#FF6B00] hover:bg-orange-50",
+                  isActive(link) && "bg-orange-50 text-[#FF6B00]"
                 )}
                 onClick={() => {
                   closeMenu();
@@ -163,12 +178,15 @@ export default function Header() {
                 }}
               >
                 {link.label}
+                {isActive(link) && (
+                  <div className="h-2 w-2 rounded-full bg-[#FF6B00]"></div>
+                )}
               </Link>
             ) : (
               <a
                 key={link.href}
                 href={link.href}
-                className="hover:text-[#FF6B00] transition-colors py-2 border-b border-gray-100"
+                className="hover:text-[#FF6B00] hover:bg-orange-50 transition-colors py-2 px-3 border-b border-gray-100 rounded"
                 onClick={(e) => {
                   closeMenu();
                   handleNavigation(e, link);
