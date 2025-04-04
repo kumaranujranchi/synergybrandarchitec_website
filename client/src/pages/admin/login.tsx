@@ -72,8 +72,8 @@ export default function AdminLogin() {
         description: `Welcome back, ${data.user?.name || 'Admin'}!`,
       });
       
-      // Redirect to dashboard
-      setLocation("/admin/dashboard");
+      // Redirect to dashboard using window.location to ensure full page reload
+      window.location.href = "/admin/dashboard";
     },
     onError: (error: any) => {
       toast({

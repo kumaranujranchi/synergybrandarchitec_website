@@ -3,25 +3,25 @@ import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 import { smoothScrollTo } from "@/lib/scrollHelper";
 
 const quickLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About Us" },
-  { href: "#services", label: "Services" },
+  { href: "/", label: "Home", isPage: true },
+  { href: "/about", label: "About Us", isPage: true },
+  { href: "/services", label: "Services", isPage: true },
   { href: "/pricing", label: "Pricing", isPage: true },
   { href: "/blog", label: "Blog", isPage: true },
-  { href: "#contact", label: "Contact" }
+  { href: "/contact", label: "Contact", isPage: true }
 ];
 
 const serviceLinks = [
-  { href: "#services", label: "Brand Strategy" },
-  { href: "#services", label: "Logo & Identity Design" },
-  { href: "#services", label: "SEO Optimization" },
-  { href: "#services", label: "Social Media Marketing" },
-  { href: "#services", label: "Paid Advertising" },
-  { href: "#services", label: "Content Marketing" }
+  { href: "/services", label: "Brand Strategy", isPage: true },
+  { href: "/services", label: "Logo & Identity Design", isPage: true },
+  { href: "/services", label: "SEO Optimization", isPage: true },
+  { href: "/services", label: "Social Media Marketing", isPage: true },
+  { href: "/services", label: "Paid Advertising", isPage: true },
+  { href: "/services", label: "Content Marketing", isPage: true }
 ];
 
 const resourceLinks = [
-  { href: "#case-studies", label: "Case Studies" },
+  { href: "/case-studies", label: "Case Studies", isPage: true },
   { href: "/case-study/wishluv-buildcon", label: "Wishluv Buildcon", isPage: true },
   { href: "/case-study/biryani-mahal", label: "Biryani Mahal", isPage: true },
   { href: "/case-study/the-helping-hand", label: "The Helping Hand", isPage: true },
@@ -119,16 +119,25 @@ export default function Footer() {
             <ul className="space-y-3 font-inter">
               {serviceLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.href} 
-                    className="text-gray-400 hover:text-[#FF6B00] transition-colors"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      smoothScrollTo(link.href);
-                    }}
-                  >
-                    {link.label}
-                  </a>
+                  {link.isPage ? (
+                    <Link 
+                      href={link.href}
+                      className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a 
+                      href={link.href} 
+                      className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        smoothScrollTo(link.href);
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
