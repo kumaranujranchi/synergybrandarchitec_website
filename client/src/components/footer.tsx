@@ -4,24 +4,24 @@ import { smoothScrollTo } from "@/lib/scrollHelper";
 
 const quickLinks = [
   { href: "/", label: "Home", isPage: true },
-  { href: "/about", label: "About Us", isPage: true },
-  { href: "/services", label: "Services", isPage: true },
+  { href: "/#about", label: "About Us", isPage: false },
+  { href: "/#services", label: "Services", isPage: false },
   { href: "/pricing", label: "Pricing", isPage: true },
   { href: "/blog", label: "Blog", isPage: true },
-  { href: "/contact", label: "Contact", isPage: true }
+  { href: "/#contact", label: "Contact", isPage: false }
 ];
 
 const serviceLinks = [
-  { href: "/services", label: "Brand Strategy", isPage: true },
-  { href: "/services", label: "Logo & Identity Design", isPage: true },
-  { href: "/services", label: "SEO Optimization", isPage: true },
-  { href: "/services", label: "Social Media Marketing", isPage: true },
-  { href: "/services", label: "Paid Advertising", isPage: true },
-  { href: "/services", label: "Content Marketing", isPage: true }
+  { href: "/#services", label: "Brand Strategy", isPage: false },
+  { href: "/#services", label: "Logo & Identity Design", isPage: false },
+  { href: "/#services", label: "SEO Optimization", isPage: false },
+  { href: "/#services", label: "Social Media Marketing", isPage: false },
+  { href: "/#services", label: "Paid Advertising", isPage: false },
+  { href: "/#services", label: "Content Marketing", isPage: false }
 ];
 
 const resourceLinks = [
-  { href: "/case-studies", label: "Case Studies", isPage: true },
+  { href: "/#case-studies", label: "Case Studies", isPage: false },
   { href: "/case-study/wishluv-buildcon", label: "Wishluv Buildcon", isPage: true },
   { href: "/case-study/biryani-mahal", label: "Biryani Mahal", isPage: true },
   { href: "/case-study/the-helping-hand", label: "The Helping Hand", isPage: true },

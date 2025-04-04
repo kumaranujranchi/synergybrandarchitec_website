@@ -10,6 +10,7 @@ import PricingCTA from "@/components/pricing-cta";
 import Blog from "@/components/blog";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
+import WhatsappButton from "@/components/whatsapp-button";
 
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       <Blog />
       <Contact />
       <Footer />
+      <WhatsappButton />
     </div>
   );
 }
