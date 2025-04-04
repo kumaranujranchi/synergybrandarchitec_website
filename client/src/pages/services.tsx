@@ -47,6 +47,10 @@ const brandSolutions: ServiceItem[] = [
   {
     title: "Brand Conformance (IPR)",
     description: "Your brand's uniqueness needs legal protection. We assist with Intellectual Property Rights (IPR) such as trademark filing, copyright registration, and legal consultations to ensure your brand assets are safe from infringement and misuse."
+  },
+  {
+    title: "Brand Voice & Messaging Framework",
+    description: "Your brand's tone and messaging need to be consistent across all channels. We develop comprehensive guidelines for how your brand speaks, the language it uses, and the key messages it communicates. This framework ensures that everyone from marketing to customer service represents your brand consistently."
   }
 ];
 
@@ -94,6 +98,10 @@ const digitalMarketingSolutions: ServiceItem[] = [
   {
     title: "Marketing Automation",
     description: "Save time and improve efficiency with automated workflows for lead generation, email sequences, sales follow-ups, and customer onboarding. We implement tools like HubSpot, Mailchimp, and others to streamline your marketing activities and improve ROI."
+  },
+  {
+    title: "Conversion Rate Optimization (CRO)",
+    description: "We transform your website visitors into paying customers by analyzing user behavior, identifying drop-off points, and optimizing landing pages, forms, and checkout processes. Through A/B testing and data-driven insights, we improve conversion rates and maximize your marketing ROI."
   }
 ];
 
@@ -124,7 +132,7 @@ export default function ServicesPage() {
     <div className="min-h-screen bg-white">
       <Header />
       
-      <section className="py-20 bg-gradient-to-r from-[#0066CC]/10 to-[#FF6B00]/10">
+      <section className="pt-32 pb-20 bg-gradient-to-r from-[#0066CC]/10 to-[#FF6B00]/10">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-4xl md:text-5xl font-poppins font-bold text-gray-900 mb-6">
