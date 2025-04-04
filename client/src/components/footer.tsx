@@ -4,11 +4,9 @@ import { smoothScrollTo } from "@/lib/scrollHelper";
 
 const quickLinks = [
   { href: "/", label: "Home", isPage: true },
-  { href: "/#about", label: "About Us", isPage: false },
   { href: "/services", label: "Services", isPage: true },
   { href: "/pricing", label: "Pricing", isPage: true },
-  { href: "/blog", label: "Blog", isPage: true },
-  { href: "/#contact", label: "Contact", isPage: false }
+  { href: "/blog", label: "Blog", isPage: true }
 ];
 
 const serviceLinks = [
