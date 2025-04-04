@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, User, ShoppingCart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { smoothScrollTo, scrollToTop } from "@/lib/scrollHelper";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useAuth } from "@/hooks/use-auth";
 
 const navLinks = [
   { href: "#home", label: "Home", isHome: true },
@@ -21,7 +20,6 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
   const [location] = useLocation();
-  const { user, logoutMutation } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,57 +111,6 @@ export default function Header() {
         
         {/* Buttons for Desktop */}
         <div className="hidden xl:flex items-center space-x-2 xl:space-x-4">
-          {/* Cart Button */}
-          <Link href="/addons/cart" onClick={() => scrollToTop(true)}>
-            <Button 
-              variant="ghost" 
-              className="text-[#333333] hover:text-[#FF6B00] p-2"
-              size="icon"
-            >
-              <ShoppingCart size={20} />
-            </Button>
-          </Link>
-          
-          {/* User Authentication */}
-          {user ? (
-            <div className="flex items-center space-x-2">
-              <Link href="/account" onClick={() => scrollToTop(true)}>
-                <Button 
-                  variant="outline" 
-                  className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all text-xs xl:text-sm py-1 px-3 h-auto"
-                >
-                  <User size={16} className="mr-1" /> My Account
-                </Button>
-              </Link>
-              <Button 
-                variant="ghost" 
-                className="text-[#333333] hover:text-[#FF6B00] text-xs xl:text-sm py-1 px-3 h-auto"
-                onClick={() => logoutMutation.mutate()}
-              >
-                Logout
-              </Button>
-            </div>
-          ) : (
-            <div className="flex items-center space-x-2">
-              <Link href="/auth/login" onClick={() => scrollToTop(true)}>
-                <Button 
-                  variant="outline" 
-                  className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all text-xs xl:text-sm py-1 px-3 h-auto"
-                >
-                  Login
-                </Button>
-              </Link>
-              <Link href="/auth/register" onClick={() => scrollToTop(true)}>
-                <Button 
-                  variant="ghost" 
-                  className="text-[#333333] hover:text-[#FF6B00] text-xs xl:text-sm py-1 px-3 h-auto"
-                >
-                  Register
-                </Button>
-              </Link>
-            </div>
-          )}
-          
           {/* CTA Button (Desktop only) */}
           <a 
             href="#contact" 
@@ -179,39 +126,6 @@ export default function Header() {
         
         {/* Tablet-only buttons - show in medium to large screens but hide in extra-large */}
         <div className="hidden md:flex xl:hidden items-center space-x-2">
-          {/* Cart Button for Tablet */}
-          <Link href="/addons/cart" onClick={() => scrollToTop(true)}>
-            <Button 
-              variant="ghost" 
-              className="text-[#333333] hover:text-[#FF6B00] p-1"
-              size="icon"
-            >
-              <ShoppingCart size={18} />
-            </Button>
-          </Link>
-          
-          {/* User Auth for Tablet */}
-          {user ? (
-            <Link href="/account" onClick={() => scrollToTop(true)}>
-              <Button 
-                variant="outline" 
-                className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all text-xs py-1 px-2 h-auto"
-                size="sm"
-              >
-                <User size={14} className="mr-1" /> Account
-              </Button>
-            </Link>
-          ) : (
-            <Link href="/auth/login" onClick={() => scrollToTop(true)}>
-              <Button 
-                variant="outline" 
-                className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all text-xs py-1 px-2 h-auto"
-                size="sm"
-              >
-                Login
-              </Button>
-            </Link>
-          )}
           <a 
             href="#contact" 
             onClick={(e) => handleNavigation(e, { href: '#contact' })}
@@ -264,66 +178,6 @@ export default function Header() {
               </a>
             )
           ))}
-          
-          {/* Cart Link */}
-          <Link
-            href="/addons/cart"
-            className="flex items-center py-2 border-b border-gray-100 hover:text-[#FF6B00]"
-            onClick={() => {
-              closeMenu();
-              scrollToTop(true);
-            }}
-          >
-            <ShoppingCart size={18} className="mr-2" /> Cart
-          </Link>
-          
-          {/* User Authentication */}
-          {user ? (
-            <>
-              <Link
-                href="/account"
-                className="flex items-center py-2 border-b border-gray-100 hover:text-[#FF6B00]"
-                onClick={() => {
-                  closeMenu();
-                  scrollToTop(true);
-                }}
-              >
-                <User size={18} className="mr-2" /> My Account
-              </Link>
-              <button 
-                className="flex items-center py-2 border-b border-gray-100 hover:text-[#FF6B00] w-full text-left"
-                onClick={() => {
-                  closeMenu();
-                  logoutMutation.mutate();
-                }}
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link
-                href="/auth/login"
-                className="flex items-center py-2 border-b border-gray-100 hover:text-[#FF6B00]"
-                onClick={() => {
-                  closeMenu();
-                  scrollToTop(true);
-                }}
-              >
-                Login
-              </Link>
-              <Link
-                href="/auth/register"
-                className="flex items-center py-2 border-b border-gray-100 hover:text-[#FF6B00]"
-                onClick={() => {
-                  closeMenu();
-                  scrollToTop(true);
-                }}
-              >
-                Register
-              </Link>
-            </>
-          )}
           
           <div className="flex pt-2">
             <a 

@@ -41,11 +41,7 @@ function Router() {
       <Route path="/pricing" component={Pricing} />
       <Route path="/startup-plan" component={StartupPlan} />
       <Route path="/addons" component={Addons} />
-      <Route path="/account" component={Account} />
-      <Route path="/auth" component={AuthPage} />
-      <Route path="/auth/login" component={AuthPage} />
-      <Route path="/auth/register" component={AuthPage} />
-      <Route path="/reset-password" component={ResetPasswordPage} />
+      {/* User routes removed */}
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />
