@@ -34,17 +34,19 @@ export default function StartupPlan() {
               confusing, expensive, or overwhelming. That's where our initiative comes in.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="/#contact" onClick={(e) => {
-                e.preventDefault();
-                window.location.href = "/#contact";
-              }}>
+              <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
-                  Book a Free Consultation
+                  Book Now - Pay ₹2,000 Advance
                 </Button>
               </a>
               <a href="#pricing">
                 <Button variant="outline" className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white font-medium py-3 px-8 rounded-full transition-all hover:shadow-md text-lg">
                   View Package Details
+                </Button>
+              </a>
+              <a href="/#contact">
+                <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-100 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md text-lg">
+                  Free Consultation
                 </Button>
               </a>
             </div>
@@ -357,17 +359,14 @@ export default function StartupPlan() {
                     </div>
                   </div>
                   
-                  <a href="/#contact" onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = "/#contact";
-                  }}>
+                  <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
                     <button className="w-full bg-[#FF6B00] hover:bg-[#FF8533] text-white py-3 px-4 rounded-lg font-medium transition-all">
-                      Get Started
+                      Book Now - Pay ₹2,000 Advance
                     </button>
                   </a>
                   
                   <p className="text-xs text-center mt-3 text-gray-500">
-                    No credit card required
+                    Secure online payment via Razorpay
                   </p>
                 </div>
               </div>
@@ -483,14 +482,18 @@ export default function StartupPlan() {
           <p className="text-lg mb-10">
             🎁 We'll even give you a free project roadmap if you choose to proceed later.
           </p>
-          <a href="/#contact" onClick={(e) => {
-            e.preventDefault();
-            window.location.href = "/#contact";
-          }}>
-            <Button className="bg-white text-[#FF6B00] hover:bg-gray-100 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
-              Book Your Free Session Now
-            </Button>
-          </a>
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-white text-[#FF6B00] hover:bg-gray-50 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
+                Book Now - Pay ₹2,000 Advance
+              </Button>
+            </a>
+            <a href="/#contact">
+              <Button className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
+                Book Your Free Session
+              </Button>
+            </a>
+          </div>
           <p className="mt-6 text-sm">Slots are limited</p>
         </div>
       </section>
