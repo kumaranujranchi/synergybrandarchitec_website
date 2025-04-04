@@ -23,7 +23,7 @@ export default function StartupPlan() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="text-[#FF6B00] font-poppins">🇮🇳 Ab India Banega Fully Digital</span>
+              <span className="text-[#FF6B00] font-poppins">Ab India Banega Fully Digital</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-4xl">
               A Special Initiative to Empower Small Businesses with Affordable, Professional Websites
@@ -394,15 +394,15 @@ export default function StartupPlan() {
                 We'll provide the complete project source files if you want to manage it yourself or with a developer.
               </p>
               <p className="text-lg italic">
-                ✅ On-demand option (Charged based on website size & structure)
+                <span className="inline-block w-5 h-5 text-center text-green-600 font-bold">+</span> On-demand option (Charged based on website size & structure)
               </p>
             </div>
             
             <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
               <h3 className="text-2xl font-semibold mb-4 text-[#FF6B00]">What's Not Included (But We'll Help You Set It Up)</h3>
               <p className="text-lg mb-4">
-                <span className="text-red-500">❌</span> Domain name (we'll guide you to buy the right one)<br />
-                <span className="text-red-500">❌</span> Hosting (we'll recommend best options suited for your needs)
+                <span className="inline-block w-5 h-5 text-center text-red-500 font-bold">-</span> Domain name (we'll guide you to buy the right one)<br />
+                <span className="inline-block w-5 h-5 text-center text-red-500 font-bold">-</span> Hosting (we'll recommend best options suited for your needs)
               </p>
               <p className="text-lg">
                 These costs are not included in the ₹15,000 package, but we'll assist you step-by-step in setting them up – no tech knowledge needed!
@@ -480,7 +480,7 @@ export default function StartupPlan() {
             no sales push, just guidance.
           </p>
           <p className="text-lg mb-10">
-            🎁 We'll even give you a free project roadmap if you choose to proceed later.
+            We'll even give you a free project roadmap if you choose to proceed later.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
@@ -507,7 +507,7 @@ export default function StartupPlan() {
             Take the leap, go online, and let the world discover the value you offer.
           </p>
           <p className="text-2xl font-bold text-[#FF6B00]">
-            📢 Ab India Banega Fully Digital – Join the Movement Today!
+            Ab India Banega Fully Digital – Join the Movement Today!
           </p>
         </div>
       </section>
