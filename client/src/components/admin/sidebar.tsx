@@ -8,9 +8,7 @@ import {
   LogOut, 
   ChevronRight,
   LayoutDashboard,
-  BookOpen,
-  ShoppingBag,
-  Package
+  BookOpen
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -159,27 +157,7 @@ export default function AdminSidebar() {
             </Button>
           )}
           
-          {hasPermission(['admin', 'manager']) && (
-            <>
-              <Button
-                variant="ghost"
-                className={menuItemClass('/admin/addons')}
-                onClick={() => setLocation('/admin/addons')}
-              >
-                <Package className="h-5 w-5" />
-                {!isCollapsed && <span>Addon Products</span>}
-              </Button>
-
-              <Button
-                variant="ghost"
-                className={menuItemClass('/admin/addon-orders')}
-                onClick={() => setLocation('/admin/addon-orders')}
-              >
-                <ShoppingBag className="h-5 w-5" />
-                {!isCollapsed && <span>Addon Orders</span>}
-              </Button>
-            </>
-          )}
+          {/* Addon Products and Addon Orders options removed as requested */}
 
           {hasPermission(['admin']) && (
             <Button
