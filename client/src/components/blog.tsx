@@ -1,24 +1,25 @@
 import { motion } from "framer-motion";
 import { Calendar, Folder } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 const blogPosts = [
   {
-    image: "https://i.imgur.com/2CRAPx2.jpg",
+    image: "https://i.imgur.com/2CRAPx2m.jpg", // Using medium thumbnail (m) for faster loading
     date: "May 15, 2023",
     category: "Digital Marketing",
     title: "5 Digital Marketing Trends to Watch in 2023",
     description: "Stay ahead of the competition with these emerging digital marketing strategies that are reshaping the industry."
   },
   {
-    image: "https://i.imgur.com/0FRzklN.jpg",
+    image: "https://i.imgur.com/0FRzklNm.jpg", // Using medium thumbnail (m) for faster loading
     date: "April 28, 2023",
     category: "SEO",
     title: "The Ultimate Guide to Local SEO for Patna Businesses",
     description: "Learn how to optimize your business for local search and attract more customers from your area."
   },
   {
-    image: "https://i.imgur.com/3N2cv7I.jpg",
+    image: "https://i.imgur.com/3N2cv7Im.jpg", // Using medium thumbnail (m) for faster loading
     date: "April 10, 2023",
     category: "Brand Building",
     title: "How to Build a Brand That Resonates With Your Audience",
@@ -27,6 +28,15 @@ const blogPosts = [
 ];
 
 export default function Blog() {
+  // Preload images when component mounts
+  useEffect(() => {
+    // Preload all blog post images
+    blogPosts.forEach(post => {
+      const img = new Image();
+      img.src = post.image;
+    });
+  }, []);
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -76,6 +86,8 @@ export default function Blog() {
               <img 
                 src={post.image} 
                 alt={post.title} 
+                loading="eager"
+                decoding="async"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">

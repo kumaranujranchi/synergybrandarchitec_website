@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
+// Preload popup image
+const POPUP_IMAGE_URL = "https://i.imgur.com/vLSb51Ym.jpg";
+const preloadImage = new Image();
+preloadImage.src = POPUP_IMAGE_URL;
+
 interface PopupProps {
   delay?: number; // Delay in milliseconds before showing popup
 }
@@ -46,8 +51,10 @@ export default function Popup({ delay = 10000 }: PopupProps) {
         
         <div className="p-0">
           <img 
-            src="https://i.imgur.com/vLSb51Y.jpg" 
+            src={POPUP_IMAGE_URL}
             alt="Special Offer" 
+            loading="eager"
+            decoding="async"
             className="w-full h-auto"
           />
         </div>
