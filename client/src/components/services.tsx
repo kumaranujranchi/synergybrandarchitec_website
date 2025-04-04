@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Lightbulb, PaintBucket, Megaphone, Search, FileBarChart, BarChart, Globe, Mail, Video, Users, RefreshCw, ShieldCheck } from "lucide-react";
+import { Lightbulb, PaintBucket, Megaphone, Search, FileBarChart, BarChart, Globe, Mail, Video, Users, RefreshCw, ShieldCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { smoothScrollTo } from "@/lib/scrollHelper";
+import { Link } from "wouter";
 
 const brandBuildingServices = [
   {
@@ -236,17 +237,24 @@ export default function Services() {
           <p className="text-gray-600 max-w-2xl mx-auto mb-5 sm:mb-6 font-inter text-sm sm:text-base">
             Whether you need a complete brand makeover or targeted digital marketing campaigns, we're here to help your business thrive in today's competitive landscape.
           </p>
-          <a 
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              smoothScrollTo('#contact');
-            }}
-          >
-            <Button className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-2 sm:py-3 px-6 sm:px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 h-auto text-sm sm:text-base">
-              Get Free Consultation
-            </Button>
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a 
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo('#contact');
+              }}
+            >
+              <Button className="bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-medium py-2 sm:py-3 px-6 sm:px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 h-auto text-sm sm:text-base">
+                Get Free Consultation
+              </Button>
+            </a>
+            <Link href="/services">
+              <Button variant="outline" className="border-[#0066CC] text-[#0066CC] font-medium py-2 sm:py-3 px-6 sm:px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 h-auto text-sm sm:text-base flex items-center">
+                View All Services <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

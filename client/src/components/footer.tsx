@@ -5,19 +5,19 @@ import { smoothScrollTo } from "@/lib/scrollHelper";
 const quickLinks = [
   { href: "/", label: "Home", isPage: true },
   { href: "/#about", label: "About Us", isPage: false },
-  { href: "/#services", label: "Services", isPage: false },
+  { href: "/services", label: "Services", isPage: true },
   { href: "/pricing", label: "Pricing", isPage: true },
   { href: "/blog", label: "Blog", isPage: true },
   { href: "/#contact", label: "Contact", isPage: false }
 ];
 
 const serviceLinks = [
-  { href: "/#services", label: "Brand Strategy", isPage: false },
-  { href: "/#services", label: "Logo & Identity Design", isPage: false },
-  { href: "/#services", label: "SEO Optimization", isPage: false },
-  { href: "/#services", label: "Social Media Marketing", isPage: false },
-  { href: "/#services", label: "Paid Advertising", isPage: false },
-  { href: "/#services", label: "Content Marketing", isPage: false }
+  { href: "/services?tab=brand", label: "Brand Strategy", isPage: true },
+  { href: "/services?tab=brand", label: "Logo & Identity Design", isPage: true },
+  { href: "/services?tab=digital", label: "SEO Optimization", isPage: true },
+  { href: "/services?tab=digital", label: "Social Media Marketing", isPage: true },
+  { href: "/services?tab=digital", label: "Paid Advertising", isPage: true },
+  { href: "/services?tab=digital", label: "Content Marketing", isPage: true }
 ];
 
 const resourceLinks = [
