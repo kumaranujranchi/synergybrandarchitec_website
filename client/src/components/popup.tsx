@@ -46,7 +46,7 @@ export default function Popup({ delay = 10000 }: PopupProps) {
         
         <div className="p-0">
           <img 
-            src="https://drive.google.com/uc?export=download&id=1qvquTdSRQl-02E7QO1lMAaKdhm1TH3yG" 
+            src="https://i.imgur.com/vLSb51Y.jpg" 
             alt="Special Offer" 
             className="w-full h-auto"
           />
