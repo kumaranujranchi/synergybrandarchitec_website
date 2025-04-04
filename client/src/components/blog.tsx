@@ -4,21 +4,21 @@ import { Button } from "@/components/ui/button";
 
 const blogPosts = [
   {
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    image: "https://i.imgur.com/2CRAPx2.jpg",
     date: "May 15, 2023",
     category: "Digital Marketing",
     title: "5 Digital Marketing Trends to Watch in 2023",
     description: "Stay ahead of the competition with these emerging digital marketing strategies that are reshaping the industry."
   },
   {
-    image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d",
+    image: "https://i.imgur.com/0FRzklN.jpg",
     date: "April 28, 2023",
     category: "SEO",
     title: "The Ultimate Guide to Local SEO for Patna Businesses",
     description: "Learn how to optimize your business for local search and attract more customers from your area."
   },
   {
-    image: "https://images.unsplash.com/photo-1599745072267-5682fcc1a3eb",
+    image: "https://i.imgur.com/3N2cv7I.jpg",
     date: "April 10, 2023",
     category: "Brand Building",
     title: "How to Build a Brand That Resonates With Your Audience",
