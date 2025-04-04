@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { smoothScrollTo } from "@/lib/scrollHelper";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import WhatsappButton from "@/components/whatsapp-button";
 
 const FeatureItem = ({ text }: { text: string }) => (
   <div className="flex items-start gap-2 mb-4">
@@ -511,6 +512,7 @@ export default function StartupPlan() {
       </main>
       {/* Add the Footer component */}
       <Footer />
+      <WhatsappButton />
     </div>
   );
 }

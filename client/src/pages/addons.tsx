@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import WhatsappButton from "@/components/whatsapp-button";
 import {
   Card,
   CardContent,
@@ -192,6 +193,7 @@ export default function AddonsPage() {
       </Dialog>
 
       <Footer />
+      <WhatsappButton />
     </div>
   );
 }

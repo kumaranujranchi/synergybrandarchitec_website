@@ -270,8 +270,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium text-[#333333] mb-1">Email Us</h4>
                   <p className="text-gray-600">
-                    info@synergybrandarchitect.in<br />
-                    support@synergybrandarchitect.in
+                    hello@synergybrandarchitect.in
                   </p>
                 </div>
               </div>
