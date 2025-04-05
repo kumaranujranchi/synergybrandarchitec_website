@@ -185,6 +185,7 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts)
   .omit({ id: true, slug: true, authorId: true, createdAt: true, updatedAt: true, publishedAt: true })
   .extend({
     slug: z.string().optional(),
+    publishedAt: z.date().optional(),
   });
 
 export const updateBlogPostSchema = createInsertSchema(blogPosts)

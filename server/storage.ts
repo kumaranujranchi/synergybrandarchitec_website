@@ -1405,9 +1405,13 @@ export class DatabaseStorage implements IStorage {
   sessionStore: session.Store;
 
   constructor() {
+    if (!pool) {
+      throw new Error('Database pool is not initialized');
+    }
+
     const PostgresSessionStore = connectPg(session);
     this.sessionStore = new PostgresSessionStore({
-      pool,
+      pool: pool as Pool,
       tableName: 'session',
       createTableIfMissing: true,
     });
@@ -2526,4 +2530,5 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-export const storage = new DatabaseStorage();
+// Export the appropriate storage implementation based on database availability
+export const storage = db ? new DatabaseStorage() : new MemStorage();
