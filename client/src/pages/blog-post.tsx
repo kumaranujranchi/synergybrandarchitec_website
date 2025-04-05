@@ -149,7 +149,7 @@ export default function BlogPostPage() {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      <main className="flex-grow bg-slate-50">
+      <main className="flex-grow bg-slate-50 pt-8 md:pt-16">
         <article>
           {/* Hero section with featured image */}
           <div className="w-full h-[40vh] md:h-[60vh] relative">

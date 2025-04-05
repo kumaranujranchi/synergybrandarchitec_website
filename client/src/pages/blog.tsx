@@ -87,7 +87,7 @@ export default function Blog() {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      <main className="flex-grow bg-slate-50">
+      <main className="flex-grow bg-slate-50 pt-8 md:pt-16">
         {/* Hero Section with Featured Content Slider */}
         {featuredPosts.length > 0 && (
           <section className="relative bg-gray-100 overflow-hidden">
