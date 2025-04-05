@@ -15,10 +15,10 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-            <span className="text-[#333333]">
-              Build Your Brand, 
-            </span>
-            <span className="text-[#FF6B00]">
+            <div className="text-[#333333]">
+              Build Your Brand
+            </div>
+            <div className="text-[#FF6B00] h-16 md:h-20 lg:h-24 flex items-center">
               <TypingAnimation
                 phrases={[
                   "Grow Your Business",
@@ -26,18 +26,13 @@ export default function Hero() {
                   "Create Bigger Growth",
                   "Expand Your Reach",
                   "Drive Success",
-                  "Accelerate Your Growth",
-                  "Shape Your Brand, Scale Your Business",
-                  "Craft a Strong Brand, Create Bigger Growth",
-                  "Empower Your Brand, Expand Your Reach",
-                  "Build Identity, Drive Success",
-                  "Strengthen Your Brand, Accelerate Your Growth"
+                  "Accelerate Your Growth"
                 ]}
                 typingSpeed={80}
                 deletingSpeed={40}
                 delayAfterPhrase={1500}
               />
-            </span>
+            </div>
           </h1>
           <p className="text-lg md:text-xl mb-8 text-gray-600 font-inter">
             Your One-Stop Digital Marketing Partner in Patna for strategic brand building and growth-focused marketing solutions.

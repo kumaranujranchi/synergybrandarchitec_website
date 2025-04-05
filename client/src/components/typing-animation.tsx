@@ -58,9 +58,9 @@ export default function TypingAnimation({
   }, [currentText, isTyping, currentPhrase, currentPhraseIndex, phrases.length, typingSpeed, deletingSpeed, delayAfterPhrase]);
   
   return (
-    <div className={`inline-flex ${className}`}>
+    <div className={`inline-flex items-center ${className}`}>
       <span>{currentText}</span>
-      <span className="animate-blink ml-1">|</span>
+      <span className="animate-blink ml-1 h-[90%] w-[2px] bg-[#FF6B00] inline-block"></span>
     </div>
   );
 }
