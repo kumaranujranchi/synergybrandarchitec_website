@@ -168,23 +168,26 @@ export default function BlogPostPage() {
             <div className="absolute inset-0 z-20 flex items-center">
               <div className="container mx-auto px-4">
                 <div className="max-w-3xl text-white">
-                  {/* Mobile-friendly metadata section - wraps on smaller screens */}
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4">
-                    {post.category && (
-                      <Badge className="bg-[#FF6B00]">{post.category}</Badge>
-                    )}
-                    <span className="text-white/80 text-sm flex items-center">
-                      <CalendarIcon className="h-3 w-3 mr-1" />
-                      {formatDate(post.publishedAt)}
-                    </span>
-                    <span className="text-white/80 text-sm flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
-                      {getReadingTime(post.content)}
-                    </span>
-                    <span className="text-white/80 text-sm flex items-center">
-                      <Eye className="h-3 w-3 mr-1" />
-                      {Math.floor(Math.random() * 500) + 100} Views
-                    </span>
+                  {/* Added top spacing for mobile devices */}
+                  <div className="mt-16 md:mt-0">
+                    {/* Mobile-friendly metadata section - wraps on smaller screens */}
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4">
+                      {post.category && (
+                        <Badge className="bg-[#FF6B00]">{post.category}</Badge>
+                      )}
+                      <span className="text-white/80 text-sm flex items-center">
+                        <CalendarIcon className="h-3 w-3 mr-1" />
+                        {formatDate(post.publishedAt)}
+                      </span>
+                      <span className="text-white/80 text-sm flex items-center">
+                        <Clock className="h-3 w-3 mr-1" />
+                        {getReadingTime(post.content)}
+                      </span>
+                      <span className="text-white/80 text-sm flex items-center">
+                        <Eye className="h-3 w-3 mr-1" />
+                        {Math.floor(Math.random() * 500) + 100} Views
+                      </span>
+                    </div>
                   </div>
                   
                   <h1 className="text-3xl md:text-5xl font-bold mb-6">{post.title}</h1>

@@ -107,19 +107,22 @@ export default function Blog() {
               
               <div className="container mx-auto px-4 relative z-20 h-full flex items-center">
                 <div className="max-w-3xl text-white">
-                  {/* Mobile-friendly metadata with flex-wrap */}
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4">
-                    {featuredPosts[0]?.category && (
-                      <Badge className="bg-[#FF6B00]">{featuredPosts[0].category}</Badge>
-                    )}
-                    <span className="text-white/80 text-sm flex items-center">
-                      <CalendarIcon className="h-3 w-3 mr-1" />
-                      {formatDate(featuredPosts[0]?.publishedAt)}
-                    </span>
-                    <span className="text-white/80 text-sm flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
-                      {featuredPosts[0] ? getReadingTime(featuredPosts[0].content) : ''}
-                    </span>
+                  {/* Added top spacing for mobile devices */}
+                  <div className="mt-16 md:mt-0">
+                    {/* Mobile-friendly metadata with flex-wrap */}
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4">
+                      {featuredPosts[0]?.category && (
+                        <Badge className="bg-[#FF6B00]">{featuredPosts[0].category}</Badge>
+                      )}
+                      <span className="text-white/80 text-sm flex items-center">
+                        <CalendarIcon className="h-3 w-3 mr-1" />
+                        {formatDate(featuredPosts[0]?.publishedAt)}
+                      </span>
+                      <span className="text-white/80 text-sm flex items-center">
+                        <Clock className="h-3 w-3 mr-1" />
+                        {featuredPosts[0] ? getReadingTime(featuredPosts[0].content) : ''}
+                      </span>
+                    </div>
                   </div>
                   
                   <h1 className="text-3xl md:text-5xl font-bold mb-6">
