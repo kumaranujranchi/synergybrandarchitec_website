@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { smoothScrollTo } from "@/lib/scrollHelper";
+import TypingAnimation from "./typing-animation";
 
 export default function Hero() {
   return (
@@ -13,8 +14,30 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 text-[#333333]">
-            Build Your Brand, <span className="text-[#FF6B00]">Grow Your Business</span>
+          <h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+            <span className="text-[#333333]">
+              Build Your Brand, 
+            </span>
+            <span className="text-[#FF6B00]">
+              <TypingAnimation
+                phrases={[
+                  "Grow Your Business",
+                  "Scale Your Business",
+                  "Create Bigger Growth",
+                  "Expand Your Reach",
+                  "Drive Success",
+                  "Accelerate Your Growth",
+                  "Shape Your Brand, Scale Your Business",
+                  "Craft a Strong Brand, Create Bigger Growth",
+                  "Empower Your Brand, Expand Your Reach",
+                  "Build Identity, Drive Success",
+                  "Strengthen Your Brand, Accelerate Your Growth"
+                ]}
+                typingSpeed={80}
+                deletingSpeed={40}
+                delayAfterPhrase={1500}
+              />
+            </span>
           </h1>
           <p className="text-lg md:text-xl mb-8 text-gray-600 font-inter">
             Your One-Stop Digital Marketing Partner in Patna for strategic brand building and growth-focused marketing solutions.
