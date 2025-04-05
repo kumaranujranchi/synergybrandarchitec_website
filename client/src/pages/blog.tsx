@@ -107,7 +107,8 @@ export default function Blog() {
               
               <div className="container mx-auto px-4 relative z-20 h-full flex items-center">
                 <div className="max-w-3xl text-white">
-                  <div className="flex items-center gap-2 mb-4">
+                  {/* Mobile-friendly metadata with flex-wrap */}
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4">
                     {featuredPosts[0]?.category && (
                       <Badge className="bg-[#FF6B00]">{featuredPosts[0].category}</Badge>
                     )}
@@ -228,7 +229,8 @@ export default function Blog() {
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-90"></div>
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <div className="flex items-center gap-3 mb-2">
+                        {/* Mobile-friendly metadata with flex-wrap */}
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-2">
                           {post.category && (
                             <Badge className="bg-[#FF6B00] text-white">{post.category}</Badge>
                           )}
@@ -306,13 +308,14 @@ export default function Blog() {
                       </div>
                     )}
                     <CardHeader className="pb-2">
-                      <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                      {/* Mobile-friendly metadata with flex-wrap */}
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-gray-600 mb-2">
                         <span className="flex items-center">
                           <CalendarIcon className="h-3 w-3 mr-1" />
                           {formatDate(post.publishedAt)}
                         </span>
                         {post.category && (
-                          <Badge variant="outline" className="ml-2">{post.category}</Badge>
+                          <Badge variant="outline">{post.category}</Badge>
                         )}
                       </div>
                       <CardTitle className="text-xl hover:text-[#FF6B00] transition-colors">

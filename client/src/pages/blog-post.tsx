@@ -168,7 +168,8 @@ export default function BlogPostPage() {
             <div className="absolute inset-0 z-20 flex items-center">
               <div className="container mx-auto px-4">
                 <div className="max-w-3xl text-white">
-                  <div className="flex items-center gap-3 mb-4">
+                  {/* Mobile-friendly metadata section - wraps on smaller screens */}
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4">
                     {post.category && (
                       <Badge className="bg-[#FF6B00]">{post.category}</Badge>
                     )}
