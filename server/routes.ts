@@ -29,14 +29,18 @@ export function registerRoutes(app: Express): void {
   
   // URL Redirects for SEO
   app.use((req, res, next) => {
-    const host = req.hostname;
+    // Get host from different possible headers
+    const host = req.header('host') || req.header('x-forwarded-host') || req.hostname;
     const path = req.path;
-    const protocol = req.protocol;
+    // Get protocol considering potential proxies
+    const protocol = req.header('x-forwarded-proto') || req.protocol;
     
-    // Redirect www to non-www
-    if (host.startsWith('www.')) {
-      const newHost = host.replace(/^www\./, '');
-      return res.redirect(301, `${protocol}://${newHost}${req.originalUrl}`);
+    // Redirect www to non-www - case insensitive check
+    if (host && host.match(/^www\./i)) {
+      const newHost = host.replace(/^www\./i, '');
+      const redirectUrl = `${protocol}://${newHost}${req.originalUrl || req.url}`;
+      console.log(`Redirecting from www to non-www: ${redirectUrl}`);
+      return res.redirect(301, redirectUrl);
     }
     
     // Redirect old URLs to new paths

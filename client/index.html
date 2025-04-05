@@ -10,6 +10,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- WWW to non-WWW redirect script -->
+    <script>
+      (function() {
+        // Check if we're on the www subdomain
+        if (window.location.hostname.startsWith('www.')) {
+          // Create the non-www URL
+          var nonWwwUrl = window.location.protocol + '//' + 
+                          window.location.hostname.replace(/^www\./, '') + 
+                          window.location.pathname + 
+                          window.location.search + 
+                          window.location.hash;
+          
+          // Redirect to the non-www URL
+          window.location.replace(nonWwwUrl);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

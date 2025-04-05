@@ -10,10 +10,16 @@ app.use(express.urlencoded({ extended: false }));
 
 // WWW to non-WWW redirect middleware
 app.use((req, res, next) => {
-  const host = req.header('host');
-  if (host && host.startsWith('www.')) {
-    const newHost = host.replace(/^www\./, '');
-    return res.redirect(301, `${req.protocol}://${newHost}${req.url}`);
+  // Get host from different possible headers
+  const host = req.header('host') || req.header('x-forwarded-host');
+  
+  if (host && host.match(/^www\./i)) {
+    const newHost = host.replace(/^www\./i, '');
+    // Handle protocol properly considering potential proxies
+    const protocol = req.header('x-forwarded-proto') || req.protocol;
+    const fullUrl = `${protocol}://${newHost}${req.originalUrl || req.url}`;
+    console.log(`Redirecting from www to non-www: ${fullUrl}`);
+    return res.redirect(301, fullUrl);
   }
   next();
 });
