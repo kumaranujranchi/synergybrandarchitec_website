@@ -200,9 +200,27 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0 font-inter">
-            &copy; {new Date().getFullYear()} Synergy Brand Architect. All rights reserved.
-          </p>
+          <div className="flex flex-col md:flex-row items-center">
+            <p className="text-gray-400 text-sm mb-4 md:mb-0 font-inter mr-4">
+              &copy; {new Date().getFullYear()} Synergy Brand Architect. All rights reserved.
+            </p>
+            
+            {/* Fiverr Seller Widget */}
+            <div className="mb-4 md:mb-0">
+              <div itemScope itemType='http://schema.org/Person' className='fiverr-seller-widget'>
+                <a itemProp='url' href='https://www.fiverr.com/anujkumar402' rel="nofollow" target="_blank">
+                  <div className='fiverr-seller-content' id='fiverr-seller-widget-content-538d09df-81e1-46d3-950c-6ff17462116a' itemProp='contentURL' style={{display: 'none'}}></div>
+                  <div id='fiverr-widget-seller-data' style={{display: 'none'}}>
+                    <div itemProp='name'>anujkumar402</div>
+                    <div itemScope itemType='http://schema.org/Organization'><span itemProp='name'>Fiverr</span></div>
+                    <div itemProp='jobtitle'>Seller</div>
+                    <div itemProp='description'>I am a Performance Marketer with 10 years of experience and expertise in Server-Side Tracking and Data-Driven Marketing. I specialize in helping businesses improve their marketing campaigns with a strong focus on maximizing ROI through precise data analysis and optimization. My strategies are designed to drive quality traffic, generate high-converting leads, and boost sales effectively. Let's collaborate to take your business to new heights.</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          
           <div className="flex space-x-6 font-inter">
             <Link href="/privacy-policy" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Terms of Service</Link>
