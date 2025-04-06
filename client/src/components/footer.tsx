@@ -207,17 +207,14 @@ export default function Footer() {
             
             {/* Fiverr Seller Widget */}
             <div className="mb-4 md:mb-0">
-              <div itemScope itemType='http://schema.org/Person' className='fiverr-seller-widget'>
-                <a itemProp='url' href='https://www.fiverr.com/anujkumar402' rel="nofollow" target="_blank">
-                  <div className='fiverr-seller-content' id='fiverr-seller-widget-content-538d09df-81e1-46d3-950c-6ff17462116a' itemProp='contentURL' style={{display: 'none'}}></div>
-                  <div id='fiverr-widget-seller-data' style={{display: 'none'}}>
-                    <div itemProp='name'>anujkumar402</div>
-                    <div itemScope itemType='http://schema.org/Organization'><span itemProp='name'>Fiverr</span></div>
-                    <div itemProp='jobtitle'>Seller</div>
-                    <div itemProp='description'>I am a Performance Marketer with 10 years of experience and expertise in Server-Side Tracking and Data-Driven Marketing. I specialize in helping businesses improve their marketing campaigns with a strong focus on maximizing ROI through precise data analysis and optimization. My strategies are designed to drive quality traffic, generate high-converting leads, and boost sales effectively. Let's collaborate to take your business to new heights.</div>
-                  </div>
-                </a>
-              </div>
+              <a 
+                href="https://www.fiverr.com/anujkumar402" 
+                target="_blank" 
+                rel="nofollow noopener noreferrer"
+                className="text-gray-400 hover:text-[#FF6B00] transition-colors"
+              >
+                Designed by anujkumar402 on Fiverr
+              </a>
             </div>
           </div>
           
