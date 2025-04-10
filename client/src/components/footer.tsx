@@ -1,6 +1,7 @@
 import { Link } from "wouter";
-import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MessageCircle, FileText } from "lucide-react";
 import { smoothScrollTo } from "@/lib/scrollHelper";
+import VisitorCounter from "./visitor-counter";
 
 const quickLinks = [
   { href: "/", label: "Home", isPage: true },

@@ -22,6 +22,7 @@ import { generateToken, authenticateJWT, authorize, requirePermission } from './
 import cookieParser from 'cookie-parser';
 import { sendPasswordResetEmail, sendOTPEmail } from './utils/mailer';
 import { z } from 'zod';
+import { incrementVisitorCount, getVisitorCount } from './visitorCount';
 
 export function registerRoutes(app: Express): void {
   // Middleware
@@ -63,6 +64,12 @@ export function registerRoutes(app: Express): void {
   });
   
   // Public API routes
+  // Visitor counter endpoint
+  app.get('/api/visitor-count', (req, res) => {
+    const count = incrementVisitorCount();
+    res.status(200).json({ count });
+  });
+  
   app.post('/api/contact', async (req, res) => {
     try {
       const validatedData = contactSchema.parse(req.body);
