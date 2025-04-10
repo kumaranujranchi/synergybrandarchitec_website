@@ -199,6 +199,31 @@ export default function Footer() {
           </div>
         </div>
         
+        {/* Business Partners Section */}
+        <div className="pb-8 flex flex-col items-center">
+          <h4 className="font-poppins font-semibold text-xl mb-5 text-center">
+            Trusted Business Partners
+          </h4>
+          <div className="flex flex-wrap justify-center gap-6 items-center">
+            <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
+              <img 
+                src="https://imagizer.imageshack.com/img924/9071/tzLDvZ.png" 
+                alt="Meta Business Partner" 
+                className="h-12" 
+                loading="lazy"
+              />
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
+              <img 
+                src="https://imagizer.imageshack.com/img922/3699/VXhcrd.png" 
+                alt="Google Business Partner" 
+                className="h-12" 
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+          
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0 font-inter mr-4">
