@@ -14,6 +14,7 @@ import StartupPlan from "@/pages/startup-plan-revised";
 import Addons from "@/pages/addons";
 import Services from "@/pages/services";
 import Resources from "@/pages/resources";
+import Sitemap from "@/pages/sitemap";
 import Account from "@/pages/account";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
@@ -52,6 +53,9 @@ function Router() {
       
       {/* Resources Route */}
       <Route path="/resources" component={Resources} />
+      
+      {/* Sitemap Route */}
+      <Route path="/sitemap" component={Sitemap} />
       
       {/* Case Study Routes */}
       <Route path="/case-studies/wishluv-buildcon" component={WishluvBuildconCaseStudy} />
