@@ -109,3 +109,91 @@
 .blog-content code {
   @apply bg-gray-100 p-1 rounded text-sm;
 }
+
+/* Image animation styles for Startup Plan page */
+.startup-image-wrapper {
+  @apply overflow-hidden rounded-lg shadow-lg relative transform transition-all duration-500;
+}
+
+.startup-image {
+  @apply w-full h-full object-cover transition-all duration-700;
+}
+
+.startup-image-wrapper:hover .startup-image {
+  @apply scale-105;
+}
+
+.startup-image-caption {
+  @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white transform transition-all duration-500 translate-y-full opacity-0;
+}
+
+.startup-image-wrapper:hover .startup-image-caption {
+  @apply translate-y-0 opacity-100;
+}
+
+/* Entrance animations */
+.animate-in {
+  @apply transition-all duration-700 ease-out;
+}
+
+/* Initial states before animation */
+.fade-in {
+  @apply opacity-0;
+}
+
+.fade-in.animate-in {
+  @apply opacity-100;
+}
+
+.slide-up {
+  @apply opacity-0 translate-y-16;
+}
+
+.slide-up.animate-in {
+  @apply opacity-100 translate-y-0;
+}
+
+.slide-right {
+  @apply opacity-0 -translate-x-16;
+}
+
+.slide-right.animate-in {
+  @apply opacity-100 translate-x-0;
+}
+
+.slide-left {
+  @apply opacity-0 translate-x-16;
+}
+
+.slide-left.animate-in {
+  @apply opacity-100 translate-x-0;
+}
+
+.scale-in {
+  @apply opacity-0 scale-95;
+}
+
+.scale-in.animate-in {
+  @apply opacity-100 scale-100;
+}
+
+/* Animation delay utilities */
+.anim-delay-100 {
+  transition-delay: 100ms;
+}
+
+.anim-delay-200 {
+  transition-delay: 200ms;
+}
+
+.anim-delay-300 {
+  transition-delay: 300ms;
+}
+
+.anim-delay-400 {
+  transition-delay: 400ms;
+}
+
+.anim-delay-500 {
+  transition-delay: 500ms;
+}

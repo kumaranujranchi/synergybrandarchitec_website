@@ -3,8 +3,49 @@ import Footer from "@/components/footer";
 import WhatsappButton from "@/components/whatsapp-button";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, ChevronRight, ArrowRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export default function StartupPlan() {
+  // Function to add animation class when element is in viewport
+  const useIntersectionObserver = (elementRef: React.RefObject<HTMLElement>, threshold = 0.1) => {
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-in');
+            }
+          });
+        },
+        { threshold }
+      );
+
+      const element = elementRef.current;
+      if (element) {
+        observer.observe(element);
+      }
+
+      return () => {
+        if (element) {
+          observer.unobserve(element);
+        }
+      };
+    }, [elementRef, threshold]);
+  };
+
+  // Create refs for animated elements
+  const image1Ref = useRef<HTMLDivElement>(null);
+  const image2Ref = useRef<HTMLDivElement>(null);
+  const image3Ref = useRef<HTMLDivElement>(null);
+  const image4Ref = useRef<HTMLDivElement>(null);
+  const image5Ref = useRef<HTMLDivElement>(null);
+
+  // Apply the observer to each ref
+  useIntersectionObserver(image1Ref);
+  useIntersectionObserver(image2Ref);
+  useIntersectionObserver(image3Ref);
+  useIntersectionObserver(image4Ref);
+  useIntersectionObserver(image5Ref);
   return (
     <div className="flex flex-col min-h-screen font-inter text-[#333333] bg-gray-50">
       <Header />
@@ -153,6 +194,63 @@ export default function StartupPlan() {
                   <p className="text-3xl font-bold text-[#FF6B00] mb-2">₹15,000</p>
                   <p className="text-green-600 text-sm">Affordable for growing businesses</p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Image Showcase */}
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center text-center mb-10">
+            <h2 className="text-3xl font-bold mb-6 font-poppins">Our Work Showcase</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-[#FF6B00] to-[#0066CC] mb-6"></div>
+            <p className="text-lg text-gray-700 max-w-3xl">
+              Take a look at some of our recent website projects for small businesses.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Image 1 */}
+            <div ref={image1Ref} className="startup-image-wrapper fade-in">
+              <img 
+                src="https://imagizer.imageshack.com/img923/1839/irjZDM.jpg" 
+                alt="Professional website design for a local business" 
+                className="startup-image"
+                loading="lazy"
+              />
+              <div className="startup-image-caption">
+                <h3 className="font-semibold mb-1">Professional Website Design</h3>
+                <p className="text-sm opacity-90">Modern, clean layout for small businesses</p>
+              </div>
+            </div>
+            
+            {/* Image 2 */}
+            <div ref={image2Ref} className="startup-image-wrapper slide-up anim-delay-200">
+              <img 
+                src="https://imagizer.imageshack.com/img924/8577/qc7HQE.jpg" 
+                alt="Mobile responsive web design" 
+                className="startup-image"
+                loading="lazy"
+              />
+              <div className="startup-image-caption">
+                <h3 className="font-semibold mb-1">Responsive Mobile Design</h3>
+                <p className="text-sm opacity-90">Optimized for all device sizes</p>
+              </div>
+            </div>
+            
+            {/* Image 3 */}
+            <div ref={image3Ref} className="startup-image-wrapper slide-up anim-delay-300">
+              <img 
+                src="https://imagizer.imageshack.com/img923/6332/Tvv4oi.jpg" 
+                alt="E-commerce website development" 
+                className="startup-image"
+                loading="lazy"
+              />
+              <div className="startup-image-caption">
+                <h3 className="font-semibold mb-1">E-commerce Solutions</h3>
+                <p className="text-sm opacity-90">Built for small retail businesses</p>
               </div>
             </div>
           </div>
@@ -363,6 +461,35 @@ export default function StartupPlan() {
             <p className="text-lg text-gray-700 max-w-3xl">
               Our seamless process takes you from concept to launch with minimal effort on your part.
             </p>
+          </div>
+          
+          {/* Additional images displayed on medium and larger screens */}
+          <div className="hidden md:flex justify-center gap-6 mb-16">
+            <div ref={image4Ref} className="startup-image-wrapper w-1/3 max-w-sm slide-right">
+              <img 
+                src="https://imagizer.imageshack.com/img923/9120/9VPTOq.jpg" 
+                alt="Website design and development process" 
+                className="startup-image"
+                loading="lazy"
+              />
+              <div className="startup-image-caption">
+                <h3 className="font-semibold mb-1">Design Process</h3>
+                <p className="text-sm opacity-90">From wireframe to completed website</p>
+              </div>
+            </div>
+            
+            <div ref={image5Ref} className="startup-image-wrapper w-1/3 max-w-sm slide-left anim-delay-200">
+              <img 
+                src="https://imagizer.imageshack.com/img923/615/RnlW5s.jpg" 
+                alt="Website testing and optimization" 
+                className="startup-image"
+                loading="lazy"
+              />
+              <div className="startup-image-caption">
+                <h3 className="font-semibold mb-1">Quality Assurance</h3>
+                <p className="text-sm opacity-90">We test thoroughly before launch</p>
+              </div>
+            </div>
           </div>
           
           <div className="max-w-5xl mx-auto">
