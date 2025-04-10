@@ -696,29 +696,6 @@ export default function StartupPlan() {
                     </p>
                   </div>
                   
-                  <div className="mb-6">
-                    <h4 className="font-medium text-gray-800 mb-2">Website Development</h4>
-                    <p className="text-gray-700 mb-4">
-                      $175.00 USD
-                    </p>
-                    <p className="text-sm text-gray-600 mb-4">
-                      At Synergy Brand Architect, we're committed to helping your startup take off with the right digital and brand strategies. Our Startup Plan is designed to offer everything you need to kickstart your online presence, generate leads, and build a credible brand image.
-                    </p>
-                    <div className="space-y-1 mb-4">
-                      <p className="font-medium text-gray-800">What You Get:</p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Custom Branding Strategy</li>
-                        <li>• Responsive Website (up to 10 pages)</li>
-                        <li>• SEO Optimization</li>
-                        <li>• Social Media Setup & Strategy Guide</li>
-                        <li>• Lead Generation Blueprint</li>
-                        <li>• Payment & Support</li>
-                        <li>• One-Time Fee: $175 Paypal</li>
-                        <li>• Instant confirmation & onboarding within 24 hours</li>
-                      </ul>
-                    </div>
-                  </div>
-                  
                   {/* PayPal button container */}
                   <div className="mb-2">
                     <div id="paypal-container-4AT8YJ6R8MDPC"></div>
