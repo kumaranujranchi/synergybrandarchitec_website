@@ -719,6 +719,7 @@ export default function StartupPlan() {
                     </div>
                   </div>
                   
+                  {/* PayPal button container */}
                   <div className="mb-2">
                     <div id="paypal-container-4AT8YJ6R8MDPC"></div>
                     {/* Add a fallback checkout button */}
