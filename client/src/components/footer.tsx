@@ -30,7 +30,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#333333] text-white py-12 pb-24">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
           <div className="lg:col-span-2">
             <div className="mb-6">
               <h3 className="text-[#FF6B00] font-poppins font-bold text-2xl">Synergy <span className="text-white font-medium">Brand Architect</span></h3>
@@ -197,29 +197,27 @@ export default function Footer() {
               We respect your privacy. Unsubscribe at any time.
             </p>
           </div>
-        </div>
-        
-        {/* Business Partners Section */}
-        <div className="pb-8 flex flex-col items-center">
-          <h4 className="font-poppins font-semibold text-xl mb-5 text-center">
-            Trusted Business Partners
-          </h4>
-          <div className="flex flex-wrap justify-center gap-6 items-center">
-            <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
-              <img 
-                src="https://imagizer.imageshack.com/img924/9071/tzLDvZ.png" 
-                alt="Meta Business Partner" 
-                className="h-12" 
-                loading="lazy"
-              />
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
-              <img 
-                src="https://imagizer.imageshack.com/img922/3699/VXhcrd.png" 
-                alt="Google Business Partner" 
-                className="h-12" 
-                loading="lazy"
-              />
+          
+          {/* Business Partners Section */}
+          <div>
+            <h4 className="font-poppins font-semibold text-xl mb-6">Trusted Partners</h4>
+            <div className="flex flex-col gap-4">
+              <div className="bg-white p-3 rounded-lg shadow-md flex items-center justify-center">
+                <img 
+                  src="https://imagizer.imageshack.com/img924/9071/tzLDvZ.png" 
+                  alt="Meta Business Partner" 
+                  className="h-10" 
+                  loading="lazy"
+                />
+              </div>
+              <div className="bg-white p-3 rounded-lg shadow-md flex items-center justify-center">
+                <img 
+                  src="https://imagizer.imageshack.com/img922/3699/VXhcrd.png" 
+                  alt="Google Business Partner" 
+                  className="h-10" 
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </div>
