@@ -238,6 +238,21 @@ export default function Footer() {
           </div>
         </div>
         
+        {/* Site Info and Visitor Stats */}
+        <div className="border-t border-gray-700 py-6 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+          <div className="flex items-center text-gray-400 text-sm">
+            <FileText size={16} className="mr-2" />
+            <a 
+              href="/sitemap.xml" 
+              target="_blank"
+              className="hover:text-[#FF6B00] transition-colors"
+            >
+              Sitemap
+            </a>
+          </div>
+          <VisitorCounter />
+        </div>
+        
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0 font-inter mr-4">
@@ -257,7 +272,7 @@ export default function Footer() {
             </div>
           </div>
           
-          <div className="flex space-x-6 font-inter">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 font-inter">
             <Link href="/privacy-policy" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Terms of Service</Link>
             <Link href="/refund-policy" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Refund Policy</Link>
