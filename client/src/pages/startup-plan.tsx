@@ -87,34 +87,40 @@ export default function StartupPlan() {
               Yet, for many small businesses and first-time entrepreneurs, going online can seem 
               confusing, expensive, or overwhelming. That's where our initiative comes in.
             </p>
-            <div className="flex flex-col gap-4 justify-center">
-              <div className="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
-                    <span className="flex items-center">
-                      <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z" fill="white"/>
-                        <path d="M14.89 18.75H11.36C9.12 18.75 7.28 16.92 7.28 14.68V9.33C7.28 9.06 7.5 8.83 7.78 8.83C8.06 8.83 8.28 9.06 8.28 9.33V14.68C8.28 16.36 9.65 17.75 11.36 17.75H14.89C15.16 17.75 15.39 17.97 15.39 18.25C15.39 18.53 15.17 18.75 14.89 18.75Z" fill="white"/>
-                        <path d="M16.15 10.02H14.89C13.17 10.02 11.8 8.65 11.8 6.93V5.67C11.8 5.46 11.92 5.28 12.11 5.21C12.3 5.14 12.51 5.19 12.65 5.33L16.48 9.16C16.62 9.3 16.67 9.52 16.6 9.7C16.53 9.88 16.35 10.02 16.15 10.02ZM12.8 6.59V6.93C12.8 8.09 13.73 9.02 14.89 9.02H15.23L12.8 6.59Z" fill="white"/>
-                      </svg>
-                      Indian Users - Pay ₹2,000 Advance
-                    </span>
-                  </Button>
-                </a>
-                <a href="https://www.paypal.com/paypalme/synergybrandarch/30" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#0070BA] hover:bg-[#003087] text-white font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
-                    <span className="flex items-center">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2">
-                        <path d="M20.1091 7.13678C20.1941 6.61178 20.1091 6.23878 19.8959 5.87878C19.4094 5.03278 18.3019 4.76978 16.9254 4.76978H11.8744C11.5674 4.76978 11.3041 4.98378 11.2616 5.28678L9.66462 15.5468C9.63862 15.7258 9.77462 15.8868 9.95461 15.8868H12.0539L11.8744 17.0218C11.8484 17.1738 11.9669 17.3098 12.1204 17.3098H13.9399C14.2044 17.3098 14.4334 17.1218 14.4674 16.8578L14.4929 16.7218L14.9029 14.0458L14.9349 13.8748C14.9689 13.6108 15.1979 13.4228 15.4624 13.4228H15.7694C17.8789 13.4228 19.4944 12.6708 20.0599 10.2188C20.2904 9.18578 20.2054 8.32778 19.7144 7.72778C19.5524 7.53578 19.3479 7.31978 19.1091 7.13678Z" fill="white"/>
-                        <path d="M9.11761 5.28778C9.16011 5.00678 9.41861 4.77078 9.72561 4.77078H14.7766C15.1891 4.77078 15.5591 4.81278 15.8831 4.90778C16.0281 4.95078 16.1646 5.00678 16.2926 5.06878C16.4121 5.11178 16.5231 5.16778 16.6341 5.22278C16.6851 5.25378 16.7361 5.28778 16.7786 5.32178C16.9301 5.42778 17.0666 5.54478 17.1776 5.67278C17.6086 5.16778 17.6086 5.16778 17.1776 5.67278C17.3716 5.88678 17.5231 6.13378 17.6171 6.41478C17.8391 7.01478 17.8391 7.73978 17.6086 8.58678C17.3461 9.54078 16.8536 10.3178 16.2161 10.8228C16.4206 10.6778 16.0281 10.9988 15.9346 11.0538C15.8321 11.1098 15.7211 11.1658 15.6016 11.2128C15.3901 11.3108 15.1551 11.3838 14.8991 11.4318C14.5716 11.4968 14.2016 11.5278 13.7976 11.5278H13.3796C13.1666 11.5278 12.9621 11.5968 12.7916 11.7178C12.6126 11.8388 12.4696 12.0188 12.4186 12.2308L12.3931 12.3688L11.8831 15.5478L11.8661 15.6378C11.8661 15.6528 11.8576 15.6678 11.8576 15.6678H9.76811C9.58711 15.6678 9.45112 15.5058 9.47712 15.3278L11.0741 5.06778C11.0741 5.05678 11.0656 5.04478 11.0656 5.03378C11.0401 4.98378 9.11761 5.28778 9.11761 5.28778Z" fill="#003087"/>
-                        <path d="M17.1605 5.67278C17.0495 5.54478 16.913 5.42778 16.77 5.32178C16.719 5.28778 16.668 5.25378 16.617 5.22278C16.506 5.16778 16.395 5.11178 16.2755 5.06878C16.1475 5.00678 16.011 4.95078 15.866 4.90778C15.542 4.81278 15.1635 4.77078 14.751 4.77078H9.7085C9.40151 4.77078 9.14301 4.99578 9.10051 5.28778C9.10051 5.28778 9.08551 5.42778 9.05351 5.66478L8.58301 8.69278C8.58301 8.69278 8.57551 8.69978 8.58301 8.69278C8.56551 8.81778 8.59751 8.94578 8.67101 9.05178C8.75551 9.16878 8.88301 9.23578 9.02751 9.23578H10.9565C11.025 9.23578 11.084 9.28578 11.0925 9.35578V9.38678L10.6815 11.8478C10.673 11.9158 10.7155 11.9748 10.784 11.9748H12.0085C12.077 11.9748 12.136 11.9248 12.1445 11.8568V11.8318L12.57 9.23578H14.19C16.2995 9.23578 17.915 8.48378 18.4805 6.03178C18.702 5.01078 18.617 4.13978 18.126 3.56078C17.964 3.36078 17.77 3.17178 17.5315 3.00078C17.1605 5.67278 17.1605 5.67278 17.1605 5.67278Z" fill="#0070BA"/>
-                      </svg>
-                      International - Pay $30 via PayPal
-                    </span>
-                  </Button>
-                </a>
+            <div className="flex flex-col gap-6 justify-center">
+              <h3 className="text-xl font-semibold text-center">Choose Payment Method</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                {/* Razorpay Section */}
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <div className="text-center mb-3">
+                    <h4 className="font-medium text-gray-700">For Indian Customers</h4>
+                    <p className="text-sm text-gray-500 mt-1">Pay ₹2,000 - ₹15,000 through Razorpay</p>
+                  </div>
+                  <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer" className="block w-full">
+                    <button className="w-full bg-[#2d84fb] hover:bg-[#1a73e8] text-white font-medium py-3 px-4 rounded-lg transition-all flex items-center justify-center">
+                      <img src="https://i.imgur.com/3g7nmJC.png" alt="Razorpay" className="h-5 mr-2" />
+                      Pay with Razorpay
+                    </button>
+                  </a>
+                  <p className="text-xs text-center mt-2 text-gray-500">
+                    Secure payments by Razorpay - choose amount on next page
+                  </p>
+                </div>
+                
+                {/* PayPal Section */}
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <div className="text-center mb-3">
+                    <h4 className="font-medium text-gray-700">For International Customers</h4>
+                    <p className="text-sm text-gray-500 mt-1">One-time payment of $30 USD</p>
+                  </div>
+                  <div id="paypal-container-4AT8YJ6R8MDPC"></div>
+                  <p className="text-xs text-center mt-2 text-gray-500">
+                    Secured by PayPal - all major credit cards accepted
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col md:flex-row gap-4 justify-center">
+              
+              <div className="flex flex-col md:flex-row gap-4 justify-center mt-4">
                 <a href="#pricing">
                   <Button variant="outline" className="border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC] hover:text-white font-medium py-3 px-8 rounded-full transition-all hover:shadow-md text-lg">
                     View Package Details
@@ -588,38 +594,49 @@ export default function StartupPlan() {
           <p className="text-lg mb-10">
             We'll even give you a free project roadmap if you choose to proceed later.
           </p>
-          <div className="flex flex-col gap-4 justify-center">
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-white text-[#FF6B00] hover:bg-gray-50 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
-                  Pay via Razorpay (Indian Customers)
-                </Button>
-              </a>
-              <a href="/#contact">
-                <Button className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
-                  Book Your Free Session
-                </Button>
-              </a>
+          
+          <div className="flex flex-col gap-6 justify-center">
+            <h3 className="text-xl font-semibold">Ready to Get Started?</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              {/* Razorpay Section */}
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-white/20">
+                <div className="text-center mb-3">
+                  <h4 className="font-medium text-gray-700">For Indian Customers</h4>
+                  <p className="text-sm text-gray-500 mt-1">Pay ₹2,000 - ₹15,000 through Razorpay</p>
+                </div>
+                <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer" className="block w-full">
+                  <button className="w-full bg-[#2d84fb] hover:bg-[#1a73e8] text-white font-medium py-3 px-4 rounded-lg transition-all flex items-center justify-center">
+                    <img src="https://i.imgur.com/3g7nmJC.png" alt="Razorpay" className="h-5 mr-2" />
+                    Pay with Razorpay
+                  </button>
+                </a>
+                <p className="text-xs text-center mt-2 text-gray-500">
+                  Secure payments by Razorpay - choose amount on next page
+                </p>
+              </div>
+              
+              {/* PayPal Section */}
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-white/20">
+                <div className="text-center mb-3">
+                  <h4 className="font-medium text-gray-700">For International Customers</h4>
+                  <p className="text-sm text-gray-500 mt-1">One-time payment of $30 USD</p>
+                </div>
+                <div id="paypal-container-4AT8YJ6R8MDPC-alt"></div>
+                <p className="text-xs text-center mt-2 text-gray-500">
+                  Secured by PayPal - all major credit cards accepted
+                </p>
+              </div>
             </div>
             
-            <div className="mx-auto max-w-md">
-              <p className="text-white mb-2 font-medium">For International Customers:</p>
-              <div className="bg-white p-2 rounded-lg">
-                <a href="https://www.paypal.com/paypalme/synergybrandarch/30" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[#0070BA] hover:bg-[#003087] text-white py-3 px-4 rounded-lg font-medium transition-all">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2">
-                    <path d="M20.1091 7.13678C20.1941 6.61178 20.1091 6.23878 19.8959 5.87878C19.4094 5.03278 18.3019 4.76978 16.9254 4.76978H11.8744C11.5674 4.76978 11.3041 4.98378 11.2616 5.28678L9.66462 15.5468C9.63862 15.7258 9.77462 15.8868 9.95461 15.8868H12.0539L11.8744 17.0218C11.8484 17.1738 11.9669 17.3098 12.1204 17.3098H13.9399C14.2044 17.3098 14.4334 17.1218 14.4674 16.8578L14.4929 16.7218L14.9029 14.0458L14.9349 13.8748C14.9689 13.6108 15.1979 13.4228 15.4624 13.4228H15.7694C17.8789 13.4228 19.4944 12.6708 20.0599 10.2188C20.2904 9.18578 20.2054 8.32778 19.7144 7.72778C19.5524 7.53578 19.3479 7.31978 19.1091 7.13678Z" fill="white"/>
-                    <path d="M9.11761 5.28778C9.16011 5.00678 9.41861 4.77078 9.72561 4.77078H14.7766C15.1891 4.77078 15.5591 4.81278 15.8831 4.90778C16.0281 4.95078 16.1646 5.00678 16.2926 5.06878C16.4121 5.11178 16.5231 5.16778 16.6341 5.22278C16.6851 5.25378 16.7361 5.28778 16.7786 5.32178C16.9301 5.42778 17.0666 5.54478 17.1776 5.67278C17.6086 5.16778 17.6086 5.16778 17.1776 5.67278C17.3716 5.88678 17.5231 6.13378 17.6171 6.41478C17.8391 7.01478 17.8391 7.73978 17.6086 8.58678C17.3461 9.54078 16.8536 10.3178 16.2161 10.8228C16.4206 10.6778 16.0281 10.9988 15.9346 11.0538C15.8321 11.1098 15.7211 11.1658 15.6016 11.2128C15.3901 11.3108 15.1551 11.3838 14.8991 11.4318C14.5716 11.4968 14.2016 11.5278 13.7976 11.5278H13.3796C13.1666 11.5278 12.9621 11.5968 12.7916 11.7178C12.6126 11.8388 12.4696 12.0188 12.4186 12.2308L12.3931 12.3688L11.8831 15.5478L11.8661 15.6378C11.8661 15.6528 11.8576 15.6678 11.8576 15.6678H9.76811C9.58711 15.6678 9.45112 15.5058 9.47712 15.3278L11.0741 5.06778C11.0741 5.05678 11.0656 5.04478 11.0656 5.03378C11.0401 4.98378 9.11761 5.28778 9.11761 5.28778Z" fill="#003087"/>
-                    <path d="M17.1605 5.67278C17.0495 5.54478 16.913 5.42778 16.77 5.32178C16.719 5.28778 16.668 5.25378 16.617 5.22278C16.506 5.16778 16.395 5.11178 16.2755 5.06878C16.1475 5.00678 16.011 4.95078 15.866 4.90778C15.542 4.81278 15.1635 4.77078 14.751 4.77078H9.7085C9.40151 4.77078 9.14301 4.99578 9.10051 5.28778C9.10051 5.28778 9.08551 5.42778 9.05351 5.66478L8.58301 8.69278C8.58301 8.69278 8.57551 8.69978 8.58301 8.69278C8.56551 8.81778 8.59751 8.94578 8.67101 9.05178C8.75551 9.16878 8.88301 9.23578 9.02751 9.23578H10.9565C11.025 9.23578 11.084 9.28578 11.0925 9.35578V9.38678L10.6815 11.8478C10.673 11.9158 10.7155 11.9748 10.784 11.9748H12.0085C12.077 11.9748 12.136 11.9248 12.1445 11.8568V11.8318L12.57 9.23578H14.19C16.2995 9.23578 17.915 8.48378 18.4805 6.03178C18.702 5.01078 18.617 4.13978 18.126 3.56078C17.964 3.36078 17.77 3.17178 17.5315 3.00078C17.1605 5.67278 17.1605 5.67278 17.1605 5.67278Z" fill="#0070BA"/>
-                  </svg>
-                  Pay $30 via PayPal
-                </a>
-                <div id="paypal-container-4AT8YJ6R8MDPC-alt"></div>
-              </div>
-              <p className="text-xs text-center mt-1 text-white">
-                Secured by PayPal - International transactions only
-              </p>
+            <div className="mt-6">
+              <a href="/#contact">
+                <Button className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
+                  Book Your Free Consultation
+                </Button>
+              </a>
             </div>
           </div>
+          
           <p className="mt-6 text-sm">Slots are limited</p>
         </div>
       </section>
