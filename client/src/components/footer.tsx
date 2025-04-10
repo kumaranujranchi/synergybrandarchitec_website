@@ -222,6 +222,21 @@ export default function Footer() {
           </div>
         </div>
           
+        {/* SEO Keywords Section */}
+        <div className="border-t border-gray-700 py-8 text-center mb-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+              <span className="text-gray-400 text-sm">Best Digital Marketing Agency In Patna</span>
+              <span className="hidden md:inline text-gray-500">•</span>
+              <span className="text-gray-400 text-sm">Best Website Development Agency in Patna</span>
+              <span className="hidden md:inline text-gray-500">•</span>
+              <span className="text-gray-400 text-sm">MERN Stack Development</span>
+              <span className="hidden md:inline text-gray-500">•</span>
+              <span className="text-gray-400 text-sm">Lead Generation Service In Patna</span>
+            </div>
+          </div>
+        </div>
+        
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0 font-inter mr-4">
