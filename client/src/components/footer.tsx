@@ -205,17 +205,7 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} Synergy Brand Architect. All rights reserved.
             </p>
             
-            {/* Fiverr Seller Widget */}
-            <div className="mb-4 md:mb-0">
-              <a 
-                href="https://www.fiverr.com/anujkumar402" 
-                target="_blank" 
-                rel="nofollow noopener noreferrer"
-                className="text-gray-400 hover:text-[#FF6B00] transition-colors"
-              >
-                Designed by anujkumar402 on Fiverr
-              </a>
-            </div>
+
           </div>
           
           <div className="flex space-x-6 font-inter">
