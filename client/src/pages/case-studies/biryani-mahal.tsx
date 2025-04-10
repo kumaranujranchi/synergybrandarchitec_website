@@ -269,12 +269,12 @@ export default function BiryaniMahalCaseStudy() {
               Get a customized social media and branding strategy designed for your restaurant
             </p>
             <div>
-              <Link href="/contact">
+              <a href="/#contact">
                 <Button className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium py-6 px-8 rounded-lg transition-all hover:shadow-lg text-lg">
                   Book a Free Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
