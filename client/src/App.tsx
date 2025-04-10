@@ -50,10 +50,13 @@ function Router() {
       <Route path="/refund-policy" component={RefundPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />
       
+      {/* Resources Route */}
+      <Route path="/resources" component={Resources} />
+      
       {/* Case Study Routes */}
-      <Route path="/case-study/wishluv-buildcon" component={WishluvBuildconCaseStudy} />
-      <Route path="/case-study/biryani-mahal" component={BiryaniMahalCaseStudy} />
-      <Route path="/case-study/the-helping-hand" component={TheHelpingHandCaseStudy} />
+      <Route path="/case-studies/wishluv-buildcon" component={WishluvBuildconCaseStudy} />
+      <Route path="/case-studies/biryani-mahal" component={BiryaniMahalCaseStudy} />
+      <Route path="/case-studies/the-helping-hand" component={TheHelpingHandCaseStudy} />
       
       {/* Blog Routes */}
       <Route path="/blog" component={Blog} />
