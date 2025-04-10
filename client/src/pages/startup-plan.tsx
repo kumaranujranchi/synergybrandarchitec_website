@@ -5,6 +5,18 @@ import { smoothScrollTo } from "@/lib/scrollHelper";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import WhatsappButton from "@/components/whatsapp-button";
+import { useEffect } from "react";
+
+// Add type declaration for PayPal
+declare global {
+  interface Window {
+    paypal?: {
+      HostedButtons: (config: { hostedButtonId: string }) => {
+        render: (selector: string) => void;
+      };
+    };
+  }
+}
 
 const FeatureItem = ({ text }: { text: string }) => (
   <div className="flex items-start gap-2 mb-4">
@@ -14,6 +26,38 @@ const FeatureItem = ({ text }: { text: string }) => (
 );
 
 export default function StartupPlan() {
+  // Initialize PayPal buttons when component mounts
+  useEffect(() => {
+    // Load PayPal buttons when document content is loaded
+    document.addEventListener("DOMContentLoaded", (event) => {
+      if (typeof window !== 'undefined' && window.paypal) {
+        window.paypal.HostedButtons({
+          hostedButtonId: "4ATRYI68BMDPC"
+        }).render("#paypal-container-4ATRYI68BMDPC");
+        
+        // Render the second PayPal button instance
+        window.paypal.HostedButtons({
+          hostedButtonId: "4ATRYI68BMDPC"
+        }).render("#paypal-container-4ATRYI68BMDPC-alt");
+      }
+    });
+    
+    // Also try to initialize immediately in case DOM is already loaded
+    if (typeof window !== 'undefined' && window.paypal) {
+      try {
+        window.paypal.HostedButtons({
+          hostedButtonId: "4ATRYI68BMDPC"
+        }).render("#paypal-container-4ATRYI68BMDPC");
+        
+        window.paypal.HostedButtons({
+          hostedButtonId: "4ATRYI68BMDPC"
+        }).render("#paypal-container-4ATRYI68BMDPC-alt");
+      } catch (error) {
+        console.log("PayPal buttons will be rendered when SDK is fully loaded");
+      }
+    }
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen font-inter text-[#333333]">
       <Header />
@@ -359,15 +403,34 @@ export default function StartupPlan() {
                     </div>
                   </div>
                   
-                  <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
-                    <button className="w-full bg-[#FF6B00] hover:bg-[#FF8533] text-white py-3 px-4 rounded-lg font-medium transition-all">
-                      Book Now - Pay ₹2,000 Advance
-                    </button>
-                  </a>
-                  
-                  <p className="text-xs text-center mt-3 text-gray-500">
-                    Secure online payment via Razorpay
-                  </p>
+                  <div className="mb-4">
+                    <h4 className="text-center font-medium mb-3">Choose Payment Method</h4>
+                    
+                    <div className="flex flex-col space-y-4">
+                      {/* Indian Customers - Razorpay */}
+                      <div>
+                        <p className="text-sm text-center mb-2 text-gray-600">For Indian Customers</p>
+                        <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
+                          <button className="w-full bg-[#FF6B00] hover:bg-[#FF8533] text-white py-3 px-4 rounded-lg font-medium transition-all flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><path d="M6.3 20.3a2.4 2.4 0 0 0 3.4 0L20.3 9.7a2.4 2.4 0 0 0 0-3.4L17.7 3.7a2.4 2.4 0 0 0-3.4 0L3.7 14.3a2.4 2.4 0 0 0 0 3.4z"></path><path d="m7.5 12.5 4 4"></path><path d="m16.5 15.5.5.5"></path><path d="m10 8 .5.5"></path><path d="m13 11 .5.5"></path></svg>
+                            Pay ₹2,000 via Razorpay
+                          </button>
+                        </a>
+                        <p className="text-xs text-center mt-1 text-gray-500">
+                          Secured by Razorpay
+                        </p>
+                      </div>
+                      
+                      {/* International Customers - PayPal */}
+                      <div>
+                        <p className="text-sm text-center mb-2 text-gray-600">For International Customers</p>
+                        <div id="paypal-container-4ATRYI68BMDPC"></div>
+                        <p className="text-xs text-center mt-1 text-gray-500">
+                          Secured by PayPal
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -482,17 +545,26 @@ export default function StartupPlan() {
           <p className="text-lg mb-10">
             We'll even give you a free project roadmap if you choose to proceed later.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-white text-[#FF6B00] hover:bg-gray-50 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
-                Book Now - Pay ₹2,000 Advance
-              </Button>
-            </a>
-            <a href="/#contact">
-              <Button className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
-                Book Your Free Session
-              </Button>
-            </a>
+          <div className="flex flex-col gap-4 justify-center">
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-white text-[#FF6B00] hover:bg-gray-50 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
+                  Pay via Razorpay (Indian Customers)
+                </Button>
+              </a>
+              <a href="/#contact">
+                <Button className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-full transition-all hover:shadow-md hover:-translate-y-1 text-lg">
+                  Book Your Free Session
+                </Button>
+              </a>
+            </div>
+            
+            <div className="mx-auto max-w-md">
+              <p className="text-white mb-2 font-medium">For International Customers:</p>
+              <div className="bg-white p-2 rounded-lg">
+                <div id="paypal-container-4ATRYI68BMDPC-alt"></div>
+              </div>
+            </div>
           </div>
           <p className="mt-6 text-sm">Slots are limited</p>
         </div>
