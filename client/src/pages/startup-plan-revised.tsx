@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import WhatsappButton from "@/components/whatsapp-button";

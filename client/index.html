@@ -31,36 +31,10 @@
       })();
     </script>
     
-    <!-- PayPal SDK Script -->
-    <script 
-      src="https://www.paypal.com/sdk/js?client-id=BAA46JlSu95vSvwPthNp764rVwXbjlAcrl9m14280zTpULSFWif3B_4PLEeHivaU3pNYG3Fh-msBXpUFAs&components=hosted-buttons&disable-funding=venmo&currency=USD"
-      crossorigin="anonymous"
-      async
-    ></script>
+    <!-- PayPal SDK removed as per client request -->
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- PayPal Button Initialization Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
-        if (window.paypal) {
-          try {
-            window.paypal.HostedButtons({
-              hostedButtonId: "4AT8YJ6R8MDPC"
-            })
-            .render("#paypal-container-4AT8YJ6R8MDPC");
-            
-            window.paypal.HostedButtons({
-              hostedButtonId: "4AT8YJ6R8MDPC"
-            })
-            .render("#paypal-container-4AT8YJ6R8MDPC-alt");
-          } catch (e) {
-            console.log("PayPal button rendering error:", e);
-          }
-        }
-      });
-    </script>
   </body>
 </html>
