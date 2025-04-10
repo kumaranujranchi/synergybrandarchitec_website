@@ -225,14 +225,19 @@ export default function Footer() {
           
         {/* SEO Keywords Section */}
         <div className="border-t border-gray-700 py-8 text-center mb-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-              <span className="text-gray-400 text-sm">Best Digital Marketing Agency In Patna</span>
-              <span className="hidden md:inline text-gray-500">•</span>
-              <span className="text-gray-400 text-sm">Best Website Development Agency in Patna</span>
-              <span className="hidden md:inline text-gray-500">•</span>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2">
+              <span className="text-gray-400 text-sm">Digital Marketing Company in Patna</span>
+              <span className="text-gray-400 text-sm">Website Development Company in Patna</span>
+              <span className="text-gray-400 text-sm">Best Digital Marketing Agency in Patna</span>
+              <span className="text-gray-400 text-sm">Web Design Company in Patna</span>
+              <span className="text-gray-400 text-sm">SEO Services in Patna</span>
+              <span className="text-gray-400 text-sm">Social Media Marketing Patna</span>
+              <span className="text-gray-400 text-sm">Website Designer in Patna</span>
+              <span className="text-gray-400 text-sm">E-commerce Website Development Patna</span>
+              <span className="text-gray-400 text-sm">Google Ads Expert in Patna</span>
+              <span className="text-gray-400 text-sm">Digital Marketing Services in Patna</span>
               <span className="text-gray-400 text-sm">MERN Stack Development</span>
-              <span className="hidden md:inline text-gray-500">•</span>
               <span className="text-gray-400 text-sm">Lead Generation Service In Patna</span>
             </div>
           </div>
@@ -242,37 +247,22 @@ export default function Footer() {
         <div className="border-t border-gray-700 py-6 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
           <div className="flex items-center text-gray-400 text-sm">
             <FileText size={16} className="mr-2" />
-            <a 
-              href="/sitemap.xml" 
-              target="_blank"
-              className="hover:text-[#FF6B00] transition-colors"
-            >
+            <Link href="/sitemap" className="hover:text-[#FF6B00] transition-colors">
               Sitemap
-            </a>
+            </Link>
           </div>
           <VisitorCounter />
         </div>
         
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="flex flex-col md:flex-row items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0 font-inter mr-4">
+          <div className="flex items-center">
+            <p className="text-gray-400 text-sm font-inter">
               &copy; {new Date().getFullYear()} Synergy Brand Architect. All rights reserved.
             </p>
-            
-            {/* Fiverr Seller Widget */}
-            <div className="mb-4 md:mb-0">
-              <a 
-                href="https://www.fiverr.com/anujkumar402" 
-                target="_blank" 
-                rel="nofollow noopener noreferrer"
-                className="text-gray-400 hover:text-[#FF6B00] transition-colors"
-              >
-                Designed by anujkumar402 on Fiverr
-              </a>
-            </div>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6 font-inter">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 font-inter mt-4 md:mt-0">
+            <Link href="/sitemap" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Sitemap</Link>
             <Link href="/privacy-policy" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Terms of Service</Link>
             <Link href="/refund-policy" className="text-gray-400 hover:text-[#FF6B00] text-sm transition-colors">Refund Policy</Link>
