@@ -698,10 +698,10 @@ export default function StartupPlan() {
                   
                   {/* PayPal button container */}
                   <div className="mb-2 mt-4">
-                    <div id="paypal-button-container-4AT8YJ6R8MDPC"></div>
+                    <div id="paypal-container"></div>
                     {/* Fallback if PayPal button doesn't load */}
                     <noscript>
-                      <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4AT8YJ6R8MDPC" target="_blank" rel="noopener noreferrer">
+                      <a href="https://www.paypal.com/paypalme/synergybrandarch/30" target="_blank" rel="noopener noreferrer">
                         <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" alt="Buy Now" />
                       </a>
                     </noscript>
@@ -776,10 +776,10 @@ export default function StartupPlan() {
                 <p className="text-sm text-gray-600 mb-4">
                   One-time payment of $30 USD for international clients. Get your business online with a custom website, branding strategy, and digital marketing support.
                 </p>
-                <div id="paypal-button-container-4AT8YJ6R8MDPC-alt"></div>
+                <div id="paypal-container-alt"></div>
                 {/* Fallback if PayPal button doesn't load */}
                 <noscript>
-                  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4AT8YJ6R8MDPC" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.paypal.com/paypalme/synergybrandarch/30" target="_blank" rel="noopener noreferrer">
                     <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" alt="Buy Now" />
                   </a>
                 </noscript>

@@ -33,7 +33,7 @@
     
     <!-- PayPal SDK Script -->
     <script 
-      src="https://www.paypal.com/sdk/js?client-id=BAA46JlSu95vSvwPthNp764rVwXbjlAcrl9m14280zTpULSFWif3B_4PLEeHivaU3pNYG3Fh-msBXpUFAs&components=hosted-buttons&disable-funding=venmo&currency=USD"
+      src="https://www.paypal.com/sdk/js?client-id=BAA46JlSu95vSvwPthNp764rVwXbjlAcrl9m14280zTpULSFWif3B_4PLEeHivaU3pNYG3Fh-msBXpUFAs&components=buttons&disable-funding=venmo&currency=USD"
       crossorigin="anonymous"
       async
     ></script>
@@ -44,18 +44,77 @@
     
     <!-- PayPal Button Initialization Script -->
     <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
+      document.addEventListener("DOMContentLoaded", () => {
         if (window.paypal) {
           try {
-            window.paypal.HostedButtons({
-              hostedButtonId: "4AT8YJ6R8MDPC"
-            })
-            .render("#paypal-button-container-4AT8YJ6R8MDPC");
+            // Continuously check if the containers have been rendered
+            const checkContainers = () => {
+              const container1 = document.getElementById('paypal-container');
+              const container2 = document.getElementById('paypal-container-alt');
+              
+              if (container1) {
+                window.paypal.Buttons({
+                  // Button configuration - use default button settings for simplicity
+                  style: {
+                    layout: 'vertical',
+                    color: 'blue',
+                    shape: 'rect',
+                    label: 'paypal'
+                  },
+                  // When a payment is initiated
+                  createOrder: function(data, actions) {
+                    return actions.order.create({
+                      purchase_units: [{
+                        amount: {
+                          value: '30.00' // USD
+                        }
+                      }]
+                    });
+                  },
+                  // When payment is approved
+                  onApprove: function(data, actions) {
+                    return actions.order.capture().then(function() {
+                      // Show a success message
+                      alert('Transaction completed!');
+                    });
+                  }
+                }).render('#paypal-container');
+              }
+              
+              if (container2) {
+                window.paypal.Buttons({
+                  style: {
+                    layout: 'vertical',
+                    color: 'blue',
+                    shape: 'rect',
+                    label: 'paypal'
+                  },
+                  createOrder: function(data, actions) {
+                    return actions.order.create({
+                      purchase_units: [{
+                        amount: {
+                          value: '30.00' // USD
+                        }
+                      }]
+                    });
+                  },
+                  onApprove: function(data, actions) {
+                    return actions.order.capture().then(function() {
+                      alert('Transaction completed!');
+                    });
+                  }
+                }).render('#paypal-container-alt');
+              }
+              
+              // If containers not found yet, check again soon
+              if (!container1 || !container2) {
+                setTimeout(checkContainers, 500);
+              }
+            };
             
-            window.paypal.HostedButtons({
-              hostedButtonId: "4AT8YJ6R8MDPC"
-            })
-            .render("#paypal-button-container-4AT8YJ6R8MDPC-alt");
+            // Start checking for containers
+            checkContainers();
+            
           } catch (e) {
             console.log("PayPal button rendering error:", e);
           }
