@@ -163,12 +163,12 @@ export default function Resources() {
               Get a custom strategy designed for your business goals and budget
             </p>
             <div>
-              <Link href="/contact">
+              <a href="/#contact">
                 <Button className="bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium py-6 px-8 rounded-lg transition-all hover:shadow-lg text-lg">
                   Book a Free Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -339,12 +339,12 @@ function ROICalculator() {
                   <p className="text-sm text-gray-600">
                     Want a customized marketing strategy to achieve these results or better?
                   </p>
-                  <Link href="/contact">
+                  <a href="/#contact">
                     <Button variant="outline" className="mt-2 border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC]/5 w-full">
                       Book a Free Consultation
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
@@ -597,12 +597,12 @@ function MarketingBudgetPlanner() {
                   <p className="text-sm text-gray-600">
                     Want expert help to optimize your marketing budget allocation?
                   </p>
-                  <Link href="/contact">
+                  <a href="/#contact">
                     <Button variant="outline" className="mt-2 border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC]/5 w-full">
                       Get a Custom Strategy
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
@@ -1040,12 +1040,12 @@ function CampaignPlanner() {
                   <p className="text-sm text-gray-600">
                     Want help implementing these campaign ideas with professional execution?
                   </p>
-                  <Link href="/contact">
+                  <a href="/#contact">
                     <Button variant="outline" className="mt-2 border-[#0066CC] text-[#0066CC] hover:bg-[#0066CC]/5 w-full">
                       Discuss Your Campaign
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
