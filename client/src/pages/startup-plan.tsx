@@ -28,51 +28,43 @@ const FeatureItem = ({ text }: { text: string }) => (
 export default function StartupPlan() {
   // Initialize PayPal buttons when component mounts
   useEffect(() => {
-    // Function to render PayPal buttons when the SDK is loaded
-    const renderPayPalButtons = () => {
-      if (typeof window !== 'undefined' && window.paypal) {
-        try {
-          // Check if containers exist before rendering
-          const mainContainer = document.querySelector("#paypal-container-4ATRYI68BMDPC");
-          const altContainer = document.querySelector("#paypal-container-4ATRYI68BMDPC-alt");
-          
-          if (mainContainer) {
-            window.paypal.HostedButtons({
-              hostedButtonId: "4ATRYI68BMDPC"
-            }).render("#paypal-container-4ATRYI68BMDPC");
+    // Add the initialization script as provided by PayPal
+    const initPayPalButtons = () => {
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        if (window.paypal) {
+          try {
+            // Main PayPal container
+            if (document.getElementById('paypal-container-4AT8YJ6R8MDPC')) {
+              window.paypal.HostedButtons({
+                hostedButtonId: "4AT8YJ6R8MDPC"
+              }).render("#paypal-container-4AT8YJ6R8MDPC");
+            }
+            
+            // Secondary PayPal container
+            if (document.getElementById('paypal-container-4AT8YJ6R8MDPC-alt')) {
+              window.paypal.HostedButtons({
+                hostedButtonId: "4AT8YJ6R8MDPC"
+              }).render("#paypal-container-4AT8YJ6R8MDPC-alt");
+            }
+          } catch (error) {
+            console.error("PayPal initialization error:", error);
           }
-          
-          if (altContainer) {
-            window.paypal.HostedButtons({
-              hostedButtonId: "4ATRYI68BMDPC"
-            }).render("#paypal-container-4ATRYI68BMDPC-alt");
-          }
-        } catch (error) {
-          console.log("PayPal button rendering error:", error);
+        } else {
+          // If PayPal SDK is not loaded yet, wait a bit and try again
+          setTimeout(initPayPalButtons, 500);
         }
+      } else {
+        // If document not ready, wait for DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', initPayPalButtons);
       }
     };
-    
-    // Check if PayPal SDK is already loaded
-    if (window.paypal) {
-      renderPayPalButtons();
-    } else {
-      // Add listener for PayPal SDK load event
-      const paypalScript = document.querySelector('script[src*="paypal.com/sdk"]');
-      if (paypalScript) {
-        paypalScript.addEventListener('load', renderPayPalButtons);
-      }
-      
-      // Fallback: try again after a delay to ensure DOM is loaded
-      setTimeout(renderPayPalButtons, 2000);
-    }
-    
-    // Cleanup function
+
+    // Start initialization
+    initPayPalButtons();
+
+    // Cleanup
     return () => {
-      const paypalScript = document.querySelector('script[src*="paypal.com/sdk"]');
-      if (paypalScript) {
-        paypalScript.removeEventListener('load', renderPayPalButtons);
-      }
+      document.removeEventListener('DOMContentLoaded', initPayPalButtons);
     };
   }, []);
 
@@ -475,7 +467,7 @@ export default function StartupPlan() {
                             Pay $30 via PayPal
                           </a>
                         </div>
-                        <div id="paypal-container-4ATRYI68BMDPC" className="hidden"></div>
+                        <div id="paypal-container-4AT8YJ6R8MDPC"></div>
                         <p className="text-xs text-center mt-1 text-gray-500">
                           Secured by PayPal - International transactions only
                         </p>
@@ -621,7 +613,7 @@ export default function StartupPlan() {
                   </svg>
                   Pay $30 via PayPal
                 </a>
-                <div id="paypal-container-4ATRYI68BMDPC-alt" className="hidden"></div>
+                <div id="paypal-container-4AT8YJ6R8MDPC-alt"></div>
               </div>
               <p className="text-xs text-center mt-1 text-white">
                 Secured by PayPal - International transactions only
