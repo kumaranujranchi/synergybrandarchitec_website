@@ -2,6 +2,7 @@ import Header from "@/components/header";
 import Hero from "@/components/hero";
 import ClientLogoCarousel from "@/components/client-logo-carousel";
 import About from "@/components/about";
+import DigitalPresence from "@/components/digital-presence"; // Added new section
 import Stats from "@/components/stats";
 import Services from "@/components/services";
 import CaseStudies from "@/components/case-studies";
@@ -20,6 +21,7 @@ export default function Home() {
       <Hero />
       <ClientLogoCarousel />
       <About />
+      <DigitalPresence />
       <Stats />
       <Services />
       <CaseStudies />
