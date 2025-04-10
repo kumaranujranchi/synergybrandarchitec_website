@@ -34,7 +34,7 @@
     <!-- PayPal SDK Script -->
     <script 
       src="https://www.paypal.com/sdk/js?client-id=BAA46JlSu95vSvwPthNp764rVwXbjlAcrl9m14280zTpULSFWif3B_4PLEeHivaU3pNYG3Fh-msBXpUFAs&components=hosted-buttons&disable-funding=venmo&currency=USD"
-      crossorigin="anonymous" 
+      crossorigin="anonymous"
       async
     ></script>
   </head>
@@ -47,15 +47,15 @@
       document.addEventListener("DOMContentLoaded", (event) => {
         if (window.paypal) {
           try {
-            // Main PayPal button
-            paypal.HostedButtons({
+            window.paypal.HostedButtons({
               hostedButtonId: "4AT8YJ6R8MDPC"
-            }).render("#paypal-container-4AT8YJ6R8MDPC");
+            })
+            .render("#paypal-container-4AT8YJ6R8MDPC");
             
-            // Secondary PayPal button in the CTA section
-            paypal.HostedButtons({
+            window.paypal.HostedButtons({
               hostedButtonId: "4AT8YJ6R8MDPC"
-            }).render("#paypal-container-4AT8YJ6R8MDPC-alt");
+            })
+            .render("#paypal-container-4AT8YJ6R8MDPC-alt");
           } catch (e) {
             console.log("PayPal button rendering error:", e);
           }

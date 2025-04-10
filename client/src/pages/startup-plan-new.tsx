@@ -629,27 +629,6 @@ export default function StartupPlan() {
                     </p>
                   </div>
                   
-                  <div className="mb-6">
-                    <h4 className="font-medium text-gray-800 mb-2">Website Development</h4>
-                    <p className="text-gray-700 mb-4">
-                      Secure Your Startup Growth — Choose the Right Plan for You
-                    </p>
-                    <p className="text-sm text-gray-600 mb-4">
-                      At Synergy Brand Architect, we're committed to helping your startup take off with the right digital and brand strategies. Our Startup Plan is designed to offer everything you need to kickstart your online presence, generate leads, and build a credible brand image.
-                    </p>
-                    <div className="space-y-1 mb-4">
-                      <p className="font-medium text-gray-800">What You Get:</p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Custom Branding Strategy</li>
-                        <li>• Responsive Website (up to 5 pages)</li>
-                        <li>• SEO Optimization</li>
-                        <li>• Social Media Setup & Strategy Guide</li>
-                        <li>• Lead Generation Blueprint</li>
-                        <li>• Payment & Support</li>
-                      </ul>
-                    </div>
-                  </div>
-                  
                   <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer" className="block w-full">
                     <button className="w-full bg-[#2d84fb] hover:bg-[#1a73e8] text-white font-medium py-4 px-4 rounded-lg transition-all flex items-center justify-center">
                       <img src="https://i.imgur.com/3g7nmJC.png" alt="Razorpay" className="h-6 mr-2" />
@@ -669,10 +648,6 @@ export default function StartupPlan() {
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <CheckCircle2 className="text-green-500 h-4 w-4 flex-shrink-0" />
                       <span>Instant receipt via email</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <CheckCircle2 className="text-green-500 h-4 w-4 flex-shrink-0" />
-                      <span>Instant confirmation & onboarding within 24 hours</span>
                     </div>
                   </div>
                 </div>
@@ -696,15 +671,8 @@ export default function StartupPlan() {
                     </p>
                   </div>
                   
-                  {/* PayPal button container */}
-                  <div className="mb-2 mt-4">
+                  <div className="mb-2">
                     <div id="paypal-container-4AT8YJ6R8MDPC"></div>
-                    {/* Fallback if PayPal button doesn't load */}
-                    <noscript>
-                      <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4AT8YJ6R8MDPC" target="_blank" rel="noopener noreferrer">
-                        <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" alt="Buy Now" />
-                      </a>
-                    </noscript>
                   </div>
                   
                   <div className="mt-4 space-y-2">
@@ -754,9 +722,6 @@ export default function StartupPlan() {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-white/20">
               <div className="p-6">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">For Indian Customers</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  Pay just ₹2,000 as advance to secure your project with our team. The full website package includes custom branding, responsive design, and SEO optimization.
-                </p>
                 <a href="https://rzp.io/rzp/7uCrzBX" target="_blank" rel="noopener noreferrer" className="block w-full">
                   <button className="w-full bg-[#2d84fb] hover:bg-[#1a73e8] text-white font-medium py-4 px-4 rounded-lg transition-all flex items-center justify-center">
                     <img src="https://i.imgur.com/3g7nmJC.png" alt="Razorpay" className="h-6 mr-2" />
@@ -773,16 +738,7 @@ export default function StartupPlan() {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-white/20">
               <div className="p-6">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">For International Customers</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  One-time payment of $30 USD for international clients. Get your business online with a custom website, branding strategy, and digital marketing support.
-                </p>
                 <div id="paypal-container-4AT8YJ6R8MDPC-alt"></div>
-                {/* Fallback if PayPal button doesn't load */}
-                <noscript>
-                  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4AT8YJ6R8MDPC" target="_blank" rel="noopener noreferrer">
-                    <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" alt="Buy Now" />
-                  </a>
-                </noscript>
                 <p className="text-xs text-center mt-2 text-gray-500">
                   Secured by PayPal - One-time payment of $30 USD
                 </p>

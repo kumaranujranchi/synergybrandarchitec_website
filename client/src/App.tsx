@@ -10,7 +10,7 @@ import PrivacyPolicy from "@/pages/privacy-policy";
 import RefundPolicy from "@/pages/refund-policy";
 import TermsOfService from "@/pages/terms-of-service";
 import Pricing from "@/pages/pricing";
-import StartupPlan from "@/pages/startup-plan-redesigned";
+import StartupPlan from "@/pages/startup-plan-new";
 import Addons from "@/pages/addons";
 import Services from "@/pages/services";
 import Account from "@/pages/account";
