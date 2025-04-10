@@ -224,21 +224,46 @@ export default function Footer() {
         </div>
           
         {/* SEO Keywords Section */}
-        <div className="border-t border-gray-700 py-8 text-center mb-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2">
-              <span className="text-gray-400 text-sm">Digital Marketing Company in Patna</span>
-              <span className="text-gray-400 text-sm">Website Development Company in Patna</span>
-              <span className="text-gray-400 text-sm">Best Digital Marketing Agency in Patna</span>
-              <span className="text-gray-400 text-sm">Web Design Company in Patna</span>
-              <span className="text-gray-400 text-sm">SEO Services in Patna</span>
-              <span className="text-gray-400 text-sm">Social Media Marketing Patna</span>
-              <span className="text-gray-400 text-sm">Website Designer in Patna</span>
-              <span className="text-gray-400 text-sm">E-commerce Website Development Patna</span>
-              <span className="text-gray-400 text-sm">Google Ads Expert in Patna</span>
-              <span className="text-gray-400 text-sm">Digital Marketing Services in Patna</span>
-              <span className="text-gray-400 text-sm">MERN Stack Development</span>
-              <span className="text-gray-400 text-sm">Lead Generation Service In Patna</span>
+        <div className="border-t border-gray-700 py-10 mb-4 bg-gradient-to-b from-gray-800 to-[#333333]">
+          <div className="max-w-6xl mx-auto px-4">
+            <h4 className="text-center text-gray-300 font-semibold mb-6 text-lg">Our Services in Patna</h4>
+            <div className="flex flex-wrap justify-center">
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">Digital Marketing Company in Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">Website Development Company in Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">Best Digital Marketing Agency in Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">Web Design Company in Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">SEO Services in Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">Social Media Marketing Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">Website Designer in Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">E-commerce Website Development Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">Google Ads Expert in Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">Digital Marketing Services in Patna</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">MERN Stack Development</span>
+              </div>
+              <div className="px-4 py-2 m-1 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                <span className="text-gray-200 text-sm">Lead Generation Service In Patna</span>
+              </div>
             </div>
           </div>
         </div>
