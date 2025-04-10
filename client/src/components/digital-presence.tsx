@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe, Shield, TrendingUp, Trophy, Users } from "lucide-react";
 import { motion } from "framer-motion";
-import CountUp from "@/components/count-up";
+import CountUp from "./count-up";
 
 export default function DigitalPresence() {
   // Animation variants
