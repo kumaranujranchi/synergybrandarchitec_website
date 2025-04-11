@@ -36,7 +36,14 @@ export function registerRoutes(app: Express): void {
     // Get protocol considering potential proxies
     const protocol = req.header('x-forwarded-proto') || req.protocol;
     
-    // Redirect www to non-www - case insensitive check
+    // Check for HTTPS to ensure consistent protocol
+    if (process.env.NODE_ENV === 'production' && protocol !== 'https') {
+      const secureUrl = `https://${host}${req.originalUrl || req.url}`;
+      console.log(`Redirecting to HTTPS: ${secureUrl}`);
+      return res.redirect(301, secureUrl);
+    }
+    
+    // Canonical domain handling - handle both www and non-www consistently
     if (host && host.match(/^www\./i)) {
       const newHost = host.replace(/^www\./i, '');
       const redirectUrl = `${protocol}://${newHost}${req.originalUrl || req.url}`;
@@ -44,9 +51,17 @@ export function registerRoutes(app: Express): void {
       return res.redirect(301, redirectUrl);
     }
     
-    // Redirect old URLs to new paths
+    // Redirect old URLs to new paths with consistent handling
     if (path === '/contact-brand-building-services') {
       return res.redirect(301, '/#contact');
+    }
+    
+    // Remove trailing slashes from URLs for consistency
+    if (path.length > 1 && path.endsWith('/')) {
+      const trimmedPath = path.slice(0, -1);
+      const redirectUrl = `${protocol}://${host}${trimmedPath}${req.originalUrl?.includes('?') ? req.originalUrl.substring(req.originalUrl.indexOf('?')) : ''}`;
+      console.log(`Removing trailing slash: ${redirectUrl}`);
+      return res.redirect(301, redirectUrl);
     }
     
     next();

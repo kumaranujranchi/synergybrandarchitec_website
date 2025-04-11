@@ -3,11 +3,63 @@
  */
 
 /**
+ * Creates breadcrumb schema for a given page path
+ * @param pagePath - The current page path
+ * @returns BreadcrumbList schema object
+ */
+const createBreadcrumbSchema = (pagePath: string) => {
+  // Base path is always home
+  const breadcrumbs = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://synergybrandarchitect.in"
+    }
+  ];
+  
+  // Remove leading slash and split path into segments
+  const path = pagePath.startsWith('/') ? pagePath.substring(1) : pagePath;
+  const segments = path.split('/').filter(segment => segment !== '');
+  
+  // Build breadcrumb list based on path segments
+  if (segments.length > 0) {
+    let currentPath = "";
+    
+    segments.forEach((segment, index) => {
+      currentPath += "/" + segment;
+      
+      // Convert segment to readable format (replace hyphens with spaces and capitalize)
+      const readableName = segment
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      
+      breadcrumbs.push({
+        "@type": "ListItem",
+        "position": index + 2, // +2 because we already have the home item at position 1
+        "name": readableName,
+        "item": `https://synergybrandarchitect.in${currentPath}`
+      });
+    });
+  }
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs
+  };
+};
+
+/**
  * Updates the schema markup in the DOM based on the current page
  * @param pagePath - The current page path
  * @param pageData - Optional data specific to the current page
  */
 export const updateSchemaMarkup = (pagePath: string, pageData?: any) => {
+  // Create breadcrumb schema for all pages
+  const breadcrumbSchema = createBreadcrumbSchema(pagePath);
+  
   let markup: any;
   
   // Default organization data
