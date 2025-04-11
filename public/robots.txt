@@ -1,6 +1,50 @@
+# Synergy Brand Architect Robots.txt
+# Updated: April 11, 2025
+
+# Allow all bots to crawl most of the site
 User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /services/
+Allow: /startup-plan/
+Allow: /resources/
+Allow: /addons/
+Allow: /case-study/
+Allow: /sitemap
+
+# Disallow admin and API areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /client/
+Disallow: */temp/
+Disallow: */test/
+
+# Disallow auth page crawling
+Disallow: /auth
+
+# Delay between crawl requests - be kind to servers
+Crawl-delay: 10
+
+# Main sitemap location
+Sitemap: https://synergybrandarchitect.in/sitemap.xml
+
+# For Googlebot specifically
+User-agent: Googlebot
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /auth
 
-Sitemap: https://synergybrandarchitect.in/sitemap.xml
+# For Bingbot specifically
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /

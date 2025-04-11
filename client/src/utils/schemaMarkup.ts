@@ -497,10 +497,27 @@ export const updateSchemaMarkup = (pagePath: string, pageData?: any) => {
     markup = organizationData;
   }
   
+  // Make markup an array if it's not already to include breadcrumbs
+  let markupArray = Array.isArray(markup) ? markup : [markup];
+  
+  // Add breadcrumb schema to the markup array for all pages except homepage
+  if (pagePath !== '/' && pagePath !== '') {
+    markupArray.push(breadcrumbSchema);
+  }
+  
   // Update the schema markup in the DOM
   const schemaScript = document.getElementById('schemaOrgMarkup');
   if (schemaScript) {
-    schemaScript.textContent = JSON.stringify(markup, null, 2);
+    schemaScript.textContent = JSON.stringify(markupArray, null, 2);
+  }
+  
+  // Update canonical link based on current page path
+  const canonicalLink = document.getElementById('canonical-link') as HTMLLinkElement;
+  if (canonicalLink) {
+    const normalizedPath = pagePath.endsWith('/') && pagePath.length > 1 
+      ? pagePath.slice(0, -1)  // Remove trailing slash for canonical URLs
+      : pagePath;
+    canonicalLink.href = `https://synergybrandarchitect.in${normalizedPath}`;
   }
 };
 

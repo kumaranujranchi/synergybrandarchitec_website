@@ -1,105 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+                            http://www.google.com/schemas/sitemap-image/1.1
+                            http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+  <!-- Home Page -->
   <url>
-    <loc>https://synergybrandarchitect.in/</loc>
-    <lastmod>2025-04-10</lastmod>
+    <loc>https://synergybrandarchitect.in</loc>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://imagizer.imageshack.com/img924/5789/CC6b4R.png</image:loc>
+      <image:title>Synergy Brand Architect Logo</image:title>
+      <image:caption>Digital Marketing &amp; Brand Building Agency in Patna</image:caption>
+    </image:image>
   </url>
+  
+  <!-- Main Navigation Pages -->
   <url>
     <loc>https://synergybrandarchitect.in/about</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/services</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://imagizer.imageshack.com/img923/615/RnlW5s.jpg</image:loc>
+      <image:title>Digital Marketing Services</image:title>
+      <image:caption>Comprehensive digital marketing services including SEO, SEM, social media marketing</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/startup-plan</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://imagizer.imageshack.com/img923/1839/irjZDM.jpg</image:loc>
+      <image:title>StartUp Plan Website Package</image:title>
+      <image:caption>Professional website at affordable price for small businesses</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/resources</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://synergybrandarchitect.in/addons</loc>
+    <lastmod>2025-04-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/pricing</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- Blog Section -->
   <url>
     <loc>https://synergybrandarchitect.in/blog</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/blog/digital-marketing-trends</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://imagizer.imageshack.com/img923/9120/9VPTOq.jpg</image:loc>
+      <image:title>Digital Marketing Trends</image:title>
+      <image:caption>Latest digital marketing trends for businesses</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/blog/local-seo-guide</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://imagizer.imageshack.com/img923/6332/Tvv4oi.jpg</image:loc>
+      <image:title>Local SEO Guide for Patna Businesses</image:title>
+      <image:caption>Ultimate guide to improve local search rankings in Patna</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/blog/building-brand-resonance</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://imagizer.imageshack.com/img924/8577/qc7HQE.jpg</image:loc>
+      <image:title>Building Brand Resonance</image:title>
+      <image:caption>How to build a brand that resonates with your audience</image:caption>
+    </image:image>
   </url>
+  
+  <!-- Case Studies -->
+  <url>
+    <loc>https://synergybrandarchitect.in/case-studies</loc>
+    <lastmod>2025-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/case-study/wishluv-buildcon</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/case-study/biryani-mahal</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/case-study/the-helping-hand</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  
+  <!-- Legal Pages -->
   <url>
     <loc>https://synergybrandarchitect.in/privacy-policy</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/terms-of-service</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  
   <url>
     <loc>https://synergybrandarchitect.in/refund-policy</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  
+  <!-- Authentication -->
   <url>
     <loc>https://synergybrandarchitect.in/auth</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-04-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+  </url>
+  
+  <!-- Contact -->
+  <url>
+    <loc>https://synergybrandarchitect.in/contact</loc>
+    <lastmod>2025-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Sitemap Page -->
+  <url>
+    <loc>https://synergybrandarchitect.in/sitemap</loc>
+    <lastmod>2025-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

@@ -124,12 +124,17 @@ function App() {
     // Don't include hash in canonical URL
     const path = location.split('#')[0];
     
+    // Handle trailing slashes consistently in the UI for canonicalization
+    const normalizedPath = path.endsWith('/') && path.length > 1 
+      ? path.slice(0, -1)  // Remove trailing slash for canonical URLs
+      : path;
+    
     // Update canonical URL for SEO
     const canonicalLink = document.getElementById('canonical-link') as HTMLLinkElement;
     if (canonicalLink) {
       // Don't add canonical for admin routes
-      if (!isAdminRoute && path !== '/') {
-        canonicalLink.href = `https://synergybrandarchitect.in${path}`;
+      if (!isAdminRoute && normalizedPath !== '/') {
+        canonicalLink.href = `https://synergybrandarchitect.in${normalizedPath}`;
       } else {
         canonicalLink.href = 'https://synergybrandarchitect.in';
       }
@@ -137,12 +142,67 @@ function App() {
     
     // Update schema.org markup for the current page
     if (!isAdminRoute) {
-      updateSchemaMarkup(path);
+      // Get page-specific data for schema markup if needed
+      let pageData;
+      
+      // For blog posts, we need to extract the slug from the URL
+      if (normalizedPath.startsWith('/blog/') && normalizedPath !== '/blog') {
+        const slug = normalizedPath.replace('/blog/', '');
+        // We'll pass the slug so the schema markup function can find the correct blog post data
+        pageData = { slug };
+      }
+      
+      // For case studies, set appropriate data
+      if (normalizedPath.startsWith('/case-studies/')) {
+        const caseStudyName = normalizedPath.replace('/case-studies/', '');
+        pageData = { caseStudyName };
+      }
+      
+      updateSchemaMarkup(normalizedPath, pageData);
+      
+      // Also update the page title based on the current route for better SEO
+      updatePageTitle(normalizedPath);
     }
     
     // Only use smooth scroll when not coming from an external site
     scrollToTop(false);
   }, [location, isAdminRoute]);
+  
+  // Function to update page title based on current route
+  const updatePageTitle = (path: string) => {
+    let title = 'Synergy Brand Architect - Digital Marketing & Brand Building Agency';
+    
+    // Set specific titles based on routes
+    if (path.startsWith('/services')) {
+      title = 'Services | Digital Marketing, Web Development, Brand Strategy - Synergy Brand Architect';
+    } else if (path.startsWith('/startup-plan')) {
+      title = 'Startup Website Package - Get Online at ₹15,000 | Synergy Brand Architect';
+    } else if (path.startsWith('/blog') && path !== '/blog') {
+      // For blog posts, we could get the actual title from blog data
+      // For now, use a generic title
+      const slug = path.replace('/blog/', '');
+      const readableTitle = slug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      title = `${readableTitle} | Synergy Brand Architect Blog`;
+    } else if (path === '/blog') {
+      title = 'Digital Marketing Blog | SEO, Social Media & Web Design Tips - Synergy Brand Architect';
+    } else if (path.startsWith('/resources')) {
+      title = 'Digital Marketing Resources & Tools | Synergy Brand Architect';
+    } else if (path.startsWith('/addons')) {
+      title = 'Digital Marketing & Web Development Services | Synergy Brand Architect';
+    } else if (path.startsWith('/case-studies/')) {
+      const caseStudy = path.replace('/case-studies/', '');
+      const readableTitle = caseStudy
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      title = `${readableTitle} Case Study | Synergy Brand Architect`;
+    }
+    
+    document.title = title;
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
