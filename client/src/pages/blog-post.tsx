@@ -42,6 +42,7 @@ interface BlogPostDisplay extends Omit<BlogPost, 'publishedAt'> {
 export default function BlogPostPage() {
   const params = useParams();
   const slug = params.slug;
+  const [location] = useLocation();
   
   // Fetch blog post
   const { data, isLoading, error } = useQuery<{ post: BlogPostDisplay }>({
@@ -145,6 +146,26 @@ export default function BlogPostPage() {
   }
 
   const post = data.post;
+  
+  // Update schema markup when post data is loaded
+  useEffect(() => {
+    if (post) {
+      // Create blog post schema data
+      const blogPostData = {
+        title: post.title,
+        date: post.publishedAt,
+        image: post.featuredImage || "https://imagizer.imageshack.com/img924/5789/CC6b4R.png",
+        description: post.excerpt,
+        content: post.content,
+        slug: post.slug,
+        category: post.category,
+        tags: post.tags
+      };
+      
+      // Update schema markup for the current page and post
+      updateSchemaMarkup(location, blogPostData);
+    }
+  }, [post, location]);
 
   return (
     <div className="flex flex-col min-h-screen">

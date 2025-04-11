@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import WhatsappButton from '@/components/whatsapp-button';
+import { updateSchemaMarkup } from '@/utils/schemaMarkup';
 import {
   Card,
   CardContent,
@@ -27,6 +28,7 @@ interface BlogPostDisplay extends Omit<BlogPost, 'publishedAt'> {
 export default function Blog() {
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
+  const [location] = useLocation();
   
   // Fetch blog posts
   const { data, isLoading, error } = useQuery<{ posts: BlogPostDisplay[] }>({
@@ -82,6 +84,12 @@ export default function Blog() {
     const minutes = Math.ceil(words / wordsPerMinute);
     return `${minutes} min read`;
   };
+  
+  // Update schema markup for blog index page
+  useEffect(() => {
+    // Update schema markup whenever we're on the blog page
+    updateSchemaMarkup(location);
+  }, [location]);
 
   return (
     <div className="flex flex-col min-h-screen">
