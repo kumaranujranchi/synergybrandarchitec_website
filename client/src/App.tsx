@@ -29,6 +29,7 @@ import ResetPasswordPage from "@/pages/reset-password";
 import { useEffect, lazy, Suspense } from "react";
 import { scrollToTop } from "@/lib/scrollHelper";
 import { AuthProvider } from "@/hooks/use-auth";
+import { updateSchemaMarkup } from "@/utils/schemaMarkup";
 
 // Lazy load admin components
 const AdminUsers = lazy(() => import('./pages/admin/users'));
@@ -118,20 +119,25 @@ function App() {
   const [location] = useLocation();
   const isAdminRoute = location.startsWith('/admin');
   
-  // Update canonical URL and scroll to top whenever location changes
+  // Update canonical URL, schema markup, and scroll to top whenever location changes
   useEffect(() => {
+    // Don't include hash in canonical URL
+    const path = location.split('#')[0];
+    
     // Update canonical URL for SEO
     const canonicalLink = document.getElementById('canonical-link') as HTMLLinkElement;
     if (canonicalLink) {
-      // Don't include hash in canonical URL
-      const path = location.split('#')[0];
-      
       // Don't add canonical for admin routes
       if (!isAdminRoute && path !== '/') {
         canonicalLink.href = `https://synergybrandarchitect.in${path}`;
       } else {
         canonicalLink.href = 'https://synergybrandarchitect.in';
       }
+    }
+    
+    // Update schema.org markup for the current page
+    if (!isAdminRoute) {
+      updateSchemaMarkup(path);
     }
     
     // Only use smooth scroll when not coming from an external site

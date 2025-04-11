@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Link, useParams } from 'wouter';
+import { Link, useParams, useLocation } from 'wouter';
 import { BlogPost } from '@shared/schema';
+import { updateSchemaMarkup } from '@/utils/schemaMarkup';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import WhatsappButton from '@/components/whatsapp-button';
