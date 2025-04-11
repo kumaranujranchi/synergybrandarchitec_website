@@ -14,10 +14,12 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
+          {/* SEO-optimized H1 tag that search engines can clearly identify */}
           <h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-            <div className="text-[#333333]">
-              Build Your Brand
-            </div>
+            <span className="text-[#333333] block">
+              Synergy Brand Architect - Build Your Brand
+            </span>
+            <span className="sr-only">Leading Digital Marketing Agency in Patna</span>
             <div className="text-[#FF6B00] h-16 md:h-20 lg:h-24 flex items-center">
               <TypingAnimation
                 phrases={[
@@ -34,6 +36,9 @@ export default function Hero() {
               />
             </div>
           </h1>
+          
+          {/* Hidden H1 for SEO crawlers that might not properly parse the complex H1 above */}
+          <h1 className="sr-only">Synergy Brand Architect - Digital Marketing & Brand Building Agency in Patna</h1>
           <p className="text-lg md:text-xl mb-8 text-gray-600 font-inter">
             Your One-Stop Digital Marketing Partner in Patna for strategic brand building and growth-focused marketing solutions.
           </p>
