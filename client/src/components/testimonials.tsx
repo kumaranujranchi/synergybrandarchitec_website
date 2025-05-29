@@ -5,7 +5,7 @@ import { Star, Quote, UserCircle, User, UserRound, CircleUser } from "lucide-rea
 const testimonials = [
   {
     content: "Synergy helped us increase our online leads by 300% in just 6 months! Their team truly delivers on their promises. We went from virtually invisible online to becoming a go-to name in our industry.",
-    author: "Lawkush Sharma",
+    author: "Lawvkush Sharma",
     title: "Director at Wishluv Buildcon Pvt. Ltd.",
     industry: "Real Estate",
     icon: UserCircle
