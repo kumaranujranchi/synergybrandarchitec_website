@@ -13,6 +13,7 @@ import Pricing from "@/pages/pricing";
 import StartupPlan from "@/pages/startup-plan-revised";
 import Addons from "@/pages/addons";
 import Services from "@/pages/services";
+import Portfolio from "@/pages/portfolio";
 import Resources from "@/pages/resources";
 import Sitemap from "@/pages/sitemap";
 import Account from "@/pages/account";
@@ -47,6 +48,7 @@ function Router() {
       <Route path="/startup-plan" component={StartupPlan} />
       <Route path="/addons" component={Addons} />
       <Route path="/services" component={Services} />
+      <Route path="/portfolio" component={Portfolio} />
       {/* User routes removed */}
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/refund-policy" component={RefundPolicy} />
@@ -175,6 +177,8 @@ function App() {
     // Set specific titles based on routes
     if (path.startsWith('/services')) {
       title = 'Services | Digital Marketing, Web Development, Brand Strategy - Synergy Brand Architect';
+    } else if (path === '/portfolio') {
+      title = 'Portfolio | Our Work & Case Studies - Synergy Brand Architect';
     } else if (path.startsWith('/startup-plan')) {
       title = 'Startup Website Package - Get Online at ₹15,000 | Synergy Brand Architect';
     } else if (path.startsWith('/blog') && path !== '/blog') {

@@ -1,12 +1,20 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { createServer } from "http";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Create Express app
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Serve static files from public directory
+app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
 // WWW to non-WWW redirect middleware
 app.use((req, res, next) => {
@@ -80,7 +88,7 @@ if (process.env.NODE_ENV !== 'production') {
   setupVite(app, server)
     .then(() => {
       // Start server after Vite is ready
-      const port = 5000;
+      const port = 3000;
       server.listen(port, "0.0.0.0", () => {
         console.log(`Server listening on http://0.0.0.0:${port}`);
       });
@@ -92,7 +100,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   // Production mode
   serveStatic(app);
-  const port = 5000;
+  const port = 3000;
   server.listen(port, "0.0.0.0", () => {
     console.log(`Server listening on port ${port}`);
   });
