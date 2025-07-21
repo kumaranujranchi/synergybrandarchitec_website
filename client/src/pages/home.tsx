@@ -9,7 +9,7 @@ import AdAccountAccess from "@/components/ad-account-access"; // Added new secti
 import CaseStudies from "@/components/case-studies";
 import Testimonials from "@/components/testimonials";
 import PricingCTA from "@/components/pricing-cta";
-import Blog from "@/components/blog";
+
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import WhatsappButton from "@/components/whatsapp-button";
@@ -29,7 +29,7 @@ export default function Home() {
       <CaseStudies />
       <Testimonials />
       <PricingCTA />
-      <Blog />
+
       <Contact />
       <Footer />
       <WhatsappButton />

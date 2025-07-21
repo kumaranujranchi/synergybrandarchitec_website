@@ -1,15 +1,14 @@
-import { 
+import {
   User, InsertUser, UpdateUser,
   Submission, InsertSubmission, UpdateSubmission,
   Note, InsertNote, AuditLog,
-  BlogPost, InsertBlogPost, UpdateBlogPost,
   AddonProduct, InsertAddonProduct, UpdateAddonProduct,
   CartItem, InsertCartItem, UpdateCartItem,
   Order, InsertOrder, UpdateOrder,
   OrderItem, InsertOrderItem,
   OrderRevision, InsertOrderRevision, UpdateOrderRevision,
   PasswordResetToken, OTPCode,
-  users, submissions, notes, auditLogs, blogPosts, addonProducts, 
+  users, submissions, notes, auditLogs, addonProducts,
   cartItems, orders, orderItems, orderRevisions, passwordResetTokens, otpCodes
 } from "@shared/schema";
 import { db } from "./db";
@@ -49,14 +48,7 @@ export interface IStorage {
   // Notes methods
   addNote(note: InsertNote & {userId: number}): Promise<Note>;
   getSubmissionNotes(submissionId: number): Promise<Note[]>;
-  
-  // Blog post methods
-  createBlogPost(post: InsertBlogPost & {authorId: number}): Promise<BlogPost>;
-  getBlogPost(id: number): Promise<BlogPost | undefined>;
-  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
-  updateBlogPost(id: number, data: UpdateBlogPost): Promise<BlogPost | undefined>;
-  deleteBlogPost(id: number): Promise<boolean>;
-  listBlogPosts(filters?: {status?: string, category?: string}): Promise<BlogPost[]>;
+
   
   // Addon Product methods
   createAddonProduct(product: InsertAddonProduct): Promise<AddonProduct>;
@@ -96,18 +88,16 @@ export class MemStorage implements IStorage {
   private submissions: Map<number, Submission>;
   private notes: Map<number, Note>;
   private auditLogs: Map<number, AuditLog>;
-  private blogPosts: Map<number, BlogPost>;
   private addonProducts: Map<number, AddonProduct>;
   private cartItems: Map<number, CartItem>;
   private orders: Map<number, Order>;
   private orderItems: Map<number, OrderItem>;
   private orderRevisions: Map<number, OrderRevision>;
-  
+
   private lastUserId: number;
   private lastSubmissionId: number;
   private lastNoteId: number;
   private lastAuditLogId: number;
-  private lastBlogPostId: number;
   private lastAddonProductId: number;
   private lastCartItemId: number;
   private lastOrderId: number;
@@ -119,30 +109,25 @@ export class MemStorage implements IStorage {
     this.submissions = new Map();
     this.notes = new Map();
     this.auditLogs = new Map();
-    this.blogPosts = new Map();
     this.addonProducts = new Map();
     this.cartItems = new Map();
     this.orders = new Map();
     this.orderItems = new Map();
     this.orderRevisions = new Map();
-    
+
     this.lastUserId = 0;
     this.lastSubmissionId = 0;
     this.lastNoteId = 0;
     this.lastAuditLogId = 0;
-    this.lastBlogPostId = 0;
     this.lastAddonProductId = 0;
     this.lastCartItemId = 0;
     this.lastOrderId = 0;
     this.lastOrderItemId = 0;
     this.lastOrderRevisionId = 0;
-    
+
     // Create initial admin user
     this.createInitialAdmin();
-    
-    // Initialize the blog posts
-    this.initializeInitialBlogPosts();
-    
+
     // Initialize addon products
     this.initializeInitialAddonProducts();
   }
@@ -240,15 +225,7 @@ export class MemStorage implements IStorage {
           createdAt: now,
           updatedAt: now
         },
-        {
-          id: ++this.lastAddonProductId,
-          name: "Blog Section Creation",
-          price: "1500",
-          description: "Add a blog section to your website to share updates and improve SEO.",
-          isActive: true,
-          createdAt: now,
-          updatedAt: now
-        },
+
         {
           id: ++this.lastAddonProductId,
           name: "Custom Contact Form",
@@ -348,15 +325,7 @@ export class MemStorage implements IStorage {
           createdAt: now,
           updatedAt: now
         },
-        {
-          id: ++this.lastAddonProductId,
-          name: "Add Blog Posts (SEO Optimized)",
-          price: "500",
-          description: "Create SEO-optimized blog posts for your website. Price is per post.",
-          isActive: true,
-          createdAt: now,
-          updatedAt: now
-        },
+
         {
           id: ++this.lastAddonProductId,
           name: "Logo Design",
@@ -388,16 +357,7 @@ export class MemStorage implements IStorage {
     }
   }
   
-  private initializeInitialBlogPosts() {
-    // Check if we already have blog posts
-    if (this.blogPosts.size > 0) {
-      return;
-    }
-    
-    try {
-      // Initial blog post data
-      const now = new Date();
-      const adminId = 1; // Assuming admin user has ID 1
+
       
       // Blog Post 1
       const post1: BlogPost = {
@@ -1923,12 +1883,7 @@ export class DatabaseStorage implements IStorage {
           description: "Implement SSL, backups, and other security measures to protect your website.",
           isActive: true
         },
-        {
-          name: "Blog Section Creation",
-          price: "1500",
-          description: "Add a blog section to your website to share updates and improve SEO.",
-          isActive: true
-        }
+
       ];
 
       for (const product of products) {

@@ -23,8 +23,7 @@ import AdminSubmissions from "@/pages/admin/submissions-wrapper";
 import WishluvBuildconCaseStudy from "@/pages/case-studies/wishluv-buildcon";
 import BiryaniMahalCaseStudy from "@/pages/case-studies/biryani-mahal";
 import TheHelpingHandCaseStudy from "@/pages/case-studies/the-helping-hand";
-import Blog from "@/pages/blog";
-import BlogPostPage from "@/pages/blog-post";
+
 import AuthPage from "@/pages/auth-page";
 import ResetPasswordPage from "@/pages/reset-password";
 import { useEffect, lazy, Suspense } from "react";
@@ -63,9 +62,7 @@ function Router() {
       <Route path="/case-studies/biryani-mahal" component={BiryaniMahalCaseStudy} />
       <Route path="/case-studies/the-helping-hand" component={TheHelpingHandCaseStudy} />
       
-      {/* Blog Routes */}
-      <Route path="/blog" component={Blog} />
-      <Route path="/blog/:slug" component={BlogPostPage} />
+
       
       {/* Admin Routes */}
       <Route path="/admin/login" component={AdminLogin} />
@@ -126,13 +123,6 @@ function App() {
     if (!isAdminRoute) {
       // Get page-specific data for schema markup if needed
       let pageData;
-      
-      // For blog posts, we need to extract the slug from the URL
-      if (normalizedPath.startsWith('/blog/') && normalizedPath !== '/blog') {
-        const slug = normalizedPath.replace('/blog/', '');
-        // We'll pass the slug so the schema markup function can find the correct blog post data
-        pageData = { slug };
-      }
       
       // For case studies, set appropriate data
       if (normalizedPath.startsWith('/case-studies/')) {

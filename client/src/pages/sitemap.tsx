@@ -21,10 +21,7 @@ const services = [
 const resources = [
   { title: "Case Study: Wishluv Buildcon", url: "/case-study/wishluv-buildcon" },
   { title: "Case Study: Biryani Mahal", url: "/case-study/biryani-mahal" },
-  { title: "Case Study: The Helping Hand", url: "/case-study/the-helping-hand" },
-  { title: "Digital Marketing Trends", url: "/blog/digital-marketing-trends" },
-  { title: "Local SEO Guide for Patna Businesses", url: "/blog/local-seo-guide" },
-  { title: "Building a Brand That Resonates", url: "/blog/building-brand-resonance" },
+  { title: "Case Study: The Helping Hand", url: "/case-study/the-helping-hand" }
 ];
 
 const pageCategories = [
@@ -38,7 +35,7 @@ const pageCategories = [
       { title: "Resources", url: "/resources" },
       { title: "Pricing", url: "/pricing" },
       { title: "Contact", url: "/#contact" },
-      { title: "Blog", url: "/blog" },
+
     ]
   },
   {

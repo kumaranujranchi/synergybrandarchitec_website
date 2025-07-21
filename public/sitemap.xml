@@ -72,50 +72,7 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Blog Section -->
-  <url>
-    <loc>https://synergybrandarchitect.in/blog</loc>
-    <lastmod>2025-04-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://synergybrandarchitect.in/blog/digital-marketing-trends</loc>
-    <lastmod>2025-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://imagizer.imageshack.com/img923/9120/9VPTOq.jpg</image:loc>
-      <image:title>Digital Marketing Trends</image:title>
-      <image:caption>Latest digital marketing trends for businesses</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://synergybrandarchitect.in/blog/local-seo-guide</loc>
-    <lastmod>2025-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://imagizer.imageshack.com/img923/6332/Tvv4oi.jpg</image:loc>
-      <image:title>Local SEO Guide for Patna Businesses</image:title>
-      <image:caption>Ultimate guide to improve local search rankings in Patna</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://synergybrandarchitect.in/blog/building-brand-resonance</loc>
-    <lastmod>2025-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://imagizer.imageshack.com/img924/8577/qc7HQE.jpg</image:loc>
-      <image:title>Building Brand Resonance</image:title>
-      <image:caption>How to build a brand that resonates with your audience</image:caption>
-    </image:image>
-  </url>
-  
+
   <!-- Case Studies -->
   <url>
     <loc>https://synergybrandarchitect.in/case-studies</loc>

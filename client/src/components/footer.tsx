@@ -6,8 +6,7 @@ import VisitorCounter from "./visitor-counter";
 const quickLinks = [
   { href: "/", label: "Home", isPage: true },
   { href: "/services", label: "Services", isPage: true },
-  { href: "/pricing", label: "Pricing", isPage: true },
-  { href: "/blog", label: "Blog", isPage: true }
+  { href: "/pricing", label: "Pricing", isPage: true }
 ];
 
 const serviceLinks = [
@@ -23,8 +22,7 @@ const resourceLinks = [
   { href: "/#case-studies", label: "Case Studies", isPage: false },
   { href: "/case-study/wishluv-buildcon", label: "Wishluv Buildcon", isPage: true },
   { href: "/case-study/biryani-mahal", label: "Biryani Mahal", isPage: true },
-  { href: "/case-study/the-helping-hand", label: "The Helping Hand", isPage: true },
-  { href: "/blog", label: "Blog", isPage: true }
+  { href: "/case-study/the-helping-hand", label: "The Helping Hand", isPage: true }
 ];
 
 export default function Footer() {
