@@ -53,7 +53,7 @@ export default function BiryaniMahalCaseStudy() {
             <div>
               <h3 className="text-xl font-semibold mb-2">Influencer Collaborations</h3>
               <p className="text-gray-700">
-                Partnered with local food bloggers and influencers for authentic reviews and content creation. Organized tasting events to generate buzz and create shareable content.
+                Partnered with local food influencers for authentic reviews and content creation. Organized tasting events to generate buzz and create shareable content.
               </p>
             </div>
             

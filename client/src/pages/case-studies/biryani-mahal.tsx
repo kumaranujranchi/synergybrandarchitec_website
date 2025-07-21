@@ -233,7 +233,7 @@ export default function BiryaniMahalCaseStudy() {
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle2 className="text-[#FF6B00] h-5 w-5 mt-0.5 flex-shrink-0" />
-                      <span>Featured in a local food blog as "Patna's Hidden Gem"</span>
+                      <span>Featured in local food media as "Patna's Hidden Gem"</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle2 className="text-[#FF6B00] h-5 w-5 mt-0.5 flex-shrink-0" />

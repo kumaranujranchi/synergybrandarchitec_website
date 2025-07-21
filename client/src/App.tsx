@@ -151,17 +151,7 @@ function App() {
       title = 'Portfolio | Our Work & Case Studies - Synergy Brand Architect';
     } else if (path.startsWith('/startup-plan')) {
       title = 'Startup Website Package - Get Online at ₹15,000 | Synergy Brand Architect';
-    } else if (path.startsWith('/blog') && path !== '/blog') {
-      // For blog posts, we could get the actual title from blog data
-      // For now, use a generic title
-      const slug = path.replace('/blog/', '');
-      const readableTitle = slug
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-      title = `${readableTitle} | Synergy Brand Architect Blog`;
-    } else if (path === '/blog') {
-      title = 'Digital Marketing Blog | SEO, Social Media & Web Design Tips - Synergy Brand Architect';
+
     } else if (path.startsWith('/resources')) {
       title = 'Digital Marketing Resources & Tools | Synergy Brand Architect';
     } else if (path.startsWith('/addons')) {

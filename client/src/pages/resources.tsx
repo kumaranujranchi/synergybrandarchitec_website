@@ -745,7 +745,7 @@ function CampaignPlanner() {
           general: [
             "Signature Dish Photo Campaign on Instagram",
             "Chef's Story Video Series on Social Media",
-            "Local Food Blogger Collaboration Event"
+            "Local Food Influencer Collaboration Event"
           ],
           youth: [
             "Student Meal Deal Social Media Campaign",

@@ -34,9 +34,9 @@ const portfolioItems: PortfolioItem[] = [
     id: "arvindu-hospitals",
     title: "Arvindu Hospitals",
     category: "Healthcare",
-    description: "Modern healthcare website designed in React and Node.js with a sophisticated backend panel for lead and blog management, hosted on Hostinger for optimal performance.",
+    description: "Modern healthcare website designed in React and Node.js with a sophisticated backend panel for lead and content management, hosted on Hostinger for optimal performance.",
     image: "/images/portfolio/arvindu-hospital-screenshot.png",
-    results: ["React & Node.js", "Blog Management", "Hostinger Hosting"],
+    results: ["React & Node.js", "Content Management", "Hostinger Hosting"],
     link: "https://arvinduhospitals.com/",
     featured: true,
     external: true

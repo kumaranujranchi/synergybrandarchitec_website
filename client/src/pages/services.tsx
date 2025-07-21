@@ -34,7 +34,7 @@ const brandSolutions: ServiceItem[] = [
   },
   {
     title: "Content Development Services",
-    description: "From blogs and articles to ad copies, email content, and web pages—we create content that aligns with your brand voice and drives action. Whether you're looking for storytelling, informational content, or conversion-driven copy, our writers deliver quality content optimized for audience engagement and SEO."
+    description: "From articles and ad copies to email content and web pages—we create content that aligns with your brand voice and drives action. Whether you're looking for storytelling, informational content, or conversion-driven copy, our writers deliver quality content optimized for audience engagement and SEO."
   },
   {
     title: "Brand Experience Design",
@@ -69,7 +69,7 @@ const digitalMarketingSolutions: ServiceItem[] = [
   },
   {
     title: "Content Marketing",
-    description: "We create informative and valuable content to attract, engage, and convert your target audience. This includes blog posts, ebooks, whitepapers, case studies, videos, infographics, and more. Content marketing helps in lead generation, SEO, and building brand authority."
+    description: "We create informative and valuable content to attract, engage, and convert your target audience. This includes articles, ebooks, whitepapers, case studies, videos, infographics, and more. Content marketing helps in lead generation, SEO, and building brand authority."
   },
   {
     title: "Performance Marketing",

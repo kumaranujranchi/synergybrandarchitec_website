@@ -331,57 +331,7 @@ export const updateSchemaMarkup = (pagePath: string, pageData?: any) => {
       ]
     };
   }
-  
-  // Blog pages schema
-  else if (pagePath.includes('/blog')) {
-    // If we're on a specific blog post
-    if (pageData && pageData.title) {
-      markup = {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": pageData.title,
-        "image": pageData.image || "https://imagizer.imageshack.com/img924/5789/CC6b4R.png",
-        "datePublished": pageData.date || "2024-01-01",
-        "dateModified": pageData.updated || pageData.date || "2024-01-01",
-        "author": {
-          "@type": "Organization",
-          "name": "Synergy Brand Architect",
-          "url": "https://synergybrandarchitect.in"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Synergy Brand Architect",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://imagizer.imageshack.com/img924/5789/CC6b4R.png"
-          }
-        },
-        "description": pageData.description || "Digital marketing insights from Synergy Brand Architect",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": `https://synergybrandarchitect.in${pagePath}`
-        }
-      };
-    } 
-    // Blog index page
-    else {
-      markup = {
-        "@context": "https://schema.org",
-        "@type": "Blog",
-        "name": "Synergy Brand Architect Blog",
-        "description": "Digital marketing insights, trends, and strategies to help your business grow online.",
-        "url": "https://synergybrandarchitect.in/blog",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Synergy Brand Architect",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://imagizer.imageshack.com/img924/5789/CC6b4R.png"
-          }
-        }
-      };
-    }
-  }
+
   
   // Contact/About page schema
   else if (pagePath.includes('/contact') || pagePath.includes('/about')) {
@@ -521,34 +471,3 @@ export const updateSchemaMarkup = (pagePath: string, pageData?: any) => {
   }
 };
 
-/**
- * Build schema markup for a blog post
- * @param post - The blog post data
- */
-export const getBlogPostSchema = (post: any) => {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "image": post.image || "https://imagizer.imageshack.com/img924/5789/CC6b4R.png",
-    "datePublished": post.date,
-    "dateModified": post.updated || post.date,
-    "author": {
-      "@type": "Organization",
-      "name": "Synergy Brand Architect"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Synergy Brand Architect",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://imagizer.imageshack.com/img924/5789/CC6b4R.png"
-      }
-    },
-    "description": post.description || post.excerpt,
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://synergybrandarchitect.in/blog/${post.slug}`
-    }
-  };
-};

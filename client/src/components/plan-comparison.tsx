@@ -73,8 +73,8 @@ const plans = [
         description: "Same as Lite with additional customization on request."
       },
       {
-        title: "Blog Content for Marketing:",
-        description: "4 blog posts per month to boost website traffic and improve SEO."
+        title: "Content Marketing:",
+        description: "4 social media posts per week to boost engagement and brand awareness."
       }
     ]
   },
@@ -112,8 +112,8 @@ const plans = [
         description: "Same as Max with further customization for unique branding needs."
       },
       {
-        title: "Blog Content for Marketing:",
-        description: "8 blog posts per month for an aggressive content marketing strategy."
+        title: "Content Marketing:",
+        description: "8 social media posts per week for an aggressive content marketing strategy."
       }
     ]
   },
@@ -151,7 +151,7 @@ const plans = [
         description: "Comprehensive brand kit with all digital assets and on-demand customization."
       },
       {
-        title: "Blog Content for Marketing:",
+        title: "Content Marketing:",
         description: "Same as Pro with high-quality content tailored to industry trends."
       },
       {

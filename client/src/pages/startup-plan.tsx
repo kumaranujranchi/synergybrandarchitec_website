@@ -267,7 +267,7 @@ export default function StartupPlan() {
                           <CheckCircle2 className="text-[#FF6B00] w-5 h-5" />
                         </div>
                         <div>
-                          <h4 className="font-medium">Blog Articles</h4>
+                          <h4 className="font-medium">Content Articles</h4>
                           <p className="text-sm text-gray-600">1 SEO-optimized article per month</p>
                         </div>
                       </div>
@@ -376,7 +376,7 @@ export default function StartupPlan() {
                       <CheckCircle2 className="text-[#FF6B00] w-4 h-4" />
                     </div>
                     <div>
-                      <p className="font-medium">Extra Blog Articles</p>
+                      <p className="font-medium">Extra Content Articles</p>
                       <p className="text-sm text-gray-600">Additional SEO-focused article <span className="text-[#FF6B00]">+₹2,999/article</span></p>
                     </div>
                   </div>
@@ -409,7 +409,7 @@ export default function StartupPlan() {
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="text-[#FF6B00] min-w-5 h-5 mt-0.5" />
-                      <span>1 blog article per month</span>
+                      <span>1 content article per month</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="text-[#FF6B00] min-w-5 h-5 mt-0.5" />
