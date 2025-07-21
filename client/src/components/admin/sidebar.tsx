@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
 import { getQueryFn } from '@/lib/queryClient';
-import { 
-  FileText, 
-  Users, 
-  LogOut, 
+import {
+  FileText,
+  Users,
+  LogOut,
   ChevronRight,
-  LayoutDashboard,
-  BookOpen
+  LayoutDashboard
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -146,16 +145,7 @@ export default function AdminSidebar() {
             {!isCollapsed && <span>Leads</span>}
           </Button>
           
-          {hasPermission(['admin', 'manager']) && (
-            <Button
-              variant="ghost"
-              className={menuItemClass('/admin/blog-posts')}
-              onClick={() => setLocation('/admin/blog-posts')}
-            >
-              <BookOpen className="h-5 w-5" />
-              {!isCollapsed && <span>Blog Management</span>}
-            </Button>
-          )}
+
           
           {/* Addon Products and Addon Orders options removed as requested */}
 

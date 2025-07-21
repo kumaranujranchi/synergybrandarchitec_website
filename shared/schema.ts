@@ -181,16 +181,7 @@ export const updateSubmissionSchema = createInsertSchema(submissions)
 export const insertNoteSchema = createInsertSchema(notes)
   .omit({ id: true, createdAt: true, userId: true });
 
-export const insertBlogPostSchema = createInsertSchema(blogPosts)
-  .omit({ id: true, slug: true, authorId: true, createdAt: true, updatedAt: true, publishedAt: true })
-  .extend({
-    slug: z.string().optional(),
-    publishedAt: z.date().optional(),
-  });
 
-export const updateBlogPostSchema = createInsertSchema(blogPosts)
-  .partial()
-  .omit({ id: true, authorId: true, createdAt: true, updatedAt: true });
 
 // Addon related schemas
 export const insertAddonProductSchema = createInsertSchema(addonProducts)

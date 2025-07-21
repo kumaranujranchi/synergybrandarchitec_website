@@ -34,8 +34,6 @@ import { updateSchemaMarkup } from "@/utils/schemaMarkup";
 
 // Lazy load admin components
 const AdminUsers = lazy(() => import('./pages/admin/users'));
-const AdminBlogPosts = lazy(() => import('./pages/admin/blog-posts'));
-const AdminBlogPostForm = lazy(() => import('./pages/admin/blog-post-form'));
 const AdminAddonProducts = lazy(() => import('./pages/admin/addon-products'));
 const AdminAddonOrders = lazy(() => import('./pages/admin/addon-orders'));
 
@@ -78,25 +76,7 @@ function Router() {
           <AdminUsers />
         </Suspense>
       </Route>
-      
-      {/* Blog Admin Routes */}
-      <Route path="/admin/blog-posts">
-        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
-          <AdminBlogPosts />
-        </Suspense>
-      </Route>
-      
-      <Route path="/admin/blog-posts/new">
-        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
-          <AdminBlogPostForm />
-        </Suspense>
-      </Route>
-      
-      <Route path="/admin/blog-posts/edit/:id">
-        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
-          <AdminBlogPostForm />
-        </Suspense>
-      </Route>
+
       
       {/* Addon Admin Routes */}
       <Route path="/admin/addons">
