@@ -13,6 +13,9 @@ export const leadStatusEnum = pgEnum('lead_status', ['new', 'in_progress', 'pend
 // Order status enum
 export const orderStatusEnum = pgEnum('order_status', ['pending', 'in_progress', 'completed', 'cancelled']);
 
+// Blog post status enum
+export const blogPostStatusEnum = pgEnum('blog_post_status', ['draft', 'published', 'archived']);
+
 // Users table
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -69,6 +72,25 @@ export const addonProducts = pgTable("addon_products", {
   price: varchar("price", { length: 255 }).notNull(),
   description: text("description").notNull(),
   isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+// Blog posts
+export const blogPosts = pgTable("blog_posts", {
+  id: serial("id").primaryKey(),
+  title: varchar("title", { length: 500 }).notNull(),
+  slug: varchar("slug", { length: 500 }).notNull().unique(),
+  excerpt: text("excerpt"),
+  content: text("content").notNull(),
+  featuredImage: varchar("featured_image", { length: 500 }),
+  authorId: integer("author_id").references(() => users.id).notNull(),
+  status: blogPostStatusEnum("status").notNull().default('draft'),
+  tags: json("tags").$type<string[]>().default([]),
+  category: varchar("category", { length: 100 }),
+  metaTitle: varchar("meta_title", { length: 500 }),
+  metaDescription: text("meta_description"),
+  publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
@@ -171,6 +193,14 @@ export const insertAddonProductSchema = createInsertSchema(addonProducts)
 export const updateAddonProductSchema = createInsertSchema(addonProducts)
   .partial()
   .omit({ id: true, createdAt: true, updatedAt: true });
+
+// Blog post schemas
+export const insertBlogPostSchema = createInsertSchema(blogPosts)
+  .omit({ id: true, createdAt: true, updatedAt: true, publishedAt: true });
+
+export const updateBlogPostSchema = createInsertSchema(blogPosts)
+  .partial()
+  .omit({ id: true, createdAt: true, updatedAt: true, authorId: true });
 
 export const insertCartItemSchema = createInsertSchema(cartItems)
   .omit({ id: true, createdAt: true, updatedAt: true });
@@ -314,3 +344,8 @@ export type ForgotPasswordData = z.infer<typeof forgotPasswordSchema>;
 export type ResetPasswordData = z.infer<typeof resetPasswordSchema>;
 export type VerifyOTPData = z.infer<typeof verifyOTPSchema>;
 export type ResetPasswordWithOTPData = z.infer<typeof resetPasswordWithOTPSchema>;
+
+// Blog post types
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
+export type UpdateBlogPost = z.infer<typeof updateBlogPostSchema>;

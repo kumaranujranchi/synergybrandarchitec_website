@@ -7,9 +7,10 @@ import {
   Order, InsertOrder, UpdateOrder,
   OrderItem, InsertOrderItem,
   OrderRevision, InsertOrderRevision, UpdateOrderRevision,
+  BlogPost, InsertBlogPost, UpdateBlogPost,
   PasswordResetToken, OTPCode,
   users, submissions, notes, auditLogs, addonProducts,
-  cartItems, orders, orderItems, orderRevisions, passwordResetTokens, otpCodes
+  cartItems, orders, orderItems, orderRevisions, blogPosts, passwordResetTokens, otpCodes
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, gte, lte, isNull, not, or } from "drizzle-orm";
@@ -78,6 +79,14 @@ export interface IStorage {
   getOrderRevisions(orderId: number): Promise<OrderRevision[]>;
   updateOrderRevision(id: number, data: UpdateOrderRevision): Promise<OrderRevision | undefined>;
   
+  // Blog Post methods
+  createBlogPost(post: InsertBlogPost & {authorId: number}): Promise<BlogPost>;
+  getBlogPost(id: number): Promise<BlogPost | undefined>;
+  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
+  updateBlogPost(id: number, data: UpdateBlogPost): Promise<BlogPost | undefined>;
+  deleteBlogPost(id: number): Promise<boolean>;
+  listBlogPosts(filters?: {status?: string, category?: string}): Promise<BlogPost[]>;
+  
   // Audit logs
   logAudit(log: Omit<AuditLog, 'id' | 'createdAt'>): Promise<void>;
 }
@@ -93,6 +102,7 @@ export class MemStorage implements IStorage {
   private orders: Map<number, Order>;
   private orderItems: Map<number, OrderItem>;
   private orderRevisions: Map<number, OrderRevision>;
+  private blogPosts: Map<number, BlogPost>;
 
   private lastUserId: number;
   private lastSubmissionId: number;
@@ -103,6 +113,7 @@ export class MemStorage implements IStorage {
   private lastOrderId: number;
   private lastOrderItemId: number;
   private lastOrderRevisionId: number;
+  private lastBlogPostId: number;
 
   constructor() {
     this.users = new Map();
@@ -114,6 +125,7 @@ export class MemStorage implements IStorage {
     this.orders = new Map();
     this.orderItems = new Map();
     this.orderRevisions = new Map();
+    this.blogPosts = new Map();
 
     this.lastUserId = 0;
     this.lastSubmissionId = 0;
@@ -124,6 +136,7 @@ export class MemStorage implements IStorage {
     this.lastOrderId = 0;
     this.lastOrderItemId = 0;
     this.lastOrderRevisionId = 0;
+    this.lastBlogPostId = 0;
 
     // Create initial admin user
     this.createInitialAdmin();
@@ -356,19 +369,54 @@ export class MemStorage implements IStorage {
       console.error("Error creating initial addon products:", error);
     }
   }
-  
 
-      
-      // Blog Post 1
-      const post1: BlogPost = {
-        id: ++this.lastBlogPostId,
-        title: "5 Digital Marketing Trends to Watch in 2023",
-        slug: "digital-marketing-trends-2023",
-        excerpt: "Stay ahead of the curve with these emerging digital marketing trends that are shaping the industry in 2023.",
-        content: `<h2>Introduction</h2>
-<p>The digital marketing space is transforming rapidly, and businesses that want to thrive must stay in sync with the latest trends. As technology evolves and consumer behavior shifts, 2023 presents a unique set of opportunities for marketers. From artificial intelligence to data privacy, this blog dives deep into the five most impactful digital marketing trends that are shaping the landscape this year.</p>
+  // Initialize blog posts with sample content
+  private async initializeBlogPosts() {
+    try {
+      console.log("Blog post initialization placeholder");
+    } catch (error) {
+      console.error("Error creating initial blog posts:", error);
+    }
+  }
 
-<h2>1. Hyper-Personalization Through AI and Machine Learning</h2>
+  private async initializeAdmin() {
+    // Check if admin user already exists
+    let adminExists = false;
+    const usersArray = Array.from(this.users.values());
+    for (const user of usersArray) {
+      if (user.email === 'admin@synergybrandarchitect.in') {
+        adminExists = true;
+        break;
+      }
+    }
+    
+    if (!adminExists) {
+      try {
+        // Create admin user synchronously
+        const id = ++this.lastUserId;
+        const hashedPassword = bcrypt.hashSync('admin123', 10);
+        
+        const now = new Date();
+        const user: User = {
+          id,
+          name: 'Admin',
+          email: 'admin@synergybrandarchitect.in',
+          phone: null,
+          website: null,
+          password: hashedPassword,
+          role: 'admin',
+          permissions: ['view', 'create', 'edit', 'delete', 'manage_users'],
+          createdAt: now,
+          updatedAt: now
+        };
+        
+        this.users.set(id, user);
+        console.log('Initial admin user created');
+      } catch (error) {
+        console.error('Error creating initial admin:', error);
+      }
+    }
+  }
 <p>In 2023, personalization is no longer optional. With the help of artificial intelligence (AI) and machine learning, marketers can now analyze user data in real-time and deliver highly personalized content, offers, and product recommendations. AI tools help predict customer behavior, segment audiences, and automate communication based on customer preferences. For example, e-commerce platforms now use AI to recommend products uniquely suited to individual browsing history, boosting conversion rates significantly.</p>
 
 <h3>How to Leverage This Trend:</h3>
