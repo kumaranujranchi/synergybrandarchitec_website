@@ -51,6 +51,39 @@ const portfolioItems: PortfolioItem[] = [
     link: "https://wishluvbuildcon.com/",
     featured: true,
     external: true
+  },
+  {
+    id: "omavop-constructions",
+    title: "Omavop Constructions",
+    category: "Construction",
+    description: "Professional construction company website showcasing building services, project portfolio, and construction expertise with modern design and comprehensive service offerings.",
+    image: "https://imagizer.imageshack.com/img922/3286/VtWDzJ.png",
+    results: ["Construction Services", "Project Portfolio", "Professional Design", "Service Showcase"],
+    link: "https://www.omavopconstructions.com/",
+    featured: false,
+    external: true
+  },
+  {
+    id: "studio-nine-constructions",
+    title: "Studio Nine Constructions",
+    category: "Construction",
+    description: "Modern construction studio website featuring architectural services, construction projects, and design solutions with contemporary aesthetics and professional presentation.",
+    image: "https://imagizer.imageshack.com/img923/9664/Alz7gH.png",
+    results: ["Architectural Services", "Construction Projects", "Design Solutions", "Modern Interface"],
+    link: "https://studionineconstructions.com/",
+    featured: false,
+    external: true
+  },
+  {
+    id: "magadh-associate",
+    title: "Magadh Associate",
+    category: "Business Services",
+    description: "Professional business associate website providing comprehensive business solutions, consulting services, and corporate support with clean design and user-friendly interface.",
+    image: "https://imagizer.imageshack.com/img923/9720/SxhBsL.png",
+    results: ["Business Solutions", "Consulting Services", "Corporate Support", "Clean Design"],
+    link: "https://magadhassociate.netlify.app/",
+    featured: false,
+    external: true
   }
 ];
 
@@ -58,7 +91,9 @@ const categories = [
   "All",
   "Tax Consultancy",
   "Healthcare",
-  "Real Estate"
+  "Real Estate",
+  "Construction",
+  "Business Services"
 ];
 
 export default function PortfolioPage() {
@@ -84,7 +119,7 @@ export default function PortfolioPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Star className="w-5 h-5 text-[#FF6B00]" />
-                <span className="text-sm font-medium">3 Live Websites</span>
+                <span className="text-sm font-medium">6 Live Websites</span>
               </div>
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Users className="w-5 h-5 text-[#0066CC]" />
