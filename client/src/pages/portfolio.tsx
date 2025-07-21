@@ -294,7 +294,7 @@ export default function PortfolioPage() {
                 </Button>
               </Link>
               <Link href="/services">
-                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#FF6B00] font-semibold py-3 px-8 rounded-full text-lg transition-all">
+                <Button variant="outline" className="border-white text-white bg-transparent hover:bg-white hover:text-[#FF6B00] font-semibold py-3 px-8 rounded-full text-lg transition-all">
                   View Our Services
                 </Button>
               </Link>
