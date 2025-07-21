@@ -1,4 +1,4 @@
-import { User, InsertUser, UpdateUser, CartItem, InsertCartItem, UpdateCartItem, Order, InsertOrder, UpdateOrder, Product, InsertProduct, UpdateProduct, AddonProduct, InsertAddonProduct, UpdateAddonProduct } from '@shared/schema';
+import { User, InsertUser, UpdateUser, CartItem, InsertCartItem, UpdateCartItem, Order, InsertOrder, UpdateOrder, AddonProduct, InsertAddonProduct, UpdateAddonProduct } from '@shared/schema';
 import bcrypt from 'bcrypt';
 
 export interface IStorage {
@@ -10,13 +10,6 @@ export interface IStorage {
   listUsers(): Promise<User[]>;
   deleteUser(id: number): Promise<boolean>;
   validateUserCredentials(email: string, password: string): Promise<User | null>;
-
-  // Product methods
-  createProduct(productData: InsertProduct): Promise<Product>;
-  getProduct(id: number): Promise<Product | undefined>;
-  listProducts(): Promise<Product[]>;
-  updateProduct(id: number, productData: UpdateProduct): Promise<Product | undefined>;
-  deleteProduct(id: number): Promise<boolean>;
 
   // Addon Product methods
   createAddonProduct(addonData: InsertAddonProduct): Promise<AddonProduct>;
@@ -39,20 +32,28 @@ export interface IStorage {
   updateOrder(id: number, orderData: UpdateOrder): Promise<Order | undefined>;
   getUserOrders(userId: number): Promise<Order[]>;
   deleteOrder(id: number): Promise<boolean>;
+
+  // Submission methods
+  createSubmission(data: any): Promise<any>;
+  listSubmissions(filters: any): Promise<any[]>;
+  updateSubmission(id: number, data: any): Promise<any>;
+
+  // Audit methods
+  logAudit(data: any): Promise<void>;
 }
 
 export class MemStorage implements IStorage {
   private users = new Map<number, User>();
-  private products = new Map<number, Product>();
   private addonProducts = new Map<number, AddonProduct>();
   private cartItems = new Map<number, CartItem>();
   private orders = new Map<number, Order>();
+  private submissions = new Map<number, any>();
   
   private lastUserId = 0;
-  private lastProductId = 0;
   private lastAddonProductId = 0;
   private lastCartItemId = 0;
   private lastOrderId = 0;
+  private lastSubmissionId = 0;
 
   constructor() {
     this.initializeData();
@@ -61,7 +62,6 @@ export class MemStorage implements IStorage {
   private async initializeData() {
     try {
       await this.createInitialAdmin();
-      await this.createInitialProducts();
       await this.createInitialAddonProducts();
       console.log("Storage initialized successfully");
     } catch (error) {
@@ -101,54 +101,7 @@ export class MemStorage implements IStorage {
     }
   }
 
-  private async createInitialProducts() {
-    const productsArray = Array.from(this.products.values());
-    if (productsArray.length === 0) {
-      const now = new Date();
 
-      // Create initial products
-      const products = [
-        {
-          name: "Digital Marketing Package - Basic",
-          description: "Essential digital marketing services for small businesses",
-          price: 15000,
-          features: ["Social Media Management", "Basic SEO", "Content Creation", "Email Marketing"],
-          category: "digital-marketing",
-          isActive: true
-        },
-        {
-          name: "Digital Marketing Package - Premium",
-          description: "Comprehensive digital marketing solution for growing businesses",
-          price: 35000,
-          features: ["Advanced Social Media", "Complete SEO", "Content Marketing", "PPC Management", "Analytics & Reporting"],
-          category: "digital-marketing",
-          isActive: true
-        },
-        {
-          name: "Website Development",
-          description: "Professional website development services",
-          price: 25000,
-          features: ["Responsive Design", "SEO Optimized", "CMS Integration", "Mobile Friendly"],
-          category: "web-development",
-          isActive: true
-        }
-      ];
-
-      for (const productData of products) {
-        const id = ++this.lastProductId;
-        const product: Product = {
-          id,
-          ...productData,
-          createdAt: now,
-          updatedAt: now
-        };
-        
-        this.products.set(id, product);
-      }
-      
-      console.log("Initial products created");
-    }
-  }
 
   private async createInitialAddonProducts() {
     const addonsArray = Array.from(this.addonProducts.values());
@@ -176,7 +129,10 @@ export class MemStorage implements IStorage {
         const id = ++this.lastAddonProductId;
         const addon: AddonProduct = {
           id,
-          ...addonData,
+          name: addonData.name,
+          description: addonData.description,
+          price: addonData.price.toString(),
+          isActive: addonData.isActive,
           createdAt: now,
           updatedAt: now
         };
@@ -237,6 +193,7 @@ export class MemStorage implements IStorage {
         ...user,
         ...userData,
         id,
+        permissions: userData.permissions ? [...userData.permissions] : user.permissions,
         updatedAt: new Date()
       };
       this.users.set(id, updatedUser);
@@ -261,51 +218,7 @@ export class MemStorage implements IStorage {
     return null;
   }
 
-  // Product methods
-  async createProduct(productData: InsertProduct): Promise<Product> {
-    const id = ++this.lastProductId;
-    const now = new Date();
-    const product: Product = {
-      id,
-      ...productData,
-      createdAt: now,
-      updatedAt: now
-    };
-    
-    this.products.set(id, product);
-    return { ...product };
-  }
 
-  async getProduct(id: number): Promise<Product | undefined> {
-    const product = this.products.get(id);
-    if (product) {
-      return { ...product };
-    }
-    return undefined;
-  }
-
-  async listProducts(): Promise<Product[]> {
-    return Array.from(this.products.values()).map(product => ({ ...product }));
-  }
-
-  async updateProduct(id: number, productData: UpdateProduct): Promise<Product | undefined> {
-    const product = this.products.get(id);
-    if (product) {
-      const updatedProduct: Product = {
-        ...product,
-        ...productData,
-        id,
-        updatedAt: new Date()
-      };
-      this.products.set(id, updatedProduct);
-      return { ...updatedProduct };
-    }
-    return undefined;
-  }
-
-  async deleteProduct(id: number): Promise<boolean> {
-    return this.products.delete(id);
-  }
 
   // Addon Product methods
   async createAddonProduct(addonData: InsertAddonProduct): Promise<AddonProduct> {
@@ -313,7 +226,10 @@ export class MemStorage implements IStorage {
     const now = new Date();
     const addon: AddonProduct = {
       id,
-      ...addonData,
+      name: addonData.name,
+      description: addonData.description,
+      price: addonData.price,
+      isActive: addonData.isActive ?? true,
       createdAt: now,
       updatedAt: now
     };
@@ -359,7 +275,9 @@ export class MemStorage implements IStorage {
     const now = new Date();
     const cartItem: CartItem = {
       id,
-      ...cartData,
+      userId: cartData.userId,
+      productId: cartData.productId,
+      quantity: cartData.quantity || 1,
       createdAt: now,
       updatedAt: now
     };
@@ -412,7 +330,15 @@ export class MemStorage implements IStorage {
     const now = new Date();
     const order: Order = {
       id,
-      ...orderData,
+      userId: orderData.userId,
+      name: orderData.name,
+      email: orderData.email,
+      phone: orderData.phone,
+      totalAmount: orderData.totalAmount,
+      message: orderData.message || null,
+      status: orderData.status || 'pending',
+      paymentId: null,
+      paymentStatus: null,
       createdAt: now,
       updatedAt: now
     };
@@ -455,6 +381,47 @@ export class MemStorage implements IStorage {
 
   async deleteOrder(id: number): Promise<boolean> {
     return this.orders.delete(id);
+  }
+
+  // Submission methods
+  async createSubmission(data: any): Promise<any> {
+    const id = ++this.lastSubmissionId;
+    const now = new Date();
+    const submission = {
+      id,
+      ...data,
+      createdAt: now,
+      updatedAt: now
+    };
+    
+    this.submissions.set(id, submission);
+    return { ...submission };
+  }
+
+  async listSubmissions(filters: any): Promise<any[]> {
+    return Array.from(this.submissions.values()).map(submission => ({ ...submission }));
+  }
+
+  async updateSubmission(id: number, data: any): Promise<any> {
+    const submission = this.submissions.get(id);
+    if (submission) {
+      const updatedSubmission = {
+        ...submission,
+        ...data,
+        id,
+        updatedAt: new Date()
+      };
+      this.submissions.set(id, updatedSubmission);
+      return { ...updatedSubmission };
+    }
+    return undefined;
+  }
+
+  // Audit methods
+  async logAudit(data: any): Promise<void> {
+    // For in-memory storage, we can just log to console
+    // In a real implementation, this would be stored in the database
+    console.log('Audit log:', data);
   }
 }
 
