@@ -16,6 +16,16 @@ A professional web platform for Synergy Brand Architect, delivering advanced dig
 
 ## Recent Changes
 
+### Pricing Section Updates (January 22, 2025)
+- **Issue**: User requested modifications to the ₹14,999 Startup Package pricing presentation
+- **Actions**:
+  - Removed green checkmarks from three services in Startup Package: Initial Marketing Audit, Strategy Development, Target Audience Identification
+  - Added commitment notice: "Every plan requires at least a 1-year commitment, but payments can be made monthly"
+  - Updated `client/src/components/service-package-comparison.tsx` with accurate service inclusions
+  - Added prominent orange notice box for commitment terms
+- **Result**: Pricing section now accurately reflects service inclusions and contract terms
+- **Status**: ✓ Completed and verified working
+
 ### Complete Blog Functionality Removal (January 21, 2025)
 - **Issue**: User requested complete removal of all blog functionality from both admin panel and public website
 - **Actions**:

@@ -98,10 +98,10 @@ export default function ServicePackageComparison() {
       popularFor: ["Small Businesses", "Startups", "Local Shops"],
       icon: <Wifi className="h-6 w-6 text-blue-500" />,
       features: [
-        { name: "Initial Marketing Audit", included: true },
-        { name: "Strategy Development", included: true },
+        { name: "Initial Marketing Audit", included: false },
+        { name: "Strategy Development", included: false },
         { name: "Competitor Analysis", included: false },
-        { name: "Target Audience Identification", included: true },
+        { name: "Target Audience Identification", included: false },
         { name: "Campaign Calendar", included: false },
         { name: "Social Media Posts", included: true, info: "10 posts/month" },
         { name: "Content Articles", included: true, info: "1 article/month" },
@@ -238,6 +238,13 @@ export default function ServicePackageComparison() {
             Compare our service packages to find the perfect fit for your marketing needs. 
             All packages include dedicated support and are customizable to your specific goals.
           </p>
+          
+          {/* Commitment Notice */}
+          <div className="mt-6 p-4 bg-orange-50 border border-orange-200 rounded-lg">
+            <p className="text-sm text-orange-800 font-medium">
+              📝 Every plan requires at least a 1-year commitment, but payments can be made monthly.
+            </p>
+          </div>
           
           {/* Billing frequency toggle */}
           <div className="mt-8 inline-flex items-center bg-gray-100 p-1 rounded-lg">
