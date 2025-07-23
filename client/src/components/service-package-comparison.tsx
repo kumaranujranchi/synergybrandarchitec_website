@@ -474,9 +474,7 @@ export default function ServicePackageComparison() {
             </div>
             <div>
               <h4 className="font-medium text-lg mb-2">Is there a minimum contract period?</h4>
-              <p className="text-gray-600">
-                Our monthly packages have no minimum commitment. Quarterly packages require a 3-month commitment.
-              </p>
+              <p className="text-gray-600">Yes, each plan requires a minimum commitment of 1 year, but you can choose to make payments on a monthly basis.</p>
             </div>
             <div>
               <h4 className="font-medium text-lg mb-2">Can I customize my package?</h4>
