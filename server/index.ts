@@ -88,7 +88,7 @@ if (process.env.NODE_ENV !== 'production') {
   setupVite(app, server)
     .then(() => {
       // Start server after Vite is ready
-      const port = 5000;
+      const port = process.env.PORT || 5000;
       server.listen(port, "0.0.0.0", () => {
         console.log(`Server listening on http://0.0.0.0:${port}`);
       });
@@ -100,7 +100,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   // Production mode
   serveStatic(app);
-  const port = 5000;
+  const port = process.env.PORT || 5000;
   server.listen(port, "0.0.0.0", () => {
     console.log(`Server listening on port ${port}`);
   });

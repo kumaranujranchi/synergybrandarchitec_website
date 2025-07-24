@@ -197,3 +197,140 @@
 .anim-delay-500 {
   transition-delay: 500ms;
 }
+
+/* Portfolio image animation styles */
+.portfolio-image-container {
+  @apply relative overflow-hidden bg-gray-100;
+  height: 20rem; /* Increased from h-48 (12rem) to 20rem for better visibility */
+}
+
+.portfolio-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.15) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.portfolio-card:hover .portfolio-image-container::after {
+  opacity: 1;
+}
+
+.portfolio-image {
+  width: 100%;
+  height: auto;
+  min-height: 300%; /* Increased for more scrolling content */
+  object-fit: cover;
+  object-position: top;
+  transform: translateY(0);
+  transition: none; /* Remove default transition to prevent conflicts */
+}
+
+/* Smooth progressive scroll effect on hover */
+.portfolio-card:hover .portfolio-image {
+  animation: smoothProgressiveScroll 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Smooth reverse scroll effect when hover ends */
+.portfolio-card:not(:hover) .portfolio-image {
+  animation: smoothReverseScroll 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes smoothProgressiveScroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(-100% + 20rem)); /* 20rem = container height */
+  }
+}
+
+@keyframes smoothReverseScroll {
+  0% {
+    transform: translateY(calc(-100% + 20rem));
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced hover effect for better visibility */
+.portfolio-card {
+  transition: all 0.4s ease;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.portfolio-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-image {
+    transition: none;
+  }
+
+  .portfolio-card:hover .portfolio-image,
+  .portfolio-card:not(:hover) .portfolio-image {
+    transform: none;
+    animation: none;
+  }
+
+  .portfolio-card {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .portfolio-card:hover {
+    transform: none;
+  }
+}
+
+/* Touch device fallback - show slight scale effect instead */
+@media (hover: none) and (pointer: coarse) {
+  .portfolio-card:active .portfolio-image {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-card:hover .portfolio-image,
+  .portfolio-card:not(:hover) .portfolio-image {
+    transform: none;
+    animation: none;
+  }
+
+  .portfolio-card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Responsive card sizing */
+@media (max-width: 768px) {
+  .portfolio-image-container {
+    height: 16rem; /* Smaller on mobile */
+  }
+
+  @keyframes smoothProgressiveScroll {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(calc(-100% + 16rem)); /* Adjust for mobile height */
+    }
+  }
+
+  @keyframes smoothReverseScroll {
+    0% {
+      transform: translateY(calc(-100% + 16rem));
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}

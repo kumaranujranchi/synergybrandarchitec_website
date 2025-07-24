@@ -24,7 +24,7 @@ const portfolioItems: PortfolioItem[] = [
     title: "Thakur Tax Consultant",
     category: "Tax Consultancy",
     description: "Professional tax consultancy website serving Patna, Bihar with comprehensive financial, legal & business solutions. Features services for individuals, startups, and businesses with expert team profiles.",
-    image: "/images/portfolio/thakur-tax-screenshot.png",
+    image: "https://imagizer.imageshack.com/img923/5595/NnzZNX.png",
     results: ["Taxation Services", "Business Registration", "Legal Services", "Expert Team Profiles"],
     link: "https://thakurtax.com/",
     featured: true,
@@ -35,7 +35,7 @@ const portfolioItems: PortfolioItem[] = [
     title: "Arvindu Hospitals",
     category: "Healthcare",
     description: "Modern healthcare website designed in React and Node.js with a sophisticated backend panel for lead and content management, hosted on Hostinger for optimal performance.",
-    image: "/images/portfolio/arvindu-hospital-screenshot.png",
+    image: "https://imagizer.imageshack.com/img922/2527/Mk1L6F.png",
     results: ["React & Node.js", "Content Management", "Hostinger Hosting"],
     link: "https://arvinduhospitals.com/",
     featured: true,
@@ -46,7 +46,7 @@ const portfolioItems: PortfolioItem[] = [
     title: "Wishluv Buildcon",
     category: "Real Estate",
     description: "Real estate developer website developed using HTML, CSS, JavaScript, and PHP, including an admin panel for lead tracking and job-application management.",
-    image: "/images/portfolio/wishluv-buildcon-screenshot.png",
+    image: "https://imagizer.imageshack.com/img922/8049/BTbxRO.png",
     results: ["HTML/CSS/JS", "PHP Backend", "Job Application System"],
     link: "https://wishluvbuildcon.com/",
     featured: true,
@@ -57,10 +57,10 @@ const portfolioItems: PortfolioItem[] = [
     title: "Omavop Constructions",
     category: "Construction",
     description: "Professional construction company website showcasing building services, project portfolio, and construction expertise with modern design and comprehensive service offerings.",
-    image: "https://imagizer.imageshack.com/img922/3286/VtWDzJ.png",
+    image: "https://imagizer.imageshack.com/img923/2500/wiPGCK.png",
     results: ["Construction Services", "Project Portfolio", "Professional Design", "Service Showcase"],
     link: "https://www.omavopconstructions.com/",
-    featured: false,
+    featured: true,
     external: true
   },
   {
@@ -68,7 +68,7 @@ const portfolioItems: PortfolioItem[] = [
     title: "Studio Nine Constructions",
     category: "Construction",
     description: "Modern construction studio website featuring architectural services, construction projects, and design solutions with contemporary aesthetics and professional presentation.",
-    image: "https://imagizer.imageshack.com/img923/9664/Alz7gH.png",
+    image: "https://imagizer.imageshack.com/img922/1066/c15u20.png",
     results: ["Architectural Services", "Construction Projects", "Design Solutions", "Modern Interface"],
     link: "https://studionineconstructions.com/",
     featured: false,
@@ -79,7 +79,7 @@ const portfolioItems: PortfolioItem[] = [
     title: "Magadh Associate",
     category: "Business Services",
     description: "Professional business associate website providing comprehensive business solutions, consulting services, and corporate support with clean design and user-friendly interface.",
-    image: "https://imagizer.imageshack.com/img923/9720/SxhBsL.png",
+    image: "https://imagizer.imageshack.com/img923/2054/zY7aJK.png",
     results: ["Business Solutions", "Consulting Services", "Corporate Support", "Clean Design"],
     link: "https://magadhassociate.netlify.app/",
     featured: false,
@@ -146,17 +146,18 @@ export default function PortfolioPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {portfolioItems.filter(item => item.featured).map((item) => (
-              <div key={item.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={item.image} 
-                    alt={item.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              <div key={item.id} className="portfolio-card bg-white shadow-lg border border-gray-100 group">
+                <div className="portfolio-image-container">
+                  <img
+                    src={item.image}
+                    alt={`${item.title} - Full website preview showing complete page layout and design`}
+                    className="portfolio-image"
+                    loading="lazy"
                   />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-[#FF6B00] text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="bg-[#FF6B00] text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
                       {item.category}
                     </span>
                   </div>
@@ -213,23 +214,24 @@ export default function PortfolioPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {portfolioItems.map((item) => (
-              <div key={item.id} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden group">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={item.image} 
-                    alt={item.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              <div key={item.id} className="portfolio-card bg-white shadow-md border border-gray-100 group">
+                <div className="portfolio-image-container">
+                  <img
+                    src={item.image}
+                    alt={`${item.title} - Full website preview showing complete page layout and design`}
+                    className="portfolio-image"
+                    loading="lazy"
                   />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-[#0066CC] text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="bg-[#0066CC] text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
                       {item.category}
                     </span>
                   </div>
                   {item.featured && (
-                    <div className="absolute top-4 right-4">
-                      <span className="bg-[#FF6B00] text-white px-2 py-1 rounded-full text-xs font-medium">
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="bg-[#FF6B00] text-white px-2 py-1 rounded-full text-xs font-medium shadow-lg">
                         Featured
                       </span>
                     </div>
@@ -272,6 +274,19 @@ export default function PortfolioPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* View More CTA Button */}
+          <div className="text-center mt-12">
+            <Link href="/#contact">
+              <Button className="bg-[#0066CC] hover:bg-[#0052A3] text-white font-semibold py-4 px-8 rounded-full text-lg transition-all hover:shadow-lg hover:scale-105">
+                View More Projects & Get Started
+                <ArrowRight size={20} className="ml-2" />
+              </Button>
+            </Link>
+            <p className="text-gray-600 font-inter mt-4 text-sm">
+              Ready to create your next success story? Let's discuss your project!
+            </p>
           </div>
         </div>
       </section>

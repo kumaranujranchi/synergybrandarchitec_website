@@ -93,6 +93,9 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "blink": "blink 1s infinite",
       },
+      transitionDuration: {
+        '8000': '8000ms',
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
