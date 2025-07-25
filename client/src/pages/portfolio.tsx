@@ -84,6 +84,28 @@ const portfolioItems: PortfolioItem[] = [
     link: "https://magadhassociate.netlify.app/",
     featured: false,
     external: true
+  },
+  {
+    id: "honest-choice-review",
+    title: "Honest Choice Review",
+    category: "Review Platform",
+    description: "Comprehensive product review platform featuring honest reviews, detailed comparisons, and user-friendly interface for informed purchasing decisions across various product categories.",
+    image: "https://imagizer.imageshack.com/img924/2382/6pj4j8.png",
+    results: ["Product Reviews", "Comparison Tools", "User Interface", "Content Management"],
+    link: "https://honestchoicereview.com/",
+    featured: false,
+    external: true
+  },
+  {
+    id: "atlantis-hospital",
+    title: "Atlantis Hospital",
+    category: "Healthcare",
+    description: "Modern healthcare website showcasing medical services, doctor profiles, and patient care facilities with responsive design and comprehensive healthcare information system.",
+    image: "https://imagizer.imageshack.com/img922/7175/NKsceK.png",
+    results: ["Medical Services", "Doctor Profiles", "Patient Care", "Responsive Design"],
+    link: "https://atlantishospital.netlify.app/",
+    featured: false,
+    external: true
   }
 ];
 
@@ -93,7 +115,8 @@ const categories = [
   "Healthcare",
   "Real Estate",
   "Construction",
-  "Business Services"
+  "Business Services",
+  "Review Platform"
 ];
 
 export default function PortfolioPage() {
@@ -119,7 +142,7 @@ export default function PortfolioPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Star className="w-5 h-5 text-[#FF6B00]" />
-                <span className="text-sm font-medium">6 Live Websites</span>
+                <span className="text-sm font-medium">8 Live Websites</span>
               </div>
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Users className="w-5 h-5 text-[#0066CC]" />
