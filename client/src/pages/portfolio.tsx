@@ -131,6 +131,28 @@ const portfolioItems: PortfolioItem[] = [
     featured: false,
     external: false,
     underDevelopment: true
+  },
+  {
+    id: "sales-portfolio-synergy",
+    title: "Sales Portfolio Synergy",
+    category: "Business Services",
+    description: "Professional sales portfolio website showcasing business achievements, client testimonials, and service offerings. Features modern design with interactive elements and comprehensive business presentation.",
+    image: "https://imagizer.imageshack.com/img923/2218/FTdIZi.png",
+    results: ["Portfolio Showcase", "Client Testimonials", "Service Presentation", "Responsive Design"],
+    link: "https://salesportfoliosynergy.netlify.app/",
+    featured: false,
+    external: true
+  },
+  {
+    id: "sales-dashboard",
+    title: "Sales Dashboard",
+    category: "Web Application",
+    description: "Comprehensive sales dashboard web application with real-time analytics, performance tracking, and data visualization. Built for sales teams to monitor KPIs, track leads, and analyze business metrics.",
+    image: "https://imagizer.imageshack.com/img924/7983/U9Kl2q.png",
+    results: ["Dashboard Analytics", "Sales Tracking", "Data Visualization", "Real-time Metrics"],
+    link: "https://sales.wishluvbuildcon.com/",
+    featured: false,
+    external: true
   }
 ];
 
@@ -142,7 +164,8 @@ const categories = [
   "Construction",
   "Business Services",
   "Review Platform",
-  "E-Commerce"
+  "E-Commerce",
+  "Web Application"
 ];
 
 export default function PortfolioPage() {
@@ -168,7 +191,7 @@ export default function PortfolioPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Star className="w-5 h-5 text-[#FF6B00]" />
-                <span className="text-sm font-medium">10 Projects</span>
+                <span className="text-sm font-medium">12 Projects</span>
               </div>
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Users className="w-5 h-5 text-[#0066CC]" />
