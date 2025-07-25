@@ -16,6 +16,7 @@ interface PortfolioItem {
   link: string;
   featured?: boolean;
   external?: boolean;
+  underDevelopment?: boolean;
 }
 
 const portfolioItems: PortfolioItem[] = [
@@ -106,6 +107,30 @@ const portfolioItems: PortfolioItem[] = [
     link: "https://atlantishospital.netlify.app/",
     featured: false,
     external: true
+  },
+  {
+    id: "ecommerce-platform",
+    title: "E-Commerce Platform",
+    category: "E-Commerce",
+    description: "Comprehensive e-commerce solution featuring product catalog, shopping cart, payment integration, and admin dashboard. Built with modern technologies for optimal performance and user experience.",
+    image: "https://imagizer.imageshack.com/img924/2739/5Wukyg.png",
+    results: ["Product Catalog", "Shopping Cart", "Payment Gateway", "Admin Dashboard"],
+    link: "",
+    featured: false,
+    external: false,
+    underDevelopment: true
+  },
+  {
+    id: "property-listing-site",
+    title: "Property Listing Platform",
+    category: "Real Estate",
+    description: "Advanced property listing website with search filters, property details, virtual tours, and agent management system. Designed for seamless property browsing and real estate transactions.",
+    image: "https://imagizer.imageshack.com/img922/9873/8oOHSx.png",
+    results: ["Property Search", "Virtual Tours", "Agent Management", "Advanced Filters"],
+    link: "",
+    featured: false,
+    external: false,
+    underDevelopment: true
   }
 ];
 
@@ -116,7 +141,8 @@ const categories = [
   "Real Estate",
   "Construction",
   "Business Services",
-  "Review Platform"
+  "Review Platform",
+  "E-Commerce"
 ];
 
 export default function PortfolioPage() {
@@ -142,7 +168,7 @@ export default function PortfolioPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Star className="w-5 h-5 text-[#FF6B00]" />
-                <span className="text-sm font-medium">8 Live Websites</span>
+                <span className="text-sm font-medium">10 Projects</span>
               </div>
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Users className="w-5 h-5 text-[#0066CC]" />
@@ -274,7 +300,11 @@ export default function PortfolioPage() {
                       <Calendar className="w-4 h-4" />
                       <span>Recent Project</span>
                     </div>
-                    {item.external ? (
+                    {item.underDevelopment ? (
+                      <Button variant="outline" size="sm" className="text-gray-500 border-gray-300 bg-gray-50 cursor-not-allowed" disabled>
+                        Under Development
+                      </Button>
+                    ) : item.external ? (
                       <a href={item.link} target="_blank" rel="noopener noreferrer">
                         <Button variant="outline" size="sm" className="text-[#0066CC] border-[#0066CC] hover:bg-[#0066CC] hover:text-white">
                           Visit Site
