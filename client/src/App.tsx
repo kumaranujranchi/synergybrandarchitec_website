@@ -11,12 +11,12 @@ import RefundPolicy from "@/pages/refund-policy";
 import TermsOfService from "@/pages/terms-of-service";
 import Pricing from "@/pages/pricing";
 import StartupPlan from "@/pages/startup-plan-revised";
-import Addons from "@/pages/addons";
+
 import Services from "@/pages/services";
 import Portfolio from "@/pages/portfolio";
 import Resources from "@/pages/resources";
 import Sitemap from "@/pages/sitemap";
-import Account from "@/pages/account";
+
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import AdminSubmissions from "@/pages/admin/submissions-wrapper";
@@ -33,8 +33,7 @@ import { updateSchemaMarkup } from "@/utils/schemaMarkup";
 
 // Lazy load admin components
 const AdminUsers = lazy(() => import('./pages/admin/users'));
-const AdminAddonProducts = lazy(() => import('./pages/admin/addon-products'));
-const AdminAddonOrders = lazy(() => import('./pages/admin/addon-orders'));
+
 
 function Router() {
   return (
@@ -43,7 +42,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/startup-plan" component={StartupPlan} />
-      <Route path="/addons" component={Addons} />
+
       <Route path="/services" component={Services} />
       <Route path="/portfolio" component={Portfolio} />
       {/* User routes removed */}
@@ -74,19 +73,7 @@ function Router() {
         </Suspense>
       </Route>
 
-      
-      {/* Addon Admin Routes */}
-      <Route path="/admin/addons">
-        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
-          <AdminAddonProducts />
-        </Suspense>
-      </Route>
-      
-      <Route path="/admin/addon-orders">
-        <Suspense fallback={<div className="py-24 text-center">Loading...</div>}>
-          <AdminAddonOrders />
-        </Suspense>
-      </Route>
+
       
       {/* Fallback Route */}
       <Route component={NotFound} />
@@ -154,8 +141,6 @@ function App() {
 
     } else if (path.startsWith('/resources')) {
       title = 'Digital Marketing Resources & Tools | Synergy Brand Architect';
-    } else if (path.startsWith('/addons')) {
-      title = 'Digital Marketing & Web Development Services | Synergy Brand Architect';
     } else if (path.startsWith('/case-studies/')) {
       const caseStudy = path.replace('/case-studies/', '');
       const readableTitle = caseStudy

@@ -390,8 +390,8 @@ export const updateSchemaMarkup = (pagePath: string, pageData?: any) => {
     };
   }
   
-  // Addons/pricing page schema
-  else if (pagePath.includes('/addons') || pagePath.includes('/pricing')) {
+  // Pricing page schema
+  else if (pagePath.includes('/pricing')) {
     markup = {
       "@context": "https://schema.org",
       "@type": "ItemList",

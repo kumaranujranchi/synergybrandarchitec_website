@@ -60,8 +60,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     onSuccess: (user: User) => {
       queryClient.setQueryData(['/api/auth/check'], user);
-      // Also invalidate cart when user logs in
-      queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
+
       
       toast({
         title: "Login successful",
@@ -115,8 +114,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.removeItem("token");
       
       queryClient.setQueryData(['/api/auth/check'], null);
-      // Also invalidate cart when user logs out
-      queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
+
       
       toast({
         title: "Logged out",
