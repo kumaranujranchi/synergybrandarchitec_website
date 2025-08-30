@@ -153,6 +153,33 @@ const portfolioItems: PortfolioItem[] = [
     link: "https://sales.wishluvbuildcon.com/",
     featured: false,
     external: true
+  },
+  {
+    id: "astroprakash",
+    title: "Astro Prakash",
+    category: "Astrology & Spirituality",
+    description: "Professional Vedic astrology website offering personalized horoscope analysis, remedial solutions, and spiritual guidance. Features 20+ years of experience with 10,000+ satisfied clients and comprehensive astrology services.",
+    image: "https://imagizer.imageshack.com/img923/8688/jNx1bz.png",
+    results: ["Vedic Astrology", "Personalized Horoscopes", "Remedial Solutions", "Spiritual Guidance", "20+ Years Experience"],
+    link: "https://astroprakash.in/",
+    featured: false,
+    external: true
+  },
+  {
+    id: "manokamna-properties",
+    title: "Manokamna Properties",
+    category: "Real Estate",
+    description: "Complete digital transformation for Manokamna Properties, a leading real estate company. Enhanced their online presence with modern web design, property listings, and lead generation system.",
+    image: "https://imagizer.imageshack.com/img923/1130/rryKGk.png",
+    results: [
+      "400% increase in property inquiries",
+      "Enhanced property showcase with virtual tours",
+      "Streamlined lead management system",
+      "Mobile-optimized property search experience"
+    ],
+    link: "https://manokamnaproperties.in/",
+    featured: false,
+    external: true
   }
 ];
 
@@ -165,7 +192,8 @@ const categories = [
   "Business Services",
   "Review Platform",
   "E-Commerce",
-  "Web Application"
+  "Web Application",
+  "Astrology & Spirituality"
 ];
 
 export default function PortfolioPage() {
@@ -191,7 +219,7 @@ export default function PortfolioPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Star className="w-5 h-5 text-[#FF6B00]" />
-                <span className="text-sm font-medium">12 Projects</span>
+                <span className="text-sm font-medium">14 Projects</span>
               </div>
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Users className="w-5 h-5 text-[#0066CC]" />
@@ -398,4 +426,4 @@ export default function PortfolioPage() {
       <WhatsappButton />
     </div>
   );
-} 
+}
