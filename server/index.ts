@@ -71,6 +71,23 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'API server is running' });
 });
 
+// Add graceful shutdown handlers
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received. Shutting down gracefully...');
+  server.close(() => {
+    console.log('Server closed.');
+    process.exit(0);
+  });
+});
+
+process.on('SIGINT', () => {
+  console.log('SIGINT received. Shutting down gracefully...');
+  server.close(() => {
+    console.log('Server closed.');
+    process.exit(0);
+  });
+});
+
 // Add global error handler
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   console.error('Error:', err);
@@ -88,7 +105,7 @@ if (process.env.NODE_ENV !== 'production') {
   setupVite(app, server)
     .then(() => {
       // Start server after Vite is ready
-      const port = process.env.PORT || 5000;
+      const port = Number(process.env.PORT) || 5000;
       server.listen(port, "0.0.0.0", () => {
         console.log(`Server listening on http://0.0.0.0:${port}`);
       });
@@ -100,7 +117,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   // Production mode
   serveStatic(app);
-  const port = process.env.PORT || 5000;
+  const port = Number(process.env.PORT) || 5000;
   server.listen(port, "0.0.0.0", () => {
     console.log(`Server listening on port ${port}`);
   });
