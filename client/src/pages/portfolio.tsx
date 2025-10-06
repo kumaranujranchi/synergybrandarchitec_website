@@ -180,6 +180,38 @@ const portfolioItems: PortfolioItem[] = [
     link: "https://manokamnaproperties.in/",
     featured: false,
     external: true
+  },
+  {
+    id: "abacuswalla",
+    title: "Abacuswalla",
+    category: "Education",
+    description: "Professional educational platform dedicated to abacus training and mental arithmetic development. Features comprehensive learning modules, interactive tools, and student progress tracking for enhanced cognitive skills development.",
+    image: "https://imagizer.imageshack.com/img922/175/jJ6gch.png",
+    results: [
+      "Interactive Learning Modules",
+      "Mental Arithmetic Training",
+      "Student Progress Tracking",
+      "Cognitive Skills Development"
+    ],
+    link: "",
+    featured: false,
+    external: false
+  },
+  {
+    id: "spectro-elecator",
+    title: "Spectro Elecator",
+    category: "Industrial",
+    description: "Modern industrial website showcasing elevator and escalator solutions with advanced technology integration. Features product catalog, service offerings, and comprehensive specifications for commercial and residential installations.",
+    image: "https://imagizer.imageshack.com/img922/640/tCSbh7.png",
+    results: [
+      "Product Catalog",
+      "Service Offerings",
+      "Technical Specifications",
+      "Installation Solutions"
+    ],
+    link: "",
+    featured: false,
+    external: false
   }
 ];
 
@@ -193,7 +225,9 @@ const categories = [
   "Review Platform",
   "E-Commerce",
   "Web Application",
-  "Astrology & Spirituality"
+  "Astrology & Spirituality",
+  "Education",
+  "Industrial"
 ];
 
 export default function PortfolioPage() {
@@ -219,7 +253,7 @@ export default function PortfolioPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Star className="w-5 h-5 text-[#FF6B00]" />
-                <span className="text-sm font-medium">14 Projects</span>
+                <span className="text-sm font-medium">16 Projects</span>
               </div>
               <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
                 <Users className="w-5 h-5 text-[#0066CC]" />
