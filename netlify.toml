@@ -5,9 +5,16 @@
   # Directory to publish (must match the build output directory)
   publish = "dist/public"
   
-  # Environment variables
-  [build.environment]
-    NODE_VERSION = "18"
+  # Functions directory
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["express", "bcrypt", "@neondatabase/serverless"]
+
+# Environment variables
+[build.environment]
+  NODE_VERSION = "20"
 
 # Redirect all requests to index.html for SPA routing
 [[redirects]]
