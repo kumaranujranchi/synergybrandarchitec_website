@@ -2,7 +2,9 @@ import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
-import Popup from "@/components/popup";
+// Popup removed: user requested disabling the site-wide promotional popup.
+// If you want to re-enable it later, restore the import below:
+// import Popup from "@/components/popup";
 // Service Recommendation (AI Assistant) removed as requested
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
@@ -157,7 +159,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Router />
-        {!isAdminRoute && <Popup delay={10000} />}
+        {/* Popup was disabled intentionally. */}
         <Toaster />
       </AuthProvider>
     </QueryClientProvider>
