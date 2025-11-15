@@ -3,8 +3,6 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 // Popup removed: user requested disabling the site-wide promotional popup.
-// If you want to re-enable it later, restore the import below:
-// import Popup from "@/components/popup";
 // Service Recommendation (AI Assistant) removed as requested
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
@@ -159,7 +157,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Router />
-        {/* Popup was disabled intentionally. */}
+        {/* Popup removed */}
         <Toaster />
       </AuthProvider>
     </QueryClientProvider>
