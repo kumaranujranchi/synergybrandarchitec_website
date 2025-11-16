@@ -55,6 +55,7 @@ function Router() {
       
       {/* Resources Route */}
       <Route path="/resources" component={Resources} />
+      <Route path="/resources/templates" component={Resources} />
       
       {/* Blog Route */}
       <Route path="/blog" component={Blog} />
