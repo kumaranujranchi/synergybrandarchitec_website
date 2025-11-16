@@ -6,7 +6,8 @@ import VisitorCounter from "./visitor-counter";
 const quickLinks = [
   { href: "/", label: "Home", isPage: true },
   { href: "/services", label: "Services", isPage: true },
-  { href: "/pricing", label: "Pricing", isPage: true }
+  { href: "/pricing", label: "Pricing", isPage: true },
+  { href: "/blog", label: "Blog", isPage: true }
 ];
 
 const serviceLinks = [

@@ -16,6 +16,7 @@ import Services from "@/pages/services";
 import Portfolio from "@/pages/portfolio";
 import Resources from "@/pages/resources";
 import Sitemap from "@/pages/sitemap";
+import Blog from "@/pages/blog";
 
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
@@ -52,6 +53,9 @@ function Router() {
       
       {/* Resources Route */}
       <Route path="/resources" component={Resources} />
+      
+      {/* Blog Route */}
+      <Route path="/blog" component={Blog} />
       
       {/* Sitemap Route */}
       <Route path="/sitemap" component={Sitemap} />
