@@ -74,6 +74,11 @@ function Router() {
       <Route path="/case-studies/biryani-mahal" component={BiryaniMahalCaseStudy} />
       <Route path="/case-studies/the-helping-hand" component={TheHelpingHandCaseStudy} />
       
+      {/* Redirect old singular routes to plural for Google crawl compatibility */}
+      <Route path="/case-study/wishluv-buildcon" component={WishluvBuildconCaseStudy} />
+      <Route path="/case-study/biryani-mahal" component={BiryaniMahalCaseStudy} />
+      <Route path="/case-study/the-helping-hand" component={TheHelpingHandCaseStudy} />
+      
 
       
       {/* Admin Routes */}
