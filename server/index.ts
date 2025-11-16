@@ -16,22 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 // Serve static files from public directory
 app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
-// WWW to non-WWW redirect middleware
-app.use((req, res, next) => {
-  // Get host from different possible headers
-  const host = req.header('host') || req.header('x-forwarded-host');
-  
-  if (host && host.match(/^www\./i)) {
-    const newHost = host.replace(/^www\./i, '');
-    // Handle protocol properly considering potential proxies
-    const protocol = req.header('x-forwarded-proto') || req.protocol;
-    const fullUrl = `${protocol}://${newHost}${req.originalUrl || req.url}`;
-    console.log(`Redirecting from www to non-www: ${fullUrl}`);
-    return res.redirect(301, fullUrl);
-  }
-  next();
-});
-
 // Set up logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
