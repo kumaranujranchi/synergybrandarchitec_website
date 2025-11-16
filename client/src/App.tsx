@@ -19,6 +19,12 @@ import Sitemap from "@/pages/sitemap";
 import Blog from "@/pages/blog";
 import ContactPage from "@/pages/contact";
 import CaseStudyPage from "@/pages/case-study";
+import AboutPage from "@/pages/about";
+import SearchPage from "@/pages/search";
+
+import DigitalMarketingTrends from "@/pages/blog/digital-marketing-trends";
+import LocalSEOGuide from "@/pages/blog/local-seo-guide";
+import BuildingBrandResonance from "@/pages/blog/building-brand-resonance";
 
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
@@ -57,14 +63,28 @@ function Router() {
       <Route path="/resources" component={Resources} />
       <Route path="/resources/templates" component={Resources} />
       
-      {/* Blog Route */}
+      {/* Blog Routes */}
       <Route path="/blog" component={Blog} />
+      <Route path="/blog/digital-marketing-trends" component={DigitalMarketingTrends} />
+      <Route path="/blog/digital-marketing-trends-2023" component={DigitalMarketingTrends} />
+      <Route path="/blog/local-seo-guide" component={LocalSEOGuide} />
+      <Route path="/blog/local-seo-guide-patna-businesses" component={LocalSEOGuide} />
+      <Route path="/blog/building-brand-resonance" component={BuildingBrandResonance} />
+      <Route path="/blog/build-brand-that-resonates-with-audience" component={BuildingBrandResonance} />
+      <Route path="/blog/post10" component={DigitalMarketingTrends} />
       
       {/* Contact Route */}
       <Route path="/contact" component={ContactPage} />
       
-      {/* Case Study Route */}
+      {/* About Route */}
+      <Route path="/about" component={AboutPage} />
+      
+      {/* Search Route */}
+      <Route path="/search" component={SearchPage} />
+      
+      {/* Case Study Routes */}
       <Route path="/case-study" component={CaseStudyPage} />
+      <Route path="/case-studies" component={CaseStudyPage} />
       
       {/* Sitemap Route */}
       <Route path="/sitemap" component={Sitemap} />
