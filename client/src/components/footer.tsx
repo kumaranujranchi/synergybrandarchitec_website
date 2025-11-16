@@ -21,10 +21,10 @@ const serviceLinks = [
 ];
 
 const resourceLinks = [
-  { href: "/#case-studies", label: "Case Studies", isPage: false },
-  { href: "/case-study/wishluv-buildcon", label: "Wishluv Buildcon", isPage: true },
-  { href: "/case-study/biryani-mahal", label: "Biryani Mahal", isPage: true },
-  { href: "/case-study/the-helping-hand", label: "The Helping Hand", isPage: true }
+  { href: "/case-study", label: "Case Studies", isPage: true },
+  { href: "/case-studies/wishluv-buildcon", label: "Wishluv Buildcon", isPage: true },
+  { href: "/case-studies/biryani-mahal", label: "Biryani Mahal", isPage: true },
+  { href: "/case-studies/the-helping-hand", label: "The Helping Hand", isPage: true }
 ];
 
 export default function Footer() {

@@ -18,6 +18,7 @@ import Resources from "@/pages/resources";
 import Sitemap from "@/pages/sitemap";
 import Blog from "@/pages/blog";
 import ContactPage from "@/pages/contact";
+import CaseStudyPage from "@/pages/case-study";
 
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
@@ -60,6 +61,9 @@ function Router() {
       
       {/* Contact Route */}
       <Route path="/contact" component={ContactPage} />
+      
+      {/* Case Study Route */}
+      <Route path="/case-study" component={CaseStudyPage} />
       
       {/* Sitemap Route */}
       <Route path="/sitemap" component={Sitemap} />
