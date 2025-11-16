@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import Navbar from "@/components/navbar";
+import Header from "@/components/header";
 import Footer from "@/components/footer";
+import WhatsappButton from "@/components/whatsapp-button";
 import { Calendar, User, ArrowRight, TrendingUp, MapPin, Users } from 'lucide-react';
 
 interface BlogPost {
@@ -58,7 +59,8 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
+      <Header />
+      <WhatsappButton />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#0066CC] to-[#004999] text-white pt-32 pb-20">
