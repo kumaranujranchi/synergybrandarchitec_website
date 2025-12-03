@@ -212,6 +212,28 @@ const portfolioItems: PortfolioItem[] = [
     link: "",
     featured: false,
     external: false
+  },
+  {
+    id: "kids-world-patna",
+    title: "Kids World - Patna",
+    category: "Education",
+    description: "A dedicated platform for children's products and services in Patna, featuring a colorful design and user-friendly navigation.",
+    image: "https://imagizer.imageshack.com/img922/4403/TDpf8w.png",
+    results: ["E-Commerce Solution", "User-Friendly Interface", "Product Showcase", "Local Business"],
+    link: "https://kidsworldpatna.netlify.app/",
+    featured: false,
+    external: true
+  },
+  {
+    id: "tech-bihar",
+    title: "Tech Bihar",
+    category: "Digital Marketing",
+    description: "A premier technology portal for Bihar, connecting tech enthusiasts with the latest industry trends, news, and opportunities.",
+    image: "https://imagizer.imageshack.com/img923/1335/C62Wfi.png",
+    results: ["Tech Community", "Information Portal", "Modern UI", "Regional Tech Hub"],
+    link: "https://techbihar.netlify.app/index.html",
+    featured: false,
+    external: true
   }
 ];
 
@@ -227,7 +249,8 @@ const categories = [
   "Web Application",
   "Astrology & Spirituality",
   "Education",
-  "Industrial"
+  "Industrial",
+  "Digital Marketing"
 ];
 
 export default function PortfolioPage() {
@@ -238,7 +261,7 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-r from-[#0066CC]/10 to-[#FF6B00]/10">
         <div className="container mx-auto px-4">
@@ -247,7 +270,7 @@ export default function PortfolioPage() {
               Our <span className="text-[#FF6B00]">Portfolio</span> of Success Stories
             </h1>
             <p className="text-xl text-gray-600 font-inter mb-8">
-              Explore our diverse portfolio of live websites across multiple industries, showcasing our expertise 
+              Explore our diverse portfolio of live websites across multiple industries, showcasing our expertise
               in full-stack development, modern technologies, and comprehensive backend solutions.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
@@ -296,7 +319,7 @@ export default function PortfolioPage() {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <h3 className="text-xl font-poppins font-semibold text-gray-900 mb-3">
                     {item.title}
@@ -304,7 +327,7 @@ export default function PortfolioPage() {
                   <p className="text-gray-600 font-inter mb-4 line-clamp-3">
                     {item.description}
                   </p>
-                  
+
                   <div className="space-y-2 mb-6">
                     {item.results.map((result, index) => (
                       <div key={index} className="flex items-center gap-2 text-sm text-gray-700">
@@ -313,7 +336,7 @@ export default function PortfolioPage() {
                       </div>
                     ))}
                   </div>
-                  
+
                   {item.external ? (
                     <a href={item.link} target="_blank" rel="noopener noreferrer">
                       <Button className="w-full bg-[#FF6B00] hover:bg-[#FF8533] text-white font-medium py-2 px-4 rounded-lg transition-all hover:shadow-md">
@@ -371,7 +394,7 @@ export default function PortfolioPage() {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="p-6">
                   <h3 className="text-lg font-poppins font-semibold text-gray-900 mb-2">
                     {item.title}
@@ -379,7 +402,7 @@ export default function PortfolioPage() {
                   <p className="text-gray-600 font-inter mb-4 text-sm line-clamp-2">
                     {item.description}
                   </p>
-                  
+
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Calendar className="w-4 h-4" />
