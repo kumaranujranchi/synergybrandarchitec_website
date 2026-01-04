@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getQueryFn } from "@/lib/queryClient";
 import AdminLayout from "@/components/admin/layout";
-import { User, Submission } from "../../../shared/schema";
+import { User, Submission } from "@shared/schema";
 
 export default function Dashboard() {
   const [, setLocation] = useLocation();

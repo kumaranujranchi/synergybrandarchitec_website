@@ -66,6 +66,11 @@ export default function AdminLogin() {
       return response.json();
     },
     onSuccess: (data: any) => {
+      // Store token in localStorage for subsequent requests
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
+      
       // Show success toast
       toast({
         title: "Login successful",

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { format } from "date-fns";
-import { User, Submission, Note } from "../../../shared/schema";
+import { User, Submission, Note } from "@shared/schema";
 import { 
   ArrowUpDown, 
   Calendar, 
@@ -702,7 +702,7 @@ export default function SubmissionsPage() {
             </Button>
             <Button
               variant="destructive"
-              onClick={() => deleteSubmissionMutation.mutate(selectedSubmission?.id)}
+              onClick={() => selectedSubmission?.id && deleteSubmissionMutation.mutate(selectedSubmission.id)}
               disabled={deleteSubmissionMutation.isPending}
             >
               {deleteSubmissionMutation.isPending ? 'Deleting...' : 'Delete'}
