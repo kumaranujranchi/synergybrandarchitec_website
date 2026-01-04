@@ -48,18 +48,18 @@ export class MemStorage implements IStorage {
   private async createInitialAdmin() {
     // Check if admin user already exists
     const usersArray = Array.from(this.users.values());
-    const adminExists = usersArray.some(user => user.email === 'admin@synergybrandarchitect.in');
+    const adminExists = usersArray.some(user => user.email === 'anuj@synergybrandarchitect.in');
     
     if (!adminExists) {
       try {
         const id = ++this.lastUserId;
-        const hashedPassword = bcrypt.hashSync('admin123', 10);
+        const hashedPassword = bcrypt.hashSync('Anuj@1234', 10);
         
         const now = new Date();
         const user: User = {
           id,
-          name: 'Admin',
-          email: 'admin@synergybrandarchitect.in',
+          name: 'Anuj',
+          email: 'anuj@synergybrandarchitect.in',
           phone: null,
           website: null,
           password: hashedPassword,
