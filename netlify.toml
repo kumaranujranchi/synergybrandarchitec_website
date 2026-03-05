@@ -1,7 +1,7 @@
 # Netlify Build Settings
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "npx convex deploy --bundle && npm run build"
 
 [[redirects]]
   from = "/*"
