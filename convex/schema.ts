@@ -41,4 +41,21 @@ export default defineSchema({
     userAgent: v.optional(v.string()),
     createdAt: v.number(),
   }),
+
+  passwordResetTokens: defineTable({
+    userId: v.id("users"),
+    token: v.string(),
+    expiresAt: v.number(),
+    used: v.boolean(),
+    createdAt: v.number(),
+  }).index("by_token", ["token"]),
+
+  otpCodes: defineTable({
+    userId: v.id("users"),
+    email: v.string(),
+    code: v.string(),
+    expiresAt: v.number(),
+    used: v.boolean(),
+    createdAt: v.number(),
+  }).index("by_email_code", ["email", "code"]),
 });

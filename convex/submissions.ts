@@ -26,3 +26,34 @@ export const getSubmissions = query({
     return await ctx.db.query("submissions").order("desc").collect();
   },
 });
+
+export const getSubmission = query({
+  args: { id: v.id("submissions") },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id);
+  },
+});
+
+export const updateSubmission = mutation({
+  args: {
+    id: v.id("submissions"),
+    data: v.any(),
+  },
+  handler: async (ctx, args) => {
+    const { id, data } = args;
+    await ctx.db.patch(id, {
+      ...data,
+      updatedAt: Date.now(),
+    });
+    return await ctx.db.get(id);
+  },
+});
+
+export const deleteSubmission = mutation({
+  args: { id: v.id("submissions") },
+  handler: async (ctx, args) => {
+    // Note: Manual deletion of notes might be needed if not handled by triggers
+    await ctx.db.delete(args.id);
+    return true;
+  },
+});

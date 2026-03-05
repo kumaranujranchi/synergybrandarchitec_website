@@ -3,15 +3,15 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { format } from "date-fns";
 import { User, Submission, Note } from "@shared/schema";
-import { 
-  ArrowUpDown, 
-  Calendar, 
-  Download, 
-  Filter, 
-  Plus, 
-  Search, 
-  Tag, 
-  Trash2, 
+import {
+  ArrowUpDown,
+  Calendar,
+  Download,
+  Filter,
+  Plus,
+  Search,
+  Tag,
+  Trash2,
   X,
   CheckCircle,
   XCircle,
@@ -24,10 +24,10 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
   DialogTitle,
   DialogDescription,
   DialogFooter,
@@ -37,7 +37,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -65,7 +65,7 @@ export default function SubmissionsPage() {
   // Authentication check
   const authQuery = useQuery({
     queryKey: ['/api/auth/check'],
-    queryFn: getQueryFn<{authenticated: boolean; user: User}>({on401: 'returnNull'}),
+    queryFn: getQueryFn<{ authenticated: boolean; user: User }>({ on401: 'returnNull' }),
   });
 
   // Get submissions with optional filtering
@@ -99,7 +99,7 @@ export default function SubmissionsPage() {
     mutationFn: async ({ id, status }: { id: number; status: string }) => {
       return apiRequest(
         'PATCH',
-        `/api/admin/submissions/${id}`, 
+        `/api/admin/submissions/${id}`,
         { status }
       );
     },
@@ -125,7 +125,7 @@ export default function SubmissionsPage() {
     mutationFn: async ({ submissionId, content }: { submissionId: number; content: string }) => {
       return apiRequest(
         'POST',
-        `/api/admin/submissions/${submissionId}/notes`, 
+        `/api/admin/submissions/${submissionId}/notes`,
         { content }
       );
     },
@@ -152,7 +152,7 @@ export default function SubmissionsPage() {
   const deleteSubmissionMutation = useMutation({
     mutationFn: async (id: number) => {
       return apiRequest(
-        'DELETE', 
+        'DELETE',
         `/api/admin/submissions/${id}`
       );
     },
@@ -199,24 +199,24 @@ export default function SubmissionsPage() {
 
     // Create CSV content
     const headers = [
-      "ID", 
-      "Name", 
-      "Email", 
-      "Phone", 
-      "Service", 
-      "Message", 
-      "Status", 
-      "Submitted At", 
+      "ID",
+      "Name",
+      "Email",
+      "Phone",
+      "Service",
+      "Message",
+      "Status",
+      "Submitted At",
       "Updated At"
     ];
-    
+
     const csvRows = [
       headers.join(','), // Header row
       ...submissionsQuery.data.submissions.map((sub: Submission) => {
         // Format dates for CSV
         const submittedAt = sub.submittedAt ? new Date(sub.submittedAt).toISOString() : '';
         const updatedAt = sub.updatedAt ? new Date(sub.updatedAt).toISOString() : '';
-        
+
         // Escape fields that might contain commas
         const escapeCsvField = (field: string) => {
           if (!field) return '';
@@ -226,7 +226,7 @@ export default function SubmissionsPage() {
           }
           return field;
         };
-        
+
         return [
           sub.id,
           escapeCsvField(sub.name),
@@ -240,7 +240,7 @@ export default function SubmissionsPage() {
         ].join(',');
       })
     ].join('\n');
-    
+
     // Create and download the file
     const blob = new Blob([csvRows], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -250,7 +250,7 @@ export default function SubmissionsPage() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     toast({
       title: "Export successful",
       description: "Your data has been exported to CSV file.",
@@ -260,13 +260,13 @@ export default function SubmissionsPage() {
   // Filter submissions based on search query
   const filteredSubmissions = submissionsQuery.data?.submissions?.filter((submission: Submission) => {
     const searchLower = searchQuery.toLowerCase();
-    const matchesSearch = 
+    const matchesSearch =
       submission.name?.toLowerCase().includes(searchLower) ||
       submission.email?.toLowerCase().includes(searchLower) ||
       submission.phone?.toLowerCase().includes(searchLower) ||
       submission.service?.toLowerCase().includes(searchLower) ||
       submission.message?.toLowerCase().includes(searchLower);
-    
+
     return matchesSearch;
   }) || [];
 
@@ -290,29 +290,29 @@ export default function SubmissionsPage() {
     icon: React.ReactNode;
     label: string;
   }>;
-  
+
   const statusConfig: StatusConfigType = {
-    new: { 
+    new: {
       color: 'bg-blue-50 text-blue-700 border-blue-200',
       icon: <AlertCircle className="h-4 w-4 mr-1" />,
       label: 'New'
     },
-    in_progress: { 
+    in_progress: {
       color: 'bg-amber-50 text-amber-700 border-amber-200',
       icon: <Clock className="h-4 w-4 mr-1" />,
       label: 'In Progress'
     },
-    pending: { 
+    pending: {
       color: 'bg-purple-50 text-purple-700 border-purple-200',
       icon: <Clock className="h-4 w-4 mr-1" />,
       label: 'Pending'
     },
-    delivered: { 
+    delivered: {
       color: 'bg-green-50 text-green-700 border-green-200',
       icon: <CheckCircle className="h-4 w-4 mr-1" />,
       label: 'Closed'
     },
-    lost: { 
+    lost: {
       color: 'bg-red-50 text-red-700 border-red-200',
       icon: <XCircle className="h-4 w-4 mr-1" />,
       label: 'Not Interested'
@@ -367,10 +367,10 @@ export default function SubmissionsPage() {
                 </div>
               </div>
               {statusFilter && statusFilter !== 'all' && (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={() => setStatusFilter('all')} 
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setStatusFilter('all')}
                   className="h-10"
                 >
                   <X className="h-4 w-4 mr-1" /> Clear filters
@@ -407,7 +407,7 @@ export default function SubmissionsPage() {
                   <h3 className="text-lg font-medium mb-2">No leads found</h3>
                   <p className="text-sm text-gray-500 mb-4 max-w-md mx-auto">
                     {statusFilter && statusFilter !== 'all'
-                      ? `There are no leads with the "${statusFilter}" status.` 
+                      ? `There are no leads with the "${statusFilter}" status.`
                       : "There are no leads matching your search criteria."}
                   </p>
                 </div>
@@ -420,19 +420,19 @@ export default function SubmissionsPage() {
                       icon: null,
                       label: status.replace('_', ' ')
                     };
-                    const formattedSubmittedDate = submission.submittedAt 
+                    const formattedSubmittedDate = submission.submittedAt
                       ? format(new Date(submission.submittedAt), 'MMM dd, yyyy HH:mm')
                       : 'Unknown date';
-                    
+
                     const isActive = selectedSubmission?.id === submission.id;
-                    
+
                     return (
-                      <div 
-                        key={submission.id} 
+                      <div
+                        key={submission.id}
                         className={`bg-white rounded-lg shadow-sm border ${isActive ? 'border-[#0066CC]' : 'border-gray-100'} overflow-hidden hover:shadow-md transition-shadow`}
                       >
                         {/* Lead Header */}
-                        <div 
+                        <div
                           className="bg-gradient-to-r from-[#0066CC10] to-[#FF6B0010] p-4 border-b border-gray-100 cursor-pointer"
                           onClick={() => {
                             if (expandedSubmission === submission.id) {
@@ -445,8 +445,8 @@ export default function SubmissionsPage() {
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div className="flex items-center">
                               <div className="mr-2">
-                                {expandedSubmission === submission.id ? 
-                                  <ChevronDown className="h-5 w-5 text-gray-500" /> : 
+                                {expandedSubmission === submission.id ?
+                                  <ChevronDown className="h-5 w-5 text-gray-500" /> :
                                   <ChevronRight className="h-5 w-5 text-gray-500" />
                                 }
                               </div>
@@ -459,7 +459,7 @@ export default function SubmissionsPage() {
                               </div>
                             </div>
                             <div className="flex flex-wrap items-center gap-2">
-                              <Badge 
+                              <Badge
                                 className={`flex items-center px-2.5 py-1 ${statusDisplayConfig.color} border`}
                                 variant="outline"
                               >
@@ -467,209 +467,211 @@ export default function SubmissionsPage() {
                                 {statusDisplayConfig.label}
                               </Badge>
                               <div onClick={(e) => e.stopPropagation()}>
-                                <Select 
-                                  value={submission.status} 
+                                <Select
+                                  value={submission.status}
                                   onValueChange={(value) => {
-                                    updateStatusMutation.mutate({ 
-                                      id: submission.id, 
-                                      status: value 
+                                    updateStatusMutation.mutate({
+                                      id: submission.id,
+                                      status: value
                                     });
                                   }}
                                 >
-                                <SelectTrigger className="h-8 w-32">
-                                  <SelectValue placeholder="Change status" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="new">New</SelectItem>
-                                  <SelectItem value="in_progress">In Progress</SelectItem>
-                                  <SelectItem value="pending">Pending</SelectItem>
-                                  <SelectItem value="delivered">Closed</SelectItem>
-                                  <SelectItem value="lost">Not Interested</SelectItem>
-                                </SelectContent>
-                              </Select>
+                                  <SelectTrigger className="h-8 w-32">
+                                    <SelectValue placeholder="Change status" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="new">New</SelectItem>
+                                    <SelectItem value="in_progress">In Progress</SelectItem>
+                                    <SelectItem value="pending">Pending</SelectItem>
+                                    <SelectItem value="delivered">Closed</SelectItem>
+                                    <SelectItem value="lost">Not Interested</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
                             </div>
                           </div>
                         </div>
-                        
+
                         {expandedSubmission === submission.id && (
                           <div className="p-5">
-                          {/* Lead Tags */}
-                          <div className="mb-4">
-                            <div className="flex items-center mb-2">
-                              <Tag className="h-4 w-4 mr-1.5 text-gray-500" />
-                              <span className="text-sm font-medium text-gray-700">Tags</span>
-                            </div>
-                            <div className="flex flex-wrap gap-2">
-                              <Badge 
-                                className="bg-orange-50 text-orange-700 border-orange-200 border"
-                                variant="outline"
-                              >
-                                {submission.service.replace(/_/g, ' ')}
-                              </Badge>
-                              {submission.phone && (
-                                <Badge 
-                                  className="bg-blue-50 text-blue-700 border-blue-200 border"
+                            {/* Lead Tags */}
+                            <div className="mb-4">
+                              <div className="flex items-center mb-2">
+                                <Tag className="h-4 w-4 mr-1.5 text-gray-500" />
+                                <span className="text-sm font-medium text-gray-700">Tags</span>
+                              </div>
+                              <div className="flex flex-wrap gap-2">
+                                <Badge
+                                  className="bg-orange-50 text-orange-700 border-orange-200 border"
                                   variant="outline"
                                 >
-                                  Phone Inquiry
+                                  {submission.service.replace(/_/g, ' ')}
                                 </Badge>
-                              )}
-                              <Badge 
-                                className="bg-purple-50 text-purple-700 border-purple-200 border"
-                                variant="outline"
-                              >
-                                Website Lead
-                              </Badge>
-                              <Badge 
-                                className="bg-green-50 text-green-700 border-green-200 border hover:bg-green-100 cursor-pointer"
-                                variant="outline"
-                              >
-                                <Plus className="h-3 w-3 mr-1" />
-                                Add Tag
-                              </Badge>
-                            </div>
-                          </div>
-                          
-                          {/* Notes Section */}
-                          <div className="mb-4">
-                            <div className="flex items-center justify-between mb-2">
-                              <div className="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                </svg>
-                                <span className="text-sm font-medium text-gray-700">Notes</span>
+                                {submission.phone && (
+                                  <Badge
+                                    className="bg-blue-50 text-blue-700 border-blue-200 border"
+                                    variant="outline"
+                                  >
+                                    Phone Inquiry
+                                  </Badge>
+                                )}
+                                <Badge
+                                  className="bg-purple-50 text-purple-700 border-purple-200 border"
+                                  variant="outline"
+                                >
+                                  Website Lead
+                                </Badge>
+                                <Badge
+                                  className="bg-green-50 text-green-700 border-green-200 border hover:bg-green-100 cursor-pointer"
+                                  variant="outline"
+                                >
+                                  <Plus className="h-3 w-3 mr-1" />
+                                  Add Tag
+                                </Badge>
                               </div>
-                              {/* View All Notes button that also acts as a loading trigger */}
-                              <Button 
-                                variant="ghost" 
-                                size="sm"
-                                className="h-7 text-xs font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 px-2"
-                                onClick={() => {
-                                  setSelectedSubmission(submission);
-                                  // Trigger notes query
-                                  queryClient.invalidateQueries({ queryKey: ['/api/admin/submissions', submission.id, 'notes'] });
-                                }}
-                              >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                                </svg>
-                                View All
-                              </Button>
                             </div>
-                            
-                            <div className="bg-gray-50 rounded-md p-3 mb-3 max-h-32 overflow-y-auto">
-                              {notesQuery.isLoading && selectedSubmission?.id === submission.id ? (
-                                <p className="text-center py-2 text-sm text-gray-500">Loading notes...</p>
-                              ) : isActive && notesQuery.data?.notes?.length ? (
-                                <div className="space-y-2">
-                                  {notesQuery.data.notes
-                                    // Sort notes by date (most recent first)
-                                    .sort((a: Note, b: Note) => 
-                                      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-                                    )
-                                    .map((note: Note) => (
-                                      <div key={note.id} className="bg-white p-2 rounded border border-gray-200 text-sm">
-                                        <p className="text-gray-700">{note.content}</p>
-                                        <div className="flex justify-between items-center mt-1 text-xs text-gray-500">
-                                          <span>Admin</span>
-                                          <span>{format(new Date(note.createdAt), 'MMM dd, yyyy HH:mm')}</span>
-                                        </div>
-                                      </div>
-                                    ))
-                                  }
+
+                            {/* Notes Section */}
+                            <div className="mb-4">
+                              <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center">
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                  </svg>
+                                  <span className="text-sm font-medium text-gray-700">Notes</span>
                                 </div>
-                              ) : isActive && (!notesQuery.data?.notes?.length) ? (
-                                <p className="text-center py-2 text-sm text-gray-500">No notes added yet.</p>
-                              ) : (
-                                <div 
-                                  className="flex items-center justify-center py-3 text-gray-500 text-sm cursor-pointer hover:bg-gray-100 rounded-md"
+                                {/* View All Notes button that also acts as a loading trigger */}
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-7 text-xs font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 px-2"
                                   onClick={() => {
                                     setSelectedSubmission(submission);
                                     // Trigger notes query
                                     queryClient.invalidateQueries({ queryKey: ['/api/admin/submissions', submission.id, 'notes'] });
                                   }}
                                 >
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                                   </svg>
-                                  Click to load notes
-                                </div>
-                              )}
+                                  View All
+                                </Button>
+                              </div>
+
+                              <div className="bg-gray-50 rounded-md p-3 mb-3 max-h-32 overflow-y-auto">
+                                {notesQuery.isLoading && selectedSubmission?.id === submission.id ? (
+                                  <p className="text-center py-2 text-sm text-gray-500">Loading notes...</p>
+                                ) : isActive && notesQuery.data?.notes?.length ? (
+                                  <div className="space-y-2">
+                                    {notesQuery.data.notes
+                                      // Sort notes by date (most recent first)
+                                      .sort((a: Note, b: Note) =>
+                                        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+                                      )
+                                      .map((note: Note) => (
+                                        <div key={note.id} className="bg-white p-2 rounded border border-gray-200 text-sm">
+                                          <p className="text-gray-700">{note.content}</p>
+                                          <div className="flex justify-between items-center mt-1 text-xs text-gray-500">
+                                            <span>Admin</span>
+                                            <span>{format(new Date(note.createdAt), 'MMM dd, yyyy HH:mm')}</span>
+                                          </div>
+                                        </div>
+                                      ))
+                                    }
+                                  </div>
+                                ) : isActive && (!notesQuery.data?.notes?.length) ? (
+                                  <p className="text-center py-2 text-sm text-gray-500">No notes added yet.</p>
+                                ) : (
+                                  <div
+                                    className="flex items-center justify-center py-3 text-gray-500 text-sm cursor-pointer hover:bg-gray-100 rounded-md"
+                                    onClick={() => {
+                                      setSelectedSubmission(submission);
+                                      // Trigger notes query
+                                      queryClient.invalidateQueries({ queryKey: ['/api/admin/submissions', submission.id, 'notes'] });
+                                    }}
+                                  >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                    </svg>
+                                    Click to load notes
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                          </div>
-                          
-                          {/* Lead Info Grid */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4 bg-gray-50 rounded-md p-3">
-                            <div className="flex items-center text-sm">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                              </svg>
-                              <span className="text-gray-700">{submission.email}</span>
-                            </div>
-                            <div className="flex items-center text-sm">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                              </svg>
-                              <span className="text-gray-700">{submission.phone}</span>
-                            </div>
-                            {submission.city && (
+
+                            {/* Lead Info Grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4 bg-gray-50 rounded-md p-3">
                               <div className="flex items-center text-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
-                                <span className="text-gray-700">{submission.city}</span>
+                                <span className="text-gray-700">{submission.email}</span>
                               </div>
-                            )}
-                            <div className="flex items-center text-sm">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                              </svg>
-                              <span className="text-gray-700">
-                                {submission.service.replace(/_/g, ' ')}
-                              </span>
+                              <div className="flex items-center text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                                <span className="text-gray-700">{submission.phone}</span>
+                              </div>
+                              {submission.city && (
+                                <div className="flex items-center text-sm">
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                  </svg>
+                                  <span className="text-gray-700">{submission.city}</span>
+                                </div>
+                              )}
+                              <div className="flex items-center text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                                </svg>
+                                <span className="text-gray-700">
+                                  {submission.service.replace(/_/g, ' ')}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Message Box */}
+                            <div className="bg-gray-50 rounded-md p-3 mb-4">
+                              <div className="flex items-center mb-1">
+                                <MessageSquare className="h-4 w-4 mr-1.5 text-gray-500" />
+                                <span className="text-sm font-medium text-gray-700">Message</span>
+                              </div>
+                              <p className="text-gray-700 text-sm py-1 whitespace-pre-wrap">{submission.message}</p>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex flex-wrap gap-2 justify-end">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                                onClick={() => {
+                                  setSelectedSubmission(submission);
+                                  setShowNotesDialog(true);
+                                }}
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                Manage Notes
+                              </Button>
+
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                onClick={() => {
+                                  setSelectedSubmission(submission);
+                                  setShowDeleteDialog(true);
+                                }}
+                              >
+                                <Trash2 className="h-4 w-4 mr-1" />
+                                Delete
+                              </Button>
                             </div>
                           </div>
-                          
-                          {/* Message Box */}
-                          <div className="bg-gray-50 rounded-md p-3 mb-4">
-                            <div className="flex items-center mb-1">
-                              <MessageSquare className="h-4 w-4 mr-1.5 text-gray-500" />
-                              <span className="text-sm font-medium text-gray-700">Message</span>
-                            </div>
-                            <p className="text-gray-700 text-sm py-1 whitespace-pre-wrap">{submission.message}</p>
-                          </div>
-                          
-                          {/* Action Buttons */}
-                          <div className="flex flex-wrap gap-2 justify-end">
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="border-blue-200 text-blue-600 hover:bg-blue-50"
-                              onClick={() => {
-                                setSelectedSubmission(submission);
-                                setShowNotesDialog(true);
-                              }}
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                              </svg>
-                              Manage Notes
-                            </Button>
-                            
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                              onClick={() => {
-                                setSelectedSubmission(submission);
-                                setShowDeleteDialog(true);
-                              }}
-                            >
-                              <Trash2 className="h-4 w-4 mr-1" />
-                              Delete
-                            </Button>
-                          </div>
-                        </div>
+                        )}
                       </div>
                     );
                   })}
@@ -730,7 +732,7 @@ export default function SubmissionsPage() {
             ) : (
               notesQuery.data.notes
                 // Sort notes by date (most recent first)
-                .sort((a: Note, b: Note) => 
+                .sort((a: Note, b: Note) =>
                   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
                 )
                 .map((note: Note) => (
@@ -746,9 +748,9 @@ export default function SubmissionsPage() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="note">Add a note</Label>
-            <Textarea 
-              id="note" 
-              placeholder="Enter your note here..." 
+            <Textarea
+              id="note"
+              placeholder="Enter your note here..."
               value={newNote}
               onChange={(e) => setNewNote(e.target.value)}
               className="resize-none"
