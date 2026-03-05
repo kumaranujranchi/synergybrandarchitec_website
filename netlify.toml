@@ -1,7 +1,7 @@
 # Netlify Build Settings
 [build]
   publish = "dist"
-  command = "npx convex deploy --bundle && npm run build"
+  command = "NODE_OPTIONS='--no-deprecation' npx convex deploy --bundle && npm run build"
 
 [[redirects]]
   from = "/*"
